@@ -7,7 +7,7 @@
 <meta name="description" content="Eén partij voor je website, je vindbaarheid in Google, je advertenties, je automatisering én een AI-telefonist die 24/7 opneemt. Voor ondernemers in Nederland en België.">
 <link rel="canonical" href="https://complete-ai.nl/">
 <meta name="robots" content="index, follow">
-<meta name="theme-color" content="#0C1116">
+<meta name="theme-color" content="#06070C">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; script-src 'self' 'unsafe-inline'; form-action 'self' mailto:; frame-ancestors 'none'; base-uri 'self'; object-src 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 
@@ -21,9 +21,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;500&display=swap">
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230A4FD1'/%3E%3Cpath d='M9 9h5v5H9zM18 9h5v5h-5zM9 18h5v5H9zM18 18h5v5h-5z' fill='white'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%233D6DFF'/%3E%3Cstop offset='1' stop-color='%2325D8C4'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='%230A0C13'/%3E%3Cpath d='M6 10h4M6 16h4M6 22h4' stroke='url(%23g)' stroke-width='2' stroke-linecap='round' opacity='.55'/%3E%3Cpath d='M12 16h14' stroke='url(%23g)' stroke-width='2.5' stroke-linecap='round'/%3E%3Ccircle cx='12' cy='16' r='2.5' fill='url(%23g)'/%3E%3C/svg%3E">
 
 <script type="application/ld+json">
 {
@@ -41,382 +41,446 @@
 </script>
 
 <style>
-/* ══════════════════════════════════════════════════
-   COMPLETE AI — huisstijl
-   Instrumentenpaneel: koel technisch grijs, één
-   zeker blauw, koper als klein signaal. Strak
-   raster, zichtbare haarlijnen, grote typografische
-   sprongen. Archivo · Public Sans · IBM Plex Mono
-   ══════════════════════════════════════════════════ */
+/* ══════════════════════════════════════════════════════════
+   COMPLETE AI
+   Bewust één visuele wereld: diep nachtblauw, elektrisch
+   blauw dat naar aqua verloopt, glas en gloed. Alles wordt
+   expliciet geschilderd — geen thema-afhankelijkheid.
+   Sora (display) · DM Sans (tekst) · JetBrains Mono (data)
+   ══════════════════════════════════════════════════════════ */
 
 :root{
-  --grond:#EDEFF2;
-  --vlak:#FFFFFF;
-  --vlak-diep:#E2E6EB;
-  --inkt:#0C1116;
-  --inkt-zacht:#4E5A66;
-  --lijn:#D6DCE3;
-  --lijn-zacht:#E4E8ED;
-  --accent:#0A4FD1;
-  --accent-diep:#0840AC;
-  --accent-mist:#E3EBFB;
-  --op-accent:#FFFFFF;
-  --diep:#0E141B;
-  --diep-inkt:#EAEFF4;
-  --diep-zacht:#94A3B1;
-  --diep-lijn:#232D38;
-  --signaal:#B85C1E;
-  --schaduw:12 20 30;
+  --void:#06070C;
+  --grond:#090B12;
+  --vlak:#0E1119;
+  --vlak-hoog:#141826;
+  --glas:rgba(20,24,38,.62);
 
-  --f-kop:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;
-  --f-tekst:"Public Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
-  --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --inkt:#EEF1F8;
+  --inkt-zacht:#8D95AA;
+  --inkt-dim:#5A6278;
 
-  --rand:min(1180px, 100% - clamp(1.25rem, 6vw, 5.5rem));
-  --v:clamp(3.5rem, 8vw, 7rem);
-}
+  --lijn:#1A2030;
+  --lijn-op:#28304a;
 
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --grond:#0A0D11;
-    --vlak:#12181F;
-    --vlak-diep:#1A222B;
-    --inkt:#E9EDF2;
-    --inkt-zacht:#94A2AF;
-    --lijn:#222B35;
-    --lijn-zacht:#1A222B;
-    --accent:#6D9DFF;
-    --accent-diep:#8CB2FF;
-    --accent-mist:#152238;
-    --op-accent:#07101F;
-    --diep:#12181F;
-    --diep-inkt:#E9EDF2;
-    --diep-zacht:#94A2AF;
-    --diep-lijn:#242E39;
-    --signaal:#E0975B;
-    --schaduw:0 0 0;
-  }
-}
-:root[data-theme="dark"]{
-  --grond:#0A0D11; --vlak:#12181F; --vlak-diep:#1A222B;
-  --inkt:#E9EDF2; --inkt-zacht:#94A2AF; --lijn:#222B35; --lijn-zacht:#1A222B;
-  --accent:#6D9DFF; --accent-diep:#8CB2FF; --accent-mist:#152238; --op-accent:#07101F;
-  --diep:#12181F; --diep-inkt:#E9EDF2; --diep-zacht:#94A2AF; --diep-lijn:#242E39;
-  --signaal:#E0975B; --schaduw:0 0 0;
+  --blauw:#3D6DFF;
+  --blauw-hel:#6B92FF;
+  --aqua:#25D8C4;
+  --verloop:linear-gradient(115deg,#3D6DFF 0%,#5B8CFF 42%,#25D8C4 100%);
+  --gloed:rgba(61,109,255,.30);
+
+  --f-kop:"Sora","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --f-tekst:"DM Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+
+  --rand:min(1200px, 100% - clamp(1.25rem,6vw,5.5rem));
+  --v:clamp(4rem,9vw,8rem);
 }
 
 *,*::before,*::after{box-sizing:border-box}
-
-html{scroll-behavior:smooth}
-@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 
 body{
   margin:0;
-  background:var(--grond);
+  background:var(--void);
   color:var(--inkt);
   font-family:var(--f-tekst);
-  font-size:clamp(16px,15.2px+0.25vw,18px);
-  line-height:1.6;
+  font-size:clamp(16px,15.2px+.25vw,18px);
+  line-height:1.65;
   -webkit-font-smoothing:antialiased;
-  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
 }
 
-h1,h2,h3,h4{font-family:var(--f-kop);margin:0;line-height:1.06;letter-spacing:-0.035em;
+/* fijne ruis over de hele pagina — haalt het digitale platte eraf */
+body::after{
+  content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.15;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+  mix-blend-mode:overlay;
+}
+
+h1,h2,h3,h4{font-family:var(--f-kop);margin:0;line-height:1.08;letter-spacing:-.035em;
   font-weight:600;text-wrap:balance}
 p{margin:0}
 a{color:inherit}
 img{max-width:100%;display:block}
+::selection{background:var(--blauw);color:#fff}
 
-.wrap{width:var(--rand);margin-inline:auto}
+.wrap{width:var(--rand);margin-inline:auto;position:relative;z-index:2}
 
-/* ── labels ─────────────────────────────── */
-.label{
-  font-family:var(--f-mono);font-size:.7rem;font-weight:500;
-  letter-spacing:.14em;text-transform:uppercase;color:var(--accent);
-  display:flex;align-items:center;gap:.8rem;
-}
-.label::before{content:"";width:22px;height:1px;background:var(--accent);flex:none}
+/* ── label ─────────────────────────────────────── */
+.label{display:inline-flex;align-items:center;gap:.7rem;font-family:var(--f-mono);
+  font-size:.7rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--aqua)}
+.label i{width:6px;height:6px;border-radius:50%;background:var(--aqua);flex:none;
+  animation:pols 2.6s ease-out infinite}
+@keyframes pols{0%{box-shadow:0 0 0 0 rgba(37,216,196,.45)}70%{box-shadow:0 0 0 9px rgba(37,216,196,0)}100%{box-shadow:0 0 0 0 rgba(37,216,196,0)}}
 
-/* ── knoppen ────────────────────────────── */
-.knop{
-  display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
-  font-family:var(--f-tekst);font-size:1rem;font-weight:600;letter-spacing:-0.01em;
-  padding:.95rem 1.7rem;border-radius:3px;text-decoration:none;cursor:pointer;
-  border:1px solid transparent;
-  transition:background .2s ease,border-color .2s ease,color .2s ease,transform .2s ease;
-}
-.knop svg{width:14px;height:14px;flex:none}
-.knop-vol{background:var(--accent);color:var(--op-accent)}
-.knop-vol:hover{background:var(--accent-diep);transform:translateY(-1px)}
-.knop-lijn{border-color:var(--lijn);color:var(--inkt)}
-.knop-lijn:hover{border-color:var(--accent);color:var(--accent)}
-.knop-licht{border-color:var(--diep-lijn);color:var(--diep-inkt)}
-.knop-licht:hover{border-color:var(--diep-inkt)}
-:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+/* ── knoppen ───────────────────────────────────── */
+.knop{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
+  font-family:var(--f-tekst);font-size:1rem;font-weight:600;letter-spacing:-.01em;
+  padding:1rem 1.8rem;border-radius:10px;text-decoration:none;cursor:pointer;
+  border:1px solid transparent;overflow:hidden;
+  transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s ease,border-color .25s ease,color .25s ease}
+.knop svg{width:15px;height:15px;flex:none;transition:transform .25s ease}
+.knop-vol{background:var(--verloop);color:#04060E;
+  box-shadow:0 6px 22px -8px var(--gloed),0 0 0 1px rgba(255,255,255,.06) inset}
+.knop-vol:hover{transform:translateY(-2px);box-shadow:0 14px 34px -10px var(--gloed),0 0 0 1px rgba(255,255,255,.12) inset}
+.knop-vol:hover svg{transform:translateX(3px)}
+.knop-vol::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.42) 50%,transparent 65%);
+  transform:translateX(-120%);transition:transform .7s ease}
+.knop-vol:hover::after{transform:translateX(120%)}
+.knop-lijn{border-color:var(--lijn-op);color:var(--inkt);background:rgba(255,255,255,.02)}
+.knop-lijn:hover{border-color:var(--blauw-hel);color:#fff;transform:translateY(-2px);
+  box-shadow:0 10px 28px -14px var(--gloed)}
+:focus-visible{outline:2px solid var(--aqua);outline-offset:3px;border-radius:6px}
 
-/* ── kopbalk ────────────────────────────── */
-.balk{position:sticky;top:0;z-index:80;background:color-mix(in srgb,var(--grond) 86%,transparent);
-  backdrop-filter:blur(12px) saturate(1.4);border-bottom:1px solid var(--lijn)}
-.balk .wrap{display:flex;align-items:center;gap:2rem;height:70px}
-.merk{display:flex;align-items:center;gap:.65rem;text-decoration:none;margin-right:auto;flex:none}
-.merk .glyph{width:26px;height:26px;flex:none}
-.merk b{font-family:var(--f-kop);font-size:1.16rem;font-weight:700;letter-spacing:-0.04em}
-.merk b span{color:var(--accent)}
-.menu{display:flex;gap:1.8rem}
-.menu a{text-decoration:none;font-size:.94rem;font-weight:500;color:var(--inkt-zacht);
-  transition:color .18s ease}
+/* ── kopbalk ───────────────────────────────────── */
+.balk{position:sticky;top:0;z-index:90;background:rgba(6,7,12,.72);
+  backdrop-filter:blur(16px) saturate(1.6);border-bottom:1px solid transparent;
+  transition:border-color .3s ease,background .3s ease}
+.balk.vast{border-bottom-color:var(--lijn);background:rgba(6,7,12,.9)}
+.balk .wrap{display:flex;align-items:center;gap:2rem;height:74px}
+.merk{display:flex;align-items:center;gap:.7rem;text-decoration:none;margin-right:auto;flex:none}
+.merk svg{width:30px;height:30px;flex:none}
+.merk b{font-family:var(--f-kop);font-size:1.2rem;font-weight:700;letter-spacing:-.045em}
+.merk b span{background:var(--verloop);-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent}
+.menu{display:flex;gap:2rem}
+.menu a{position:relative;text-decoration:none;font-size:.94rem;font-weight:500;
+  color:var(--inkt-zacht);transition:color .22s ease;padding:.2rem 0}
+.menu a::after{content:"";position:absolute;left:0;bottom:-2px;height:1px;width:100%;
+  background:var(--verloop);transform:scaleX(0);transform-origin:right;transition:transform .3s ease}
 .menu a:hover{color:var(--inkt)}
-@media(max-width:960px){.menu{display:none}}
-@media(max-width:560px){.balk .knop{padding:.7rem 1.1rem;font-size:.92rem}}
+.menu a:hover::after{transform:scaleX(1);transform-origin:left}
+@media(max-width:1020px){.menu{display:none}}
+@media(max-width:560px){.balk .knop{padding:.7rem 1.1rem;font-size:.9rem}}
 
-/* ── hero ───────────────────────────────── */
-.hero{padding:clamp(3rem,7vw,5.5rem) 0 clamp(3rem,6vw,4.5rem);position:relative;overflow:hidden}
-.hero::before{content:"";position:absolute;inset:0;pointer-events:none;
-  background-image:linear-gradient(var(--lijn-zacht) 1px,transparent 1px),
-                   linear-gradient(90deg,var(--lijn-zacht) 1px,transparent 1px);
-  background-size:64px 64px;
-  mask-image:radial-gradient(ellipse 80% 60% at 70% 20%,#000,transparent 75%);
-  -webkit-mask-image:radial-gradient(ellipse 80% 60% at 70% 20%,#000,transparent 75%);
-  opacity:.75}
-.hero .wrap{position:relative}
-.hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
+/* ── hero ──────────────────────────────────────── */
+.hero{position:relative;padding:clamp(3.5rem,8vw,7rem) 0 clamp(3rem,6vw,5rem);isolation:isolate}
+#stroomdoek{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.hero::before{content:"";position:absolute;z-index:0;left:50%;top:-18%;transform:translateX(-50%);
+  width:min(1100px,120%);height:560px;pointer-events:none;
+  background:radial-gradient(50% 50% at 50% 50%,rgba(61,109,255,.16),transparent 70%)}
+.hero::after{content:"";position:absolute;z-index:0;left:0;right:0;bottom:0;height:200px;
+  pointer-events:none;background:linear-gradient(to bottom,transparent,var(--void))}
+
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);
   gap:clamp(2.5rem,5vw,4.5rem);align-items:center}
-@media(max-width:980px){.hero-grid{grid-template-columns:1fr;gap:3rem}}
+@media(max-width:1000px){.hero-grid{grid-template-columns:1fr;gap:3rem}}
 
-.hero h1{font-size:clamp(2.5rem,1.1rem+5.4vw,4.5rem);font-weight:700;margin:1.6rem 0 0}
-.hero h1 .uit{color:var(--accent)}
-.hero .lead{font-size:clamp(1.08rem,1rem+.45vw,1.3rem);color:var(--inkt-zacht);
-  max-width:40ch;margin-top:1.6rem}
-.hero .acties{display:flex;flex-wrap:wrap;gap:.85rem;margin-top:2.4rem}
-.borg{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;margin-top:2.2rem;
-  font-family:var(--f-mono);font-size:.76rem;color:var(--inkt-zacht);letter-spacing:.02em}
-.borg span{display:inline-flex;align-items:center;gap:.5rem}
-.borg span::before{content:"";width:4px;height:4px;background:var(--accent);
-  transform:rotate(45deg);flex:none}
+.hero h1{font-size:clamp(2.55rem,1rem+5.9vw,4.9rem);font-weight:700;margin:1.7rem 0 0;
+  letter-spacing:-.045em;line-height:1.02}
+.hero h1 .glans{background:var(--verloop);-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent}
+.hero .lead{font-size:clamp(1.08rem,1rem+.5vw,1.32rem);color:var(--inkt-zacht);
+  max-width:42ch;margin-top:1.7rem}
+.hero .acties{display:flex;flex-wrap:wrap;gap:.9rem;margin-top:2.5rem}
+.borg{display:flex;flex-wrap:wrap;gap:.6rem 1.8rem;margin-top:2.4rem;
+  font-family:var(--f-mono);font-size:.74rem;color:var(--inkt-dim);letter-spacing:.03em}
+.borg span{display:inline-flex;align-items:center;gap:.55rem}
+.borg span::before{content:"";width:5px;height:5px;flex:none;border-radius:1px;
+  background:var(--verloop);transform:rotate(45deg)}
 
-/* ── het paneel ─────────────────────────── */
-.paneel{background:var(--diep);border:1px solid var(--diep-lijn);border-radius:6px;
-  box-shadow:0 30px 70px -40px rgb(var(--schaduw)/.55);overflow:hidden}
-.paneel-kop{display:flex;align-items:center;gap:.6rem;padding:.85rem 1.1rem;
-  border-bottom:1px solid var(--diep-lijn)}
-.stip{width:7px;height:7px;border-radius:50%;background:#3ED07B;flex:none;
-  box-shadow:0 0 0 0 rgba(62,208,123,.55);animation:pols 2.4s ease-out infinite}
-@keyframes pols{0%{box-shadow:0 0 0 0 rgba(62,208,123,.5)}70%{box-shadow:0 0 0 7px rgba(62,208,123,0)}100%{box-shadow:0 0 0 0 rgba(62,208,123,0)}}
-.paneel-kop b{font-family:var(--f-mono);font-size:.72rem;font-weight:500;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--diep-zacht)}
-.paneel-kop i{margin-left:auto;font-style:normal;font-family:var(--f-mono);font-size:.68rem;
-  color:var(--diep-zacht);letter-spacing:.06em}
-.stroom{padding:.5rem 0;min-height:270px}
-.regel{display:grid;grid-template-columns:56px 1fr auto;align-items:center;gap:.9rem;
-  padding:.72rem 1.1rem;border-bottom:1px solid var(--diep-lijn);
-  opacity:0;transform:translateY(6px);animation:instroom .55s ease-out forwards}
-.regel:last-child{border-bottom:0}
-@keyframes instroom{to{opacity:1;transform:none}}
-@media (prefers-reduced-motion: reduce){
-  .regel{opacity:1;transform:none;animation:none}
-  .stip{animation:none}
-}
-.regel .tijd{font-family:var(--f-mono);font-size:.68rem;color:var(--diep-zacht)}
-.regel .wat{font-size:.88rem;color:var(--diep-inkt);line-height:1.35}
-.regel .wat em{font-style:normal;color:var(--diep-zacht)}
-.regel .vink{width:17px;height:17px;border-radius:50%;background:rgba(62,208,123,.14);
-  display:grid;place-items:center;flex:none}
-.regel .vink svg{width:9px;height:9px;stroke:#3ED07B;stroke-width:2.5;fill:none}
-.paneel-voet{padding:.8rem 1.1rem;border-top:1px solid var(--diep-lijn);
-  font-family:var(--f-mono);font-size:.7rem;color:var(--diep-zacht);
-  display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
-.paneel-voet b{color:var(--diep-inkt);font-weight:500}
+/* binnenkomst bij laden */
+.op{opacity:0;transform:translateY(18px);animation:opkomst .9s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes opkomst{to{opacity:1;transform:none}}
 
-/* ── secties ────────────────────────────── */
-section{padding:var(--v) 0;border-top:1px solid var(--lijn);scroll-margin-top:74px}
-main [id]{scroll-margin-top:74px}
-.sectiekop{max-width:56ch}
-.sectiekop h2{font-size:clamp(1.95rem,1.3rem+2.3vw,3.1rem);margin-top:1.3rem;font-weight:600}
-.sectiekop p{color:var(--inkt-zacht);margin-top:1.2rem;font-size:1.06rem}
-
-/* ── herkenning ─────────────────────────── */
-.pijn{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-  gap:1px;background:var(--lijn);border:1px solid var(--lijn);margin-top:3rem}
-.pijn div{background:var(--grond);padding:clamp(1.4rem,3vw,2rem);display:flex;
-  flex-direction:column;gap:.6rem}
-.pijn .nr{font-family:var(--f-mono);font-size:.7rem;color:var(--signaal);letter-spacing:.12em}
-.pijn p{font-size:1.02rem;font-weight:500;letter-spacing:-0.01em}
-.pijn small{color:var(--inkt-zacht);font-size:.92rem;font-weight:400;line-height:1.5}
-.antwoord{margin-top:2.5rem;padding:clamp(1.6rem,3vw,2.4rem);background:var(--accent-mist);
-  border-left:3px solid var(--accent);border-radius:0 4px 4px 0}
-.antwoord p{font-family:var(--f-kop);font-size:clamp(1.2rem,1rem+.9vw,1.7rem);
-  font-weight:500;letter-spacing:-0.025em;line-height:1.3;max-width:44ch}
-.antwoord p b{color:var(--accent);font-weight:600}
-
-/* ── diensten ───────────────────────────── */
-.diensten{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:1px;background:var(--lijn);border:1px solid var(--lijn);margin-top:3.2rem}
-.dienst{background:var(--vlak);padding:clamp(1.6rem,3vw,2.2rem);
-  display:flex;flex-direction:column;gap:.9rem;position:relative}
-.dienst .ico{width:34px;height:34px;color:var(--accent)}
-.dienst .ico svg{width:100%;height:100%;stroke:currentColor;stroke-width:1.4;fill:none;
-  stroke-linecap:round;stroke-linejoin:round}
-.dienst h3{font-size:1.32rem;font-weight:600;margin-top:.3rem}
-.dienst > p{color:var(--inkt-zacht);font-size:.98rem}
-.dienst ul{margin:.3rem 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:.45rem}
-.dienst li{font-size:.93rem;color:var(--inkt-zacht);display:flex;gap:.6rem;line-height:1.45}
-.dienst li::before{content:"";width:4px;height:4px;background:var(--accent);flex:none;
-  transform:rotate(45deg);margin-top:.55rem}
-
-/* ── uitgelicht (donker) ────────────────── */
-.donker{background:var(--diep);border-top:1px solid var(--diep-lijn);color:var(--diep-inkt)}
-.donker .label{color:var(--signaal)}
-.donker .label::before{background:var(--signaal)}
-.donker h2{color:var(--diep-inkt)}
-.donker .sectiekop p{color:var(--diep-zacht)}
-.uitgelicht{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
-  gap:clamp(2rem,5vw,4.5rem);align-items:start;margin-top:3.2rem}
-@media(max-width:900px){.uitgelicht{grid-template-columns:1fr}}
-.verhaal{display:flex;flex-direction:column;gap:1.4rem}
-.verhaal .stap{display:grid;grid-template-columns:auto 1fr;gap:1.1rem;align-items:start}
-.verhaal .klok{font-family:var(--f-mono);font-size:.74rem;color:var(--signaal);
-  padding-top:.15rem;white-space:nowrap;letter-spacing:.04em}
-.verhaal .tekst{font-size:.99rem;color:var(--diep-zacht);line-height:1.55}
-.verhaal .tekst b{color:var(--diep-inkt);font-weight:600}
-.kunde{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--diep-lijn);
-  border:1px solid var(--diep-lijn);border-radius:5px;overflow:hidden}
-.kunde div{background:var(--diep);padding:1.15rem 1.2rem;display:flex;flex-direction:column;gap:.3rem}
-.kunde b{font-family:var(--f-kop);font-size:1rem;font-weight:600;color:var(--diep-inkt);
-  letter-spacing:-0.02em}
-.kunde small{font-size:.85rem;color:var(--diep-zacht);line-height:1.45}
-
-/* ── werkwijze ──────────────────────────── */
-.route{margin-top:3.2rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));
-  gap:clamp(1.4rem,3vw,2.6rem)}
-.route .fase{display:flex;flex-direction:column;gap:.7rem;padding-top:1.2rem;
-  border-top:2px solid var(--accent)}
-.route .fase:nth-child(n+2){border-top-color:var(--lijn)}
-.route .fase i{font-style:normal;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.12em;
+/* ── het paneel ────────────────────────────────── */
+.paneel{position:relative;border-radius:16px;overflow:hidden;
+  background:var(--glas);backdrop-filter:blur(18px) saturate(1.3);
+  border:1px solid var(--lijn-op);
+  box-shadow:0 40px 90px -50px #000,0 0 60px -30px var(--gloed),
+             0 1px 0 0 rgba(255,255,255,.05) inset}
+.paneel-kop{display:flex;align-items:center;gap:.7rem;padding:1rem 1.25rem;
+  border-bottom:1px solid var(--lijn);background:rgba(255,255,255,.015)}
+.stip{width:8px;height:8px;border-radius:50%;background:var(--aqua);flex:none;
+  box-shadow:0 0 12px var(--aqua);animation:pols 2.6s ease-out infinite}
+.paneel-kop b{font-family:var(--f-mono);font-size:.72rem;font-weight:500;letter-spacing:.13em;
   text-transform:uppercase;color:var(--inkt-zacht)}
-.route .fase b{font-family:var(--f-kop);font-size:1.24rem;font-weight:600;letter-spacing:-0.025em}
-.route .fase p{font-size:.94rem;color:var(--inkt-zacht)}
+.paneel-kop i{margin-left:auto;font-style:normal;font-family:var(--f-mono);font-size:.68rem;
+  color:var(--inkt-dim);letter-spacing:.06em}
+.stroom{min-height:300px;padding:.35rem 0}
+.regel{display:grid;grid-template-columns:54px 1fr 20px;align-items:center;gap:.9rem;
+  padding:.78rem 1.25rem;border-bottom:1px solid rgba(26,32,48,.7);
+  opacity:0;transform:translateY(8px);
+  transition:opacity .5s ease,transform .5s cubic-bezier(.2,.8,.2,1)}
+.regel:last-child{border-bottom:0}
+.regel.aan{opacity:1;transform:none}
+.regel .tijd{font-family:var(--f-mono);font-size:.7rem;color:var(--inkt-dim)}
+.regel .wat{font-size:.9rem;color:var(--inkt);line-height:1.4}
+.regel .wat em{font-style:normal;color:var(--inkt-dim)}
+.regel .vink{width:19px;height:19px;border-radius:50%;display:grid;place-items:center;flex:none;
+  background:rgba(37,216,196,.12);border:1px solid rgba(37,216,196,.28)}
+.regel .vink svg{width:10px;height:10px;stroke:var(--aqua);stroke-width:2.6;fill:none}
+.paneel-voet{padding:.95rem 1.25rem;border-top:1px solid var(--lijn);
+  font-family:var(--f-mono);font-size:.72rem;color:var(--inkt-dim);
+  display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+  background:rgba(255,255,255,.015)}
+.paneel-voet b{color:var(--aqua);font-weight:500}
 
-/* ── over ───────────────────────────────── */
-.over{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);
-  gap:clamp(2rem,5vw,4.5rem);align-items:start;margin-top:3rem}
-@media(max-width:880px){.over{grid-template-columns:1fr}}
-.portret{aspect-ratio:4/5;max-width:430px;background:var(--vlak-diep);border:1px solid var(--lijn);
-  border-radius:5px;display:grid;place-items:center;text-align:center;padding:2rem;
-  color:var(--inkt-zacht);font-family:var(--f-mono);font-size:.76rem;line-height:1.7;
-  letter-spacing:.04em;position:relative;overflow:hidden}
+/* ── loopband ──────────────────────────────────── */
+.band{border-top:1px solid var(--lijn);border-bottom:1px solid var(--lijn);
+  padding:1.5rem 0;overflow:hidden;position:relative;background:var(--grond);z-index:2}
+.band::before,.band::after{content:"";position:absolute;top:0;bottom:0;width:16%;z-index:3;pointer-events:none}
+.band::before{left:0;background:linear-gradient(to right,var(--grond),transparent)}
+.band::after{right:0;background:linear-gradient(to left,var(--grond),transparent)}
+.spoor{display:flex;width:max-content;animation:schuif 38s linear infinite}
+.spoor span{font-family:var(--f-kop);font-size:clamp(1rem,.9rem+.5vw,1.28rem);font-weight:500;
+  letter-spacing:-.02em;color:var(--inkt-dim);white-space:nowrap;
+  display:inline-flex;align-items:center;gap:2.6rem;padding-right:2.6rem}
+.spoor span::after{content:"";width:5px;height:5px;border-radius:50%;background:var(--blauw);flex:none;opacity:.7}
+@keyframes schuif{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.band:hover .spoor{animation-play-state:paused}
+
+/* ── secties ───────────────────────────────────── */
+section{padding:var(--v) 0;position:relative;scroll-margin-top:78px}
+main [id]{scroll-margin-top:78px}
+.sectiekop{max-width:58ch}
+.sectiekop h2{font-size:clamp(2rem,1.3rem+2.5vw,3.3rem);margin-top:1.4rem;font-weight:600}
+.sectiekop p{color:var(--inkt-zacht);margin-top:1.3rem;font-size:1.08rem}
+.streep{height:1px;background:linear-gradient(90deg,var(--lijn-op),transparent);border:0;margin:0;
+  position:relative;z-index:2}
+
+/* ── herkenning ────────────────────────────────── */
+.pijn{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:1rem;margin-top:3.4rem}
+.pijn article{background:var(--vlak);border:1px solid var(--lijn);
+  border-radius:14px;padding:clamp(1.5rem,3vw,2rem);display:flex;flex-direction:column;gap:.65rem;
+  transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .35s ease,background .35s ease}
+.pijn article:hover{transform:translateY(-4px);border-color:var(--lijn-op);background:var(--vlak-hoog)}
+.pijn .nr{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.14em;color:var(--blauw-hel)}
+.pijn p{font-family:var(--f-kop);font-size:1.06rem;font-weight:500;letter-spacing:-.02em;line-height:1.3}
+.pijn small{color:var(--inkt-zacht);font-size:.93rem;line-height:1.55}
+
+.antwoord{position:relative;margin-top:2.8rem;padding:clamp(1.8rem,4vw,2.8rem);
+  border-radius:18px;overflow:hidden;
+  background:linear-gradient(135deg,rgba(61,109,255,.12),rgba(37,216,196,.06));
+  border:1px solid var(--lijn-op)}
+.antwoord::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--verloop)}
+.antwoord p{font-family:var(--f-kop);font-size:clamp(1.25rem,1rem+1.1vw,1.85rem);
+  font-weight:500;letter-spacing:-.03em;line-height:1.28;max-width:46ch}
+.antwoord p b{font-weight:600;background:var(--verloop);-webkit-background-clip:text;
+  background-clip:text;-webkit-text-fill-color:transparent}
+
+/* ── diensten ──────────────────────────────────── */
+.diensten{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));
+  gap:1.1rem;margin-top:3.6rem}
+.dienst{position:relative;background:var(--vlak);border:1px solid var(--lijn);border-radius:16px;
+  padding:clamp(1.7rem,3vw,2.2rem);display:flex;flex-direction:column;gap:1rem;overflow:hidden;
+  transition:transform .4s cubic-bezier(.2,.8,.2,1),border-color .4s ease}
+.dienst::before{content:"";position:absolute;inset:0;opacity:0;transition:opacity .4s ease;
+  pointer-events:none;
+  background:radial-gradient(420px circle at var(--mx,50%) var(--my,0%),rgba(61,109,255,.13),transparent 62%)}
+.dienst:hover{transform:translateY(-5px);border-color:var(--lijn-op)}
+.dienst:hover::before{opacity:1}
+.dienst > *{position:relative}
+.ico{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;flex:none;
+  background:linear-gradient(140deg,rgba(61,109,255,.18),rgba(37,216,196,.10));
+  border:1px solid var(--lijn-op)}
+.ico svg{width:23px;height:23px;stroke:var(--blauw-hel);stroke-width:1.5;fill:none;
+  stroke-linecap:round;stroke-linejoin:round}
+.dienst h3{font-size:1.35rem;font-weight:600;margin-top:.15rem}
+.dienst > p{color:var(--inkt-zacht);font-size:.98rem}
+.dienst ul{margin:.2rem 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.dienst li{font-size:.93rem;color:var(--inkt-zacht);display:flex;gap:.65rem;line-height:1.5}
+.dienst li::before{content:"";width:5px;height:5px;flex:none;margin-top:.6rem;border-radius:1px;
+  background:var(--verloop);transform:rotate(45deg)}
+
+/* ── uitgelicht ────────────────────────────────── */
+.uitgelicht{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
+  gap:clamp(2.2rem,5vw,4.5rem);align-items:start;margin-top:3.6rem}
+@media(max-width:940px){.uitgelicht{grid-template-columns:1fr}}
+.tijdlijn{display:flex;flex-direction:column;position:relative}
+.tijdlijn::before{content:"";position:absolute;left:5.4rem;top:.7rem;bottom:.7rem;width:1px;
+  background:linear-gradient(to bottom,transparent,var(--lijn-op) 12%,var(--lijn-op) 88%,transparent)}
+.beurt{display:grid;grid-template-columns:4.2rem 1fr;gap:2.2rem;padding:.85rem 0;position:relative}
+.beurt .klok{font-family:var(--f-mono);font-size:.74rem;color:var(--blauw-hel);
+  padding-top:.2rem;text-align:right;letter-spacing:.03em}
+.beurt::before{content:"";position:absolute;left:5.4rem;top:1.35rem;width:7px;height:7px;
+  border-radius:50%;background:var(--void);border:1px solid var(--blauw);transform:translateX(-3.5px)}
+.beurt.hoogte::before{background:var(--blauw);border-color:transparent;box-shadow:0 0 12px var(--gloed)}
+@media(max-width:560px){
+  .tijdlijn::before{display:none}
+  .beurt{grid-template-columns:1fr;gap:.35rem}
+  .beurt::before{display:none}
+  .beurt .klok{text-align:left}
+}
+.beurt .tekst{font-size:.99rem;color:var(--inkt-zacht);line-height:1.6}
+.beurt .tekst b{color:var(--inkt);font-weight:600}
+
+.kunde{display:grid;grid-template-columns:repeat(2,1fr);gap:.9rem}
+@media(max-width:430px){.kunde{grid-template-columns:1fr}}
+.kunde div{background:var(--vlak);border:1px solid var(--lijn);border-radius:13px;
+  padding:1.25rem 1.3rem;display:flex;flex-direction:column;gap:.35rem;
+  transition:border-color .35s ease,transform .35s cubic-bezier(.2,.8,.2,1)}
+.kunde div:hover{border-color:var(--lijn-op);transform:translateY(-3px)}
+.kunde b{font-family:var(--f-kop);font-size:1.02rem;font-weight:600;letter-spacing:-.025em}
+.kunde small{font-size:.87rem;color:var(--inkt-zacht);line-height:1.5}
+
+/* ── werkwijze ─────────────────────────────────── */
+.route{margin-top:3.6rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));
+  gap:clamp(1.5rem,3vw,2.4rem)}
+.fase{display:flex;flex-direction:column;gap:.75rem;padding-top:1.4rem;position:relative}
+.fase::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;border-radius:2px;
+  background:var(--lijn)}
+.fase::after{content:"";position:absolute;top:0;left:0;height:2px;width:0;border-radius:2px;
+  background:var(--verloop);transition:width .9s cubic-bezier(.2,.8,.2,1)}
+.route.in .fase::after{width:100%}
+.route.in .fase:nth-child(2)::after{transition-delay:.13s}
+.route.in .fase:nth-child(3)::after{transition-delay:.26s}
+.route.in .fase:nth-child(4)::after{transition-delay:.39s}
+.fase i{font-style:normal;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--inkt-dim)}
+.fase b{font-family:var(--f-kop);font-size:1.28rem;font-weight:600;letter-spacing:-.03em}
+.fase p{font-size:.95rem;color:var(--inkt-zacht)}
+
+/* ── over ──────────────────────────────────────── */
+.over{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);
+  gap:clamp(2.2rem,5vw,4.5rem);align-items:start;margin-top:3.2rem}
+@media(max-width:900px){.over{grid-template-columns:1fr}}
+.portret{position:relative;aspect-ratio:4/5;max-width:440px;border-radius:18px;overflow:hidden;
+  background:var(--vlak);border:1px solid var(--lijn);display:grid;place-items:center;
+  color:var(--inkt-dim);font-family:var(--f-mono);font-size:.74rem;letter-spacing:.08em;
+  text-align:center;line-height:1.9}
 .portret::before{content:"";position:absolute;inset:0;
-  background-image:linear-gradient(var(--lijn) 1px,transparent 1px),
-                   linear-gradient(90deg,var(--lijn) 1px,transparent 1px);
-  background-size:28px 28px;opacity:.5}
-.portret span{position:relative}
-.over-tekst .groot{font-family:var(--f-kop);font-size:clamp(1.3rem,1.05rem+1.1vw,1.85rem);
-  font-weight:500;letter-spacing:-0.03em;line-height:1.3;margin-top:1.3rem}
-.over-tekst p+p{margin-top:1.15rem;color:var(--inkt-zacht)}
-.handtekening{margin-top:2rem;padding-top:1.4rem;border-top:1px solid var(--lijn);
-  display:flex;align-items:baseline;gap:.8rem;flex-wrap:wrap}
-.handtekening b{font-family:var(--f-kop);font-size:1.1rem;font-weight:600;letter-spacing:-0.025em}
-.handtekening span{font-family:var(--f-mono);font-size:.74rem;color:var(--inkt-zacht);
-  letter-spacing:.06em;text-transform:uppercase}
+  background-image:linear-gradient(rgba(40,48,74,.5) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(40,48,74,.5) 1px,transparent 1px);
+  background-size:30px 30px;
+  mask-image:radial-gradient(70% 70% at 50% 50%,#000,transparent);
+  -webkit-mask-image:radial-gradient(70% 70% at 50% 50%,#000,transparent)}
+.portret span{position:relative;z-index:1}
+.over-tekst .groot{font-family:var(--f-kop);font-size:clamp(1.32rem,1.05rem+1.2vw,1.95rem);
+  font-weight:500;letter-spacing:-.035em;line-height:1.28;margin-top:1.4rem;color:var(--inkt)}
+.over-tekst p+p{margin-top:1.2rem;color:var(--inkt-zacht)}
+.handtekening{margin-top:2.2rem;padding-top:1.5rem;border-top:1px solid var(--lijn);
+  display:flex;align-items:baseline;gap:.9rem;flex-wrap:wrap}
+.handtekening b{font-family:var(--f-kop);font-size:1.15rem;font-weight:600;letter-spacing:-.03em}
+.handtekening span{font-family:var(--f-mono);font-size:.72rem;color:var(--inkt-dim);
+  letter-spacing:.1em;text-transform:uppercase}
 
-/* ── prijzen ────────────────────────────── */
-.pakketten{display:grid;grid-template-columns:repeat(auto-fit,minmax(285px,1fr));
-  gap:1.3rem;margin-top:3.2rem}
-.pak{background:var(--vlak);border:1px solid var(--lijn);border-radius:5px;
-  padding:clamp(1.6rem,3vw,2.1rem);display:flex;flex-direction:column;gap:1.1rem;position:relative}
-.pak.top{border-color:var(--accent);box-shadow:0 24px 50px -34px rgb(var(--schaduw)/.5)}
-.pak .vlag{position:absolute;top:-1px;right:1.4rem;background:var(--accent);color:var(--op-accent);
-  font-family:var(--f-mono);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;
-  padding:.28rem .6rem;border-radius:0 0 3px 3px}
-.pak h3{font-size:1.34rem;font-weight:600}
-.pak .voor{color:var(--inkt-zacht);font-size:.95rem;min-height:2.9em}
-.prijs{display:flex;align-items:baseline;gap:.4rem;font-variant-numeric:tabular-nums;
-  padding-top:.9rem;border-top:1px solid var(--lijn)}
-.prijs em{font-style:normal;font-size:.82rem;color:var(--inkt-zacht);font-family:var(--f-mono)}
-.prijs b{font-family:var(--f-kop);font-size:2.1rem;font-weight:700;letter-spacing:-0.045em}
-.mnd{font-size:.92rem;color:var(--inkt-zacht);font-variant-numeric:tabular-nums}
+/* ── tarieven ──────────────────────────────────── */
+.pakketten{display:grid;grid-template-columns:repeat(auto-fit,minmax(295px,1fr));
+  gap:1.2rem;margin-top:3.6rem;align-items:stretch}
+.pak{position:relative;background:var(--vlak);border:1px solid var(--lijn);border-radius:18px;
+  padding:clamp(1.8rem,3vw,2.2rem);display:flex;flex-direction:column;gap:1.15rem;
+  transition:transform .4s cubic-bezier(.2,.8,.2,1),border-color .4s ease}
+.pak:hover{transform:translateY(-5px);border-color:var(--lijn-op)}
+.pak.top{background:linear-gradient(170deg,rgba(61,109,255,.09),var(--vlak) 55%);
+  border-color:var(--blauw);box-shadow:0 30px 70px -45px var(--gloed)}
+.vlag{position:absolute;top:-11px;left:clamp(1.8rem,3vw,2.2rem);
+  background:var(--verloop);color:#04060E;font-family:var(--f-mono);font-size:.63rem;
+  font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:.3rem .7rem;border-radius:6px}
+.pak h3{font-size:1.38rem;font-weight:600}
+.pak .voor{color:var(--inkt-zacht);font-size:.95rem;min-height:3em}
+.prijs{display:flex;align-items:baseline;gap:.45rem;font-variant-numeric:tabular-nums;
+  padding-top:1rem;border-top:1px solid var(--lijn)}
+.prijs em{font-style:normal;font-size:.78rem;color:var(--inkt-dim);font-family:var(--f-mono)}
+.prijs b{font-family:var(--f-kop);font-size:2.25rem;font-weight:700;letter-spacing:-.05em}
+.pak.top .prijs b{background:var(--verloop);-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent}
+.mnd{font-size:.91rem;color:var(--inkt-zacht);font-variant-numeric:tabular-nums;margin-top:-.55rem}
 .mnd b{color:var(--inkt);font-weight:600}
-.pak ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:.5rem}
-.pak li{font-size:.93rem;color:var(--inkt-zacht);display:flex;gap:.6rem;line-height:1.45}
-.pak li svg{width:13px;height:13px;stroke:var(--accent);stroke-width:2.5;fill:none;
-  flex:none;margin-top:.35rem}
-.pak .knop{margin-top:auto}
-.prijsnoot{margin-top:2rem;font-size:.93rem;color:var(--inkt-zacht);max-width:66ch}
+.pak ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:.55rem}
+.pak li{font-size:.93rem;color:var(--inkt-zacht);display:flex;gap:.65rem;line-height:1.5}
+.pak li svg{width:14px;height:14px;stroke:var(--aqua);stroke-width:2.6;fill:none;flex:none;margin-top:.35rem}
+.pak .knop{margin-top:auto;width:100%}
+.prijsnoot{margin-top:2.2rem;font-size:.93rem;color:var(--inkt-dim);max-width:68ch}
 
-/* ── vragen ─────────────────────────────── */
-.vragen{margin-top:3rem;border-top:1px solid var(--lijn);max-width:78ch}
-details{border-bottom:1px solid var(--lijn)}
-summary{cursor:pointer;padding:1.25rem 2.5rem 1.25rem 0;position:relative;list-style:none;
-  font-family:var(--f-kop);font-size:1.08rem;font-weight:500;letter-spacing:-0.02em}
+/* ── vragen ────────────────────────────────────── */
+.vragen{margin-top:3.2rem;max-width:80ch}
+details{border:1px solid var(--lijn);border-radius:13px;background:var(--vlak);
+  margin-bottom:.7rem;overflow:hidden;transition:border-color .3s ease}
+details[open],details:hover{border-color:var(--lijn-op)}
+summary{cursor:pointer;padding:1.25rem 3.2rem 1.25rem 1.4rem;position:relative;list-style:none;
+  font-family:var(--f-kop);font-size:1.06rem;font-weight:500;letter-spacing:-.025em;
+  transition:color .25s ease}
 summary::-webkit-details-marker{display:none}
-summary::after{content:"";position:absolute;right:.6rem;top:50%;width:9px;height:9px;
-  border-right:1.5px solid var(--inkt-zacht);border-bottom:1.5px solid var(--inkt-zacht);
-  transform:translateY(-70%) rotate(45deg);transition:transform .22s ease}
-details[open] summary::after{transform:translateY(-30%) rotate(-135deg)}
-details p{padding:0 2.5rem 1.4rem 0;color:var(--inkt-zacht);font-size:.98rem}
-summary:hover{color:var(--accent)}
+summary:hover{color:var(--blauw-hel)}
+summary::after{content:"";position:absolute;right:1.4rem;top:50%;width:10px;height:10px;
+  border-right:1.5px solid var(--inkt-dim);border-bottom:1.5px solid var(--inkt-dim);
+  transform:translateY(-70%) rotate(45deg);transition:transform .3s ease,border-color .3s ease}
+details[open] summary::after{transform:translateY(-30%) rotate(-135deg);border-color:var(--aqua)}
+details p{padding:0 3.2rem 1.4rem 1.4rem;color:var(--inkt-zacht);font-size:.97rem}
 
-/* ── contact ────────────────────────────── */
-.contact-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
-  gap:clamp(2rem,5vw,4.5rem);align-items:start;margin-top:3rem}
-@media(max-width:880px){.contact-grid{grid-template-columns:1fr}}
-.gegevens{display:flex;flex-direction:column;gap:1.5rem;margin-top:2.2rem}
-.gegeven i{font-style:normal;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--inkt-zacht);display:block;margin-bottom:.3rem}
-.gegeven a,.gegeven span.vast{font-family:var(--f-kop);font-size:1.28rem;font-weight:500;
-  text-decoration:none;letter-spacing:-0.025em;display:inline-block}
-.gegeven a:hover{color:var(--accent)}
-.gerust{margin-top:2.2rem;padding:1.1rem 1.3rem;border:1px dashed var(--lijn);border-radius:4px;
-  font-size:.93rem;color:var(--inkt-zacht)}
+/* ── contact ───────────────────────────────────── */
+.contact-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);
+  gap:clamp(2.2rem,5vw,4.5rem);align-items:start;margin-top:3.2rem}
+@media(max-width:900px){.contact-grid{grid-template-columns:1fr}}
+.gegevens{display:flex;flex-direction:column;gap:1.6rem;margin-top:2.4rem}
+.gegeven i{font-style:normal;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--inkt-dim);display:block;margin-bottom:.35rem}
+.gegeven a,.gegeven .vast{font-family:var(--f-kop);font-size:1.3rem;font-weight:500;
+  text-decoration:none;letter-spacing:-.03em;display:inline-block;transition:color .25s ease}
+.gegeven a:hover{color:var(--blauw-hel)}
+.gerust{margin-top:2.4rem;padding:1.2rem 1.4rem;border-radius:13px;font-size:.93rem;
+  color:var(--inkt-zacht);background:linear-gradient(135deg,rgba(37,216,196,.07),transparent);
+  border:1px solid var(--lijn)}
 .gerust b{color:var(--inkt);font-weight:600}
 
-form{background:var(--vlak);border:1px solid var(--lijn);border-radius:5px;
-  padding:clamp(1.5rem,3vw,2.1rem);display:flex;flex-direction:column;gap:1.05rem}
-.rij{display:grid;grid-template-columns:1fr 1fr;gap:1.05rem}
-@media(max-width:520px){.rij{grid-template-columns:1fr}}
-label{display:flex;flex-direction:column;gap:.4rem;font-family:var(--f-mono);font-size:.7rem;
-  letter-spacing:.1em;text-transform:uppercase;color:var(--inkt-zacht)}
+form{background:var(--vlak);border:1px solid var(--lijn);border-radius:18px;
+  padding:clamp(1.6rem,3vw,2.2rem);display:flex;flex-direction:column;gap:1.1rem}
+.rij{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+@media(max-width:540px){.rij{grid-template-columns:1fr}}
+label{display:flex;flex-direction:column;gap:.45rem;font-family:var(--f-mono);font-size:.68rem;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--inkt-dim)}
 input,textarea,select{font:inherit;font-family:var(--f-tekst);font-size:1rem;text-transform:none;
-  letter-spacing:normal;color:var(--inkt);background:var(--grond);border:1px solid var(--lijn);
-  border-radius:3px;padding:.78rem .9rem;width:100%}
-input:focus,textarea:focus,select:focus{outline:2px solid var(--accent);outline-offset:1px;
-  border-color:transparent}
-textarea{resize:vertical;min-height:118px}
-form .knop{margin-top:.3rem}
-form .klein{font-size:.82rem;color:var(--inkt-zacht);font-family:var(--f-tekst);
+  letter-spacing:normal;color:var(--inkt);background:var(--void);border:1px solid var(--lijn);
+  border-radius:9px;padding:.85rem .95rem;width:100%;
+  transition:border-color .25s ease,box-shadow .25s ease}
+input::placeholder,textarea::placeholder{color:var(--inkt-dim)}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--blauw);
+  box-shadow:0 0 0 3px rgba(61,109,255,.14)}
+textarea{resize:vertical;min-height:120px}
+select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238D95AA' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 1rem center;padding-right:2.4rem}
+form .knop{margin-top:.35rem}
+form .klein{font-size:.82rem;color:var(--inkt-dim);font-family:var(--f-tekst);
   text-transform:none;letter-spacing:normal}
 
-/* ── voet ───────────────────────────────── */
-footer{border-top:1px solid var(--lijn);padding:3rem 0 3.5rem;font-size:.9rem;
-  color:var(--inkt-zacht)}
-.voet{display:grid;grid-template-columns:minmax(0,1.4fr) repeat(2,minmax(0,1fr));
-  gap:2.5rem}
-@media(max-width:760px){.voet{grid-template-columns:1fr;gap:2rem}}
-.voet h4{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--inkt);margin-bottom:.9rem;font-weight:500}
-.voet ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.5rem}
-.voet a{text-decoration:none}
-.voet a:hover{color:var(--accent)}
-.voet .merk{margin-bottom:1rem}
-.slot{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--lijn);
-  display:flex;flex-wrap:wrap;gap:.6rem 1.8rem;font-family:var(--f-mono);font-size:.72rem;
-  letter-spacing:.04em}
+/* ── voet ──────────────────────────────────────── */
+footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
+  color:var(--inkt-zacht);background:var(--grond);position:relative;z-index:2}
+.voet{display:grid;grid-template-columns:minmax(0,1.5fr) repeat(2,minmax(0,1fr));gap:2.5rem}
+@media(max-width:780px){.voet{grid-template-columns:1fr;gap:2rem}}
+.voet h4{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--inkt-dim);margin-bottom:1rem;font-weight:500}
+.voet ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.55rem}
+.voet a{text-decoration:none;transition:color .22s ease}
+.voet a:hover{color:var(--blauw-hel)}
+.voet .merk{margin-bottom:1.1rem}
+.slot{margin-top:3rem;padding-top:1.6rem;border-top:1px solid var(--lijn);
+  display:flex;flex-wrap:wrap;gap:.7rem 2rem;font-family:var(--f-mono);font-size:.71rem;
+  color:var(--inkt-dim);letter-spacing:.05em}
 
-/* ── onthullen bij scrollen ─────────────── */
-.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
-.reveal.in{opacity:1;transform:none}
+/* ── onthullen ─────────────────────────────────── */
+.reveal{opacity:0;transform:translateY(22px);filter:blur(6px);
+  transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1),filter .8s ease}
+.reveal.in{opacity:1;transform:none;filter:blur(0)}
+
 @media (prefers-reduced-motion: reduce){
-  .reveal{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;
+    transition-duration:.001ms!important}
+  .reveal{opacity:1;transform:none;filter:none}
+  .op{opacity:1;transform:none}
+  .regel{opacity:1;transform:none}
+  .route .fase::after{width:100%}
 }
 </style>
 </head>
 <body>
 
-<header class="balk">
+<header class="balk" id="balk">
   <div class="wrap">
     <a class="merk" href="#top" aria-label="Complete AI, naar boven">
-      <svg class="glyph" viewBox="0 0 32 32" aria-hidden="true">
-        <rect width="32" height="32" rx="6" fill="var(--accent)"/>
-        <path d="M9 9h5v5H9zM18 9h5v5h-5zM9 18h5v5H9zM18 18h5v5h-5z" fill="var(--op-accent)"/>
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <defs><linearGradient id="mg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#3D6DFF"/><stop offset="1" stop-color="#25D8C4"/>
+        </linearGradient></defs>
+        <rect width="32" height="32" rx="8" fill="#0E1119" stroke="#28304a"/>
+        <path d="M6 10h4M6 16h4M6 22h4" stroke="url(#mg)" stroke-width="2" stroke-linecap="round" opacity=".5"/>
+        <path d="M12 16h14" stroke="url(#mg)" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="12" cy="16" r="2.5" fill="url(#mg)"/>
       </svg>
       <b>Complete<span> AI</span></b>
     </a>
@@ -435,61 +499,38 @@ footer{border-top:1px solid var(--lijn);padding:3rem 0 3.5rem;font-size:.9rem;
 
   <!-- ══ HERO ══ -->
   <div class="hero">
+    <canvas id="stroomdoek" aria-hidden="true"></canvas>
     <div class="wrap hero-grid">
       <div>
-        <p class="label">Nederland &amp; België</p>
-        <h1>Vijf leveranciers. Of <span class="uit">één</span> die het hele plaatje doet.</h1>
-        <p class="lead">Je website, je vindbaarheid in Google, je advertenties, je administratie én de telefoon die altijd wordt opgenomen. Bij Complete AI haal je het compleet — of precies het stuk dat je nu nodig hebt.</p>
-        <div class="acties">
+        <p class="label op" style="animation-delay:.05s"><i></i>Nederland &amp; België</p>
+        <h1 class="op" style="animation-delay:.14s">Vijf leveranciers.<br>Of <span class="glans">één</span> die het<br>hele plaatje doet.</h1>
+        <p class="lead op" style="animation-delay:.26s">Je website, je vindbaarheid in Google, je advertenties, je administratie én de telefoon die altijd wordt opgenomen. Bij Complete AI haal je het compleet — of precies het stuk dat je nu nodig hebt.</p>
+        <div class="acties op" style="animation-delay:.36s">
           <a class="knop knop-vol" href="#contact">Plan een gratis nulmeting
-            <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h11M9 4l4 4-4 4"/></svg>
+            <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 8h11M9 4l4 4-4 4"/></svg>
           </a>
           <a class="knop knop-lijn" href="#diensten">Bekijk wat we doen</a>
         </div>
-        <div class="borg">
+        <div class="borg op" style="animation-delay:.46s">
           <span>Eén vast aanspreekpunt</span>
           <span>Stap voor stap, geen big bang</span>
           <span>Alles meetbaar</span>
         </div>
       </div>
 
-      <div class="paneel" aria-label="Voorbeeld van een werkdag die automatisch verloopt">
+      <div class="paneel op" style="animation-delay:.32s" aria-label="Voorbeeld van een werkdag die automatisch verloopt">
         <div class="paneel-kop">
           <span class="stip" aria-hidden="true"></span>
           <b>Systeem actief</b>
           <i>voorbeeld · dinsdag</i>
         </div>
-        <div class="stroom">
-          <div class="regel" style="animation-delay:.25s">
-            <span class="tijd">22:41</span>
-            <span class="wat"><em>Telefoon ·</em> bestelling aangenomen door de AI-telefonist</span>
-            <span class="vink" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2 6.5l2.5 2.5L10 3.5"/></svg></span>
-          </div>
-          <div class="regel" style="animation-delay:.85s">
-            <span class="tijd">22:41</span>
-            <span class="wat"><em>Order ·</em> toegevoegd aan de centrale lijst</span>
-            <span class="vink" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2 6.5l2.5 2.5L10 3.5"/></svg></span>
-          </div>
-          <div class="regel" style="animation-delay:1.45s">
-            <span class="tijd">22:42</span>
-            <span class="wat"><em>Klant ·</em> bevestiging verstuurd</span>
-            <span class="vink" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2 6.5l2.5 2.5L10 3.5"/></svg></span>
-          </div>
-          <div class="regel" style="animation-delay:2.05s">
-            <span class="tijd">05:30</span>
-            <span class="wat"><em>Ochtend ·</em> pak- en laadlijst klaargezet</span>
-            <span class="vink" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2 6.5l2.5 2.5L10 3.5"/></svg></span>
-          </div>
-          <div class="regel" style="animation-delay:2.65s">
-            <span class="tijd">16:10</span>
-            <span class="wat"><em>Levering ·</em> factuur aangemaakt en geboekt</span>
-            <span class="vink" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2 6.5l2.5 2.5L10 3.5"/></svg></span>
-          </div>
-          <div class="regel" style="animation-delay:3.25s">
-            <span class="tijd">18:00</span>
-            <span class="wat"><em>Review ·</em> netjes om een beoordeling gevraagd</span>
-            <span class="vink" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2 6.5l2.5 2.5L10 3.5"/></svg></span>
-          </div>
+        <div class="stroom" id="stroomlijst">
+          <div class="regel"><span class="tijd">22:41</span><span class="wat"><em>Telefoon ·</em> bestelling aangenomen door de AI-telefonist</span><span class="vink" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2 6.5l2.5 2.5L10 3.5"/></svg></span></div>
+          <div class="regel"><span class="tijd">22:41</span><span class="wat"><em>Order ·</em> toegevoegd aan de centrale lijst</span><span class="vink" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2 6.5l2.5 2.5L10 3.5"/></svg></span></div>
+          <div class="regel"><span class="tijd">22:42</span><span class="wat"><em>Klant ·</em> bevestiging verstuurd</span><span class="vink" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2 6.5l2.5 2.5L10 3.5"/></svg></span></div>
+          <div class="regel"><span class="tijd">05:30</span><span class="wat"><em>Ochtend ·</em> pak- en laadlijst klaargezet</span><span class="vink" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2 6.5l2.5 2.5L10 3.5"/></svg></span></div>
+          <div class="regel"><span class="tijd">16:10</span><span class="wat"><em>Levering ·</em> factuur aangemaakt en geboekt</span><span class="vink" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2 6.5l2.5 2.5L10 3.5"/></svg></span></div>
+          <div class="regel"><span class="tijd">18:00</span><span class="wat"><em>Review ·</em> netjes om een beoordeling gevraagd</span><span class="vink" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2 6.5l2.5 2.5L10 3.5"/></svg></span></div>
         </div>
         <div class="paneel-voet">
           <span>Handelingen door de ondernemer: <b>0</b></span>
@@ -499,36 +540,27 @@ footer{border-top:1px solid var(--lijn);padding:3rem 0 3.5rem;font-size:.9rem;
     </div>
   </div>
 
+  <!-- ══ LOOPBAND ══ -->
+  <div class="band" aria-hidden="true">
+    <div class="spoor">
+      <span>Websites</span><span>Vindbaarheid — SEO</span><span>Adverteren — SEA</span><span>Automatisering</span><span>AI-telefonist</span><span>Onderhoud &amp; support</span><span>Websites</span><span>Vindbaarheid — SEO</span><span>Adverteren — SEA</span><span>Automatisering</span><span>AI-telefonist</span><span>Onderhoud &amp; support</span>
+    </div>
+  </div>
+
   <!-- ══ HERKENNING ══ -->
   <section id="herkenning">
     <div class="wrap">
       <div class="sectiekop reveal">
-        <p class="label">Herkenbaar?</p>
+        <p class="label"><i></i>Herkenbaar?</p>
         <h2>Je bent ondernemer geworden voor je vak. Niet voor dit.</h2>
         <p>De meeste ondernemers die wij spreken zitten in dezelfde situatie. Niet omdat ze iets fout doen — maar omdat alles los van elkaar geregeld is.</p>
       </div>
 
       <div class="pijn reveal">
-        <div>
-          <span class="nr">01</span>
-          <p>Vijf partijen, nul verantwoordelijkheid</p>
-          <small>De webbouwer wijst naar de SEO-man, die wijst naar de advertentiepartij. En jij zit ertussen.</small>
-        </div>
-        <div>
-          <span class="nr">02</span>
-          <p>De telefoon gaat als je net bezig bent</p>
-          <small>Of 's avonds, als er niemand is. Elk gemist telefoontje is een klant die de volgende belt.</small>
-        </div>
-        <div>
-          <span class="nr">03</span>
-          <p>De administratie doe je 's avonds</p>
-          <small>Facturen, bevestigingen, herinneringen. Werk dat moet gebeuren maar niets oplevert.</small>
-        </div>
-        <div>
-          <span class="nr">04</span>
-          <p>Online word je nauwelijks gevonden</p>
-          <small>Terwijl je concurrent met een half zo goed product bovenaan in Google staat.</small>
-        </div>
+        <article><span class="nr">01</span><p>Vijf partijen, nul verantwoordelijkheid</p><small>De webbouwer wijst naar de SEO-man, die wijst naar de advertentiepartij. En jij zit ertussen.</small></article>
+        <article><span class="nr">02</span><p>De telefoon gaat als je net bezig bent</p><small>Of 's avonds, als er niemand is. Elk gemist telefoontje is een klant die de volgende belt.</small></article>
+        <article><span class="nr">03</span><p>De administratie doe je 's avonds</p><small>Facturen, bevestigingen, herinneringen. Werk dat moet gebeuren maar niets oplevert.</small></article>
+        <article><span class="nr">04</span><p>Online word je nauwelijks gevonden</p><small>Terwijl je concurrent met een half zo goed product bovenaan in Google staat.</small></article>
       </div>
 
       <div class="antwoord reveal">
@@ -537,107 +569,81 @@ footer{border-top:1px solid var(--lijn);padding:3rem 0 3.5rem;font-size:.9rem;
     </div>
   </section>
 
+  <hr class="streep">
+
   <!-- ══ DIENSTEN ══ -->
   <section id="diensten">
     <div class="wrap">
       <div class="sectiekop reveal">
-        <p class="label">Wat we doen</p>
+        <p class="label"><i></i>Wat we doen</p>
         <h2>Vijf diensten. Los af te nemen, samen het sterkst.</h2>
         <p>We beginnen nooit met alles tegelijk. In de nulmeting kijken we waar bij jou de meeste tijd- en omzetwinst zit — dáár beginnen we.</p>
       </div>
 
       <div class="diensten reveal">
         <article class="dienst">
-          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2.5" y="4" width="19" height="15" rx="2"/><path d="M2.5 8.5h19M6 6.2h.01M8.6 6.2h.01"/></svg></span>
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2.5" y="4" width="19" height="15" rx="2.5"/><path d="M2.5 8.5h19M6 6.2h.01M8.6 6.2h.01"/></svg></span>
           <h3>Websites</h3>
           <p>Een site die er niet alleen goed uitziet, maar ook klanten oplevert. Snel, mobielvriendelijk en gebouwd om gevonden te worden.</p>
-          <ul>
-            <li>Ontwerp op maat van jouw zaak</li>
-            <li>Perfect op telefoon én laptop</li>
-            <li>Teksten en beeld regelen we mee</li>
-            <li>Meertalig waar dat zinvol is</li>
-          </ul>
+          <ul><li>Ontwerp op maat van jouw zaak</li><li>Perfect op telefoon én laptop</li><li>Teksten en beeld regelen we mee</li><li>Meertalig waar dat zinvol is</li></ul>
         </article>
 
         <article class="dienst">
           <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.4 15.4L21 21"/></svg></span>
           <h3>Vindbaarheid — SEO</h3>
           <p>Bovenaan komen bij de zoekopdrachten waar jouw klanten écht op zoeken. Structureel verkeer waar je niet per klik voor betaalt.</p>
-          <ul>
-            <li>Lokale SEO voor jouw regio</li>
-            <li>Technische basis en laadsnelheid</li>
-            <li>Google-bedrijfsprofiel volledig ingericht</li>
-            <li>Content die op de juiste vragen antwoord geeft</li>
-          </ul>
+          <ul><li>Lokale SEO voor jouw regio</li><li>Technische basis en laadsnelheid</li><li>Google-bedrijfsprofiel volledig ingericht</li><li>Content die op de juiste vragen antwoord geeft</li></ul>
         </article>
 
         <article class="dienst">
           <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 17.5l5.5-6 4 3.5L21 6"/><path d="M15.5 6H21v5.5"/></svg></span>
           <h3>Adverteren — SEA</h3>
           <p>Zichtbaar zijn op precies het moment dat iemand zoekt wat jij levert. We beginnen klein, meten alles en schalen op wat werkt.</p>
-          <ul>
-            <li>Google Ads op zoekwoorden met koopintentie</li>
-            <li>Meta en retargeting voor wie nog twijfelt</li>
-            <li>Conversietracking, tot op de euro meetbaar</li>
-            <li>Maandelijks bijgestuurd, geen adverteren in het wild</li>
-          </ul>
+          <ul><li>Google Ads op zoekwoorden met koopintentie</li><li>Meta en retargeting voor wie nog twijfelt</li><li>Conversietracking, tot op de euro meetbaar</li><li>Maandelijks bijgestuurd, geen adverteren in het wild</li></ul>
         </article>
 
         <article class="dienst">
           <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/><circle cx="12" cy="12" r="3.4"/></svg></span>
           <h3>Automatisering</h3>
           <p>Het terugkerende werk dat je avonden opeet, gaat vanzelf. Orderintake, facturen, herinneringen, reviews — je merkt alleen dat het gebeurd is.</p>
-          <ul>
-            <li>Bestellingen uit alle kanalen in één lijst</li>
-            <li>Facturen en betaalherinneringen automatisch</li>
-            <li>Koppeling met je boekhouding</li>
-            <li>Eén dashboard met je cijfers</li>
-          </ul>
+          <ul><li>Bestellingen uit alle kanalen in één lijst</li><li>Facturen en betaalherinneringen automatisch</li><li>Koppeling met je boekhouding</li><li>Eén dashboard met je cijfers</li></ul>
         </article>
 
         <article class="dienst">
-          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4.5 10.5V9a7.5 7.5 0 0115 0v1.5"/><rect x="2.5" y="10.5" width="4" height="6.5" rx="1.6"/><rect x="17.5" y="10.5" width="4" height="6.5" rx="1.6"/><path d="M19.5 17v.8a3 3 0 01-3 3H13"/></svg></span>
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4.5 10.5V9a7.5 7.5 0 0115 0v1.5"/><rect x="2.5" y="10.5" width="4" height="6.5" rx="1.8"/><rect x="17.5" y="10.5" width="4" height="6.5" rx="1.8"/><path d="M19.5 17v.8a3 3 0 01-3 3H13"/></svg></span>
           <h3>AI-telefonist</h3>
           <p>Een Nederlandstalige AI die opneemt als jij niet kunt — 's avonds, in het weekend of midden in de drukte. Neemt bestellingen aan en filtert verkopers eruit.</p>
-          <ul>
-            <li>24/7 bereikbaar, ook buiten openingstijd</li>
-            <li>Neemt bestellingen en vragen netjes op</li>
-            <li>Schakelt urgente gesprekken door naar jou</li>
-            <li>Terugbelnotities met volledig transcript</li>
-          </ul>
+          <ul><li>24/7 bereikbaar, ook buiten openingstijd</li><li>Neemt bestellingen en vragen netjes op</li><li>Schakelt urgente gesprekken door naar jou</li><li>Terugbelnotities met volledig transcript</li></ul>
         </article>
 
         <article class="dienst">
           <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2.8l7.5 3.4v5.3c0 4.4-3.1 8.2-7.5 9.7-4.4-1.5-7.5-5.3-7.5-9.7V6.2z"/><path d="M9 12l2.2 2.2L15.4 10"/></svg></span>
           <h3>Onderhoud &amp; support</h3>
           <p>Na oplevering blijft het van ons allebei. Je belt of appt, en het wordt geregeld — geen ticketsysteem en geen wachtrij.</p>
-          <ul>
-            <li>Hosting, back-ups en updates</li>
-            <li>Kleine wijzigingen zitten erbij</li>
-            <li>Reactie binnen één werkdag</li>
-            <li>Maandelijks opzegbaar</li>
-          </ul>
+          <ul><li>Hosting, back-ups en updates</li><li>Kleine wijzigingen zitten erbij</li><li>Reactie binnen één werkdag</li><li>Maandelijks opzegbaar</li></ul>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- ══ AI-TELEFONIST (donker) ══ -->
-  <section id="telefoon" class="donker">
+  <hr class="streep">
+
+  <!-- ══ AI-TELEFONIST ══ -->
+  <section id="telefoon">
     <div class="wrap">
       <div class="sectiekop reveal">
-        <p class="label">Uitgelicht</p>
+        <p class="label"><i></i>Uitgelicht</p>
         <h2>De telefoon die altijd wordt opgenomen.</h2>
         <p>Dit is waar het verschil het hardst voelbaar is. Een gemist telefoontje is niet neutraal — dat is een klant die de volgende belt.</p>
       </div>
 
       <div class="uitgelicht reveal">
-        <div class="verhaal">
-          <div class="stap"><span class="klok">22:41</span><span class="tekst">Een klant belt ver na sluitingstijd. <b>De AI-telefonist neemt op</b>, in het Nederlands, en klinkt als iemand die er verstand van heeft.</span></div>
-          <div class="stap"><span class="klok">22:42</span><span class="tekst">Hij noteert de bestelling, controleert wat er mogelijk is en <b>beantwoordt vragen over levering</b> en assortiment.</span></div>
-          <div class="stap"><span class="klok">22:43</span><span class="tekst">Is het dringend of ingewikkeld? Dan <b>schakelt hij door naar jou</b>. Zo niet, dan handelt hij het zelf af.</span></div>
-          <div class="stap"><span class="klok">22:44</span><span class="tekst">De order staat gestructureerd in je lijst, de klant heeft een bevestiging, en <b>jij hebt niets hoeven doen</b>.</span></div>
-          <div class="stap"><span class="klok">morgen</span><span class="tekst">Een verkoper aan de lijn? <b>Die wordt er automatisch uitgefilterd</b> — je hoort er niets van.</span></div>
+        <div class="tijdlijn">
+          <div class="beurt hoogte"><span class="klok">22:41</span><span class="tekst">Een klant belt ver na sluitingstijd. <b>De AI-telefonist neemt op</b>, in het Nederlands, en klinkt als iemand die er verstand van heeft.</span></div>
+          <div class="beurt"><span class="klok">22:42</span><span class="tekst">Hij noteert de bestelling, controleert wat er mogelijk is en <b>beantwoordt vragen over levering</b> en assortiment.</span></div>
+          <div class="beurt"><span class="klok">22:43</span><span class="tekst">Is het dringend of ingewikkeld? Dan <b>schakelt hij door naar jou</b>. Zo niet, dan handelt hij het zelf af.</span></div>
+          <div class="beurt hoogte"><span class="klok">22:44</span><span class="tekst">De order staat gestructureerd in je lijst, de klant heeft een bevestiging, en <b>jij hebt niets hoeven doen</b>.</span></div>
+          <div class="beurt"><span class="klok">morgen</span><span class="tekst">Een verkoper aan de lijn? <b>Die wordt er automatisch uitgefilterd</b> — je hoort er niets van.</span></div>
         </div>
 
         <div class="kunde">
@@ -650,41 +656,33 @@ footer{border-top:1px solid var(--lijn);padding:3rem 0 3.5rem;font-size:.9rem;
     </div>
   </section>
 
+  <hr class="streep">
+
   <!-- ══ WERKWIJZE ══ -->
   <section id="werkwijze">
     <div class="wrap">
       <div class="sectiekop reveal">
-        <p class="label">Werkwijze</p>
+        <p class="label"><i></i>Werkwijze</p>
         <h2>Klein beginnen. Bewijzen dat het werkt. Dán opschalen.</h2>
         <p>Je hoeft niet in één keer alles om te gooien. Elke fase levert op zichzelf al iets op, en je beslist zelf wanneer de volgende stap komt.</p>
       </div>
 
-      <div class="route reveal">
-        <div class="fase">
-          <i>Fase 1</i><b>Nulmeting</b>
-          <p>Een half uur samen kijken waar jouw tijd en omzet weglekken. Gratis, en het verplicht tot niets.</p>
-        </div>
-        <div class="fase">
-          <i>Fase 2</i><b>Plan op maat</b>
-          <p>Binnen een werkdag een helder voorstel: wat we bouwen, wat het kost, wanneer het staat. Eén vaste prijs.</p>
-        </div>
-        <div class="fase">
-          <i>Fase 3</i><b>Bouwen in stappen</b>
-          <p>We beginnen met de snelste winst. Je kijkt onderweg mee en stuurt bij — niet pas aan het eind.</p>
-        </div>
-        <div class="fase">
-          <i>Fase 4</i><b>Live &amp; bijsturen</b>
-          <p>Alles gaat live, ik loop het met je door, en daarna kijken we maandelijks naar de cijfers.</p>
-        </div>
+      <div class="route reveal" id="route">
+        <div class="fase"><i>Fase 1</i><b>Nulmeting</b><p>Een half uur samen kijken waar jouw tijd en omzet weglekken. Gratis, en het verplicht tot niets.</p></div>
+        <div class="fase"><i>Fase 2</i><b>Plan op maat</b><p>Binnen een werkdag een helder voorstel: wat we bouwen, wat het kost, wanneer het staat. Eén vaste prijs.</p></div>
+        <div class="fase"><i>Fase 3</i><b>Bouwen in stappen</b><p>We beginnen met de snelste winst. Je kijkt onderweg mee en stuurt bij — niet pas aan het eind.</p></div>
+        <div class="fase"><i>Fase 4</i><b>Live &amp; bijsturen</b><p>Alles gaat live, ik loop het met je door, en daarna kijken we maandelijks naar de cijfers.</p></div>
       </div>
     </div>
   </section>
+
+  <hr class="streep">
 
   <!-- ══ OVER ══ -->
   <section id="over">
     <div class="wrap">
       <div class="sectiekop reveal">
-        <p class="label">Over</p>
+        <p class="label"><i></i>Over</p>
         <h2>Je hebt gewoon mij aan de lijn.</h2>
       </div>
 
@@ -694,27 +692,22 @@ footer{border-top:1px solid var(--lijn);padding:3rem 0 3.5rem;font-size:.9rem;
 
         <div class="over-tekst">
           <p class="groot">Ik ben Glenn van Wijngaarden. Ik heb Complete AI zelf opgericht, en ik bouw alles ook zelf.</p>
-
           <p>Geen bureau met accountmanagers, projectleiders en een offerte waar drie namen op staan die je nooit spreekt. Bij mij is de persoon die je aan de telefoon krijgt dezelfde persoon die je site bouwt, je advertenties instelt en je automatisering inricht. Dat scheelt jou tijd, en het scheelt een hoop misverstanden.</p>
-
           <p>Ik ben zelf ondernemer. Ik weet hoe het is als de administratie zich opstapelt terwijl je eigenlijk met je vak bezig wilt zijn, en hoe het voelt als je online niet gevonden wordt terwijl je weet dat je goed bent in wat je doet. De software die ik voor klanten inricht — het klantenbestand, de agenda, de facturatie, het dashboard — heb ik eerst voor mezelf gebouwd. Ik verkoop dus niets wat ik niet zelf gebruik.</p>
-
           <p>Wat ik beloof, kan ik ook waarmaken. Kan iets niet, of duurt het langer, dan hoor je dat van tevoren en niet achteraf. Ik werk voor ondernemers in Nederland en België — kappers, garages, aannemers, horeca, praktijken, winkels en zzp'ers. Mensen die goed zijn in hun vak en dat ook mogen blijven.</p>
-
-          <div class="handtekening">
-            <b>Glenn van Wijngaarden</b>
-            <span>Oprichter · Complete AI</span>
-          </div>
+          <div class="handtekening"><b>Glenn van Wijngaarden</b><span>Oprichter · Complete AI</span></div>
         </div>
       </div>
     </div>
   </section>
 
+  <hr class="streep">
+
   <!-- ══ TARIEVEN ══ -->
   <section id="tarieven">
     <div class="wrap">
       <div class="sectiekop reveal">
-        <p class="label">Tarieven</p>
+        <p class="label"><i></i>Tarieven</p>
         <h2>Vooraf duidelijk wat het kost.</h2>
         <p>Een eenmalig bedrag voor de bouw, daarna een vast maandbedrag voor hosting, onderhoud en bijsturen. Geen uurtje-factuurtje en geen verrassingen achteraf.</p>
       </div>
@@ -768,52 +761,35 @@ footer{border-top:1px solid var(--lijn);padding:3rem 0 3.5rem;font-size:.9rem;
     </div>
   </section>
 
+  <hr class="streep">
+
   <!-- ══ VRAGEN ══ -->
   <section id="vragen">
     <div class="wrap">
       <div class="sectiekop reveal">
-        <p class="label">Veelgestelde vragen</p>
+        <p class="label"><i></i>Veelgestelde vragen</p>
         <h2>Wat ondernemers meestal willen weten.</h2>
       </div>
 
       <div class="vragen reveal">
-        <details>
-          <summary>Moet ik van mijn huidige website af?</summary>
-          <p>Niet per se. Soms is je bestaande site prima en zit de winst ergens anders — in vindbaarheid of in het automatiseren van je administratie. Dat hoor je eerlijk in de nulmeting, ook als het antwoord is dat je niets bij mij hoeft af te nemen.</p>
-        </details>
-        <details>
-          <summary>Hoe lang duurt het voordat alles staat?</summary>
-          <p>Een website staat doorgaans binnen twee tot vier weken live. Automatisering en de AI-telefonist bouwen we in fases daarna, zodat je onderweg al resultaat hebt in plaats van maanden te wachten op één grote oplevering.</p>
-        </details>
-        <details>
-          <summary>Zit ik ergens langdurig aan vast?</summary>
-          <p>Nee. Het maandbedrag is maandelijks opzegbaar. Ik werk liever met klanten die blijven omdat het werkt dan met klanten die vastzitten aan een contract.</p>
-        </details>
-        <details>
-          <summary>Wat als de AI-telefonist iets verkeerd doet?</summary>
-          <p>Jij bepaalt vooraf wat hij zelfstandig mag afhandelen en wat altijd naar jou wordt doorgeschakeld. Van elk gesprek is een transcript beschikbaar, dus je kunt altijd teruglezen wat er gezegd is. In de eerste weken kijken we samen mee en sturen we bij.</p>
-        </details>
-        <details>
-          <summary>Is mijn data veilig, en hoe zit het met de AVG?</summary>
-          <p>Je gegevens blijven van jou. Waar we persoonsgegevens verwerken — bijvoorbeeld bij telefoongesprekken of je klantenbestand — leggen we dat vast in een verwerkersovereenkomst, zoals de AVG voorschrijft. Dat regelen we vóór de start, niet achteraf.</p>
-        </details>
-        <details>
-          <summary>Werken jullie ook buiten mijn regio?</summary>
-          <p>Ja. Ik werk in heel Nederland en België. Kennismaken en overleggen doen we via bellen of videobellen, en dat werkt in de praktijk uitstekend — je hoeft er geen halve dag voor vrij te maken.</p>
-        </details>
-        <details>
-          <summary>Ik weet niet wat ik nodig heb. Kan ik dan toch bellen?</summary>
-          <p>Juist dan. De nulmeting bestaat precies daarvoor: samen in kaart brengen waar je tijd en omzet weglekken. Daar rolt een advies uit, en of je daar iets mee doet is helemaal aan jou.</p>
-        </details>
+        <details><summary>Moet ik van mijn huidige website af?</summary><p>Niet per se. Soms is je bestaande site prima en zit de winst ergens anders — in vindbaarheid of in het automatiseren van je administratie. Dat hoor je eerlijk in de nulmeting, ook als het antwoord is dat je niets bij mij hoeft af te nemen.</p></details>
+        <details><summary>Hoe lang duurt het voordat alles staat?</summary><p>Een website staat doorgaans binnen twee tot vier weken live. Automatisering en de AI-telefonist bouwen we in fases daarna, zodat je onderweg al resultaat hebt in plaats van maanden te wachten op één grote oplevering.</p></details>
+        <details><summary>Zit ik ergens langdurig aan vast?</summary><p>Nee. Het maandbedrag is maandelijks opzegbaar. Ik werk liever met klanten die blijven omdat het werkt dan met klanten die vastzitten aan een contract.</p></details>
+        <details><summary>Wat als de AI-telefonist iets verkeerd doet?</summary><p>Jij bepaalt vooraf wat hij zelfstandig mag afhandelen en wat altijd naar jou wordt doorgeschakeld. Van elk gesprek is een transcript beschikbaar, dus je kunt altijd teruglezen wat er gezegd is. In de eerste weken kijken we samen mee en sturen we bij.</p></details>
+        <details><summary>Is mijn data veilig, en hoe zit het met de AVG?</summary><p>Je gegevens blijven van jou. Waar we persoonsgegevens verwerken — bijvoorbeeld bij telefoongesprekken of je klantenbestand — leggen we dat vast in een verwerkersovereenkomst, zoals de AVG voorschrijft. Dat regelen we vóór de start, niet achteraf.</p></details>
+        <details><summary>Werken jullie ook buiten mijn regio?</summary><p>Ja. Ik werk in heel Nederland en België. Kennismaken en overleggen doen we via bellen of videobellen, en dat werkt in de praktijk uitstekend — je hoeft er geen halve dag voor vrij te maken.</p></details>
+        <details><summary>Ik weet niet wat ik nodig heb. Kan ik dan toch bellen?</summary><p>Juist dan. De nulmeting bestaat precies daarvoor: samen in kaart brengen waar je tijd en omzet weglekken. Daar rolt een advies uit, en of je daar iets mee doet is helemaal aan jou.</p></details>
       </div>
     </div>
   </section>
+
+  <hr class="streep">
 
   <!-- ══ CONTACT ══ -->
   <section id="contact">
     <div class="wrap">
       <div class="sectiekop reveal">
-        <p class="label">Contact</p>
+        <p class="label"><i></i>Contact</p>
         <h2>Eén gesprek en je weet wat er mogelijk is.</h2>
       </div>
 
@@ -822,41 +798,22 @@ footer{border-top:1px solid var(--lijn);padding:3rem 0 3.5rem;font-size:.9rem;
           <p style="color:var(--inkt-zacht);max-width:46ch">Laat je gegevens achter, dan neem ik binnen één werkdag contact op. De nulmeting duurt een half uur, kost niets en verplicht tot niets — je krijgt sowieso een eerlijk advies mee.</p>
 
           <div class="gegevens">
-            <div class="gegeven">
-              <i>E-mail</i>
-              <a href="mailto:glenn@complete-ai.nl">glenn@complete-ai.nl</a>
-            </div>
-            <div class="gegeven">
-              <i>Werkgebied</i>
-              <span class="vast">Nederland &amp; België</span>
-            </div>
-            <div class="gegeven">
-              <i>Reactietijd</i>
-              <span class="vast">Binnen één werkdag</span>
-            </div>
+            <div class="gegeven"><i>E-mail</i><a href="mailto:glenn@complete-ai.nl">glenn@complete-ai.nl</a></div>
+            <div class="gegeven"><i>Werkgebied</i><span class="vast">Nederland &amp; België</span></div>
+            <div class="gegeven"><i>Reactietijd</i><span class="vast">Binnen één werkdag</span></div>
           </div>
 
-          <div class="gerust">
-            <b>Geen verkooppraatje.</b> In de nulmeting stel ik vooral vragen. Als blijkt dat je bij mij niets nodig hebt, dan zeg ik dat gewoon.
-          </div>
+          <div class="gerust"><b>Geen verkooppraatje.</b> In de nulmeting stel ik vooral vragen. Als blijkt dat je bij mij niets nodig hebt, dan zeg ik dat gewoon.</div>
         </div>
 
         <form id="contactformulier" novalidate>
           <div class="rij">
-            <label>Naam
-              <input type="text" name="naam" autocomplete="name" required>
-            </label>
-            <label>Bedrijf
-              <input type="text" name="bedrijf" autocomplete="organization">
-            </label>
+            <label>Naam<input type="text" name="naam" autocomplete="name" required></label>
+            <label>Bedrijf<input type="text" name="bedrijf" autocomplete="organization"></label>
           </div>
           <div class="rij">
-            <label>E-mail
-              <input type="email" name="email" autocomplete="email" required>
-            </label>
-            <label>Telefoon
-              <input type="tel" name="telefoon" autocomplete="tel">
-            </label>
+            <label>E-mail<input type="email" name="email" autocomplete="email" required></label>
+            <label>Telefoon<input type="tel" name="telefoon" autocomplete="tel"></label>
           </div>
           <label>Waar wil je het over hebben?
             <select name="onderwerp">
@@ -884,9 +841,14 @@ footer{border-top:1px solid var(--lijn);padding:3rem 0 3.5rem;font-size:.9rem;
     <div class="voet">
       <div>
         <a class="merk" href="#top" aria-label="Complete AI">
-          <svg class="glyph" viewBox="0 0 32 32" aria-hidden="true">
-            <rect width="32" height="32" rx="6" fill="var(--accent)"/>
-            <path d="M9 9h5v5H9zM18 9h5v5h-5zM9 18h5v5H9zM18 18h5v5h-5z" fill="var(--op-accent)"/>
+          <svg viewBox="0 0 32 32" aria-hidden="true">
+            <defs><linearGradient id="mg2" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#3D6DFF"/><stop offset="1" stop-color="#25D8C4"/>
+            </linearGradient></defs>
+            <rect width="32" height="32" rx="8" fill="#0E1119" stroke="#28304a"/>
+            <path d="M6 10h4M6 16h4M6 22h4" stroke="url(#mg2)" stroke-width="2" stroke-linecap="round" opacity=".5"/>
+            <path d="M12 16h14" stroke="url(#mg2)" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="12" cy="16" r="2.5" fill="url(#mg2)"/>
           </svg>
           <b>Complete<span> AI</span></b>
         </a>
@@ -923,51 +885,197 @@ footer{border-top:1px solid var(--lijn);padding:3rem 0 3.5rem;font-size:.9rem;
 </footer>
 
 <script>
-document.getElementById('jaar').textContent = new Date().getFullYear();
-
-/* Onthullen bij scrollen — respecteert de systeemvoorkeur voor minder beweging */
 (function(){
-  var wil = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  "use strict";
+  var rust = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.getElementById('jaar').textContent = new Date().getFullYear();
+
+  /* ── kopbalk krijgt een rand zodra je scrollt ── */
+  var balk = document.getElementById('balk');
+  addEventListener('scroll', function(){
+    balk.classList.toggle('vast', scrollY > 12);
+  }, {passive:true});
+
+  /* ── onthullen bij scrollen ── */
   var items = document.querySelectorAll('.reveal');
-  if (wil || !('IntersectionObserver' in window)) {
+  if (rust || !('IntersectionObserver' in window)) {
     items.forEach(function(e){ e.classList.add('in'); });
-    return;
+  } else {
+    var obs = new IntersectionObserver(function(en){
+      en.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); }
+      });
+    }, {rootMargin:'0px 0px -10% 0px', threshold:.06});
+    items.forEach(function(e){ obs.observe(e); });
   }
-  var obs = new IntersectionObserver(function(entries){
-    entries.forEach(function(en){
-      if (en.isIntersecting) { en.target.classList.add('in'); obs.unobserve(en.target); }
-    });
-  }, { rootMargin: '0px 0px -12% 0px', threshold: 0.05 });
-  items.forEach(function(e){ obs.observe(e); });
-})();
 
-/* Contactformulier.
-   Voorlopig stelt het formulier een e-mail op in het mailprogramma van de
-   bezoeker. Zo werkt het meteen, zonder externe dienst en zonder dat er
-   gegevens langs een derde partij gaan.
-   LATER: vervang dit door een echte endpoint (bijv. Formspree of Web3Forms)
-   door het formulier een action/method te geven en deze handler te verwijderen. */
-(function(){
+  /* ── gloed volgt de muis over de dienstenkaarten ── */
+  if (!rust && matchMedia('(hover:hover)').matches) {
+    document.querySelectorAll('.dienst').forEach(function(k){
+      k.addEventListener('pointermove', function(ev){
+        var b = k.getBoundingClientRect();
+        k.style.setProperty('--mx', (ev.clientX - b.left) + 'px');
+        k.style.setProperty('--my', (ev.clientY - b.top) + 'px');
+      });
+    });
+  }
+
+  /* ── de lijst in het paneel loopt door ── */
+  var regels = Array.prototype.slice.call(document.querySelectorAll('#stroomlijst .regel'));
+  if (rust) {
+    regels.forEach(function(r){ r.classList.add('aan'); });
+  } else {
+    var i = 0, timer = null;
+    function tik(){
+      if (i < regels.length){ regels[i].classList.add('aan'); i++; timer = setTimeout(tik, 640); }
+      else {
+        timer = setTimeout(function(){
+          regels.forEach(function(r){ r.classList.remove('aan'); });
+          i = 0; timer = setTimeout(tik, 720);
+        }, 4400);
+      }
+    }
+    timer = setTimeout(tik, 800);
+    document.addEventListener('visibilitychange', function(){
+      if (document.hidden){ clearTimeout(timer); }
+      else { clearTimeout(timer); timer = setTimeout(tik, 400); }
+    });
+  }
+
+  /* ── het paneel beweegt subtiel mee met de muis ── */
+  if (!rust && matchMedia('(hover:hover)').matches){
+    var paneel = document.querySelector('.paneel'), hero = document.querySelector('.hero');
+    if (paneel && hero){
+      paneel.style.transition = 'transform .5s cubic-bezier(.2,.8,.2,1)';
+      hero.addEventListener('pointermove', function(ev){
+        var b = hero.getBoundingClientRect();
+        var dx = (ev.clientX - b.left) / b.width - .5;
+        var dy = (ev.clientY - b.top) / b.height - .5;
+        paneel.style.transform = 'translate3d(' + (dx * -14).toFixed(1) + 'px,' +
+                                 (dy * -10).toFixed(1) + 'px,0)';
+      });
+      hero.addEventListener('pointerleave', function(){ paneel.style.transform = 'translate3d(0,0,0)'; });
+    }
+  }
+
+  /* ── hero-achtergrond: vijf stromen die samenkomen tot één ──
+     Vijf dunne lijnen komen links binnen, buigen naar één punt en
+     gaan als één heldere lijn verder naar rechts. Dat is letterlijk
+     de belofte van Complete AI, rustig genoeg om niet af te leiden. */
+  var doek = document.getElementById('stroomdoek');
+  if (!doek || !doek.getContext) return;
+  var ctx = doek.getContext('2d'), B = 0, H = 0, deeltjes = [], loopId = 0, zichtbaar = true;
+
+  function meet(){
+    var r = doek.getBoundingClientRect();
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    B = Math.max(r.width, 1); H = Math.max(r.height, 1);
+    doek.width = Math.round(B * dpr); doek.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  function knoop(){ return { fx: B * 0.52, fy: H * 0.52 }; }
+  function pad(i){
+    var k = knoop(), y0 = H * (0.20 + (i / 4) * 0.60);
+    return { x0: -B * 0.06, y0: y0, cx: B * 0.30, cy: y0, x1: k.fx, y1: k.fy };
+  }
+  function punt(p, t){
+    var u = 1 - t;
+    return { x: u*u*p.x0 + 2*u*t*p.cx + t*t*p.x1, y: u*u*p.y0 + 2*u*t*p.cy + t*t*p.y1 };
+  }
+  function samen(t){
+    var k = knoop();
+    return { x: k.fx + (B * 1.10 - k.fx) * t, y: k.fy - Math.sin(t * Math.PI) * H * 0.045 };
+  }
+  function bouw(){
+    deeltjes = [];
+    for (var i = 0; i < 5; i++){
+      for (var j = 0; j < 4; j++){
+        deeltjes.push({ lijn: i, f: (j / 4) + i * 0.05, snelheid: 0.0016 + (i % 3) * 0.00018 });
+      }
+    }
+  }
+  function teken(){
+    ctx.clearRect(0, 0, B, H);
+    var i, t, s;
+
+    for (i = 0; i < 5; i++){
+      var p = pad(i);
+      ctx.beginPath();
+      ctx.moveTo(p.x0, p.y0);
+      ctx.quadraticCurveTo(p.cx, p.cy, p.x1, p.y1);
+      ctx.strokeStyle = 'rgba(61,109,255,0.19)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+
+    var k = knoop();
+    var g = ctx.createLinearGradient(k.fx, 0, B, 0);
+    g.addColorStop(0, 'rgba(93,140,255,0.62)');
+    g.addColorStop(1, 'rgba(37,216,196,0.04)');
+    ctx.beginPath();
+    var s0 = samen(0); ctx.moveTo(s0.x, s0.y);
+    for (t = 0.02; t <= 1.0001; t += 0.02){ s = samen(t); ctx.lineTo(s.x, s.y); }
+    ctx.strokeStyle = g; ctx.lineWidth = 2; ctx.stroke();
+
+    var rg = ctx.createRadialGradient(k.fx, k.fy, 0, k.fx, k.fy, 46);
+    rg.addColorStop(0, 'rgba(37,216,196,0.28)');
+    rg.addColorStop(1, 'rgba(37,216,196,0)');
+    ctx.beginPath(); ctx.arc(k.fx, k.fy, 46, 0, Math.PI * 2); ctx.fillStyle = rg; ctx.fill();
+    ctx.beginPath(); ctx.arc(k.fx, k.fy, 2.6, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(37,216,196,0.85)'; ctx.fill();
+
+    for (var d = 0; d < deeltjes.length; d++){
+      var q = deeltjes[d];
+      q.f += q.snelheid;
+      if (q.f >= 2) q.f -= 2;
+      var pos, helder;
+      if (q.f < 1){ pos = punt(pad(q.lijn), q.f); helder = 0.30 + q.f * 0.45; }
+      else { pos = samen(q.f - 1); helder = 0.75 * (1 - (q.f - 1) * 0.85); }
+      if (helder <= 0.02) continue;
+      var straal = q.f < 1 ? 1.5 : 2.3;
+      var pg = ctx.createRadialGradient(pos.x, pos.y, 0, pos.x, pos.y, straal * 4);
+      pg.addColorStop(0, 'rgba(120,180,255,' + helder + ')');
+      pg.addColorStop(1, 'rgba(37,216,196,0)');
+      ctx.beginPath(); ctx.arc(pos.x, pos.y, straal * 4, 0, Math.PI * 2);
+      ctx.fillStyle = pg; ctx.fill();
+      ctx.beginPath(); ctx.arc(pos.x, pos.y, straal, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(200,225,255,' + Math.min(helder + 0.2, 1) + ')'; ctx.fill();
+    }
+  }
+  function lus(){ if (zichtbaar) teken(); loopId = requestAnimationFrame(lus); }
+
+  meet(); bouw();
+  if (rust){ teken(); }
+  else {
+    lus();
+    if ('IntersectionObserver' in window){
+      new IntersectionObserver(function(en){ zichtbaar = en[0].isIntersecting; }, {threshold:0}).observe(doek);
+    }
+    document.addEventListener('visibilitychange', function(){
+      if (document.hidden){ cancelAnimationFrame(loopId); }
+      else { cancelAnimationFrame(loopId); loopId = requestAnimationFrame(lus); }
+    });
+  }
+  var wacht;
+  addEventListener('resize', function(){
+    clearTimeout(wacht);
+    wacht = setTimeout(function(){ meet(); bouw(); if (rust) teken(); }, 180);
+  }, {passive:true});
+
+  /* ── contactformulier: stelt een e-mail op in het mailprogramma van
+       de bezoeker. Geen backend, geen derde partij.
+       LATER: vervang door een echte endpoint (Formspree/Web3Forms). ── */
   var f = document.getElementById('contactformulier');
-  if (!f) return;
-  f.addEventListener('submit', function(e){
+  if (f) f.addEventListener('submit', function(e){
     e.preventDefault();
     if (!f.reportValidity()) return;
-    var d = new FormData(f);
-    var v = function(k){ return (d.get(k) || '').toString().trim(); };
-    var regels = [
-      'Naam: '     + v('naam'),
-      'Bedrijf: '  + (v('bedrijf')  || '—'),
-      'E-mail: '   + v('email'),
-      'Telefoon: ' + (v('telefoon') || '—'),
-      'Onderwerp: '+ v('onderwerp'),
-      '',
-      v('bericht') || '(geen toelichting)'
-    ].join('\n');
-    var onderwerp = 'Aanvraag nulmeting — ' + (v('bedrijf') || v('naam'));
-    window.location.href = 'mailto:glenn@complete-ai.nl'
-      + '?subject=' + encodeURIComponent(onderwerp)
-      + '&body='    + encodeURIComponent(regels);
+    var fd = new FormData(f), v = function(k){ return (fd.get(k) || '').toString().trim(); };
+    var body = ['Naam: ' + v('naam'), 'Bedrijf: ' + (v('bedrijf') || '—'),
+      'E-mail: ' + v('email'), 'Telefoon: ' + (v('telefoon') || '—'),
+      'Onderwerp: ' + v('onderwerp'), '', v('bericht') || '(geen toelichting)'].join('\n');
+    location.href = 'mailto:glenn@complete-ai.nl?subject=' +
+      encodeURIComponent('Aanvraag nulmeting — ' + (v('bedrijf') || v('naam'))) +
+      '&body=' + encodeURIComponent(body);
   });
 })();
 </script>

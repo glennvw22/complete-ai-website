@@ -6,73 +6,64 @@
 <title>Privacyverklaring — Complete AI</title>
 <meta name="description" content="Hoe Complete AI omgaat met persoonsgegevens: wat we verwerken, waarom, hoe lang en welke rechten je hebt.">
 <meta name="robots" content="index, follow">
+<meta name="theme-color" content="#06070C">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; script-src 'self' 'unsafe-inline'; form-action 'self' mailto:; frame-ancestors 'none'; base-uri 'self'; object-src 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="canonical" href="https://complete-ai.nl/privacy.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@300;400;500;600&display=swap">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230A4FD1'/%3E%3Cpath d='M9 9h5v5H9zM18 9h5v5h-5zM9 18h5v5H9zM18 18h5v5h-5z' fill='white'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%233D6DFF'/%3E%3Cstop offset='1' stop-color='%2325D8C4'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='%230A0C13'/%3E%3Cpath d='M6 10h4M6 16h4M6 22h4' stroke='url(%23g)' stroke-width='2' stroke-linecap='round' opacity='.55'/%3E%3Cpath d='M12 16h14' stroke='url(%23g)' stroke-width='2.5' stroke-linecap='round'/%3E%3Ccircle cx='12' cy='16' r='2.5' fill='url(%23g)'/%3E%3C/svg%3E">
 
 <style>
 :root{
-  --grond:#EDEFF2; --vlak:#FFFFFF; --vlak-diep:#E2E6EB;
-  --inkt:#0C1116; --inkt-zacht:#4E5A66; --lijn:#D6DCE3;
-  --accent:#0A4FD1; --accent-mist:#E3EBFB; --op-accent:#FFFFFF;
-  --f-kop:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;
-  --f-tekst:"Public Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
-  --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --void:#06070C; --grond:#090B12; --vlak:#0E1119; --vlak-hoog:#141826;
+  --inkt:#EEF1F8; --inkt-zacht:#8D95AA; --inkt-dim:#5A6278;
+  --lijn:#1A2030; --lijn-op:#28304a;
+  --blauw:#3D6DFF; --blauw-hel:#6B92FF; --aqua:#25D8C4;
+  --verloop:linear-gradient(115deg,#3D6DFF 0%,#5B8CFF 42%,#25D8C4 100%);
+  --f-kop:"Sora","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --f-tekst:"DM Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
   --rand:min(760px, 100% - clamp(1.25rem,6vw,4rem));
 }
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --grond:#0A0D11; --vlak:#12181F; --vlak-diep:#1A222B;
-    --inkt:#E9EDF2; --inkt-zacht:#94A2AF; --lijn:#222B35;
-    --accent:#6D9DFF; --accent-mist:#152238; --op-accent:#07101F;
-  }
-}
-:root[data-theme="dark"]{
-  --grond:#0A0D11; --vlak:#12181F; --vlak-diep:#1A222B;
-  --inkt:#E9EDF2; --inkt-zacht:#94A2AF; --lijn:#222B35;
-  --accent:#6D9DFF; --accent-mist:#152238; --op-accent:#07101F;
-}
 *,*::before,*::after{box-sizing:border-box}
-body{margin:0;background:var(--grond);color:var(--inkt);font-family:var(--f-tekst);
+body{margin:0;background:var(--void);color:var(--inkt);font-family:var(--f-tekst);
   font-size:17px;line-height:1.68;-webkit-font-smoothing:antialiased}
 .wrap{width:var(--rand);margin-inline:auto}
 h1,h2{font-family:var(--f-kop);margin:0;letter-spacing:-0.03em;line-height:1.12;font-weight:600}
-h1{font-size:clamp(2rem,1.4rem+2.2vw,2.8rem);font-weight:700}
+h1{font-size:clamp(2rem,1.4rem+2.2vw,2.9rem);font-weight:700;letter-spacing:-.045em}
 h2{font-size:1.3rem;margin-top:2.6rem}
 p{margin:1rem 0 0}
 ul{margin:.9rem 0 0;padding-left:1.2rem;display:flex;flex-direction:column;gap:.45rem}
-ul::marker{color:var(--accent)}
-a{color:var(--accent)}
-code{font-family:var(--f-mono);font-size:.88em;background:var(--vlak-diep);
+ul::marker{color:var(--blauw-hel)}
+a{color:var(--blauw-hel)}
+code{font-family:var(--f-mono);font-size:.88em;background:var(--vlak-hoog);
   padding:.08em .35em;border-radius:3px}
 
-.balk{background:color-mix(in srgb,var(--grond) 88%,transparent);backdrop-filter:blur(10px);
+.balk{backdrop-filter:blur(16px) saturate(1.6);background:rgba(6,7,12,.85);backdrop-filter:blur(10px);
   border-bottom:1px solid var(--lijn);position:sticky;top:0;z-index:10}
 .balk .wrap{display:flex;align-items:center;gap:1rem;height:66px;
   width:min(1180px,100% - clamp(1.25rem,6vw,5.5rem))}
 .merk{display:flex;align-items:center;gap:.65rem;text-decoration:none;margin-right:auto}
 .merk svg{width:26px;height:26px}
 .merk b{font-family:var(--f-kop);font-size:1.16rem;font-weight:700;letter-spacing:-0.04em}
-.merk b span{color:var(--accent)}
+.merk b span{background:var(--verloop);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .terug{font-size:.94rem;text-decoration:none;color:var(--inkt-zacht);font-weight:500}
-.terug:hover{color:var(--accent)}
+.terug:hover{color:var(--blauw-hel)}
 
 main{padding:clamp(2.5rem,6vw,4.5rem) 0 5rem}
 .datum{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--accent);margin-bottom:1.1rem}
+  color:var(--blauw-hel);margin-bottom:1.1rem}
 .inleiding{font-size:1.1rem;color:var(--inkt-zacht);margin-top:1.3rem}
-.kader{background:var(--vlak);border:1px solid var(--lijn);border-left:3px solid var(--accent);
+.kader{background:linear-gradient(135deg,rgba(61,109,255,.08),transparent);border-radius:13px!important;border:1px solid var(--lijn);border-left:3px solid var(--blauw);
   border-radius:0 5px 5px 0;padding:1.2rem 1.4rem;margin-top:1.6rem}
 .kader p{margin:0;font-size:.97rem;color:var(--inkt-zacht)}
 .kader p+p{margin-top:.7rem}
-table{width:100%;border-collapse:collapse;margin-top:1.2rem;font-size:.95rem;display:block;
+table{width:100%;border-collapse:collapse;border:1px solid var(--lijn);border-radius:12px;margin-top:1.2rem;font-size:.95rem;display:block;
   overflow-x:auto;white-space:normal}
 th,td{text-align:left;padding:.7rem .9rem;border-bottom:1px solid var(--lijn);vertical-align:top}
-th{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.11em;text-transform:uppercase;
+th{font-family:var(--f-mono);background:var(--vlak);font-size:.68rem;letter-spacing:.11em;text-transform:uppercase;
   color:var(--inkt-zacht);font-weight:500}
 footer{border-top:1px solid var(--lijn);padding:2rem 0 3rem;font-size:.88rem;color:var(--inkt-zacht)}
 </style>
@@ -83,8 +74,13 @@ footer{border-top:1px solid var(--lijn);padding:2rem 0 3rem;font-size:.88rem;col
   <div class="wrap">
     <a class="merk" href="index.html">
       <svg viewBox="0 0 32 32" aria-hidden="true">
-        <rect width="32" height="32" rx="6" fill="var(--accent)"/>
-        <path d="M9 9h5v5H9zM18 9h5v5h-5zM9 18h5v5H9zM18 18h5v5h-5z" fill="var(--op-accent)"/>
+        <defs><linearGradient id="pg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#3D6DFF"/><stop offset="1" stop-color="#25D8C4"/>
+        </linearGradient></defs>
+        <rect width="32" height="32" rx="8" fill="#0E1119" stroke="#28304a"/>
+        <path d="M6 10h4M6 16h4M6 22h4" stroke="url(#pg)" stroke-width="2" stroke-linecap="round" opacity=".5"/>
+        <path d="M12 16h14" stroke="url(#pg)" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="12" cy="16" r="2.5" fill="url(#pg)"/>
       </svg>
       <b>Complete<span> AI</span></b>
     </a>
