@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacyverklaring — Complete AI</title>
+<meta name="description" content="Hoe Complete AI omgaat met persoonsgegevens: wat we verwerken, waarom, hoe lang en welke rechten je hebt.">
+<meta name="robots" content="index, follow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; script-src 'self' 'unsafe-inline'; form-action 'self' mailto:; frame-ancestors 'none'; base-uri 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="canonical" href="https://complete-ai.nl/privacy.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@300;400;500;600&display=swap">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230A4FD1'/%3E%3Cpath d='M9 9h5v5H9zM18 9h5v5h-5zM9 18h5v5H9zM18 18h5v5h-5z' fill='white'/%3E%3C/svg%3E">
+
+<style>
+:root{
+  --grond:#EDEFF2; --vlak:#FFFFFF; --vlak-diep:#E2E6EB;
+  --inkt:#0C1116; --inkt-zacht:#4E5A66; --lijn:#D6DCE3;
+  --accent:#0A4FD1; --accent-mist:#E3EBFB; --op-accent:#FFFFFF;
+  --f-kop:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --f-tekst:"Public Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --rand:min(760px, 100% - clamp(1.25rem,6vw,4rem));
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --grond:#0A0D11; --vlak:#12181F; --vlak-diep:#1A222B;
+    --inkt:#E9EDF2; --inkt-zacht:#94A2AF; --lijn:#222B35;
+    --accent:#6D9DFF; --accent-mist:#152238; --op-accent:#07101F;
+  }
+}
+:root[data-theme="dark"]{
+  --grond:#0A0D11; --vlak:#12181F; --vlak-diep:#1A222B;
+  --inkt:#E9EDF2; --inkt-zacht:#94A2AF; --lijn:#222B35;
+  --accent:#6D9DFF; --accent-mist:#152238; --op-accent:#07101F;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--grond);color:var(--inkt);font-family:var(--f-tekst);
+  font-size:17px;line-height:1.68;-webkit-font-smoothing:antialiased}
+.wrap{width:var(--rand);margin-inline:auto}
+h1,h2{font-family:var(--f-kop);margin:0;letter-spacing:-0.03em;line-height:1.12;font-weight:600}
+h1{font-size:clamp(2rem,1.4rem+2.2vw,2.8rem);font-weight:700}
+h2{font-size:1.3rem;margin-top:2.6rem}
+p{margin:1rem 0 0}
+ul{margin:.9rem 0 0;padding-left:1.2rem;display:flex;flex-direction:column;gap:.45rem}
+ul::marker{color:var(--accent)}
+a{color:var(--accent)}
+code{font-family:var(--f-mono);font-size:.88em;background:var(--vlak-diep);
+  padding:.08em .35em;border-radius:3px}
+
+.balk{background:color-mix(in srgb,var(--grond) 88%,transparent);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--lijn);position:sticky;top:0;z-index:10}
+.balk .wrap{display:flex;align-items:center;gap:1rem;height:66px;
+  width:min(1180px,100% - clamp(1.25rem,6vw,5.5rem))}
+.merk{display:flex;align-items:center;gap:.65rem;text-decoration:none;margin-right:auto}
+.merk svg{width:26px;height:26px}
+.merk b{font-family:var(--f-kop);font-size:1.16rem;font-weight:700;letter-spacing:-0.04em}
+.merk b span{color:var(--accent)}
+.terug{font-size:.94rem;text-decoration:none;color:var(--inkt-zacht);font-weight:500}
+.terug:hover{color:var(--accent)}
+
+main{padding:clamp(2.5rem,6vw,4.5rem) 0 5rem}
+.datum{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:1.1rem}
+.inleiding{font-size:1.1rem;color:var(--inkt-zacht);margin-top:1.3rem}
+.kader{background:var(--vlak);border:1px solid var(--lijn);border-left:3px solid var(--accent);
+  border-radius:0 5px 5px 0;padding:1.2rem 1.4rem;margin-top:1.6rem}
+.kader p{margin:0;font-size:.97rem;color:var(--inkt-zacht)}
+.kader p+p{margin-top:.7rem}
+table{width:100%;border-collapse:collapse;margin-top:1.2rem;font-size:.95rem;display:block;
+  overflow-x:auto;white-space:normal}
+th,td{text-align:left;padding:.7rem .9rem;border-bottom:1px solid var(--lijn);vertical-align:top}
+th{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--inkt-zacht);font-weight:500}
+footer{border-top:1px solid var(--lijn);padding:2rem 0 3rem;font-size:.88rem;color:var(--inkt-zacht)}
+</style>
+</head>
+<body>
+
+<header class="balk">
+  <div class="wrap">
+    <a class="merk" href="index.html">
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <rect width="32" height="32" rx="6" fill="var(--accent)"/>
+        <path d="M9 9h5v5H9zM18 9h5v5h-5zM9 18h5v5H9zM18 18h5v5h-5z" fill="var(--op-accent)"/>
+      </svg>
+      <b>Complete<span> AI</span></b>
+    </a>
+    <a class="terug" href="index.html">← Terug naar de site</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <p class="datum">Laatst bijgewerkt · 27 augustus 2026</p>
+    <h1>Privacyverklaring</h1>
+    <p class="inleiding">Complete AI verwerkt persoonsgegevens. In deze verklaring lees je precies welke, waarom, hoe lang we ze bewaren en welke rechten je hebt. Geschreven in gewone taal, want een privacyverklaring die niemand begrijpt heeft geen zin.</p>
+
+    <h2>1. Wie is verantwoordelijk</h2>
+    <p>Complete AI, gevestigd in Nederland, is de verwerkingsverantwoordelijke voor de gegevens die via deze website worden verzameld.</p>
+    <!-- VERVANG: vestigingsadres, KvK-nummer en btw-nummer invullen zodra de inschrijving rond is -->
+    <ul>
+      <li>E-mail: <a href="mailto:glenn@complete-ai.nl">glenn@complete-ai.nl</a></li>
+      <li>Website: <code>complete-ai.nl</code></li>
+      <li>Contactpersoon: Glenn van Wijngaarden</li>
+    </ul>
+
+    <h2>2. Welke gegevens we verwerken</h2>
+    <p>Alleen wat je zelf invult. Deze website plaatst geen tracking-cookies en gebruikt geen advertentienetwerken of analysediensten die je gedrag volgen.</p>
+    <table>
+      <thead><tr><th>Gegevens</th><th>Waarom</th><th>Grondslag</th></tr></thead>
+      <tbody>
+        <tr><td>Naam, bedrijfsnaam</td><td>Om je aan te kunnen spreken en je aanvraag te behandelen</td><td>Uitvoering van of aanloop naar een overeenkomst</td></tr>
+        <tr><td>E-mailadres, telefoonnummer</td><td>Om contact met je op te nemen naar aanleiding van je aanvraag</td><td>Uitvoering van of aanloop naar een overeenkomst</td></tr>
+        <tr><td>Inhoud van je bericht</td><td>Om je vraag te begrijpen en er inhoudelijk op te kunnen reageren</td><td>Gerechtvaardigd belang</td></tr>
+      </tbody>
+    </table>
+    <div class="kader">
+      <p><strong>Over het contactformulier:</strong> als je het formulier op deze site verstuurt, opent je eigen e-mailprogramma met een vooringevuld bericht. De gegevens worden dus niet door deze website opgeslagen en gaan niet langs een tussenpartij — je verstuurt gewoon zelf een e-mail.</p>
+    </div>
+
+    <h2>3. Hoe lang we het bewaren</h2>
+    <ul>
+      <li><strong>Word je geen klant:</strong> we bewaren je aanvraag maximaal twaalf maanden, zodat we een eerder gesprek kunnen terugvinden als je later alsnog contact opneemt.</li>
+      <li><strong>Word je wel klant:</strong> we bewaren je gegevens zolang de samenwerking loopt, en daarna zeven jaar voor zover de fiscale bewaarplicht dat vereist.</li>
+    </ul>
+
+    <h2>4. Met wie we gegevens delen</h2>
+    <p>We verkopen je gegevens nooit. We delen ze alleen met partijen die nodig zijn om ons werk te doen, en alleen voor zover dat noodzakelijk is:</p>
+    <ul>
+      <li><strong>Onze e-mail- en hostingpartijen</strong>, omdat je bericht nu eenmaal ergens langs moet en de website ergens moet staan.</li>
+      <li><strong>Onze boekhouder en boekhoudsoftware</strong>, wanneer je klant wordt en we moeten factureren.</li>
+      <li><strong>Instanties</strong>, wanneer we daar wettelijk toe verplicht zijn.</li>
+    </ul>
+    <p>Met partijen die namens ons gegevens verwerken sluiten we een verwerkersovereenkomst.</p>
+
+    <h2>5. Als wij voor jou werken</h2>
+    <div class="kader">
+      <p>Word je klant en richten we bijvoorbeeld een klantenbestand, een bestelsysteem of een AI-telefonist voor je in, dan verwerken wij persoonsgegevens van <em>jouw</em> klanten. In die situatie ben jij de verwerkingsverantwoordelijke en zijn wij de verwerker.</p>
+      <p>We leggen dat vóór de start vast in een <strong>verwerkersovereenkomst</strong>, waarin staat wat wij met die gegevens mogen doen, hoe ze beveiligd zijn en wat er gebeurt als de samenwerking eindigt. Bij een AI-telefonist die gesprekken opneemt of uitschrijft hoort daar ook bij dat jij je eigen klanten daarover informeert. We helpen je daarmee.</p>
+    </div>
+
+    <h2>6. Beveiliging</h2>
+    <p>De website wordt uitsluitend via een beveiligde verbinding (HTTPS) aangeboden en heeft geen database of inlogsysteem, waardoor er niets te ontvreemden valt. Voor de systemen die we voor klanten bouwen gebruiken we versleutelde verbindingen, sterke wachtwoorden en toegang op basis van wie wat nodig heeft.</p>
+
+    <h2>7. Cookies</h2>
+    <p>Deze website plaatst <strong>geen cookies</strong> voor tracking, statistieken of advertenties. Daarom zie je ook geen cookiebanner. De lettertypen worden geladen via Google Fonts; daarbij wordt je IP-adres technisch gezien door Google verwerkt om het lettertype te kunnen uitleveren.</p>
+
+    <h2>8. Jouw rechten</h2>
+    <p>Op grond van de AVG heb je het recht om:</p>
+    <ul>
+      <li>je gegevens <strong>in te zien</strong>;</li>
+      <li>ze te laten <strong>corrigeren</strong> als er iets niet klopt;</li>
+      <li>ze te laten <strong>verwijderen</strong>;</li>
+      <li>de verwerking te laten <strong>beperken</strong>;</li>
+      <li><strong>bezwaar</strong> te maken tegen de verwerking;</li>
+      <li>je gegevens in een gangbaar bestandsformaat te <strong>ontvangen</strong> (dataportabiliteit);</li>
+      <li>een gegeven <strong>toestemming in te trekken</strong>, op elk moment.</li>
+    </ul>
+    <p>Stuur daarvoor een bericht naar <a href="mailto:glenn@complete-ai.nl">glenn@complete-ai.nl</a>. Je krijgt binnen vier weken antwoord, en meestal een stuk eerder.</p>
+
+    <h2>9. Klacht indienen</h2>
+    <p>Ben je het niet eens met hoe wij met je gegevens omgaan, laat het ons dan eerst weten — dan lossen we het op. Kom je er met ons niet uit, dan heb je het recht een klacht in te dienen bij de <a href="https://autoriteitpersoonsgegevens.nl" rel="noopener">Autoriteit Persoonsgegevens</a>.</p>
+
+    <h2>10. Wijzigingen</h2>
+    <p>Verandert er iets aan onze dienstverlening, dan passen we deze verklaring aan. De datum bovenaan geeft aan wanneer dat voor het laatst gebeurd is.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    © <span id="jaar">2026</span> Complete AI · <a href="index.html">Terug naar de site</a>
+  </div>
+</footer>
+
+<script>document.getElementById('jaar').textContent = new Date().getFullYear();</script>
+</body>
+</html>
