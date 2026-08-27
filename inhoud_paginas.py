@@ -58,70 +58,70 @@ PAGINAS = [
  "beschrijving": "Een website die klanten oplevert in plaats van er alleen goed uitziet. Snel, mobielvriendelijk, gebouwd om gevonden te worden. Live binnen één tot twee weken.",
  "omschrijving": "Websites op maat voor lokale ondernemers: ontwerp, teksten, techniek, vindbaarheid en hosting. Live binnen één tot twee weken.",
  "ogen": "Websites",
- "h1": 'Een website die <span class="glans">klanten oplevert</span>. Niet alleen een mooie.',
- "lead": "De meeste sites zien er prima uit en doen verder niets. Ze staan er, ze worden niet gevonden, en er belt niemand naar aanleiding van. Wij bouwen sites waar wél iets uit komt — en we doen er één tot twee weken over in plaats van twee maanden.",
+ "h1": 'Een website die <span class="glans">klanten oplevert</span>, niet alleen indruk maakt.',
+ "lead": "Veel bedrijfssites zien er verzorgd uit en leveren niets op. Ze staan online, worden niet gevonden, en er komt geen aanvraag uit. Complete AI bouwt sites die wél resultaat opleveren, met een doorlooptijd van één tot twee weken in plaats van twee maanden.",
  "levertijd": "Live in 1 tot 2 weken",
  "uitkomsten": [
-     ("0,7 s", "laadtijd van deze pagina — dat is de norm die we ook voor jou aanhouden"),
-     ("83%", "van je bezoekers komt op een telefoon; daar ontwerpen we als eerste voor"),
+     ("0,7 s", "laadtijd van deze pagina — dezelfde norm geldt voor uw site"),
+     ("83%", "van de bezoekers komt binnen op een telefoon; daar ontwerpen we als eerste voor"),
      ("1–2 wk", "van akkoord tot live, inclusief teksten en beeld"),
  ],
- "slot_kop": "Benieuwd wat er van jouw site te maken valt?",
- "slot_tekst": "In een half uur kijken we samen naar wat je nu hebt, wie je klanten zijn en waar het misgaat. Je krijgt een eerlijk advies mee — ook als dat is dat je site prima is en de winst ergens anders zit.",
+ "slot_kop": "Wat er van uw huidige site te maken valt.",
+ "slot_tekst": "In een half uur nemen we door wat er nu staat, wie uw klanten zijn en waar het misloopt. U ontvangt een onderbouwd advies — ook wanneer de conclusie is dat de site voldoet en de winst elders ligt.",
  "vragen": [
    ("Moet ik van mijn huidige website af?",
-    "Niet per se. Soms is je bestaande site prima en zit de winst ergens anders: in vindbaarheid, of in het automatiseren van je administratie. Dat hoor je eerlijk in de nulmeting, ook als het antwoord is dat je niets bij mij hoeft af te nemen."),
+    "Niet per se. Regelmatig voldoet een bestaande site prima en ligt de winst elders: in vindbaarheid, of in het automatiseren van de administratie. Dat hoort u in de nulmeting, ook wanneer de conclusie is dat u niets bij Complete AI hoeft af te nemen."),
    ("Ik heb geen teksten en geen goede foto's. Is dat een probleem?",
-    "Nee, dat is eerder regel dan uitzondering. De teksten schrijf ik op basis van één gesprek waarin ik doorvraag op wat je doet en voor wie. Voor beeld werken we met wat je hebt, aangevuld met professionele beelden; is fotografie nodig, dan zeg ik dat vooraf."),
+    "Nee, dat is eerder regel dan uitzondering. De teksten schrijven wij op basis van één gesprek waarin we doorvragen op wat u doet en voor wie. Voor beeldmateriaal werken we met wat er is, aangevuld met professionele beelden; is fotografie nodig, dan hoort u dat vooraf."),
    ("Kan ik later zelf dingen aanpassen?",
-    "Ja. Kleine wijzigingen — een tekst, een prijs, openingstijden — zitten bij het onderhoud in: je appt of belt en het is dezelfde dag geregeld. Wil je liever zelf in de knoppen, dan richten we dat zo in dat je het zonder technische kennis kunt."),
+    "Ja. Kleine wijzigingen — een tekst, een prijs, openingstijden — vallen onder het onderhoud: één bericht en het is dezelfde dag geregeld. Wilt u het liever zelf doen, dan richten wij dat zo in dat het zonder technische kennis kan."),
    ("Hoe zit het met hosting en onderhoud?",
-    "Dat zit in het maandbedrag: hosting, back-ups, updates, het SSL-certificaat en kleine wijzigingen. Je krijgt geen aparte rekeningen van drie partijen. Maandelijks opzegbaar."),
-   ("Waarom kan het bij jullie in twee weken en elders in twee maanden?",
-    "Omdat er geen accountmanager, projectleider en tussenlaag tussen zit. Je spreekt de persoon die het bouwt. En omdat veel van wat we inzetten al staat en getest is; we beginnen zelden bij nul."),
+    "Dat valt onder het maandbedrag: hosting, back-ups, updates, het SSL-certificaat en kleine wijzigingen. Geen losse facturen van drie partijen. Maandelijks opzegbaar."),
+   ("Waarom duurt het hier twee weken en elders twee maanden?",
+    "Omdat er geen accountmanager, projectleider of tussenlaag tussen zit: u spreekt de persoon die het bouwt. En omdat een groot deel van wat wij inzetten al gebouwd en getest is; wij beginnen zelden bij nul."),
  ],
  "inhoud": "\n\n  <hr class=\"streep\">\n\n".join([
-   sectie("Herkenbaar?", "Een mooie site is niet hetzelfde als een site die werkt.",
-          "Dit zijn de vier dingen die we het vaakst tegenkomen als we naar een bestaande site kijken.",
+   sectie("De situatie", "Representatief zijn en resultaat opleveren zijn twee verschillende dingen.",
+          "Dit zijn de vier bevindingen die wij het vaakst doen bij een bestaande site.",
           pijnblok([
-            ("Je wordt niet gevonden", "Je staat online, maar wie niet je bedrijfsnaam intypt komt je nooit tegen."),
-            ("Hij laadt traag op een telefoon", "En daar komt het overgrote deel van je bezoekers vandaan. Elke seconde kost je mensen."),
-            ("Er is niets te doen", "Geen duidelijke volgende stap, dus kijkt iemand rond en klikt weg."),
-            ("Aanpassen kost een e-mail en een week", "Waardoor je het niet meer doet en de site langzaam veroudert."),
+            ("Niet vindbaar", "De site staat online, maar wie niet de bedrijfsnaam intypt komt hem nooit tegen."),
+            ("Trage laadtijd op mobiel", "Waar het overgrote deel van de bezoekers vandaan komt. Elke extra seconde kost bezoekers."),
+            ("Geen duidelijke vervolgstap", "Een bezoeker kijkt rond, vindt geen aanleiding tot contact en verlaat de site."),
+            ("Wijzigingen duren te lang", "Waardoor ze uitblijven en de site geleidelijk veroudert."),
           ]), "herkenbaar"),
 
-   sectie("Wat je krijgt", "Alles wat er nodig is, in één keer geregeld.",
-          "Geen losse onderdelen die je zelf moet samenbrengen. Je hebt één aanspreekpunt en aan het eind staat er iets dat af is.",
+   sectie("Wat u krijgt", "Alles wat nodig is, in één keer geregeld.",
+          "Geen losse onderdelen die u zelf moet samenbrengen. Eén aanspreekpunt, en aan het eind staat er iets dat af is.",
           krijgtblok([
-            ("Ontwerp op maat", "Geen sjabloon met jouw logo erin. Het ontwerp volgt jouw zaak, je klanten en wat je wilt bereiken."),
-            ("Mobiel eerst", "We ontwerpen op de telefoon en werken omhoog naar de laptop, niet andersom. Dat is waar je bezoekers zitten."),
-            ("Snelheid als uitgangspunt", "Geen zware bouwers of tientallen plug-ins. Deze pagina laadt in ongeveer 0,7 seconde; dat is de norm die we aanhouden."),
-            ("Teksten die kloppen", "Geschreven op basis van één gesprek. In jouw taal, gericht op de klant die je wilt hebben."),
-            ("Vindbaar vanaf dag één", "Nette structuur, sitemap, structuurdata en een Google-bedrijfsprofiel dat volledig staat."),
-            ("Formulier dat aankomt", "Klinkt vanzelfsprekend. Het is de meest voorkomende fout die we op bestaande sites vinden."),
+            ("Ontwerp op maat", "Geen sjabloon met een logo erin. Het ontwerp volgt uw bedrijf, uw klanten en uw doelstelling."),
+            ("Mobiel eerst", "Wij ontwerpen op telefoonformaat en werken omhoog naar de laptop, niet andersom. Daar zitten de bezoekers."),
+            ("Snelheid als uitgangspunt", "Geen zware paginabouwers of tientallen plug-ins. Deze pagina laadt in ongeveer 0,7 seconde; dat is de norm."),
+            ("Teksten die kloppen", "Geschreven op basis van één gesprek, in uw taal en gericht op de klant die u wilt bereiken."),
+            ("Vindbaar vanaf dag één", "Correcte structuur, sitemap, structuurdata en een volledig ingericht Google-bedrijfsprofiel."),
+            ("Formulier dat aankomt", "Vanzelfsprekend in theorie. In de praktijk de meest voorkomende fout op bestaande sites."),
             ("Veilig en zonder waarschuwingen", "HTTPS met een certificaat dat zichzelf verlengt, geen database en geen inlogscherm — dus niets te hacken."),
-            ("Hosting en onderhoud", "Inbegrepen in het maandbedrag. Kleine wijzigingen ook. Maandelijks opzegbaar."),
+            ("Hosting en onderhoud", "Inbegrepen in het maandbedrag, evenals kleine wijzigingen. Maandelijks opzegbaar."),
           ]), "wat-je-krijgt"),
 
-   sectie("Zo gaat het", "Van eerste gesprek tot live in vier stappen.",
-          "Je hoeft niets voor te bereiden. Het enige wat ik van je nodig heb is een half uur en een eerlijk verhaal over hoe het nu loopt.",
+   sectie("Werkwijze", "Van eerste gesprek tot oplevering in vier stappen.",
+          "Voorbereiding is niet nodig. Het enige wat wij vragen is een half uur en een open beeld van hoe het nu loopt.",
           routeblok([
-            ("Nulmeting", "Een half uur samen kijken naar wat je nu hebt, wie je klanten zijn en waar het misgaat. Gratis en vrijblijvend."),
-            ("Voorstel", "Binnen één werkdag op papier: wat we bouwen, wat het kost, wanneer het staat. Eén vaste prijs."),
-            ("Bouwen", "Je krijgt na een paar dagen een link om mee te kijken. Aanpassingen doen we onderweg, niet pas aan het eind."),
-            ("Live", "We zetten hem live, koppelen je domein en e-mail, en ik loop het met je door tot je ermee overweg kunt."),
+            ("Nulmeting", "Een half uur om vast te stellen wat er nu staat, wie de klanten zijn en waar het misloopt. Kosteloos en vrijblijvend."),
+            ("Voorstel", "Binnen één werkdag op papier: wat we bouwen, wat het kost en wanneer het staat. Eén vaste prijs."),
+            ("Bouwen", "Na enkele dagen ontvangt u een link om mee te kijken. Aanpassingen verwerken we gaandeweg, niet pas bij oplevering."),
+            ("Oplevering", "Wij zetten de site live, koppelen domein en e-mail, en nemen alles met u door tot u ermee overweg kunt."),
           ]), "werkwijze"),
 
-   sectie("Bewijs", "Deze pagina is er zelf een voorbeeld van.",
-          "Je hoeft niet op mijn woord af te gaan — je kijkt er nu naar.",
+   sectie("Bewijs", "Deze pagina is zelf het bewijs.",
+          "U hoeft niets op ons woord aan te nemen; u kijkt er op dit moment naar.",
           eerlijkblok(
-            "Wat je hier kunt controleren",
-            "Alles wat ik hierboven beloof, is op deze pagina zelf te meten:",
-            ["De site laadt in ongeveer <strong>0,7 seconde</strong>, ook op een telefoon.",
-             "Er zit <strong>geen cookiebanner</strong> in, omdat er geen tracking op staat die je gedrag volgt.",
-             "Het slotje in je adresbalk is <strong>groen en geldig</strong> — geen waarschuwingen.",
-             "Verklein dit venster tot telefoonformaat: alles blijft leesbaar en bruikbaar.",
-             "Deze site is <strong>in één nacht gebouwd</strong>. Voor een klant nemen we er meer tijd voor, maar het geeft aan waar het tempo vandaan komt."]),
+            "Wat u hier zelf kunt controleren",
+            "Alles wat hierboven staat, is op deze pagina zelf te controleren:",
+            ["De pagina laadt in ongeveer <strong>0,7 seconde</strong>, ook op een telefoon.",
+             "Er is <strong>geen cookiebanner</strong>, omdat er geen tracking op staat die gedrag volgt.",
+             "Het certificaat in de adresbalk is <strong>geldig</strong> — geen browserwaarschuwingen.",
+             "Verklein dit venster tot telefoonformaat: de pagina blijft leesbaar en bruikbaar.",
+             "Deze site is <strong>in één nacht gebouwd</strong>. Voor een opdracht nemen wij meer tijd, maar het illustreert waar het tempo vandaan komt."]),
           "bewijs"),
  ]),
 },
@@ -134,72 +134,72 @@ PAGINAS = [
  "beschrijving": "Facturen, orders, herinneringen en reviews die vanzelf gaan. Veel van wat we inzetten draait al, dus het staat vaak binnen enkele werkdagen bij je.",
  "omschrijving": "Automatisering van terugkerend werk voor lokale ondernemers: orderintake, facturatie, betaalherinneringen, afspraken, reviews en een dashboard met je cijfers.",
  "ogen": "Automatisering",
- "h1": 'Het werk dat je <span class="glans">avonden opeet</span>, gaat vanzelf.',
- "lead": "Facturen maken, bevestigingen sturen, achter betalingen aan, om reviews vragen. Werk dat móet gebeuren maar niets oplevert. Dat kan de computer overnemen — en omdat veel van wat we inzetten al draait, staat het vaak binnen een paar werkdagen bij je.",
+ "h1": 'Terugkerend werk dat <span class="glans">zichzelf afhandelt</span>.',
+ "lead": "Facturen opstellen, bevestigingen versturen, betalingen opvolgen, reviews aanvragen. Werk dat moet gebeuren maar geen omzet oplevert. Dat kan geautomatiseerd worden — en omdat een groot deel van wat wij inzetten al operationeel is, staat het vaak binnen enkele werkdagen.",
  "levertijd": "Vaak live binnen enkele werkdagen",
  "uitkomsten": [
      ("17", "automatiseringen die vandaag al draaien en getest zijn"),
-     ("Dagen", "in plaats van maanden, omdat we zelden bij nul beginnen"),
-     ("0", "handelingen van jou nadat het staat"),
+     ("Dagen", "in plaats van maanden, omdat wij zelden bij nul beginnen"),
+     ("0", "handelingen van uw kant zodra het draait"),
  ],
- "slot_kop": "Wat kost jou de meeste tijd?",
- "slot_tekst": "In een half uur brengen we samen in kaart waar je week in gaat zitten. Vaak blijkt dat drie terugkerende taken het grootste deel opeten — daar beginnen we, en de rest kan altijd later.",
+ "slot_kop": "Waar gaat uw tijd naartoe?",
+ "slot_tekst": "In een half uur brengen wij in kaart waar de week in gaat zitten. Meestal blijken drie terugkerende taken het grootste deel op te eisen. Daar beginnen we; de rest volgt wanneer u dat wilt.",
  "vragen": [
    ("Moet ik mijn huidige systemen weggooien?",
-    "Nee. In de meeste gevallen sluiten we aan op wat je al gebruikt — je boekhouding, je agenda, je telefoon. Gooien we iets weg, dan is dat omdat het je geld kost zonder dat het iets doet, en dan zeg ik dat met redenen erbij."),
+    "Nee. In de meeste gevallen sluiten wij aan op wat er al in gebruik is: de boekhouding, de agenda, de telefonie. Adviseren wij iets af te stoten, dan is dat omdat het kosten veroorzaakt zonder rendement — met de onderbouwing erbij."),
    ("Wat als de automatisering iets fout doet?",
-    "Daarom bouwen we in stappen en kijken we de eerste weken mee. Alles wat automatisch gebeurt is terug te zien en terug te draaien. En bij dingen die de deur uit gaan — een factuur, een bericht aan een klant — bepaal jij of er nog een goedkeuring tussen zit."),
-   ("Hoe kan het zo snel als het maatwerk is?",
-    "Omdat de onderdelen al bestaan. Het klantenbestand, de facturatie, de agenda, het omzetdashboard: die zijn gebouwd, getest en draaien al. Wat we voor jou doen is ze kiezen, inrichten met jouw gegevens en aan elkaar knopen. Dat is dagen werk, geen maanden."),
-   ("Kan ik er zelf bij, of ben ik afhankelijk van jullie?",
-    "Je kunt er zelf bij, en de gegevens zijn van jou. Wil je later weg, dan krijg je alles mee in een gangbaar bestandsformaat. Ik werk liever met klanten die blijven omdat het werkt dan met klanten die vastzitten."),
-   ("Hoe zit het met mijn klantgegevens en de AVG?",
-    "Waar wij persoonsgegevens verwerken, leggen we dat vast in een verwerkersovereenkomst zoals de wet voorschrijft — vóór de start, niet achteraf. Je gegevens blijven van jou en worden nooit gedeeld of doorverkocht."),
+    "Daarom bouwen wij in stappen en kijken we de eerste weken mee. Alles wat automatisch gebeurt is terug te zien en terug te draaien. Bij handelingen die naar buiten gaan — een factuur, een bericht aan een klant — bepaalt u of er een goedkeuringsstap tussen zit."),
+   ("Hoe kan het zo snel gaan als het maatwerk betreft?",
+    "Omdat de onderdelen al bestaan. Het klantenbestand, de facturatie, de agenda en het omzetdashboard zijn gebouwd, getest en draaien in productie. Wat wij doen is de juiste onderdelen kiezen, inrichten met uw gegevens en aan elkaar koppelen. Dat is een kwestie van dagen, niet van maanden."),
+   ("Heb ik zelf toegang, of ben ik afhankelijk van Complete AI?",
+    "U heeft zelf toegang en de gegevens blijven van u. Besluit u later te stoppen, dan ontvangt u alles in een gangbaar bestandsformaat. Complete AI werkt liever met klanten die blijven omdat het rendeert dan met klanten die vastzitten."),
+   ("Hoe is dit geregeld ten aanzien van klantgegevens en de AVG?",
+    "Waar wij persoonsgegevens verwerken, leggen we dat vast in een verwerkersovereenkomst zoals de wet voorschrijft — vóór de start, niet achteraf. Uw gegevens blijven van u en worden nooit gedeeld of doorverkocht."),
  ],
  "inhoud": "\n\n  <hr class=\"streep\">\n\n".join([
-   sectie("Herkenbaar?", "Het werk na het werk.",
-          "Je bent ondernemer geworden voor je vak. Niet voor dit deel.",
+   sectie("De situatie", "Werk dat moet gebeuren maar geen omzet oplevert.",
+          "Vier situaties die wij bij vrijwel elke ondernemer terugzien.",
           pijnblok([
-            ("De administratie doe je 's avonds", "Als de zaak dicht is en je eigenlijk klaar bent. Elke week weer."),
-            ("Bestellingen komen overal binnen", "Telefoon, WhatsApp, mail, misschien de webshop. En jij bent de plek waar het samenkomt."),
-            ("Je loopt achter je geld aan", "Facturen staan open, herinneringen sturen voelt vervelend, dus stel je het uit."),
-            ("Reviews vraag je nooit", "Terwijl je weet dat ze je zouden helpen. Er is gewoon geen moment voor."),
+            ("De administratie schuift naar de avond", "Als de zaak gesloten is en de werkdag er feitelijk op zit. Elke week opnieuw."),
+            ("Bestellingen komen via alle kanalen binnen", "Telefoon, WhatsApp, e-mail en eventueel de webshop. De ondernemer is de plek waar het samenkomt."),
+            ("Openstaande facturen blijven liggen", "Herinneren voelt ongemakkelijk, dus het wordt uitgesteld — en het geld komt later binnen."),
+            ("Reviews worden niet gevraagd", "Terwijl ze aantoonbaar helpen bij vindbaarheid en vertrouwen. Er is simpelweg geen moment voor."),
           ]), "herkenbaar"),
 
-   sectie("Wat er kan", "Een greep uit wat vandaag al draait.",
-          "Dit zijn geen plannen of schermen die nog gebouwd moeten worden — dit is software die bestaat, getest is en bij klanten kan draaien. We kiezen samen welke onderdelen bij jou zinvol zijn.",
+   sectie("Wat er kan", "Wat er vandaag al operationeel is.",
+          "Dit zijn geen plannen of ontwerpen die nog gebouwd moeten worden. Dit is software die bestaat, getest is en bij klanten draait. Samen bepalen we welke onderdelen in uw situatie zinvol zijn.",
           voorbeeldblok([
             ("Facturatie en betaalherinneringen", "Facturen maken en versturen, en trage betalers krijgen automatisch een vriendelijke herinnering die oploopt."),
             ("Offertes maken en opvolgen", "Offertes opstellen, versturen en zien wie er nog niet gereageerd heeft."),
-            ("Klantenbestand", "Contactgegevens, historie en notities per klant. Geen losse briefjes en zoeken in je telefoon meer."),
-            ("Online laten boeken", "Klanten plannen zelf een afspraak via een link, direct in jouw agenda."),
+            ("Klantenbestand", "Contactgegevens, historie en notities per klant. Geen losse notities en geen zoekwerk meer."),
+            ("Online laten boeken", "Klanten plannen zelf een afspraak via een link, rechtstreeks in uw agenda."),
             ("Afspraakherinneringen", "Automatisch een bericht vóór de afspraak, zodat er niemand meer vergeet te komen."),
             ("Terugkom-berichten", "Een berichtje als het tijd is voor een nieuwe afspraak. Zet omzet aan zonder te bellen."),
-            ("Reviews verzamelen", "Na een geslaagde levering netjes om een beoordeling vragen, en ze op je site tonen."),
+            ("Reviews verzamelen", "Na een geslaagde levering automatisch om een beoordeling vragen en die op de site tonen."),
             ("Omzetdashboard", "Omzet per dag, week of maand in duidelijke grafieken. Beslissen op cijfers in plaats van gevoel."),
             ("Kosten en btw", "Uitgaven op één plek, netjes verdeeld, en de btw per kwartaal klaar voor de aangifte."),
             ("Winst, verlies en kasstroom", "Zie wat er overblijft en of het de komende maanden krap wordt."),
-            ("Betaallinks", "Klanten direct online laten betalen via iDEAL, zonder gedoe met overschrijvingen."),
+            ("Betaallinks", "Klanten rekenen direct online af via iDEAL, zonder handmatige overschrijvingen."),
             ("WhatsApp-assistent", "Automatische antwoorden op veelgestelde vragen, ook buiten openingstijden."),
           ]), "wat-er-kan"),
 
-   sectie("Zo gaat het", "We beginnen met de drie die het meeste kosten.",
-          "Nooit alles tegelijk. Dat is niet alleen prettiger, het is ook goedkoper en je ziet sneller of het werkt.",
+   sectie("Werkwijze", "We beginnen bij de drie processen die de meeste tijd kosten.",
+          "Nooit alles tegelijk. Dat houdt de investering beheersbaar en maakt sneller zichtbaar of het rendeert.",
           routeblok([
-            ("Nulmeting", "Een half uur samen kijken waar je week in gaat zitten. Meestal zijn het drie taken die het grootste deel opeten."),
-            ("Voorstel", "Welke onderdelen we inzetten, wat het kost en wanneer het staat. Eén vaste prijs, geen uurtje-factuurtje."),
-            ("Inrichten", "We zetten de onderdelen klaar met jouw gegevens, je huisstijl en je manier van werken. Dagen, geen maanden."),
-            ("Meekijken", "De eerste weken kijken we mee en sturen we bij. Daarna merk je alleen nog dat het gebeurd is."),
+            ("Nulmeting", "Een half uur om vast te stellen waar de week in gaat zitten. Meestal zijn het drie taken die het grootste deel opeisen."),
+            ("Voorstel", "Welke onderdelen wij inzetten, wat het kost en wanneer het staat. Eén vaste prijs, geen nacalculatie."),
+            ("Inrichten", "Wij richten de onderdelen in met uw gegevens, huisstijl en werkwijze. Dagen, geen maanden."),
+            ("Nazorg", "De eerste weken kijken wij mee en sturen we bij. Daarna ziet u alleen nog het resultaat."),
           ]), "werkwijze"),
 
-   sectie("Eerlijk", "Wat het nog niet doet.",
-          "Liever nu duidelijk dan een teleurstelling achteraf.",
+   sectie("Grenzen", "Wat het nog niet doet.",
+          "Beter nu helder dan een teleurstelling achteraf.",
           eerlijkblok(
             "Drie dingen die een externe koppeling nodig hebben",
-            "Deze onderdelen zijn volledig gebouwd tot aan de laatste stap, maar die laatste stap vraagt een account bij een externe partij. We regelen dat in fase twee, en je hoort het vooraf:",
-            ["<strong>Echt versturen van e-mail en sms.</strong> Het bericht wordt volledig klaargezet met een kopieerknop; verzenden koppelen we aan zodra je provider erop staat.",
+            "Deze onderdelen zijn volledig gebouwd tot aan de laatste stap. Die laatste stap vereist een account bij een externe partij; dat regelen wij in fase twee en u hoort het vooraf:",
+            ["<strong>Daadwerkelijk versturen van e-mail en sms.</strong> Het bericht wordt volledig opgesteld en klaargezet; de verzending koppelen wij aan zodra de provider is ingericht.",
              "<strong>Automatisch incasseren.</strong> Betaallinks werken; automatische incasso vraagt een koppeling met Mollie of Stripe.",
-             "<strong>Rechtstreekse koppeling met je boekhouding.</strong> Export naar Excel en pdf werkt vandaag; de directe koppeling met Moneybird of e-Boekhouden bouwen we op aanvraag."]),
+             "<strong>Rechtstreekse koppeling met de boekhouding.</strong> Export naar Excel en pdf werkt vandaag; de directe koppeling met Moneybird of e-Boekhouden bouwen wij op aanvraag."]),
           "eerlijk"),
  ]),
 },
@@ -209,81 +209,171 @@ PAGINAS = [
  "bestand": "ai-telefonist.html",
  "dienst": "AI-telefonist",
  "titel": "AI-telefonist die 24/7 opneemt — operationeel binnen 2 weken | Complete AI",
- "beschrijving": "Een Nederlandstalige AI die de telefoon opneemt als jij niet kunt: 's avonds, in het weekend of midden in de drukte. Neemt bestellingen aan en filtert verkopers eruit.",
+ "beschrijving": "Een Nederlandstalige AI die de telefoon opneemt wanneer u dat niet kunt: 's avonds, in het weekend of tijdens drukte. Neemt bestellingen aan en filtert verkopers eruit.",
  "omschrijving": "Nederlandstalige AI-telefonist die gesprekken aanneemt, bestellingen noteert, vragen beantwoordt, urgente gesprekken doorschakelt en cold callers eruit filtert.",
  "ogen": "AI-telefonist",
  "h1": 'De telefoon die <span class="glans">altijd</span> wordt opgenomen.',
- "lead": "Een gemist telefoontje is niet neutraal. Dat is een klant die de volgende belt. De AI-telefonist neemt op als jij niet kunt — 's avonds, in het weekend, of midden in de drukte — noteert de bestelling en zet hem netjes in je lijst.",
+ "lead": "Een gemist telefoontje is geen neutrale gebeurtenis: het is een klant die de volgende belt. De AI-telefonist neemt op wanneer u dat niet kunt — 's avonds, in het weekend of tijdens drukte — noteert de bestelling en zet die gestructureerd in de orderlijst.",
  "levertijd": "Operationeel binnen 2 weken",
  "uitkomsten": [
      ("24/7", "bereikbaar, ook in het weekend en op feestdagen"),
-     ("2 wk", "van akkoord tot een werkende telefonist op je nummer"),
+     ("2 wk", "van akkoord tot een werkende telefonist op uw nummer"),
      ("100%", "van de gesprekken vastgelegd met een transcript"),
  ],
- "slot_kop": "Hoeveel telefoontjes mis je in een week?",
- "slot_tekst": "De meeste ondernemers weten het niet, want een gemist telefoontje laat geen spoor achter. In een half uur rekenen we het samen door: hoe vaak gaat de telefoon terwijl je niet kunt, en wat is zo'n gesprek gemiddeld waard.",
+ "slot_kop": "Hoeveel telefoontjes blijven er nu liggen?",
+ "slot_tekst": "De meeste ondernemers weten het niet, omdat een gemist telefoontje geen spoor achterlaat. In een half uur rekenen wij het door: hoe vaak gaat de telefoon op momenten dat er niemand kan opnemen, en wat vertegenwoordigt zo'n gesprek gemiddeld aan omzet.",
  "vragen": [
-   ("Hoort een klant dat het geen mens is?",
-    "Sommige mensen horen het, andere niet. Belangrijker is dat hij niet doet alsof: hij meldt zich als de digitale assistent van je zaak. Dat werkt in de praktijk beter dan verhullen — mensen accepteren het prima zolang ze snel en correct geholpen worden."),
+   ("Hoort een beller dat het geen mens is?",
+    "Sommige bellers horen het, andere niet. Belangrijker is dat hij zich niet anders voordoet: hij meldt zich als de digitale assistent van het bedrijf. Dat werkt in de praktijk beter dan verhullen — bellers accepteren het zolang zij snel en correct geholpen worden."),
    ("Wat als hij een vraag niet weet?",
-    "Dan verzint hij niets. Hij zegt dat hij het navraagt en zet een terugbelnotitie klaar met wat er gevraagd is. Jij bepaalt vooraf welke onderwerpen hij zelf mag afhandelen en waarbij hij altijd naar jou doorschakelt."),
+    "Dan verzint hij niets. Hij geeft aan het na te vragen en zet een terugbelnotitie klaar met de gestelde vraag. U bepaalt vooraf welke onderwerpen hij zelfstandig afhandelt en waarbij hij altijd doorschakelt."),
    ("Welke talen spreekt hij?",
-    "Nederlands als basis, en waar dat zinvol is ook Vlaams, Frans en Engels. Voor bedrijven in de grensstreek is dat vaak precies het verschil."),
-   ("Worden gesprekken opgenomen? Hoe zit dat met de AVG?",
-    "Van elk gesprek is een transcript beschikbaar, zodat je kunt teruglezen wat er gezegd is. Omdat daarbij persoonsgegevens van jouw klanten verwerkt worden, leggen we dat vóór de start vast in een verwerkersovereenkomst en informeer je je bellers erover. We helpen je daarmee."),
-   ("Vervangt dit mijn telefoon of mijn personeel?",
-    "Nee. Hij vangt op wat anders zou blijven liggen: de avonden, het weekend, en de momenten dat je met je handen in het werk zit. Urgente en ingewikkelde gesprekken gaan gewoon naar jou. Het gaat om de telefoontjes die je nu kwijtraakt, niet om de gesprekken die je nu goed voert."),
+    "Nederlands als basis, en waar zinvol ook Vlaams, Frans en Engels. Voor bedrijven in de grensstreek is dat vaak doorslaggevend."),
+   ("Worden gesprekken vastgelegd, en hoe verhoudt zich dat tot de AVG?",
+    "Van elk gesprek is een transcript beschikbaar, zodat terug te lezen is wat er gezegd is. Omdat daarbij persoonsgegevens van uw klanten worden verwerkt, leggen wij dat vóór de start vast in een verwerkersovereenkomst en informeert u uw bellers hierover. Daar ondersteunen wij u bij."),
+   ("Vervangt dit de telefonische bezetting of personeel?",
+    "Nee. Hij vangt op wat anders zou blijven liggen: de avonden, het weekend en de momenten dat er niemand kan opnemen. Urgente en complexe gesprekken gaan naar u door. Het gaat om de telefoontjes die nu verloren gaan, niet om de gesprekken die nu goed verlopen."),
    ("Kan hij ook uitbellen?",
-    "Daar beginnen we bewust niet mee. Inkomend is waar de winst zit en waar het risico klein is. Uitbellen brengt bovendien regels met zich mee rond koude acquisitie waar je niet per ongeluk overheen wilt gaan."),
+    "Daar beginnen wij bewust niet mee. Bij inkomend verkeer ligt de winst en is het risico beperkt. Uitbellen brengt bovendien regelgeving rond koude acquisitie met zich mee waar u niet ongewild overheen wilt gaan."),
  ],
  "inhoud": "\n\n  <hr class=\"streep\">\n\n".join([
-   sectie("Herkenbaar?", "De telefoon gaat altijd op het verkeerde moment.",
-          "En elk telefoontje dat blijft liggen, is een klant die verder zoekt.",
+   sectie("De situatie", "Bereikbaarheid op de momenten dat het niet uitkomt.",
+          "Elk telefoontje dat blijft liggen, is een klant die verder zoekt.",
           pijnblok([
-            ("Je staat met je handen in het werk", "Opnemen betekent stoppen waar je mee bezig bent. Niet opnemen betekent misschien een order kwijt."),
-            ("Na sluitingstijd is er niemand", "Terwijl juist dan gebeld wordt: 's avonds laat, of vroeg in de ochtend voordat de dag begint."),
-            ("Verkopers vreten je tijd", "Elke week weer iemand met zonnepanelen of een nieuwe energiecontract."),
-            ("Je weet niet wat je misloopt", "Een gemist telefoontje laat geen spoor achter. Je merkt alleen dat het rustiger is dan het zou moeten zijn."),
+            ("Opnemen onderbreekt het werk", "Opnemen betekent stoppen waar u mee bezig bent. Niet opnemen betekent mogelijk een order mislopen."),
+            ("Na sluitingstijd is er niemand", "Terwijl juist dan gebeld wordt: laat op de avond, of vroeg in de ochtend voor aanvang van de dag."),
+            ("Verkopers kosten tijd", "Wekelijks terugkerende gesprekken over zonnepanelen, energiecontracten en abonnementen."),
+            ("Het verlies is onzichtbaar", "Een gemist telefoontje laat geen spoor achter. Merkbaar is alleen dat het rustiger is dan verwacht."),
           ]), "herkenbaar"),
 
-   sectie("Zo klinkt een avond", "Een gesprek van kwart voor elf, stap voor stap.",
-          "Dit is geen verzonnen scenario maar het patroon zoals het in de praktijk verloopt.",
+   sectie("Gespreksverloop", "Een gesprek om 22:41, stap voor stap.",
+          "Geen verzonnen scenario, maar het patroon zoals het in de praktijk verloopt.",
           """      <div class="uitgelicht reveal">
         <div class="tijdlijn">
-          <div class="beurt hoogte"><span class="klok">22:41</span><span class="tekst">Een klant belt ver na sluitingstijd. <b>De telefonist neemt op</b>, in het Nederlands, en meldt zich als de assistent van je zaak.</span></div>
+          <div class="beurt hoogte"><span class="klok">22:41</span><span class="tekst">Een klant belt ruim na sluitingstijd. <b>De telefonist neemt op</b>, in het Nederlands, en meldt zich als de digitale assistent van het bedrijf.</span></div>
           <div class="beurt"><span class="klok">22:42</span><span class="tekst">Hij noteert wat er besteld wordt, controleert wat er mogelijk is en <b>beantwoordt vragen over levering</b> en assortiment.</span></div>
           <div class="beurt"><span class="klok">22:43</span><span class="tekst">Weet hij iets niet? Dan verzint hij niets, maar <b>zet hij een terugbelnotitie klaar</b> met de vraag erin.</span></div>
-          <div class="beurt"><span class="klok">22:43</span><span class="tekst">Is het dringend of ingewikkeld? Dan <b>schakelt hij door naar jou</b>. Wat dringend is, bepaal jij vooraf.</span></div>
-          <div class="beurt hoogte"><span class="klok">22:44</span><span class="tekst">De order staat gestructureerd in je lijst, de klant heeft een bevestiging, en <b>jij hebt niets hoeven doen</b>.</span></div>
-          <div class="beurt"><span class="klok">morgen</span><span class="tekst">Een verkoper aan de lijn? <b>Die wordt eruit gefilterd</b> — je hoort er niets van, maar je kunt hem wel teruglezen.</span></div>
+          <div class="beurt"><span class="klok">22:43</span><span class="tekst">Is het dringend of complex? Dan <b>schakelt hij naar u door</b>. Wat als dringend geldt, bepaalt u vooraf.</span></div>
+          <div class="beurt hoogte"><span class="klok">22:44</span><span class="tekst">De order staat gestructureerd in de lijst, de klant heeft een bevestiging, en <b>er was geen handeling van u nodig</b>.</span></div>
+          <div class="beurt"><span class="klok">morgen</span><span class="tekst">Een verkoper aan de lijn? <b>Die wordt eruit gefilterd</b> — u merkt er niets van, maar het gesprek is wel terug te lezen.</span></div>
         </div>
         <div class="kunde">
           <div><b>Nederlands</b><small>Ook Vlaams, Frans en Engels waar dat nodig is</small></div>
           <div><b>24 uur per dag</b><small>Weekend, feestdagen en midden in de drukte</small></div>
           <div><b>Altijd vastgelegd</b><small>Volledig transcript bij elk gesprek</small></div>
-          <div><b>Jij houdt de regie</b><small>Jij bepaalt wat hij zelf mag en wat naar jou gaat</small></div>
+          <div><b>U houdt de regie</b><small>U bepaalt wat hij zelfstandig afhandelt en wat naar u doorgaat</small></div>
         </div>
       </div>""", "zo-klinkt-het"),
 
-   sectie("Zo gaat het", "Van akkoord tot een werkende telefonist in twee weken.",
-          "Het meeste werk zit in het goed vullen van wat hij moet weten. Daar heb ik jou een paar keer kort voor nodig.",
+   sectie("Werkwijze", "Van akkoord tot een werkende telefonist in twee weken.",
+          "Het meeste werk zit in het correct vullen van wat hij moet weten. Daarvoor is uw input een paar keer kort nodig.",
           routeblok([
-            ("Nulmeting", "Wanneer gaat je telefoon, wat wordt er gevraagd, en wat mag hij zelf afhandelen? Een half uur."),
-            ("Inrichten", "We vullen hem met jouw assortiment, je levertijden en je manier van praten. Jij leest mee en corrigeert."),
-            ("Proefdraaien", "Eerst naast je bestaande lijn, zodat je hoort hoe hij het doet zonder dat er iets misgaat."),
-            ("Live en bijsturen", "Hij gaat aan buiten je openingstijden of tijdens drukte. De eerste weken luisteren we mee en scherpen we aan."),
+            ("Nulmeting", "Wanneer gaat de telefoon, wat wordt er gevraagd, en wat mag hij zelfstandig afhandelen? Een half uur."),
+            ("Inrichten", "Wij vullen hem met uw assortiment, levertijden en toon. U leest mee en corrigeert."),
+            ("Proefdraaien", "Eerst naast de bestaande lijn, zodat u hoort hoe hij functioneert zonder risico."),
+            ("Live en bijsturen", "Hij gaat aan buiten openingstijden of tijdens drukte. De eerste weken luisteren wij mee en scherpen we aan."),
           ]), "werkwijze"),
 
-   sectie("Eerlijk", "Wat hij niet doet.",
-          "Een AI-telefonist die alles zou kunnen bestaat niet. Dit is waar de grens ligt.",
+   sectie("Grenzen", "Wat hij niet doet.",
+          "Een AI-telefonist die alles kan bestaat niet. Dit is waar de grens ligt.",
           eerlijkblok(
             "Vier dingen die hij bewust niet doet",
             "Niet omdat het technisch onmogelijk is, maar omdat het in de praktijk misgaat of onverstandig is:",
             ["<strong>Doen alsof hij een mens is.</strong> Hij meldt zich als digitale assistent. Verhullen werkt averechts zodra iemand het doorheeft.",
              "<strong>Verzinnen wat hij niet weet.</strong> Bij twijfel wordt het een terugbelnotitie, geen gok.",
-             "<strong>Klachten en gevoelige gesprekken afhandelen.</strong> Die schakelt hij door. Een boze klant hoort een mens te krijgen.",
-             "<strong>Uitbellen voor koude acquisitie.</strong> Daar beginnen we niet aan; de regels daaromheen zijn streng en de opbrengst is klein."]),
+             "<strong>Klachten en gevoelige gesprekken afhandelen.</strong> Die schakelt hij door. Een ontevreden klant hoort een mens te spreken.",
+             "<strong>Uitbellen voor koude acquisitie.</strong> Daar beginnen wij niet aan: de regelgeving is streng en de opbrengst beperkt."]),
           "eerlijk"),
+ ]),
+},
+
+# ───────────────────────── KLANTCASE: ARONZA ─────────────────────────
+{
+ "bestand": "case-aronza.html",
+ "soort": "case",
+ "dienst": "Klantcase: Aronza",
+ "titel": "Klantcase Aronza — vier tot zes uur per week terug | Complete AI",
+ "beschrijving": "Bij Aronza werden facturatie, kosten, orderverwerking, voorraad en klantcontact geautomatiseerd. Sinds begin mei draait het zonder één storing en is de wekelijkse administratietijd tot nul teruggebracht.",
+ "omschrijving": "Klantcase: hoe bij Aronza de volledige financiële en administratieve afhandeling werd geautomatiseerd — facturatie, kosten, orderverwerking, voorraadbeheer en klantcontact.",
+ "ogen": "Klantcase",
+ "h1": 'Van <span class="glans">vier tot zes uur</span> administratie per week naar nul.',
+ "lead": "Aronza is de eerste organisatie waar de volledige financiële en administratieve afhandeling is geautomatiseerd. Facturatie, kosten, orderverwerking, voorraadbeheer en klantcontact lopen sinds begin mei zonder tussenkomst. In die periode is er geen enkele storing geweest.",
+ "levertijd": "Draait sinds begin mei 2026",
+ "uitkomsten": [
+     ("4–6 uur", "per week ging op aan administratie en facturatie — dat is nu nul"),
+     ("5", "processen volledig geautomatiseerd, van factuur tot voorraad"),
+     ("0", "storingen sinds de ingebruikname in mei"),
+ ],
+ "slot_kop": "Dezelfde processen draaien ook bij u.",
+ "slot_tekst": "De onderdelen die bij Aronza draaien zijn niet uniek voor dat bedrijf. Facturatie, kostenregistratie, orderverwerking, voorraad en klantcontact zijn dezelfde processen die bij vrijwel elke ondernemer tijd opeisen. In een half uur bepalen we welke daarvan bij u het meeste opleveren.",
+ "vragen": [
+   ("Is dit een echte case of een voorbeeld?",
+    "Dit is een echte implementatie die dagelijks draait. Aronza is het e-commercebedrijf van de oprichter van Complete AI. Dat is bewust vermeld en niet verborgen: het is de reden dat wij precies weten wat deze systemen doen onder dagelijkse belasting, en waarom ze eerst hier zijn beproefd voordat ze bij klanten werden ingezet."),
+   ("Waarom zou dit bij mijn bedrijf ook werken?",
+    "Omdat de onderliggende processen hetzelfde zijn. Een factuur opstellen en opvolgen, kosten registreren en categoriseren, een order van binnenkomst naar verzending brengen, voorraad bijhouden en klanten op tijd antwoorden — dat gebeurt bij een vishandel, een garagebedrijf en een webshop op dezelfde manier. Wat verschilt zijn de gegevens en de uitzonderingen, en dat is precies wat wij inrichten."),
+   ("Hoe lang duurde de implementatie?",
+    "De onderdelen zijn gefaseerd in gebruik genomen, te beginnen bij facturatie en kosten. Voor een klant met een vergelijkbare situatie is de doorlooptijd doorgaans enkele werkdagen per onderdeel, omdat de software al gebouwd en getest is."),
+   ("Wat gebeurt er als er iets misgaat?",
+    "In deze opzet is dat sinds de ingebruikname niet voorgekomen. Dat is geen garantie voor de toekomst, en daarom is elke automatische handeling terug te zien en terug te draaien. Bij handelingen die naar buiten gaan — een factuur, een bericht aan een klant — is instelbaar of er een goedkeuringsstap tussen zit."),
+ ],
+ "inhoud": "\n\n  <hr class=\"streep\">\n\n".join([
+   sectie("Uitgangssituatie", "Vier tot zes uur per week aan werk dat niets opleverde.",
+          "Aronza is een e-commercebedrijf. Zoals bij vrijwel elke handelsonderneming groeide de administratieve last mee met het aantal orders — en die last kwam volledig op één persoon terecht.",
+          """      <div class="voor-na reveal">
+        <div class="was">
+          <h3>Vóór de automatisering</h3>
+          <ul>
+            <li>Wekelijks vier tot zes uur aan administratie en facturatie, meestal buiten werktijd</li>
+            <li>Facturen handmatig opstellen, versturen en nalopen op betaling</li>
+            <li>Kosten achteraf verzamelen en categoriseren voor de aangifte</li>
+            <li>Orders handmatig van binnenkomst naar verzending begeleiden</li>
+            <li>Voorraad bijhouden in een apart overzicht dat snel achterliep</li>
+            <li>Klantcontact tussen het andere werk door, met wisselende reactietijd</li>
+          </ul>
+        </div>
+        <div class="nu">
+          <h3>Sinds begin mei 2026</h3>
+          <ul>
+            <li>Geen wekelijkse administratietijd meer; de processen lopen zonder tussenkomst</li>
+            <li>Facturen worden automatisch opgesteld, verstuurd en opgevolgd</li>
+            <li>Kosten worden bij binnenkomst geregistreerd en gecategoriseerd</li>
+            <li>Orders lopen van binnenkomst tot afhandeling door één keten</li>
+            <li>Voorraadstanden worden automatisch bijgewerkt</li>
+            <li>Klantcontact verloopt gestructureerd en met een vaste reactietijd</li>
+          </ul>
+        </div>
+      </div>""", "uitgangssituatie"),
+
+   sectie("De opzet", "Vijf processen, als één geheel ingericht.",
+          "De winst zat niet in vijf losse hulpmiddelen naast elkaar, maar in het feit dat ze op dezelfde gegevens werken. Een order die binnenkomt raakt de voorraad, de factuur en het klantdossier zonder dat er iets overgetypt hoeft te worden.",
+          voorbeeldblok([
+            ("Facturatie", "Facturen worden opgesteld en verstuurd op basis van de order. Openstaande posten worden automatisch opgevolgd, zonder dat er iemand een herinnering hoeft te schrijven."),
+            ("Kostenregistratie", "Uitgaven komen binnen, worden gecategoriseerd en staan direct op de juiste plaats. Aan het einde van het kwartaal is er geen inhaalslag meer nodig."),
+            ("Orderverwerking", "Elke order doorloopt dezelfde route van binnenkomst tot afhandeling. Geen losse lijstjes, geen orders die tussen wal en schip vallen."),
+            ("Voorraadbeheer", "Voorraadstanden bewegen mee met wat er verkocht en ingekocht wordt, zodat het overzicht klopt op het moment dat er een beslissing op genomen wordt."),
+            ("Klantcontact", "Bevestigingen, statusberichten en veelgestelde vragen worden gestructureerd afgehandeld, met een voorspelbare reactietijd."),
+          ]), "de-opzet"),
+
+   sectie("Resultaat", "De tijdwinst is het minst interessante deel.",
+          "Vier tot zes uur per week is een concreet getal, en dat alleen al rechtvaardigt de investering. Maar wat het in de praktijk verandert, gaat verder dan de klok.",
+          krijgtblok([
+            ("Werk verschuift naar de dag", "De administratie hoefde niet langer 's avonds ingehaald te worden. Dat is minder een tijdwinst dan een verschuiving van wanneer het werk plaatsvindt — en dat scheelt in de praktijk het meest."),
+            ("Fouten nemen af", "Handmatig overtypen tussen order, factuur en voorraad is de plek waar fouten ontstaan. Door één keten te gebruiken verdwijnt die overdracht, en daarmee de fout."),
+            ("Cijfers zijn actueel", "Omdat kosten en omzet bij binnenkomst worden geregistreerd, is het beeld op elk moment actueel in plaats van pas na de kwartaalafsluiting."),
+            ("Geld komt eerder binnen", "Openstaande facturen worden consequent opgevolgd, ook wanneer dat ongemakkelijk voelt. Dat is precies het soort taak dat een systeem beter volhoudt dan een mens."),
+            ("Groei kost geen extra uren", "Meer orders betekenden voorheen meer administratie. Die koppeling is doorbroken: het volume kan toenemen zonder dat de administratieve last meegroeit."),
+            ("Stabiel sinds mei", "Sinds de ingebruikname begin mei 2026 heeft de opzet geen enkele keer gefaald. Dat is geen garantie voor de toekomst, wel een aanwijzing dat het bestand is tegen dagelijkse belasting."),
+          ]), "resultaat"),
+
+   sectie("Verantwoording", "Waarom deze case op deze site staat.",
+          "Transparantie hoort hier bij, dus het staat er expliciet bij.",
+          eerlijkblok(
+            "Aronza is het eigen bedrijf van de oprichter",
+            "Dat is bewust vermeld en niet weggelaten. Er zitten drie kanten aan:",
+            ["<strong>Het is geen onafhankelijke referentie.</strong> Een case bij een externe klant weegt zwaarder, en die volgt zodra de eerste opdrachten zijn afgerond.",
+             "<strong>Het is wél een echte implementatie.</strong> Deze systemen draaien dagelijks in een bedrijf waar de gevolgen van een fout direct voelbaar zijn. Dat is een strengere test dan een demo-omgeving.",
+             "<strong>Het verklaart de doorlooptijd.</strong> Dat automatiseringen bij klanten binnen enkele werkdagen kunnen staan, komt doordat ze hier al gebouwd, getest en in productie genomen zijn. Complete AI verkoopt geen software die het zelf niet gebruikt."]),
+          "verantwoording"),
  ]),
 },
 ]

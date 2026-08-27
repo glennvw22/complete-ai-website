@@ -70,6 +70,7 @@ VOET = f"""<footer>
           <li><a href="index.html#diensten">Adverteren — SEA</a></li>
           <li><a href="automatisering.html">Automatisering</a></li>
           <li><a href="ai-telefonist.html">AI-telefonist</a></li>
+          <li><a href="case-aronza.html">Klantcase: Aronza</a></li>
         </ul>
       </div>
       <div>
@@ -93,15 +94,25 @@ VOET = f"""<footer>
 
 
 def schema(p):
+    hoofd = ({"@type": "Article",
+              "@id": f"{DOMEIN}/{p['bestand']}#case",
+              "headline": p["dienst"],
+              "description": p["omschrijving"],
+              "author": {"@type": "Organization", "@id": f"{DOMEIN}/#organisatie", "name": "Complete AI"},
+              "publisher": {"@type": "Organization", "@id": f"{DOMEIN}/#organisatie", "name": "Complete AI"},
+              "inLanguage": "nl-NL",
+              "url": f"{DOMEIN}/{p['bestand']}"}
+             if p.get("soort") == "case" else
+             {"@type": "Service",
+              "@id": f"{DOMEIN}/{p['bestand']}#dienst",
+              "name": p["dienst"],
+              "description": p["omschrijving"],
+              "serviceType": p["dienst"],
+              "provider": {"@type": "Organization", "@id": f"{DOMEIN}/#organisatie", "name": "Complete AI"},
+              "areaServed": [{"@type": "Country", "name": "Nederland"}, {"@type": "Country", "name": "België"}],
+              "url": f"{DOMEIN}/{p['bestand']}"})
     graaf = [
-        {"@type": "Service",
-         "@id": f"{DOMEIN}/{p['bestand']}#dienst",
-         "name": p["dienst"],
-         "description": p["omschrijving"],
-         "serviceType": p["dienst"],
-         "provider": {"@type": "Organization", "@id": f"{DOMEIN}/#organisatie", "name": "Complete AI"},
-         "areaServed": [{"@type": "Country", "name": "Nederland"}, {"@type": "Country", "name": "België"}],
-         "url": f"{DOMEIN}/{p['bestand']}"},
+        hoofd,
         {"@type": "BreadcrumbList",
          "itemListElement": [
              {"@type": "ListItem", "position": 1, "name": "Complete AI", "item": f"{DOMEIN}/"},
@@ -129,7 +140,7 @@ def vragen_html(vragen):
     <div class="wrap">
       <div class="sectiekop reveal">
         <p class="label"><i></i>Veelgestelde vragen</p>
-        <h2>Wat ondernemers hierover vragen.</h2>
+        <h2>Antwoord op de vragen die het vaakst gesteld worden.</h2>
       </div>
       <div class="vragen reveal">
         {items}
@@ -148,8 +159,8 @@ def verder_html(huidig):
   <section id="verder">
     <div class="wrap">
       <div class="sectiekop reveal">
-        <p class="label"><i></i>Verder kijken</p>
-        <h2>Dit hangt er meestal mee samen.</h2>
+        <p class="label"><i></i>Meer diensten</p>
+        <h2>Gerelateerde diensten.</h2>
       </div>
       <div class="verder reveal">
         {blokken}
@@ -160,12 +171,14 @@ def verder_html(huidig):
 
 VERDER = [
     ("websites.html", "Dienst", "Websites",
-     "Een site die klanten oplevert, live in één tot twee weken."),
+     "Een site die klanten oplevert, live binnen één tot twee weken."),
     ("automatisering.html", "Dienst", "Automatisering",
-     "Facturen, orders en herinneringen die vanzelf gaan."),
+     "Facturen, orders en herinneringen zonder tussenkomst."),
     ("ai-telefonist.html", "Dienst", "AI-telefonist",
-     "Neemt op als jij niet kunt — 's avonds, weekend, drukte."),
-    ("index.html#diensten", "Homepage", "Alles wat we doen",
+     "Neemt op wanneer u dat niet kunt: 's avonds, weekend, drukte."),
+    ("case-aronza.html", "Klantcase", "Aronza",
+     "Vier tot zes uur administratie per week teruggebracht tot nul."),
+    ("index.html#diensten", "Homepage", "Alle diensten",
      "Ook vindbaarheid in Google en advertenties die renderen."),
 ]
 
