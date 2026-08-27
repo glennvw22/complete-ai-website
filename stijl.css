@@ -527,17 +527,77 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
 .dienstlink svg{width:14px;height:14px;flex:none;transition:transform .25s ease}
 .dienst:hover .dienstlink svg{transform:translateX(3px)}
 
-/* ── voorbeeldlabel op de pakketkaarten ── */
-.voorbeeldmerk{font-family:var(--f-mono);font-size:.63rem;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--inkt-dim);display:block;margin-bottom:.3rem}
+/* ── pakketkaart als vertrekpunt ───────────────── */
+.pak{cursor:pointer}
+.pakrol{font-family:var(--f-mono);font-size:.63rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--inkt-dim);display:block}
+.pakknop{appearance:none;font:inherit;cursor:pointer;background:transparent;
+  margin-top:auto;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  padding:.72rem 1rem;border-radius:11px;border:1px solid var(--lijn-op);
+  font-size:.9rem;font-weight:600;color:var(--inkt);
+  transition:background .25s ease,border-color .25s ease,gap .25s ease}
+.pakknop svg{width:14px;height:14px;flex:none;stroke:currentColor}
+.pak:hover .pakknop{border-color:var(--blauw);gap:.75rem}
+.pak.actief{border-color:var(--blauw-hel);
+  box-shadow:0 0 0 1px var(--blauw-hel),0 30px 70px -45px var(--gloed)}
+.pak.actief .pakrol{color:var(--blauw-hel)}
+.pak.actief .pakknop{background:var(--verloop);color:#04060E;border-color:transparent}
+.pakknop:focus-visible{outline:2px solid var(--blauw-hel);outline-offset:3px}
+/* [hidden] moet het winnen van klassen die zelf een display zetten */
+[hidden]{display:none !important}
 
-/* ── wat er verder mogelijk is ── */
-.breedte{margin-top:2.6rem;padding:clamp(1.7rem,3.5vw,2.4rem);border-radius:18px;
-  background:transparent;border:1px solid var(--lijn-op)}
-.breedte h3{font-size:1.28rem;font-weight:600;margin-bottom:.8rem}
-.breedte > p{color:var(--inkt-zacht);font-size:.99rem;max-width:66ch}
-.breedte-raster{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:1.4rem;margin-top:1.8rem}
-.breedte-raster div{display:flex;flex-direction:column;gap:.45rem}
-.breedte-raster b{font-family:var(--f-kop);font-size:1.02rem;font-weight:600;letter-spacing:-.025em}
-.breedte-raster span{font-size:.93rem;color:var(--inkt-zacht);line-height:1.55}
+/* ── de samensteller ───────────────────────────── */
+.bouwer{margin-top:1.2rem;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.92fr);
+  gap:1.2rem;align-items:start}
+.bouwer-paneel{border:1px solid var(--lijn);border-radius:18px;
+  padding:clamp(1.6rem,3vw,2.1rem);display:flex;flex-direction:column;gap:2rem}
+.staplabel{display:flex;align-items:center;gap:.7rem;font-family:var(--f-kop);font-size:1.02rem;
+  font-weight:600;letter-spacing:-.02em;margin-bottom:1.1rem}
+.staplabel b{width:22px;height:22px;border-radius:50%;flex:none;display:grid;place-items:center;
+  background:var(--vlak-hoog);border:1px solid var(--lijn-op);font-family:var(--f-mono);
+  font-size:.7rem;font-weight:500;color:var(--blauw-hel)}
+.keuzes{display:flex;flex-wrap:wrap;gap:.5rem}
+.keuze{appearance:none;font:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:.5rem;
+  padding:.5rem .85rem;border-radius:9px;background:transparent;border:1px solid var(--lijn);
+  color:var(--inkt-zacht);font-size:.88rem;line-height:1.2;
+  transition:border-color .22s ease,color .22s ease,background .22s ease}
+.keuze i{width:7px;height:7px;border-radius:50%;flex:none;background:var(--lijn-op);
+  transition:background .22s ease,box-shadow .22s ease}
+.keuze:hover{border-color:var(--lijn-op);color:var(--inkt)}
+.keuze[aria-pressed="true"]{color:var(--inkt);border-color:var(--blauw);background:var(--vlak-hoog)}
+.keuze[aria-pressed="true"] i{background:var(--aqua);box-shadow:0 0 9px var(--aqua)}
+.keuze:focus-visible{outline:2px solid var(--blauw-hel);outline-offset:2px}
+.bouwerhint{margin-top:1rem;font-size:.85rem;color:var(--inkt-dim);line-height:1.5}
+
+/* ── het levende pakket ────────────────────────── */
+.blad{border:1px solid var(--blauw);border-radius:18px;background:var(--vlak);
+  padding:clamp(1.6rem,3vw,2.1rem);display:flex;flex-direction:column;gap:1.15rem;
+  box-shadow:0 30px 70px -45px var(--gloed);position:sticky;top:96px}
+.bladlabel{display:flex;align-items:center;gap:.55rem;font-family:var(--f-mono);font-size:.66rem;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--inkt-dim)}
+.bladlabel i{width:6px;height:6px;border-radius:50%;background:var(--aqua);
+  box-shadow:0 0 9px var(--aqua);flex:none}
+.blad h3{font-size:1.32rem;font-weight:600;letter-spacing:-.02em}
+.blad ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:.55rem}
+.blad li{font-size:.92rem;color:var(--inkt-zacht);display:flex;gap:.65rem;line-height:1.5;
+  animation:opdoemen .34s cubic-bezier(.2,.8,.2,1) both}
+.blad li svg{width:14px;height:14px;stroke:var(--aqua);stroke-width:2.6;fill:none;flex:none;
+  margin-top:.35rem}
+@keyframes opdoemen{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.blad li{animation:none}}
+.bladleeg{font-size:.92rem;color:var(--inkt-dim);line-height:1.6;padding:1.4rem 0}
+.bladvoet{margin-top:auto;display:flex;flex-direction:column;gap:.9rem;
+  padding-top:1.2rem;border-top:1px solid var(--lijn)}
+.bladtijd{display:flex;align-items:flex-start;gap:.55rem;font-family:var(--f-mono);font-size:.72rem;
+  letter-spacing:.04em;color:var(--inkt-zacht);line-height:1.55}
+.bladtijd svg{width:14px;height:14px;flex:none;margin-top:.15rem}
+.blad .knop{width:100%}
+.bladmeer{font-size:.87rem;font-weight:600;color:var(--blauw-hel);text-decoration:none;
+  text-align:center;transition:opacity .22s ease}
+.bladmeer:hover{opacity:.75}
+.bouwernoot{margin-top:1.6rem;font-size:.9rem;color:var(--inkt-dim);line-height:1.65;max-width:82ch}
+
+@media(max-width:900px){
+  .bouwer{grid-template-columns:1fr}
+  .blad{position:static}
+}

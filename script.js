@@ -102,6 +102,239 @@
       encodeURIComponent('Aanvraag nulmeting — ' + (v('bedrijf') || v('naam'))) +
       '&body=' + encodeURIComponent(body);
   });
+  /* ══ pakketsamensteller ══════════════════════════
+     De drie kaarten zijn vertrekpunten; de bezoeker past ze daarna aan.
+     Zo is meteen zichtbaar dat een pakket wordt samengesteld en niet
+     uit een menu van drie wordt gekozen. */
+  var blad = document.getElementById('bladlijst');
+  if (blad) {
+
+    var THEMAS = {
+      klanten:   {naam:'Klanten & verkoop', punten:[
+        'Aanvragen uit alle kanalen in één lijst',
+        'Offerte klaargezet binnen één werkdag',
+        'Automatische opvolging als een reactie uitblijft']},
+      planning:  {naam:'Planning & afspraken', punten:[
+        'Klanten plannen zelf in, ook buiten openingstijden',
+        'Bevestiging en herinnering vooraf',
+        'Één agenda, geen dubbele boekingen']},
+      financien: {naam:'Financiën & facturatie', punten:[
+        'Factuur automatisch na afronding',
+        'Betaalherinneringen zonder ongemakkelijk telefoontje',
+        'Bonnen en kosten rechtstreeks de boekhouding in']},
+      marketing: {naam:'Marketing & zichtbaarheid', punten:[
+        'Website die klanten oplevert, live in 1 tot 2 weken',
+        'Google-bedrijfsprofiel volledig ingericht',
+        'Lokale SEO voor uw regio',
+        'Social media wekelijks bijgehouden in uw huisstijl',
+        'Reviews die vanzelf binnenkomen']},
+      bereikbaar:{naam:'Bereikbaarheid', punten:[
+        'AI-telefonist die opneemt wanneer u niet kunt',
+        '24/7 bereikbaar, ook ’s avonds en in het weekend',
+        'Terugbelnotities met volledig transcript']},
+      personeel: {naam:'Personeel', punten:[
+        'Roosters en urenregistratie zonder papierwerk',
+        'Verlof- en ziekmeldingen automatisch verwerkt',
+        'Instructies en inwerken op één vaste plek']},
+      voorraad:  {naam:'Voorraad & inkoop', punten:[
+        'Voorraad die zichzelf bijhoudt',
+        'Bestelsignaal voordat iets opraakt',
+        'Leveranciers en inkooporders op één overzicht']},
+      inzicht:   {naam:'Inzicht & rapportage', punten:[
+        'Eén dashboard met al uw cijfers',
+        'Maandrapport in gewone taal',
+        'Zicht op wat een klant kost en oplevert']}
+    };
+    var VOLGORDE = ['klanten','planning','financien','marketing','bereikbaar','personeel','voorraad','inzicht'];
+
+    /* Per branche wijken enkele bundels af. Dat is waar het concreet wordt:
+       "planning" betekent bij een garage iets anders dan bij een restaurant. */
+    var BRANCHES = {
+      kapsalon: {naam:'kapsalon', lid:'kapsalons', pagina:'ai-voor-kapsalons.html', anders:{
+        planning:['Online afspraken, ook op de dagen dat de salon dicht is',
+                  'Herinnering de dag ervoor tegen no-shows',
+                  'Terugkeerbericht na zes tot acht weken'],
+        bereikbaar:['AI-telefonist die opneemt tijdens een behandeling',
+                    'Plant de afspraak direct in de agenda',
+                    'Schakelt door zodra u het gesprek zelf wilt voeren']}},
+      garage: {naam:'garagebedrijf', lid:'garagebedrijven', pagina:'ai-voor-garagebedrijven.html', anders:{
+        planning:['APK-herinnering vóór de vervaldatum',
+                  'Online een werkplaatsafspraak maken',
+                  'Statusbericht zodra de auto klaar staat'],
+        bereikbaar:['AI-telefonist voor in de werkplaats',
+                    'Schakelt door zodra het technisch wordt',
+                    'Terugbelnotities met volledig transcript']}},
+      horeca: {naam:'horecazaak', lid:'de horeca', pagina:'ai-voor-de-horeca.html', anders:{
+        planning:['Online reserveren binnen uw capaciteit',
+                  'Bevestiging en herinnering met annuleerknop',
+                  'Vrijgekomen tafels opnieuw te vergeven'],
+        bereikbaar:['AI-telefonist die opneemt midden in de service',
+                    'Neemt reserveringen en afhaalbestellingen aan',
+                    'Bestelling komt als tekst binnen bij de keuken']}},
+      bouw: {naam:'bouw- of installatiebedrijf', lid:'bouw en installatie', pagina:'ai-voor-bouw-en-installatie.html', anders:{
+        klanten:['Aanvraag volledig vastgelegd terwijl u werkt',
+                 'Offerte-concept met uw standaardposten klaar',
+                 'Opvolging als de offerte blijft liggen'],
+        bereikbaar:['AI-telefonist die spoed herkent en direct doorschakelt',
+                    'Alles wat kan wachten wordt vastgelegd',
+                    'Bereikbaar vanaf het dak of uit de kruipruimte'],
+        personeel:['Urenregistratie per project, vanaf de telefoon',
+                   'Uren staan klaar voor de factuur',
+                   'Verlof en ziekmeldingen automatisch verwerkt']}},
+      webshop: {naam:'webshop', lid:'webshops', anders:{
+        klanten:['Orderverwerking van bestelling tot verzending',
+                 'Klantvragen automatisch beantwoord',
+                 'Retouren zonder handmatige stappen'],
+        voorraad:['Voorraad per variant bijgehouden',
+                  'Bestelsignaal voordat iets uitverkocht raakt',
+                  'Leveranciers en inkooporders op één overzicht']}},
+      praktijk: {naam:'praktijk', lid:'praktijken', anders:{
+        planning:['Online afspraken met de juiste behandelduur',
+                  'Herinnering vooraf, dus minder no-shows',
+                  'Eén agenda over alle behandelaars heen']}},
+      detailhandel: {naam:'winkel', lid:'de detailhandel', anders:{
+        voorraad:['Voorraad in de winkel en online gelijk',
+                  'Bestelsignaal per artikel',
+                  'Leveranciers en inkooporders op één overzicht']}},
+      zzp: {naam:'eenmanszaak', lid:'zzp’ers', anders:{
+        financien:['Factuur direct na de klus',
+                   'Herinneringen zonder dat u hoeft te bellen',
+                   'Bonnen fotograferen, de rest gaat vanzelf']}},
+      sportschool: {naam:'sportschool', lid:'sportscholen', anders:{
+        planning:['Lesroosters en inschrijvingen online',
+                  'Herinnering voor de les',
+                  'Wachtlijst die zichzelf doorschuift']}}
+    };
+
+    var STARTPUNTEN = {
+      fundament: ['marketing'],
+      groei:     ['klanten','planning','financien','marketing'],
+      volledig:  VOLGORDE.slice()
+    };
+
+    var gekozenBranche = null;
+    var gekozenThemas  = STARTPUNTEN.groei.slice();
+
+    var kop     = document.getElementById('bladkop');
+    var niveau  = document.getElementById('bladniveau');
+    var leeg    = document.getElementById('bladleeg');
+    var tijd    = document.getElementById('bladtijd').querySelector('span');
+    var meer    = document.getElementById('bladmeer');
+    var knop    = document.getElementById('bladknop');
+    var VINK    = '<svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7.5l3 3L12 3.5"/></svg>';
+
+    function punten(thema){
+      var b = gekozenBranche && BRANCHES[gekozenBranche];
+      if (b && b.anders[thema]) return b.anders[thema];
+      return THEMAS[thema].punten;
+    }
+
+    function levertijd(){
+      var delen = [];
+      if (gekozenThemas.indexOf('marketing') > -1) delen.push('website live in 1 tot 2 weken');
+      var overig = gekozenThemas.filter(function(t){ return t !== 'marketing' && t !== 'bereikbaar'; });
+      if (overig.length) delen.push('automatiseringen binnen enkele werkdagen');
+      if (gekozenThemas.indexOf('bereikbaar') > -1) delen.push('AI-telefonist binnen twee weken');
+      if (!delen.length) return 'Doorlooptijd hangt af van wat u kiest';
+      return delen.join(' · ').replace(/^./, function(c){ return c.toUpperCase(); });
+    }
+
+    function teken(){
+      var n = gekozenThemas.length;
+      var vol = n <= 2 ? 1 : (n <= 5 ? 2 : 3);
+      var etiket = vol === 1 ? 'Gericht' : (vol === 2 ? 'Breed' : 'Volledig autonoom');
+      niveau.innerHTML = '<em>' + etiket + '</em><span class="balk">' +
+        '<i class="' + (vol > 0 ? 'vol' : '') + '"></i>' +
+        '<i class="' + (vol > 1 ? 'vol' : '') + '"></i>' +
+        '<i class="' + (vol > 2 ? 'vol' : '') + '"></i></span>';
+
+      var b = gekozenBranche && BRANCHES[gekozenBranche];
+      kop.textContent = b ? ('Pakket voor een ' + b.naam) : 'Uw pakket';
+
+      var regels = [];
+      VOLGORDE.forEach(function(t){
+        if (gekozenThemas.indexOf(t) > -1) regels = regels.concat(punten(t));
+      });
+
+      leeg.hidden = regels.length > 0;
+      niveau.hidden = regels.length === 0;
+      blad.innerHTML = regels.map(function(r, i){
+        return '<li style="animation-delay:' + Math.min(i * 22, 420) + 'ms">' + VINK + r + '</li>';
+      }).join('');
+
+      tijd.textContent = levertijd();
+
+      if (b && b.pagina){
+        meer.hidden = false;
+        meer.href = b.pagina;
+        meer.textContent = 'Lees wat wij voor ' + b.lid + ' inrichten →';
+      } else {
+        meer.hidden = true;
+      }
+
+      document.querySelectorAll('[data-start]').forEach(function(k){
+        var lijst = STARTPUNTEN[k.dataset.start];
+        var gelijk = lijst.length === gekozenThemas.length &&
+                     lijst.every(function(t){ return gekozenThemas.indexOf(t) > -1; });
+        k.classList.toggle('actief', gelijk);
+        k.querySelector('.pakknop').setAttribute('aria-pressed', gelijk ? 'true' : 'false');
+      });
+    }
+
+    document.querySelectorAll('[data-thema]').forEach(function(k){
+      k.addEventListener('click', function(){
+        var t = k.dataset.thema, i = gekozenThemas.indexOf(t);
+        if (i > -1) gekozenThemas.splice(i, 1); else gekozenThemas.push(t);
+        k.setAttribute('aria-pressed', i > -1 ? 'false' : 'true');
+        teken();
+      });
+    });
+
+    document.querySelectorAll('[data-branche]').forEach(function(k){
+      k.addEventListener('click', function(){
+        var b = k.dataset.branche;
+        gekozenBranche = (gekozenBranche === b) ? null : b;
+        document.querySelectorAll('[data-branche]').forEach(function(a){
+          a.setAttribute('aria-pressed', a.dataset.branche === gekozenBranche ? 'true' : 'false');
+        });
+        teken();
+      });
+    });
+
+    document.querySelectorAll('[data-start]').forEach(function(k){
+      k.addEventListener('click', function(){
+        if (gekozenThemas.length === STARTPUNTEN[k.dataset.start].length &&
+            k.classList.contains('actief')) return;
+        gekozenThemas = STARTPUNTEN[k.dataset.start].slice();
+        document.querySelectorAll('[data-thema]').forEach(function(a){
+          a.setAttribute('aria-pressed', gekozenThemas.indexOf(a.dataset.thema) > -1 ? 'true' : 'false');
+        });
+        teken();
+        if (innerWidth < 900) {
+          document.getElementById('bouwer').scrollIntoView({behavior: rust ? 'auto' : 'smooth', block:'start'});
+        }
+      });
+    });
+
+    /* De samenstelling gaat mee naar het formulier, zodat het gesprek
+       niet bij nul begint. Wat de bezoeker zelf typte blijft staan. */
+    knop.addEventListener('click', function(){
+      var vak = document.querySelector('#contactformulier [name="bericht"]');
+      if (!vak || vak.value.trim()) return;
+      var namen = VOLGORDE.filter(function(t){ return gekozenThemas.indexOf(t) > -1; })
+                          .map(function(t){ return THEMAS[t].naam; });
+      if (!namen.length) return;
+      var b = gekozenBranche && BRANCHES[gekozenBranche];
+      vak.value = 'Graag een voorstel voor: ' + namen.join(', ') + '.' +
+                  (b ? ' Mijn bedrijf is een ' + b.naam + '.' : '');
+    });
+
+    document.querySelectorAll('[data-thema]').forEach(function(k){
+      k.setAttribute('aria-pressed', gekozenThemas.indexOf(k.dataset.thema) > -1 ? 'true' : 'false');
+    });
+    teken();
+  }
+
   /* ── hero-achtergrond: vijf stromen die samenkomen tot één ──
      Vijf dunne lijnen komen links binnen, buigen naar één punt en
      gaan als één heldere lijn verder naar rechts. Dat is letterlijk
@@ -226,5 +459,7 @@
     clearTimeout(wacht);
     wacht = setTimeout(function(){ meet(); bouw(); gloedCache = null; lijnCache = null; lijnX = -1; if (rust) teken(); }, 180);
   }, {passive:true});
+
+
 
 })();
