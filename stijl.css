@@ -601,3 +601,43 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
   .bouwer{grid-template-columns:1fr}
   .blad{position:static}
 }
+
+/* ── menu op telefoon en tablet ─────────────────
+   De balknavigatie verdwijnt onder 1100px; zonder dit paneel is de
+   site daar één lange pagina en zijn de losse pagina's onbereikbaar. */
+.menuknop{display:none;appearance:none;padding:0;cursor:pointer;flex:none;
+  width:42px;height:42px;border-radius:11px;background:transparent;border:1px solid var(--lijn);
+  flex-direction:column;align-items:center;justify-content:center;gap:5px;
+  transition:border-color .22s ease}
+.menuknop:hover{border-color:var(--lijn-op)}
+.menuknop span{display:block;width:17px;height:1.6px;border-radius:2px;background:var(--inkt);
+  transition:transform .28s cubic-bezier(.2,.8,.2,1),opacity .18s ease}
+.menuknop[aria-expanded="true"]{border-color:var(--blauw)}
+.menuknop[aria-expanded="true"] span:nth-child(1){transform:translateY(6.6px) rotate(45deg)}
+.menuknop[aria-expanded="true"] span:nth-child(2){opacity:0}
+.menuknop[aria-expanded="true"] span:nth-child(3){transform:translateY(-6.6px) rotate(-45deg)}
+.menuknop:focus-visible{outline:2px solid var(--blauw-hel);outline-offset:2px}
+
+.mobiel{position:fixed;left:0;right:0;bottom:0;top:74px;z-index:80;background:var(--void);
+  border-top:1px solid var(--lijn);overflow-y:auto;overscroll-behavior:contain;
+  padding:1.5rem clamp(1.1rem,5vw,2rem) 3.5rem;
+  animation:menu-in .26s cubic-bezier(.2,.8,.2,1) both}
+@keyframes menu-in{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.mobiel{animation:none}}
+.mobiel > *{max-width:620px;margin-inline:auto}
+.mm-actie{display:flex;width:100%;justify-content:center}
+.mm-kop{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--inkt-dim);margin:1.9rem 0 .3rem}
+.mm-lijst{list-style:none;margin:0;padding:0}
+.mm-lijst a{display:flex;flex-direction:column;gap:.12rem;padding:.85rem 0;
+  border-bottom:1px solid var(--lijn);text-decoration:none;
+  font-family:var(--f-kop);font-size:1.03rem;font-weight:600;letter-spacing:-.02em;color:var(--inkt);
+  transition:color .2s ease}
+.mm-lijst a:hover{color:var(--blauw-hel)}
+.mm-lijst a span{font-family:var(--f-tekst);font-size:.85rem;font-weight:400;color:var(--inkt-dim);
+  letter-spacing:0}
+.mm-voet{margin-top:2.2rem;font-family:var(--f-mono);font-size:.71rem;letter-spacing:.05em;
+  color:var(--inkt-dim)}
+body.menu-open{overflow:hidden}
+@media(max-width:1100px){.menuknop{display:flex}}
+@media(max-width:520px){.balk .knop{display:none}}

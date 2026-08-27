@@ -9,6 +9,35 @@
     balk.classList.toggle('vast', scrollY > 12);
   }, {passive:true});
 
+  /* ── menu op telefoon en tablet ──
+     Onder 1100px verdwijnt de balknavigatie. Zonder dit paneel zijn de
+     losse pagina's daar alleen via de voettekst te bereiken. */
+  var menuknop = document.getElementById('menuknop');
+  var mobiel = document.getElementById('mobielmenu');
+  if (menuknop && mobiel) {
+    var menuOpen = false;
+    var zetMenu = function(open){
+      menuOpen = open;
+      menuknop.setAttribute('aria-expanded', open ? 'true' : 'false');
+      menuknop.setAttribute('aria-label', open ? 'Menu sluiten' : 'Menu openen');
+      mobiel.hidden = !open;
+      document.body.classList.toggle('menu-open', open);
+      if (open) mobiel.style.top = balk.getBoundingClientRect().height + 'px';
+    };
+    menuknop.addEventListener('click', function(){ zetMenu(!menuOpen); });
+    mobiel.addEventListener('click', function(e){
+      if (e.target.closest('a')) zetMenu(false);      // ook bij ankers op dezelfde pagina
+    });
+    addEventListener('keydown', function(e){
+      if (e.key === 'Escape' && menuOpen){ zetMenu(false); menuknop.focus(); }
+    });
+    addEventListener('resize', function(){
+      if (!menuOpen) return;
+      if (innerWidth > 1100) zetMenu(false);
+      else mobiel.style.top = balk.getBoundingClientRect().height + 'px';
+    }, {passive:true});
+  }
+
   /* ── onthullen bij scrollen ── */
   var items = document.querySelectorAll('.reveal');
   if (rust || !('IntersectionObserver' in window)) {
