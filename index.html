@@ -973,6 +973,21 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
     }
   }
 
+  /* ── contactformulier: stelt een e-mail op in het mailprogramma van
+       de bezoeker. Geen backend, geen derde partij.
+       LATER: vervang door een echte endpoint (Formspree/Web3Forms). ── */
+  var f = document.getElementById('contactformulier');
+  if (f) f.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (!f.reportValidity()) return;
+    var fd = new FormData(f), v = function(k){ return (fd.get(k) || '').toString().trim(); };
+    var body = ['Naam: ' + v('naam'), 'Bedrijf: ' + (v('bedrijf') || '—'),
+      'E-mail: ' + v('email'), 'Telefoon: ' + (v('telefoon') || '—'),
+      'Onderwerp: ' + v('onderwerp'), '', v('bericht') || '(geen toelichting)'].join('\n');
+    location.href = 'mailto:glenn@complete-ai.nl?subject=' +
+      encodeURIComponent('Aanvraag nulmeting — ' + (v('bedrijf') || v('naam'))) +
+      '&body=' + encodeURIComponent(body);
+  });
   /* ── hero-achtergrond: vijf stromen die samenkomen tot één ──
      Vijf dunne lijnen komen links binnen, buigen naar één punt en
      gaan als één heldere lijn verder naar rechts. Dat is letterlijk
@@ -1069,7 +1084,9 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
     teken();
   }
 
+  // op smalle schermen geen canvas — daar telt elke milliseconde
   if (innerWidth < 700){ doek.style.display = 'none'; return; }
+
   meet(); bouw();
   if (rust){ teken(); }
   else {
@@ -1088,21 +1105,6 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
     wacht = setTimeout(function(){ meet(); bouw(); if (rust) teken(); }, 180);
   }, {passive:true});
 
-  /* ── contactformulier: stelt een e-mail op in het mailprogramma van
-       de bezoeker. Geen backend, geen derde partij.
-       LATER: vervang door een echte endpoint (Formspree/Web3Forms). ── */
-  var f = document.getElementById('contactformulier');
-  if (f) f.addEventListener('submit', function(e){
-    e.preventDefault();
-    if (!f.reportValidity()) return;
-    var fd = new FormData(f), v = function(k){ return (fd.get(k) || '').toString().trim(); };
-    var body = ['Naam: ' + v('naam'), 'Bedrijf: ' + (v('bedrijf') || '—'),
-      'E-mail: ' + v('email'), 'Telefoon: ' + (v('telefoon') || '—'),
-      'Onderwerp: ' + v('onderwerp'), '', v('bericht') || '(geen toelichting)'].join('\n');
-    location.href = 'mailto:glenn@complete-ai.nl?subject=' +
-      encodeURIComponent('Aanvraag nulmeting — ' + (v('bedrijf') || v('naam'))) +
-      '&body=' + encodeURIComponent(body);
-  });
 })();
 </script>
 </body>
