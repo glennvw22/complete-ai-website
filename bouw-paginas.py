@@ -71,6 +71,7 @@ VOET = f"""<footer>
           <li><a href="automatisering.html">Automatisering</a></li>
           <li><a href="ai-telefonist.html">AI-telefonist</a></li>
           <li><a href="case-aronza.html">Klantcase: Aronza</a></li>
+          <li><a href="ai-voor-uw-bedrijf.html">Gids: AI voor uw bedrijf</a></li>
         </ul>
       </div>
       <div>
@@ -181,6 +182,8 @@ VERDER = [
      "Neemt op wanneer u dat niet kunt: 's avonds, weekend, drukte."),
     ("case-aronza.html", "Klantcase", "Aronza",
      "Vier tot zes uur administratie per week teruggebracht tot nul."),
+    ("ai-voor-uw-bedrijf.html", "Gids", "AI voor uw bedrijf",
+     "Welke taken AI vandaag echt kan overnemen — en waar de grens ligt."),
     ("index.html#diensten", "Homepage", "Alle diensten",
      "Ook vindbaarheid in Google en advertenties die renderen."),
 ]

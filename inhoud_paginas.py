@@ -376,4 +376,97 @@ PAGINAS = [
           "verantwoording"),
  ]),
 },
+
+# ──────────────────── GIDS: AI VOOR UW BEDRIJF ────────────────────
+{
+ "bestand": "ai-voor-uw-bedrijf.html",
+ "soort": "case",
+ "dienst": "AI voor uw bedrijf",
+ "titel": "AI in uw bedrijf: wat kan het concreet? | Complete AI",
+ "beschrijving": "Welke taken AI vandaag echt kan overnemen in een klein bedrijf, wat het oplevert, hoe lang het duurt en waar de grens ligt. Met cijfers uit een implementatie die sinds mei draait.",
+ "omschrijving": "Praktische gids: welke bedrijfstaken AI vandaag kan overnemen bij een mkb-bedrijf, wat dat oplevert, hoe lang het duurt en wat er nog niet kan.",
+ "ogen": "Gids",
+ "h1": 'AI in uw bedrijf: <span class="glans">wat kan het concreet?</span>',
+ "lead": "Het korte antwoord: AI neemt vandaag vooral terugkerend administratief werk over — facturen opstellen en opvolgen, kosten registreren, orders verwerken, afspraken bevestigen, de telefoon aannemen buiten kantooruren. Bij een klein bedrijf gaat het al snel om vier tot zes uur per week. Wat AI in 2026 níet betrouwbaar doet, staat verderop op deze pagina.",
+ "levertijd": "Leestijd ongeveer 6 minuten",
+ "uitkomsten": [
+     ("4–6 uur", "per week aan administratie — wat een implementatie sinds mei 2026 daadwerkelijk wegneemt"),
+     ("Dagen", "in plaats van maanden, als u begint bij bestaande onderdelen"),
+     ("3", "processen waar u het beste begint, en waarom juist die"),
+ ],
+ "slot_kop": "Benieuwd wat er in uw situatie mogelijk is?",
+ "slot_tekst": "In een half uur brengen wij in kaart welke taken bij u de meeste tijd kosten en welke daarvan realistisch te automatiseren zijn. Blijkt dat er weinig te halen valt, dan hoort u dat ook.",
+ "vragen": [
+   ("Hoe kan ik AI zakelijk gebruiken?",
+    "Voor een klein bedrijf zit de winst zelden in een groot AI-project, maar in het automatiseren van terugkerende taken die nu handmatig gebeuren. De drie waar de meeste ondernemers beginnen zijn facturatie met automatische opvolging, orderverwerking uit alle kanalen in één lijst, en telefonische bereikbaarheid buiten kantooruren. Die drie zijn concreet, meetbaar en binnen dagen tot weken in te richten."),
+   ("Hoe kan ik AI in mijn bedrijf implementeren?",
+    "In fasen, te beginnen bij één proces. Breng eerst in kaart waar uw tijd naartoe gaat — meestal blijken drie taken het grootste deel op te eisen. Automatiseer daar één van, laat hem een paar weken draaien en meet of het klopt. Pas daarna de volgende. Een grote gelijktijdige invoering mislukt vaker en is duurder te herstellen."),
+   ("Welke AI-toepassingen zijn er voor bedrijven?",
+    "Voor mkb-bedrijven zijn dit de toepassingen die vandaag daadwerkelijk werken: automatische facturatie en betaalherinneringen, kosten- en btw-registratie, orderintake uit telefoon, e-mail en WhatsApp in één lijst, voorraadbeheer dat meebeweegt, afspraakherinneringen, automatisch om reviews vragen, en een AI-telefonist die buiten openingstijden opneemt. Toepassingen die veel worden genoemd maar in de praktijk nog tegenvallen, staan op deze pagina onder 'Waar de grens ligt'."),
+   ("Hoe kan ik mijn boekhouding automatiseren?",
+    "Niet in één keer, maar in drie stappen. Eerst de facturatie: facturen automatisch opstellen op basis van de order en openstaande posten automatisch opvolgen. Daarna de kosten: uitgaven bij binnenkomst registreren en categoriseren, zodat de btw-aangifte geen inhaalslag meer is. Als laatste de koppeling met uw boekhoudpakket. Stap één en twee leveren het grootste deel van de tijdwinst op."),
+   ("Wat kost het om dit te laten bouwen?",
+    "Dat hangt volledig af van welke processen u wilt automatiseren en hoe uw bedrijf werkt. Een standaardprijs zou voor het ene bedrijf te hoog en voor het andere te laag uitvallen. Na een nulmeting van een half uur ligt er één vaste prijs op papier: eenmalig voor de bouw en een vast maandbedrag voor onderhoud."),
+   ("Is AI gratis te gebruiken?",
+    "Losse hulpmiddelen zoals ChatGPT hebben gratis varianten, en daar kunt u prima teksten mee schrijven of vragen mee uitzoeken. Wat niet gratis is, is het koppelen daarvan aan uw eigen systemen zodat het werk daadwerkelijk zonder tussenkomst verloopt. Dat vraagt inrichting, onderhoud en toezicht — en dat is precies waar het verschil zit tussen een handig hulpmiddel en werk dat u niet meer hoeft te doen."),
+ ],
+ "inhoud": "\n\n  <hr class=\"streep\">\n\n".join([
+   sectie("Het korte antwoord", "Begin bij het werk dat elke week terugkomt.",
+          "De vraag is zelden of AI iets kan betekenen, maar wáár u begint. Voor een klein bedrijf is dat vrijwel altijd hetzelfde: de taken die wekelijks terugkomen, geen omzet opleveren en toch moeten gebeuren.",
+          voorbeeldblok([
+            ("Facturatie en opvolging", "Facturen opstellen op basis van de order, versturen, en openstaande posten automatisch opvolgen. Meestal de grootste enkele tijdpost én het snelst terugverdiend."),
+            ("Kosten en btw", "Uitgaven bij binnenkomst registreren en categoriseren, zodat de kwartaalaangifte geen inhaalslag meer is."),
+            ("Orderverwerking", "Bestellingen uit telefoon, e-mail, WhatsApp en webshop komen samen in één lijst, zonder overtypen."),
+            ("Telefonische bereikbaarheid", "Een AI-telefonist neemt op buiten openingstijden en tijdens drukte, noteert de bestelling en filtert verkopers eruit."),
+            ("Afspraken en herinneringen", "Klanten boeken zelf, krijgen automatisch een bevestiging en een herinnering vóór de afspraak."),
+            ("Reviews verzamelen", "Na een geslaagde levering automatisch om een beoordeling vragen — goed voor uw vindbaarheid in Google Maps."),
+          ]), "kort-antwoord"),
+
+   sectie("Wat het oplevert", "Cijfers uit een implementatie die nu draait.",
+          "Vrijwel elke pagina over dit onderwerp belooft tijdwinst zonder één getal te noemen. Daarom deze: dit zijn de werkelijke uitkomsten van een bedrijf waar de administratieve afhandeling volledig is geautomatiseerd.",
+          """      <div class="voor-na reveal">
+        <div class="was">
+          <h3>Vóór</h3>
+          <ul>
+            <li>Vier tot zes uur per week aan administratie en facturatie, grotendeels buiten werktijd</li>
+            <li>Facturen handmatig opstellen, versturen en nalopen</li>
+            <li>Kosten achteraf verzamelen voor de aangifte</li>
+            <li>Orders handmatig begeleiden van binnenkomst tot verzending</li>
+            <li>Voorraadoverzicht dat structureel achterliep</li>
+          </ul>
+        </div>
+        <div class="nu">
+          <h3>Sinds mei 2026</h3>
+          <ul>
+            <li>Geen wekelijkse administratietijd meer</li>
+            <li>Facturen worden opgesteld, verstuurd en opgevolgd zonder tussenkomst</li>
+            <li>Kosten worden bij binnenkomst geregistreerd en gerubriceerd</li>
+            <li>Orders lopen door één keten van binnenkomst tot afhandeling</li>
+            <li>Voorraadstanden bewegen automatisch mee</li>
+          </ul>
+        </div>
+      </div>
+      <p class="prijsnoot reveal">Dit is de implementatie bij Aronza, het e-commercebedrijf van de oprichter van Complete AI. Sinds de ingebruikname begin mei 2026 heeft de opzet geen enkele keer gefaald. Dat het een eigen bedrijf is, staat er bewust bij — <a href="case-aronza.html">de volledige case leest u hier</a>.</p>""",
+          "wat-het-oplevert"),
+
+   sectie("Waar de grens ligt", "Wat AI in 2026 nog niet betrouwbaar doet.",
+          "Dit deel ontbreekt op vrijwel elke andere pagina over dit onderwerp, en het is juist het deel waar u iets aan heeft.",
+          eerlijkblok(
+            "Vier dingen die vaker beloofd dan waargemaakt worden",
+            "Niet omdat de techniek niet bestaat, maar omdat het in de dagelijkse praktijk van een klein bedrijf misgaat:",
+            ["<strong>Beslissingen nemen die geld of klanten raken.</strong> AI kan uitstekend voorbereiden en signaleren, maar de beoordeling of een korting verstandig is of een klant een uitzondering verdient, blijft mensenwerk.",
+             "<strong>Klachten en gevoelige gesprekken afhandelen.</strong> Technisch mogelijk, in de praktijk onverstandig. Een ontevreden klant hoort een mens te spreken.",
+             "<strong>Werken met rommelige brondata.</strong> Automatisering versterkt wat er al is. Staan uw gegevens verspreid over losse lijstjes, dan is opruimen de eerste stap — en dat is handwerk.",
+             "<strong>Zichzelf inrichten.</strong> De onderdelen bestaan, maar iemand moet ze aan uw manier van werken koppelen en de eerste weken meekijken. Dat kost tijd, en wie anders beweert, verkoopt u iets."]),
+          "grenzen"),
+
+   sectie("Zo begint u", "Drie stappen, en waarom juist die volgorde.",
+          "De volgorde is belangrijker dan de techniek. Wie met het grootste project begint, ziet het langst niets gebeuren.",
+          routeblok([
+            ("Meet waar de tijd heen gaat", "Houd één week bij wat u aan terugkerend werk doet. Vrijwel altijd blijken drie taken het grootste deel op te eisen. Zonder deze stap automatiseert u het verkeerde."),
+            ("Automatiseer er één", "Begin bij de taak met de meeste uren en de minste uitzonderingen — meestal is dat facturatie. Laat hem enkele weken draaien en controleer of het klopt."),
+            ("Breid uit vanaf wat werkt", "Pas als de eerste aantoonbaar draait, komt de volgende. Zo blijft de investering beheersbaar en weet u bij elke stap of het rendeert."),
+          ]), "zo-begint-u"),
+ ]),
+},
 ]
