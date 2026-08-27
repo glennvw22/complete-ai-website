@@ -25,17 +25,25 @@
   /* ── gloed volgt de muis over de dienstenkaarten ── */
   if (!rust && matchMedia('(hover:hover)').matches) {
     document.querySelectorAll('.dienst').forEach(function(k){
+      var kader = null, wacht = false;
+      k.addEventListener('pointerenter', function(){ kader = k.getBoundingClientRect(); }, {passive:true});
       k.addEventListener('pointermove', function(ev){
-        var b = k.getBoundingClientRect();
-        k.style.setProperty('--mx', (ev.clientX - b.left) + 'px');
-        k.style.setProperty('--my', (ev.clientY - b.top) + 'px');
-      });
+        if (wacht || !kader) return;
+        wacht = true;
+        requestAnimationFrame(function(){
+          k.style.setProperty('--mx', (ev.clientX - kader.left) + 'px');
+          k.style.setProperty('--my', (ev.clientY - kader.top) + 'px');
+          wacht = false;
+        });
+      }, {passive:true});
     });
   }
 
   /* ── de lijst in het paneel loopt door ── */
   var regels = Array.prototype.slice.call(document.querySelectorAll('#stroomlijst .regel'));
-  if (rust) {
+  if (!regels.length) {
+    /* geen paneel op deze pagina — geen timer starten */
+  } else if (rust) {
     regels.forEach(function(r){ r.classList.add('aan'); });
   } else {
     var i = 0, timer = null;
@@ -60,13 +68,21 @@
     var paneel = document.querySelector('.paneel'), hero = document.querySelector('.hero');
     if (paneel && hero){
       paneel.style.transition = 'transform .5s cubic-bezier(.2,.8,.2,1)';
+      var hk = null, bezig = false;
+      var meetHero = function(){ hk = hero.getBoundingClientRect(); };
+      hero.addEventListener('pointerenter', meetHero, {passive:true});
+      addEventListener('resize', meetHero, {passive:true});
       hero.addEventListener('pointermove', function(ev){
-        var b = hero.getBoundingClientRect();
-        var dx = (ev.clientX - b.left) / b.width - .5;
-        var dy = (ev.clientY - b.top) / b.height - .5;
-        paneel.style.transform = 'translate3d(' + (dx * -14).toFixed(1) + 'px,' +
-                                 (dy * -10).toFixed(1) + 'px,0)';
-      });
+        if (bezig || !hk) return;
+        bezig = true;
+        requestAnimationFrame(function(){
+          var dx = (ev.clientX - hk.left) / hk.width - .5;
+          var dy = (ev.clientY - hk.top) / hk.height - .5;
+          paneel.style.transform = 'translate3d(' + (dx * -14).toFixed(1) + 'px,' +
+                                   (dy * -10).toFixed(1) + 'px,0)';
+          bezig = false;
+        });
+      }, {passive:true});
       hero.addEventListener('pointerleave', function(){ paneel.style.transform = 'translate3d(0,0,0)'; });
     }
   }
@@ -93,7 +109,8 @@
   var doek = document.getElementById('stroomdoek');
   if (!doek || !doek.getContext) return;
   var ctx = doek.getContext('2d', {alpha:true}), B = 0, H = 0, deeltjes = [], loopId = 0,
-      zichtbaar = true, gloedCache = null, gloedX = 0, gloedY = 0, vorigeTijd = 0;
+      zichtbaar = true, gloedCache = null, gloedX = 0, gloedY = 0, vorigeTijd = 0,
+      lijnCache = null, lijnX = -1;
 
   function meet(){
     var r = doek.getBoundingClientRect();
@@ -138,9 +155,13 @@
     }
 
     var k = knoop();
-    var g = ctx.createLinearGradient(k.fx, 0, B, 0);
-    g.addColorStop(0, 'rgba(93,140,255,0.62)');
-    g.addColorStop(1, 'rgba(37,216,196,0.04)');
+    if (!lijnCache || lijnX !== k.fx) {
+      lijnCache = ctx.createLinearGradient(k.fx, 0, B, 0);
+      lijnCache.addColorStop(0, 'rgba(93,140,255,0.62)');
+      lijnCache.addColorStop(1, 'rgba(37,216,196,0.04)');
+      lijnX = k.fx;
+    }
+    var g = lijnCache;
     ctx.beginPath();
     var s0 = samen(0); ctx.moveTo(s0.x, s0.y);
     for (t = 0.02; t <= 1.0001; t += 0.02){ s = samen(t); ctx.lineTo(s.x, s.y); }
@@ -175,9 +196,9 @@
     }
   }
   function lus(nu){
+    if (!zichtbaar) { loopId = 0; return; }   // echt stoppen, niet leeg doortikken
     loopId = requestAnimationFrame(lus);
-    if (!zichtbaar) return;
-    if (nu - vorigeTijd < 32) return;   // ~30 beelden per seconde
+    if (nu - vorigeTijd < 32) return;         // ~30 beelden per seconde
     vorigeTijd = nu;
     teken();
   }
@@ -190,7 +211,10 @@
   else {
     lus();
     if ('IntersectionObserver' in window){
-      new IntersectionObserver(function(en){ zichtbaar = en[0].isIntersecting; }, {threshold:0}).observe(doek);
+      new IntersectionObserver(function(en){
+        zichtbaar = en[0].isIntersecting;
+        if (zichtbaar && !loopId) loopId = requestAnimationFrame(lus);
+      }, {threshold:0}).observe(doek);
     }
     document.addEventListener('visibilitychange', function(){
       if (document.hidden){ cancelAnimationFrame(loopId); }
@@ -200,7 +224,7 @@
   var wacht;
   addEventListener('resize', function(){
     clearTimeout(wacht);
-    wacht = setTimeout(function(){ meet(); bouw(); if (rust) teken(); }, 180);
+    wacht = setTimeout(function(){ meet(); bouw(); gloedCache = null; lijnCache = null; lijnX = -1; if (rust) teken(); }, 180);
   }, {passive:true});
 
 })();
