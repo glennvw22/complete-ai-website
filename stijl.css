@@ -499,9 +499,11 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
 .verder span{font-size:.89rem;color:var(--inkt-zacht);line-height:1.5}
 
 /* ── de case ── */
-.casekop{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;
-  background:var(--lijn);border:1px solid var(--lijn);border-radius:12px;overflow:hidden;margin-top:2.4rem}
-.casekop div{background:var(--vlak);padding:1.15rem 1.3rem;display:flex;flex-direction:column;gap:.25rem}
+.casekop{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  border:1px solid var(--lijn);border-radius:12px;overflow:hidden;margin-top:2.4rem}
+.casekop div{background:transparent;border-right:1px solid var(--lijn);padding:1.15rem 1.3rem;
+  display:flex;flex-direction:column;gap:.25rem}
+.casekop div:last-child{border-right:0}
 .casekop em{font-style:normal;font-family:var(--f-mono);font-size:.66rem;letter-spacing:.13em;
   text-transform:uppercase;color:var(--inkt-dim)}
 .casekop b{font-family:var(--f-kop);font-size:1.02rem;font-weight:600;letter-spacing:-.02em}
