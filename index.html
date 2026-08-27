@@ -358,7 +358,7 @@ main [id]{scroll-margin-top:78px}
 .handtekening span{font-family:var(--f-mono);font-size:.72rem;color:var(--inkt-dim);
   letter-spacing:.1em;text-transform:uppercase}
 
-/* ── tarieven ──────────────────────────────────── */
+/* ── pakketten ─────────────────────────────────── */
 .pakketten{display:grid;grid-template-columns:repeat(auto-fit,minmax(295px,1fr));
   gap:1.2rem;margin-top:3.6rem;align-items:stretch}
 .pak{position:relative;background:var(--vlak);border:1px solid var(--lijn);border-radius:18px;
@@ -372,19 +372,25 @@ main [id]{scroll-margin-top:78px}
   font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:.3rem .7rem;border-radius:6px}
 .pak h3{font-size:1.38rem;font-weight:600}
 .pak .voor{color:var(--inkt-zacht);font-size:.95rem;min-height:3em}
-.prijs{display:flex;align-items:baseline;gap:.45rem;font-variant-numeric:tabular-nums;
-  padding-top:1rem;border-top:1px solid var(--lijn)}
-.prijs em{font-style:normal;font-size:.78rem;color:var(--inkt-dim);font-family:var(--f-mono)}
-.prijs b{font-family:var(--f-kop);font-size:2.25rem;font-weight:700;letter-spacing:-.05em}
-.pak.top .prijs b{background:var(--verloop);-webkit-background-clip:text;background-clip:text;
-  -webkit-text-fill-color:transparent}
-.mnd{font-size:.91rem;color:var(--inkt-zacht);font-variant-numeric:tabular-nums;margin-top:-.55rem}
-.mnd b{color:var(--inkt);font-weight:600}
+.niveau{display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding-top:1.1rem;border-top:1px solid var(--lijn)}
+.niveau em{font-style:normal;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--inkt-zacht)}
+.balk{display:flex;gap:5px;flex:none}
+.balk i{width:22px;height:4px;border-radius:2px;background:var(--lijn-op)}
+.balk i.vol{background:var(--verloop)}
+.prijsuitleg{margin-top:2.6rem;padding:clamp(1.7rem,3.5vw,2.4rem);border-radius:18px;
+  background:linear-gradient(135deg,rgba(61,109,255,.09),rgba(37,216,196,.04));
+  border:1px solid var(--lijn-op);max-width:72ch}
+.prijsuitleg h3{font-size:1.28rem;font-weight:600;margin-bottom:.9rem}
+.prijsuitleg p{color:var(--inkt-zacht);font-size:.99rem}
+.prijsuitleg p+p{margin-top:.9rem}
+.prijsuitleg p strong{color:var(--inkt);font-weight:600}
+.prijsuitleg .knop{margin-top:1.6rem}
 .pak ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:.55rem}
 .pak li{font-size:.93rem;color:var(--inkt-zacht);display:flex;gap:.65rem;line-height:1.5}
 .pak li svg{width:14px;height:14px;stroke:var(--aqua);stroke-width:2.6;fill:none;flex:none;margin-top:.35rem}
 .pak .knop{margin-top:auto;width:100%}
-.prijsnoot{margin-top:2.2rem;font-size:.93rem;color:var(--inkt-dim);max-width:68ch}
 
 /* ── vragen ────────────────────────────────────── */
 .vragen{margin-top:3.2rem;max-width:80ch}
@@ -488,7 +494,7 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
       <a href="#diensten">Wat we doen</a>
       <a href="#telefoon">AI-telefonist</a>
       <a href="#werkwijze">Werkwijze</a>
-      <a href="#tarieven">Tarieven</a>
+      <a href="#pakketten">Pakketten</a>
       <a href="#over">Over Glenn</a>
     </nav>
     <a class="knop knop-vol" href="#contact">Plan een nulmeting</a>
@@ -704,20 +710,19 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
   <hr class="streep">
 
   <!-- ══ TARIEVEN ══ -->
-  <section id="tarieven">
+  <section id="pakketten">
     <div class="wrap">
       <div class="sectiekop reveal">
-        <p class="label"><i></i>Tarieven</p>
-        <h2>Vooraf duidelijk wat het kost.</h2>
-        <p>Een eenmalig bedrag voor de bouw, daarna een vast maandbedrag voor hosting, onderhoud en bijsturen. Geen uurtje-factuurtje en geen verrassingen achteraf.</p>
+        <p class="label"><i></i>Pakketten</p>
+        <h2>Waar wil je beginnen?</h2>
+        <p>Drie manieren om in te stappen, van "ik wil er professioneel op staan" tot "ik wil dat de zaak grotendeels op zichzelf draait". Wat er precies in komt, bepalen we samen — geen enkel bedrijf is hetzelfde.</p>
       </div>
 
       <div class="pakketten reveal">
         <div class="pak">
           <h3>Fundament</h3>
           <p class="voor">Voor wie online professioneel voor de dag wil komen en gevonden wil worden.</p>
-          <div class="prijs"><em>vanaf</em><b>€2.550</b></div>
-          <p class="mnd">daarna <b>± €300</b> per maand</p>
+          <div class="niveau"><em>Instap</em><span class="balk"><i class="vol"></i><i></i><i></i></span></div>
           <ul>
             <li><svg viewBox="0 0 14 14"><path d="M2 7.5l3 3L12 3.5"/></svg>Nieuwe website op maat</li>
             <li><svg viewBox="0 0 14 14"><path d="M2 7.5l3 3L12 3.5"/></svg>Google-bedrijfsprofiel ingericht</li>
@@ -731,8 +736,7 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
           <span class="vlag">Meest gekozen</span>
           <h3>Groei</h3>
           <p class="voor">Voor wie er actief klanten bij wil én het werk lichter wil maken.</p>
-          <div class="prijs"><em>vanaf</em><b>€5.525</b></div>
-          <p class="mnd">daarna <b>± €765</b> per maand + advertentiebudget</p>
+          <div class="niveau"><em>Groeien</em><span class="balk"><i class="vol"></i><i class="vol"></i><i></i></span></div>
           <ul>
             <li><svg viewBox="0 0 14 14"><path d="M2 7.5l3 3L12 3.5"/></svg>Alles uit Fundament</li>
             <li><svg viewBox="0 0 14 14"><path d="M2 7.5l3 3L12 3.5"/></svg>Online bestellen of afspraken maken</li>
@@ -745,8 +749,7 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
         <div class="pak">
           <h3>Volledig</h3>
           <p class="voor">Voor wie wil dat de zaak grotendeels op zichzelf draait.</p>
-          <div class="prijs"><em>vanaf</em><b>€8.500</b></div>
-          <p class="mnd">daarna <b>± €1.275</b> per maand + advertentiebudget</p>
+          <div class="niveau"><em>Volledig autonoom</em><span class="balk"><i class="vol"></i><i class="vol"></i><i class="vol"></i></span></div>
           <ul>
             <li><svg viewBox="0 0 14 14"><path d="M2 7.5l3 3L12 3.5"/></svg>Alles uit Groei</li>
             <li><svg viewBox="0 0 14 14"><path d="M2 7.5l3 3L12 3.5"/></svg>AI-telefonist, 24/7 bereikbaar</li>
@@ -757,7 +760,14 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
         </div>
       </div>
 
-      <p class="prijsnoot reveal">Bedragen zijn indicatief en exclusief btw; advertentiebudget gaat rechtstreeks naar Google of Meta en staat los van het beheer. Onderdelen zijn ook los af te nemen. Na de nulmeting krijg je één vaste prijs op papier — geen bandbreedte.</p>
+      <div class="prijsuitleg reveal">
+        <h3>Waarom er geen prijzen op deze pagina staan</h3>
+        <p>Omdat ze niet zouden kloppen. Een kapsalon met één stoel heeft iets heel anders nodig dan een groothandel met vijftig vaste afnemers, en een standaardprijs zou voor de een te hoog en voor de ander te laag zijn. Ik verkoop geen pakketten van de plank.</p>
+        <p>Wat je wél krijgt: na de nulmeting van een half uur ligt er <strong>één vaste prijs op papier</strong> — eenmalig voor de bouw en een vast maandbedrag voor onderhoud en bijsturen. Geen bandbreedte, geen uurtje-factuurtje, geen verrassingen achteraf. En je zit nergens langdurig aan vast.</p>
+        <a class="knop knop-vol" href="#contact">Vraag een voorstel op maat
+          <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 8h11M9 4l4 4-4 4"/></svg>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -774,7 +784,7 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
       <div class="vragen reveal">
         <details><summary>Moet ik van mijn huidige website af?</summary><p>Niet per se. Soms is je bestaande site prima en zit de winst ergens anders — in vindbaarheid of in het automatiseren van je administratie. Dat hoor je eerlijk in de nulmeting, ook als het antwoord is dat je niets bij mij hoeft af te nemen.</p></details>
         <details><summary>Hoe lang duurt het voordat alles staat?</summary><p>Een website staat doorgaans binnen twee tot vier weken live. Automatisering en de AI-telefonist bouwen we in fases daarna, zodat je onderweg al resultaat hebt in plaats van maanden te wachten op één grote oplevering.</p></details>
-        <details><summary>Zit ik ergens langdurig aan vast?</summary><p>Nee. Het maandbedrag is maandelijks opzegbaar. Ik werk liever met klanten die blijven omdat het werkt dan met klanten die vastzitten aan een contract.</p></details>
+        <details><summary>Zit ik ergens langdurig aan vast?</summary><p>Nee. Het abonnement is maandelijks opzegbaar. Ik werk liever met klanten die blijven omdat het werkt dan met klanten die vastzitten aan een contract.</p></details>
         <details><summary>Wat als de AI-telefonist iets verkeerd doet?</summary><p>Jij bepaalt vooraf wat hij zelfstandig mag afhandelen en wat altijd naar jou wordt doorgeschakeld. Van elk gesprek is een transcript beschikbaar, dus je kunt altijd teruglezen wat er gezegd is. In de eerste weken kijken we samen mee en sturen we bij.</p></details>
         <details><summary>Is mijn data veilig, en hoe zit het met de AVG?</summary><p>Je gegevens blijven van jou. Waar we persoonsgegevens verwerken — bijvoorbeeld bij telefoongesprekken of je klantenbestand — leggen we dat vast in een verwerkersovereenkomst, zoals de AVG voorschrijft. Dat regelen we vóór de start, niet achteraf.</p></details>
         <details><summary>Werken jullie ook buiten mijn regio?</summary><p>Ja. Ik werk in heel Nederland en België. Kennismaken en overleggen doen we via bellen of videobellen, en dat werkt in de praktijk uitstekend — je hoeft er geen halve dag voor vrij te maken.</p></details>
