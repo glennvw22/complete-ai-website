@@ -31,16 +31,169 @@
 
 <script type="application/ld+json">
 {
-  "@context":"https://schema.org",
-  "@type":"ProfessionalService",
-  "name":"Complete AI",
-  "description":"Websites, SEO, SEA, automatisering en AI voice agents voor lokale bedrijven in Nederland en België.",
-  "url":"https://complete-ai.nl/",
-  "email":"glenn@complete-ai.nl",
-  "founder":{"@type":"Person","name":"Glenn van Wijngaarden"},
-  "areaServed":[{"@type":"Country","name":"Nederland"},{"@type":"Country","name":"België"}],
-  "knowsLanguage":["nl"],
-  "serviceType":["Webdesign","Zoekmachineoptimalisatie","Zoekmachineadverteren","Bedrijfsautomatisering","AI voice agents"]
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": [
+        "ProfessionalService",
+        "Organization"
+      ],
+      "@id": "https://complete-ai.nl/#organisatie",
+      "name": "Complete AI",
+      "alternateName": "Complete AI — websites, SEO, SEA, automatisering en AI-telefonie",
+      "description": "Complete AI bouwt websites, verbetert vindbaarheid in Google (SEO), beheert advertenties (SEA), automatiseert terugkerend werk en levert AI-telefonisten voor lokale bedrijven in Nederland en België.",
+      "url": "https://complete-ai.nl/",
+      "email": "glenn@complete-ai.nl",
+      "image": "https://complete-ai.nl/og-complete-ai.jpg",
+      "logo": "https://complete-ai.nl/og-complete-ai.jpg",
+      "founder": {
+        "@type": "Person",
+        "name": "Glenn van Wijngaarden",
+        "jobTitle": "Oprichter"
+      },
+      "areaServed": [
+        {
+          "@type": "Country",
+          "name": "Nederland"
+        },
+        {
+          "@type": "Country",
+          "name": "België"
+        }
+      ],
+      "availableLanguage": [
+        "nl"
+      ],
+      "knowsAbout": [
+        "Webdesign",
+        "Zoekmachineoptimalisatie",
+        "Zoekmachineadverteren",
+        "Bedrijfsautomatisering",
+        "AI voice agents",
+        "AI-telefonie",
+        "Google Bedrijfsprofiel"
+      ],
+      "slogan": "Vijf leveranciers. Of één die het hele plaatje doet.",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Diensten",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Websites",
+              "description": "Websites op maat voor lokale bedrijven, live binnen één tot twee weken."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Vindbaarheid — SEO",
+              "description": "Lokale SEO, technische basis, Google-bedrijfsprofiel en content."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Adverteren — SEA",
+              "description": "Google Ads en Meta, met conversietracking en maandelijkse bijsturing."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Automatisering",
+              "description": "Orderintake, facturatie, herinneringen en reviews automatisch; vaak binnen enkele werkdagen live."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "AI-telefonist",
+              "description": "Nederlandstalige AI die 24/7 de telefoon opneemt, bestellingen aanneemt en verkopers eruit filtert. Binnen twee weken operationeel."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://complete-ai.nl/#website",
+      "url": "https://complete-ai.nl/",
+      "name": "Complete AI",
+      "inLanguage": "nl-NL",
+      "publisher": {
+        "@id": "https://complete-ai.nl/#organisatie"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://complete-ai.nl/#vragen",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Moet ik van mijn huidige website af?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Niet per se. Soms is je bestaande site prima en zit de winst ergens anders — in vindbaarheid of in het automatiseren van je administratie. Dat hoor je eerlijk in de nulmeting, ook als het antwoord is dat je niets bij mij hoeft af te nemen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Hoe lang duurt het voordat alles staat?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sneller dan je waarschijnlijk gewend bent. Een website staat doorgaans binnen één tot twee weken live. Automatiseringen gaan nog harder: veel van wat ik inzet heb ik al gebouwd en draaiend, dus die staan meestal binnen enkele werkdagen bij je. De AI-telefonist is doorgaans binnen twee weken operationeel. Adverteren stemmen we per situatie af. We bouwen in fases, zodat je onderweg al resultaat hebt in plaats van maanden te wachten op één grote oplevering."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Zit ik ergens langdurig aan vast?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nee. Het abonnement is maandelijks opzegbaar. Ik werk liever met klanten die blijven omdat het werkt dan met klanten die vastzitten aan een contract."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wat als de AI-telefonist iets verkeerd doet?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Jij bepaalt vooraf wat hij zelfstandig mag afhandelen en wat altijd naar jou wordt doorgeschakeld. Van elk gesprek is een transcript beschikbaar, dus je kunt altijd teruglezen wat er gezegd is. In de eerste weken kijken we samen mee en sturen we bij."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is mijn data veilig, en hoe zit het met de AVG?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Je gegevens blijven van jou. Waar we persoonsgegevens verwerken — bijvoorbeeld bij telefoongesprekken of je klantenbestand — leggen we dat vast in een verwerkersovereenkomst, zoals de AVG voorschrijft. Dat regelen we vóór de start, niet achteraf."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Werken jullie ook buiten mijn regio?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ja. Ik werk in heel Nederland en België. Kennismaken en overleggen doen we via bellen of videobellen, en dat werkt in de praktijk uitstekend — je hoeft er geen halve dag voor vrij te maken."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Ik weet niet wat ik nodig heb. Kan ik dan toch bellen?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Juist dan. De nulmeting bestaat precies daarvoor: samen in kaart brengen waar je tijd en omzet weglekken. Daar rolt een advies uit, en of je daar iets mee doet is helemaal aan jou."
+          }
+        }
+      ]
+    }
+  ]
 }
 </script>
 
