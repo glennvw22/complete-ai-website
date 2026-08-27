@@ -10,7 +10,7 @@
   --void:#06070C;
   --grond:#06070C;   /* gelijk aan --void: overal dezelfde achtergrond */
   --vlak:#0E1119;
-  --vlak-hoog:#141826;
+  --vlak-hoog:#0E1119;   /* gelijk aan --vlak: één enkele vlaktint */
   --glas:rgba(20,24,38,.62);
 
   --inkt:#EEF1F8;
@@ -166,7 +166,7 @@ img{max-width:100%;display:block}
 
 /* ── levertijden ───────────────────────────────── */
 .band{border-top:1px solid var(--lijn);border-bottom:1px solid var(--lijn);
-  padding:1.6rem 0;background:var(--grond);position:relative;z-index:2}
+  padding:1.6rem 0;background:transparent;position:relative;z-index:2}
 .levertijden{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
 @media(max-width:880px){.levertijden{grid-template-columns:repeat(2,1fr);gap:1.4rem 1.5rem}}
 @media(max-width:420px){.levertijden{grid-template-columns:1fr}}
@@ -192,13 +192,13 @@ main [id]{scroll-margin-top:78px}
 .pijn article{background:var(--vlak);border:1px solid var(--lijn);
   border-radius:14px;padding:clamp(1.5rem,3vw,2rem);display:flex;flex-direction:column;gap:.65rem;
   transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .35s ease,background .35s ease}
-.pijn article:hover{transform:translateY(-4px);border-color:var(--lijn-op);background:var(--vlak-hoog)}
+.pijn article:hover{transform:translateY(-4px);border-color:var(--lijn-op)}
 .pijn .nr{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.14em;color:var(--blauw-hel)}
 .pijn p{font-family:var(--f-kop);font-size:1.06rem;font-weight:500;letter-spacing:-.02em;line-height:1.3}
 .pijn small{color:var(--inkt-zacht);font-size:.93rem;line-height:1.55}
 
 .antwoord{position:relative;margin-top:2.8rem;padding:clamp(1.8rem,4vw,2.8rem);
-  border-radius:18px;overflow:hidden;background:var(--vlak-hoog);
+  border-radius:18px;overflow:hidden;background:transparent;
   border:1px solid var(--lijn-op)}
 .antwoord::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--verloop)}
 .antwoord p{font-family:var(--f-kop);font-size:clamp(1.15rem,.98rem + .75vw,1.55rem);
@@ -308,8 +308,7 @@ main [id]{scroll-margin-top:78px}
   padding:clamp(1.8rem,3vw,2.2rem);display:flex;flex-direction:column;gap:1.15rem;
   transition:transform .4s cubic-bezier(.2,.8,.2,1),border-color .4s ease}
 .pak:hover{transform:translateY(-5px);border-color:var(--lijn-op)}
-.pak.top{background:var(--vlak-hoog);
-  border-color:var(--blauw);box-shadow:0 30px 70px -45px var(--gloed)}
+.pak.top{border-color:var(--blauw);box-shadow:0 30px 70px -45px var(--gloed)}
 .vlag{position:absolute;top:-11px;left:clamp(1.8rem,3vw,2.2rem);
   background:var(--verloop);color:#04060E;font-family:var(--f-mono);font-size:.63rem;
   font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:.3rem .7rem;border-radius:6px}
@@ -323,8 +322,7 @@ main [id]{scroll-margin-top:78px}
 .balk i{width:22px;height:4px;border-radius:2px;background:var(--lijn-op)}
 .balk i.vol{background:var(--verloop)}
 .prijsuitleg{margin-top:2.6rem;padding:clamp(1.7rem,3.5vw,2.4rem);border-radius:18px;
-  background:linear-gradient(135deg,rgba(61,109,255,.09),rgba(37,216,196,.04));
-  border:1px solid var(--lijn-op);max-width:72ch}
+  background:transparent;border:1px solid var(--lijn-op);max-width:72ch}
 .prijsuitleg h3{font-size:1.28rem;font-weight:600;margin-bottom:.9rem}
 .prijsuitleg p{color:var(--inkt-zacht);font-size:.99rem}
 .prijsuitleg p+p{margin-top:.9rem}
@@ -337,7 +335,7 @@ main [id]{scroll-margin-top:78px}
 
 /* ── vragen ────────────────────────────────────── */
 .vragen{margin-top:3.2rem;max-width:80ch}
-details{border:1px solid var(--lijn);border-radius:13px;background:var(--vlak);
+details{border:1px solid var(--lijn);border-radius:13px;background:transparent;
   margin-bottom:.7rem;overflow:hidden;transition:border-color .3s ease}
 details[open],details:hover{border-color:var(--lijn-op)}
 summary{cursor:pointer;padding:1.25rem 3.2rem 1.25rem 1.4rem;position:relative;list-style:none;
@@ -389,7 +387,7 @@ form .klein{font-size:.82rem;color:var(--inkt-dim);font-family:var(--f-tekst);
 
 /* ── voet ──────────────────────────────────────── */
 footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
-  color:var(--inkt-zacht);background:var(--grond);position:relative;z-index:2}
+  color:var(--inkt-zacht);background:transparent;position:relative;z-index:2}
 .voet{display:grid;grid-template-columns:minmax(0,1.5fr) repeat(2,minmax(0,1fr));gap:2.5rem}
 @media(max-width:780px){.voet{grid-template-columns:1fr;gap:2rem}}
 .voetkop{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
@@ -444,10 +442,10 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
 .kop-tijd svg{width:15px;height:15px;flex:none}
 
 /* ── uitkomsten-strook ── */
-.uitkomsten{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;
-  background:var(--lijn);border:1px solid var(--lijn);border-radius:12px;overflow:hidden;
-  margin-top:2.6rem}
-.uitkomsten div{background:var(--vlak);padding:1.3rem 1.4rem;display:flex;flex-direction:column;gap:.3rem}
+.uitkomsten{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  border:1px solid var(--lijn);border-radius:12px;overflow:hidden;margin-top:2.6rem}
+.uitkomsten div{background:transparent;border-right:1px solid var(--lijn);padding:1.3rem 1.4rem;display:flex;flex-direction:column;gap:.3rem}
+.uitkomsten div:last-child{border-right:0}
 .uitkomsten b{font-family:var(--f-kop);font-size:clamp(1.4rem,1.15rem + .8vw,1.75rem);font-weight:700;
   letter-spacing:-.04em;line-height:1;background:var(--verloop);
   -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
@@ -471,7 +469,7 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
 .voorbeeld span{font-size:.88rem;color:var(--inkt-zacht);line-height:1.5}
 
 /* ── wat het niet doet ── */
-.eerlijk{background:var(--vlak);
+.eerlijk{background:transparent;
   border:1px solid var(--lijn);border-left:3px solid #E0975B;border-radius:13px;
   padding:1.5rem 1.6rem;margin-top:2.4rem}
 .eerlijk h3{font-size:1.12rem;font-weight:600;margin-bottom:.7rem}
@@ -481,7 +479,7 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
 .eerlijk li::before{content:"—";color:#E0975B;flex:none}
 
 /* ── afsluitend blok ── */
-.slotblok{background:var(--vlak-hoog);
+.slotblok{background:transparent;
   border:1px solid var(--lijn-op);border-radius:18px;padding:clamp(1.9rem,4vw,3rem);
   margin-top:1rem;text-align:left}
 .slotblok h2{font-size:clamp(1.45rem,1.15rem + 1.05vw,2rem);font-weight:600;max-width:24ch}
