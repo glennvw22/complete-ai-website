@@ -251,6 +251,9 @@
 
 <header class="balk" id="balk">
   <div class="wrap">
+    <button type="button" class="menuknop" id="menuknop" aria-expanded="false" aria-controls="mobielmenu" aria-label="Menu openen">
+      <span></span><span></span><span></span>
+    </button>
     <a class="merk" href="#top" aria-label="Complete AI, naar boven">
       <svg viewBox="0 0 32 32" aria-hidden="true">
         <defs><linearGradient id="mg" x1="0" y1="0" x2="1" y2="1">
@@ -272,11 +275,9 @@
       <a href="#over">Over Glenn</a>
     </nav>
     <a class="knop knop-vol" href="#contact">Plan een nulmeting</a>
-    <button type="button" class="menuknop" id="menuknop" aria-expanded="false" aria-controls="mobielmenu" aria-label="Menu openen">
-      <span></span><span></span><span></span>
-    </button>
   </div>
-  <div class="mobiel" id="mobielmenu" hidden>
+  <div class="mobiel-waas" id="mobielwaas"></div>
+  <div class="mobiel" id="mobielmenu">
     <a class="knop knop-vol mm-actie" href="#contact">Plan een gratis nulmeting</a>
     <p class="mm-kop">Diensten</p>
     <ul class="mm-lijst">
@@ -758,7 +759,7 @@
   <div class="wrap">
     <div class="voet">
       <div>
-        <a class="merk" href="#top" aria-label="Complete AI">
+    <a class="merk" href="#top" aria-label="Complete AI">
           <svg viewBox="0 0 32 32" aria-hidden="true">
             <defs><linearGradient id="mg2" x1="0" y1="0" x2="1" y2="1">
               <stop offset="0" stop-color="#3D6DFF"/><stop offset="1" stop-color="#25D8C4"/>

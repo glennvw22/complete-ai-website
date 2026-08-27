@@ -10,21 +10,24 @@
   }, {passive:true});
 
   /* ── menu op telefoon en tablet ──
-     Onder 1100px verdwijnt de balknavigatie. Zonder dit paneel zijn de
+     Onder 1100px verdwijnt de balknavigatie. Zonder deze lade zijn de
      losse pagina's daar alleen via de voettekst te bereiken. */
   var menuknop = document.getElementById('menuknop');
   var mobiel = document.getElementById('mobielmenu');
-  if (menuknop && mobiel) {
+  var waas = document.getElementById('mobielwaas');
+  if (menuknop && mobiel && waas) {
     var menuOpen = false;
     var zetMenu = function(open){
       menuOpen = open;
       menuknop.setAttribute('aria-expanded', open ? 'true' : 'false');
       menuknop.setAttribute('aria-label', open ? 'Menu sluiten' : 'Menu openen');
-      mobiel.hidden = !open;
+      mobiel.classList.toggle('open', open);
+      waas.classList.toggle('open', open);
       document.body.classList.toggle('menu-open', open);
       if (open) mobiel.style.top = balk.getBoundingClientRect().height + 'px';
     };
     menuknop.addEventListener('click', function(){ zetMenu(!menuOpen); });
+    waas.addEventListener('click', function(){ zetMenu(false); });
     mobiel.addEventListener('click', function(e){
       if (e.target.closest('a')) zetMenu(false);      // ook bij ankers op dezelfde pagina
     });

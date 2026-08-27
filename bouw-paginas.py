@@ -52,6 +52,9 @@ def kop_html(actief):
     links = "".join(stukjes)
     return f"""<header class="balk" id="balk">
   <div class="wrap">
+    <button type="button" class="menuknop" id="menuknop" aria-expanded="false" aria-controls="mobielmenu" aria-label="Menu openen">
+      <span></span><span></span><span></span>
+    </button>
     <a class="merk" href="index.html" aria-label="Complete AI, naar de homepage">
       {MERK_SVG.format(id='mg')}
       <b>Complete<span> AI</span></b>
@@ -59,11 +62,9 @@ def kop_html(actief):
     <nav class="menu">{links}
     </nav>
     <a class="knop knop-vol" href="index.html#contact">Plan een nulmeting</a>
-    <button type="button" class="menuknop" id="menuknop" aria-expanded="false" aria-controls="mobielmenu" aria-label="Menu openen">
-      <span></span><span></span><span></span>
-    </button>
   </div>
-  <div class="mobiel" id="mobielmenu" hidden>
+  <div class="mobiel-waas" id="mobielwaas"></div>
+  <div class="mobiel" id="mobielmenu">
     <a class="knop knop-vol mm-actie" href="index.html#contact">Plan een gratis nulmeting</a>
     <p class="mm-kop">Diensten</p>
     <ul class="mm-lijst">

@@ -603,13 +603,13 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
 }
 
 /* ── menu op telefoon en tablet ─────────────────
-   De balknavigatie verdwijnt onder 1100px; zonder dit paneel is de
-   site daar één lange pagina en zijn de losse pagina's onbereikbaar. */
-.menuknop{display:none;appearance:none;padding:0;cursor:pointer;flex:none;
+   De balknavigatie verdwijnt onder 1100px. Zonder dit menu is de site
+   daar één lange pagina en zijn de losse pagina's onbereikbaar.
+   Op de computer verandert er niets: de knop staat op display:none. */
+.menuknop{display:none;appearance:none;padding:0;cursor:pointer;flex:none;order:-1;
   width:42px;height:42px;border-radius:11px;background:transparent;border:1px solid var(--lijn);
   flex-direction:column;align-items:center;justify-content:center;gap:5px;
   transition:border-color .22s ease}
-.menuknop:hover{border-color:var(--lijn-op)}
 .menuknop span{display:block;width:17px;height:1.6px;border-radius:2px;background:var(--inkt);
   transition:transform .28s cubic-bezier(.2,.8,.2,1),opacity .18s ease}
 .menuknop[aria-expanded="true"]{border-color:var(--blauw)}
@@ -618,26 +618,37 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
 .menuknop[aria-expanded="true"] span:nth-child(3){transform:translateY(-6.6px) rotate(-45deg)}
 .menuknop:focus-visible{outline:2px solid var(--blauw-hel);outline-offset:2px}
 
-.mobiel{position:fixed;left:0;right:0;bottom:0;top:74px;z-index:80;background:var(--void);
-  border-top:1px solid var(--lijn);overflow-y:auto;overscroll-behavior:contain;
-  padding:1.5rem clamp(1.1rem,5vw,2rem) 3.5rem;
-  animation:menu-in .26s cubic-bezier(.2,.8,.2,1) both}
-@keyframes menu-in{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
-@media(prefers-reduced-motion:reduce){.mobiel{animation:none}}
-.mobiel > *{max-width:620px;margin-inline:auto}
+/* de lade zelf: schuift van links naar binnen, met een waas erachter */
+.mobiel-waas{position:fixed;inset:0;z-index:70;background:rgba(3,4,8,.66);
+  opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease}
+.mobiel-waas.open{opacity:1;visibility:visible}
+.mobiel{position:fixed;top:74px;bottom:0;left:0;z-index:80;width:min(88vw,390px);
+  background:var(--void);border-right:1px solid var(--lijn);border-top:1px solid var(--lijn);
+  overflow-y:auto;overscroll-behavior:contain;
+  padding:1.4rem clamp(1.1rem,4vw,1.6rem) 3.5rem;
+  transform:translateX(-101%);visibility:hidden;
+  transition:transform .32s cubic-bezier(.2,.8,.2,1),visibility .32s ease}
+.mobiel.open{transform:none;visibility:visible}
+@media(prefers-reduced-motion:reduce){
+  .mobiel,.mobiel-waas{transition-duration:.01ms}
+}
 .mm-actie{display:flex;width:100%;justify-content:center}
 .mm-kop{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--inkt-dim);margin:1.9rem 0 .3rem}
+  color:var(--inkt-dim);margin:1.8rem 0 .3rem}
 .mm-lijst{list-style:none;margin:0;padding:0}
-.mm-lijst a{display:flex;flex-direction:column;gap:.12rem;padding:.85rem 0;
+.mm-lijst a{display:flex;flex-direction:column;gap:.12rem;padding:.8rem 0;
   border-bottom:1px solid var(--lijn);text-decoration:none;
-  font-family:var(--f-kop);font-size:1.03rem;font-weight:600;letter-spacing:-.02em;color:var(--inkt);
+  font-family:var(--f-kop);font-size:1.02rem;font-weight:600;letter-spacing:-.02em;color:var(--inkt);
   transition:color .2s ease}
 .mm-lijst a:hover{color:var(--blauw-hel)}
-.mm-lijst a span{font-family:var(--f-tekst);font-size:.85rem;font-weight:400;color:var(--inkt-dim);
-  letter-spacing:0}
+.mm-lijst a span{font-family:var(--f-tekst);font-size:.84rem;font-weight:400;color:var(--inkt-dim);
+  letter-spacing:0;line-height:1.45}
 .mm-voet{margin-top:2.2rem;font-family:var(--f-mono);font-size:.71rem;letter-spacing:.05em;
   color:var(--inkt-dim)}
 body.menu-open{overflow:hidden}
-@media(max-width:1100px){.menuknop{display:flex}}
-@media(max-width:520px){.balk .knop{display:none}}
+
+@media(max-width:1100px){
+  .menuknop{display:flex}
+  .balk .wrap{gap:.85rem}
+}
+@media(max-width:560px){.balk .knop{display:none}}
