@@ -47,6 +47,11 @@ def eerlijkblok(kop, inleiding, punten):
             f'        <p>{inleiding}</p>\n        <ul>{lijst}\n        </ul>\n      </div>')
 
 
+def plaatsenblok(items):
+    kaarten = "".join(f'\n        <div class="voorbeeld"><b>{t}</b><span>{o}</span></div>' for t, o in items)
+    return f'      <div class="voorbeelden reveal">{kaarten}\n      </div>'
+
+
 # ══════════════════════════════════════════════════════════════════
 PAGINAS = [
 
@@ -469,4 +474,385 @@ PAGINAS = [
           ]), "zo-begint-u"),
  ]),
 },
+
+# ─────────────────────────── BERGEN OP ZOOM ───────────────────────────
+{
+ "bestand": "bergen-op-zoom.html",
+ "soort": "lokaal",
+ "dienst": "Bergen op Zoom",
+ "titel": "AI, automatisering en websites in Bergen op Zoom | Complete AI",
+ "beschrijving": "Complete AI is gevestigd in Bergen op Zoom en werkt voor ondernemers in West-Brabant: websites, vindbaarheid in Google, advertenties, automatisering en een AI-telefonist die altijd opneemt.",
+ "omschrijving": "Websites, lokale vindbaarheid, advertenties, bedrijfsautomatisering en AI-telefonie voor ondernemers in Bergen op Zoom, Roosendaal, Steenbergen, Tholen, Woensdrecht en de rest van West-Brabant.",
+ "ogen": "Bergen op Zoom &amp; West-Brabant",
+ "h1": 'Automatisering en vindbaarheid, geregeld door <span class="glans">iemand uit de regio</span>.',
+ "lead": "Complete AI is gevestigd in Bergen op Zoom. Dat betekent geen callcenter in een andere provincie en geen accountmanager die u doorverbindt: u spreekt de persoon die het werk doet, en in deze regio kan dat gewoon aan tafel. Het werk zelf — de website, de vindbaarheid, de automatisering — gebeurt vervolgens op afstand, want daar is fysieke aanwezigheid niet voor nodig.",
+ "levertijd": "Kennismaking in de regio op locatie",
+ "uitkomsten": [
+     ("0 km", "afstand tot Bergen op Zoom — de nulmeting kan bij u op de zaak"),
+     ("1\u20132 wk", "van akkoord tot een werkende website, ook voor bedrijven hier"),
+     ("24/7", "telefonische bereikbaarheid, zonder dat er iemand bij hoeft te zitten"),
+ ],
+ "slot_kop": "Een half uur, hier in de regio.",
+ "slot_tekst": "Zit u in Bergen op Zoom of daaromheen, dan komen wij langs voor de nulmeting. Een half uur, kosteloos, en u weet daarna waar in uw bedrijf de meeste tijd en omzet verloren gaan \u2014 ook wanneer de conclusie is dat u niets hoeft af te nemen.",
+ "vragen": [
+   ("Werkt Complete AI alleen in Bergen op Zoom?",
+    "Nee. De vestiging staat in Bergen op Zoom, maar het werk gebeurt voor ondernemers in heel Nederland en Belgi\u00eb. Het verschil zit in de kennismaking: in West-Brabant komen wij langs, daarbuiten gaat het eerste gesprek via de telefoon of videobellen. Op het resultaat maakt dat geen verschil."),
+   ("Wat kost het om langs te komen?",
+    "Niets. De nulmeting is kosteloos en vrijblijvend, of die nu bij u op de zaak plaatsvindt of via videobellen. U betaalt pas iets als u akkoord gaat met een voorstel, en dat voorstel bevat \u00e9\u00e9n vaste prijs."),
+   ("Ik zit in Roosendaal of Steenbergen. Is dat ook regio?",
+    "Ja. Roosendaal, Steenbergen, Halsteren, Woensdrecht, Hoogerheide, Tholen, Oud-Gastel, Rucphen, Etten-Leur en Breda vallen allemaal binnen het gebied waar wij zonder meer langskomen."),
+   ("Waarom zou ik voor een lokale partij kiezen?",
+    "Om \u00e9\u00e9n reden die er werkelijk toe doet: aanspreekbaarheid. Bij een landelijk bureau spreekt u een accountmanager, en de bouwer zit twee schakels verderop. Hier spreekt u de bouwer. Dat er iemand kan langskomen is prettig, maar het is niet de kern \u2014 dat u weet wie u aan de lijn krijgt, is dat wel."),
+   ("Verzorgen jullie ook het Google-bedrijfsprofiel?",
+    "Ja. Voor een lokaal bedrijf is dat vaak het onderdeel dat het snelst iets oplevert: het profiel bepaalt of u in het kaartje verschijnt wanneer iemand in de buurt zoekt. Wij richten het volledig in \u2014 categorie\u00ebn, diensten, openingstijden, foto\u2019s, vragen en het verzamelen van reviews \u2014 en houden het daarna bij."),
+ ],
+ "inhoud": "\n\n  <hr class=\"streep\">\n\n".join([
+   sectie("De situatie", "West-Brabant draait op bedrijven met vakmensen aan het roer.",
+          "Kapsalons, garages, aannemers, installateurs, horeca, praktijken en detailhandel \u2014 bedrijven waar de eigenaar zelf meewerkt. Precies daar loopt het vast op dezelfde vier punten.",
+          pijnblok([
+            ("De telefoon gaat op het verkeerde moment", "Tijdens een behandeling, onder een auto of op een steiger. Die beller probeert daarna de volgende in de lijst."),
+            ("De administratie schuift op naar de avond", "Facturen, offertes en herinneringen gebeuren na sluitingstijd, of blijven een week liggen."),
+            ("Onvindbaar buiten de eigen naam om", "Wie de bedrijfsnaam kent vindt u. Wie zoekt op wat u doet, komt bij een concurrent uit."),
+            ("Vijf leveranciers, geen overzicht", "De site bij de \u00e9\u00e9n, de hosting bij de ander, advertenties bij een derde. Niemand kijkt naar het geheel."),
+          ]), "herkenbaar"),
+
+   sectie("Werkgebied", "Waar wij zonder meer langskomen.",
+          "Binnen dit gebied vindt de nulmeting plaats waar u wilt: bij u op de zaak, of via videobellen als dat sneller uitkomt.",
+          plaatsenblok([
+            ("Bergen op Zoom", "Vestigingsplaats. Halsteren en Lepelstraat vallen hieronder."),
+            ("Roosendaal", "Inclusief Nispen, Wouw en Heerle."),
+            ("Steenbergen", "Inclusief Dinteloord, Kruisland en Nieuw-Vossemeer."),
+            ("Woensdrecht", "Hoogerheide, Putte, Ossendrecht en Huijbergen."),
+            ("Tholen", "Sint-Annaland, Sint-Maartensdijk, Tholen-stad en de kernen daaromheen."),
+            ("Rucphen en Oud-Gastel", "Inclusief Sprundel, Sint Willebrord en Zegge."),
+            ("Etten-Leur en Breda", "Het oostelijk deel van West-Brabant."),
+            ("Verder weg", "Buiten deze regio werken wij ook, alleen dan gaat het eerste gesprek via videobellen."),
+          ]), "werkgebied"),
+
+   sectie("Wat u krijgt", "Alles onder \u00e9\u00e9n dak, met \u00e9\u00e9n aanspreekpunt.",
+          "Wat u afneemt bepaalt u zelf. Niets ervan is verplicht en niets zit vast aan een langlopend contract.",
+          krijgtblok([
+            ("Een website die klanten oplevert", "Live binnen \u00e9\u00e9n tot twee weken, snel op mobiel, gebouwd om gevonden te worden."),
+            ("Gevonden worden in de buurt", "Google-bedrijfsprofiel volledig ingericht, lokale zoekwoorden, reviews die binnenkomen zonder dat u erom hoeft te vragen."),
+            ("Advertenties die renderen", "Google Ads en Meta, gericht op de regio, met conversiemeting zodat zichtbaar is wat een aanvraag werkelijk kost."),
+            ("Terugkerend werk dat vanzelf gaat", "Facturen, orderverwerking, herinneringen, voorraad en klantcontact. Vaak binnen enkele werkdagen operationeel."),
+            ("Een telefoon die altijd wordt opgenomen", "Een AI-telefonist die in het Nederlands opneemt, vragen beantwoordt, afspraken inplant en urgente gesprekken doorschakelt."),
+            ("Onderhoud dat gewoon doorloopt", "Hosting, back-ups, updates en kleine wijzigingen. \u00c9\u00e9n maandbedrag, maandelijks opzegbaar."),
+          ]), "wat-u-krijgt"),
+
+   sectie("Werkwijze", "Van kennismaking tot werkend systeem.",
+          "Voorbereiding is niet nodig. Het enige wat wij vragen is een half uur en een eerlijk beeld van hoe het nu loopt.",
+          routeblok([
+            ("Nulmeting op locatie", "Een half uur bij u op de zaak. Wij kijken mee met hoe het werk nu loopt en waar de tijd verdwijnt. Kosteloos."),
+            ("Voorstel", "Binnen \u00e9\u00e9n werkdag op papier: wat we inrichten, wat het kost en wanneer het staat. \u00c9\u00e9n vaste prijs, geen nacalculatie."),
+            ("Inrichten", "We beginnen bij de snelste winst. Een website staat in \u00e9\u00e9n tot twee weken, automatiseringen vaak binnen enkele werkdagen."),
+            ("Bijsturen", "Alles gaat live, wordt met u doorgenomen, en daarna beoordelen we maandelijks de cijfers en sturen we bij."),
+          ]), "werkwijze"),
+
+   sectie("Eerlijk", "Wat lokaal zijn w\u00e9l en niet betekent.",
+          "Er wordt in deze branche veel geleund op nabijheid. Dat is maar tot op zekere hoogte terecht.",
+          eerlijkblok(
+            "Waar de grens ligt",
+            "Nabijheid is prettig, maar het is geen kwaliteitskeurmerk. Wat wij er w\u00e9l aan verbinden:",
+            ["Het <strong>eerste gesprek</strong> voeren wij hier aan tafel, niet via een formulier of een callcenter.",
+             "U spreekt <strong>altijd dezelfde persoon</strong> \u2014 degene die het werk ook uitvoert.",
+             "Het <strong>bouwen en bijsturen</strong> gebeurt op afstand. Dat is geen tekortkoming; er is simpelweg niets aan een website of automatisering dat fysieke aanwezigheid vereist.",
+             "Wij zijn <strong>niet goedkoper omdat we dichtbij zitten</strong>. De prijs volgt uit wat er gebouwd wordt, niet uit de reisafstand.",
+             "Zit u <strong>buiten de regio</strong>, dan verandert er aan het resultaat niets \u2014 alleen aan de vorm van het eerste gesprek."]),
+          "eerlijk"),
+ ]),
+},
+
+
+# ───────────────────────────── KAPSALONS ─────────────────────────────
+{
+ "bestand": "ai-voor-kapsalons.html",
+ "groep": "branche",
+ "dienst": "AI voor kapsalons",
+ "titel": "Automatisering en AI voor kapsalons — afspraken, telefoon, no-shows | Complete AI",
+ "beschrijving": "De telefoon gaat terwijl u knipt, en no-shows kosten een half uur omzet. Online afspraken, automatische herinneringen en een AI-telefonist die tijdens de behandeling opneemt en inplant.",
+ "omschrijving": "Automatisering voor kapsalons: online afspraken, automatische herinneringen tegen no-shows, een AI-telefonist die opneemt tijdens de behandeling en reviews die vanzelf binnenkomen.",
+ "ogen": "Voor kapsalons",
+ "h1": 'De telefoon gaat terwijl u knipt. <span class="glans">Iemand neemt op.</span>',
+ "lead": "In een salon vallen twee dingen altijd samen: de klant in de stoel en de klant aan de telefoon. Aan \u00e9\u00e9n daarvan verdient u niets zolang u de andere helpt. Complete AI richt de salon zo in dat afspraken binnenkomen, worden bevestigd en worden nagekomen \u2014 zonder dat u de schaar hoeft neer te leggen.",
+ "levertijd": "Afspraken binnen enkele werkdagen, telefoon binnen 2 weken",
+ "uitkomsten": [
+     ("24/7", "afspraken maken, ook op de dagen dat de salon dicht is"),
+     ("2\u00d7", "een herinnering vooraf: de dag ervoor en het uur ervoor"),
+     ("0", "gemiste gesprekken tijdens een behandeling"),
+ ],
+ "slot_kop": "Een half uur, tussen twee klanten door.",
+ "slot_tekst": "Wij komen langs of bellen op een rustig moment. In een half uur brengen we in kaart hoeveel afspraken u misloopt, hoeveel no-shows u heeft en wat daarvan op te lossen valt. Kosteloos, en u zit nergens aan vast.",
+ "vragen": [
+   ("Klinkt zo\u2019n AI-telefonist als een robot?",
+    "Nee. Hij spreekt Nederlands met een natuurlijke stem, noemt de naam van uw salon en beantwoordt vragen over openingstijden, behandelingen en beschikbaarheid. Wie belt, merkt dat hij een assistent spreekt \u2014 net zoals bij een receptioniste \u2014 maar niet dat het gesprek stroef verloopt."),
+   ("Wat gebeurt er als iemand iets vraagt wat hij niet weet?",
+    "Dan schakelt hij door of noteert hij een terugbelverzoek, inclusief volledig transcript van het gesprek. U bepaalt vooraf welke onderwerpen doorgeschakeld moeten worden en welke hij zelf mag afhandelen."),
+   ("Wij werken al met een afsprakensysteem. Kan dat blijven?",
+    "In de meeste gevallen wel. Werkt u met een gangbaar salonsysteem, dan koppelen wij daaraan zodat afspraken op \u00e9\u00e9n plek blijven staan. Is koppelen niet mogelijk, dan hoort u dat in de nulmeting \u2014 v\u00f3\u00f3rdat u iets afneemt."),
+   ("Helpt dit werkelijk tegen no-shows?",
+    "Een herinnering vooraf is de enige maatregel waarvan het effect breed erkend wordt, en het kost u niets om hem te versturen omdat het automatisch gaat. Wij beloven geen percentage \u2014 dat verschilt per salon en per klantenkring \u2014 maar het aantal vergeten afspraken loopt aantoonbaar terug."),
+   ("Hoe snel staat dit?",
+    "Online afspraken en herinneringen zijn doorgaans binnen enkele werkdagen operationeel. De AI-telefonist vraagt meer afstemming en staat binnen twee weken."),
+ ],
+ "inhoud": "\n\n  <hr class=\"streep\">\n\n".join([
+   sectie("De situatie", "Vier momenten waarop een salon omzet verliest.",
+          "Geen daarvan komt door slecht werk. Ze komen doordat \u00e9\u00e9n persoon niet op twee plaatsen tegelijk kan zijn.",
+          pijnblok([
+            ("De telefoon tijdens een behandeling", "U kunt niet opnemen. Wie belt en niemand krijgt, belt de volgende salon."),
+            ("No-shows", "Een leeg blok in de agenda is niet in te halen. Die tijd is weg."),
+            ("Afspraken via vier kanalen", "Telefoon, WhatsApp, Instagram en aan de balie. Dubbele boekingen zijn dan een kwestie van tijd."),
+            ("Reviews die uitblijven", "Tevreden klanten laten uit zichzelf zelden iets achter. Vragen vergeet u, want u staat te werken."),
+          ]), "herkenbaar"),
+
+   sectie("Wat wij inrichten", "Vijf onderdelen die het werk uit handen nemen.",
+          "U kiest wat u nodig heeft. Elk onderdeel functioneert zelfstandig; samen sluiten ze op elkaar aan.",
+          krijgtblok([
+            ("Online afspraken, dag en nacht", "Klanten kiezen zelf een moment dat vrij is, ook \u2019s avonds en op maandag. De agenda blijft \u00e9\u00e9n agenda."),
+            ("Een AI-telefonist die opneemt", "Neemt op wanneer u niet kunt, spreekt Nederlands, kent uw behandelingen en plant de afspraak direct in."),
+            ("Herinnering vooraf", "De dag ervoor en kort van tevoren een bericht, met de mogelijkheid om te verzetten in plaats van niet te komen."),
+            ("Reviews die binnenkomen", "Na de afspraak automatisch een verzoek om een beoordeling. Dat is precies wat u hoger in het kaartje van Google zet."),
+            ("Terugkeermoment", "Zes tot acht weken na de laatste afspraak een vriendelijk bericht. Voor een salon is dit doorgaans de eenvoudigste bron van extra omzet."),
+          ]), "wat-wij-inrichten"),
+
+   sectie("Voorbeelden", "Hoe dat er op een gewone dinsdag uitziet.",
+          "Geen van deze handelingen kost u nog tijd zodra het staat.",
+          voorbeeldblok([
+            ("09:40 \u2014 telefoon tijdens een kleuring", "De AI-telefonist neemt op, noemt de salonnaam, hoort dat het om knippen gaat en plant donderdag 15:00 in."),
+            ("12:15 \u2014 vraag via Instagram", "Beantwoord met de openingstijden en een link naar de agenda. U heeft het bericht niet eens gezien."),
+            ("17:00 \u2014 herinneringen morgen", "Alle klanten van morgen krijgen een bericht. E\u00e9n verzet zelf naar volgende week; dat blok komt vrij en wordt opnieuw geboekt."),
+            ("19:30 \u2014 review", "De klant van vanmiddag krijgt een verzoek om een beoordeling en laat er een achter."),
+          ]), "voorbeelden"),
+
+   sectie("Eerlijk", "Wat dit niet oplost.",
+          "Er wordt in deze branche veel beloofd. Dit is waar wij niet aan meedoen.",
+          eerlijkblok(
+            "Grenzen die wij vooraf benoemen",
+            "Automatisering neemt handelingen over, geen vakmanschap:",
+            ["Het <strong>knipt niet</strong>. Alles wat met handen gebeurt, blijft uw werk.",
+             "Het <strong>maakt geen nieuwe klanten</strong> uit het niets. Het zorgt dat de klanten die u al bereikt niet verloren gaan \u2014 daarvoor zijn vindbaarheid en advertenties het aangewezen middel.",
+             "Een AI-telefonist <strong>vervangt geen medewerker</strong> die ook klanten wast en de zaak opruimt. Hij neemt precies \u00e9\u00e9n taak over: het gesprek.",
+             "Wij <strong>beloven geen percentage minder no-shows</strong>. Dat hangt af van uw klantenkring, en cijfers die wij niet kunnen onderbouwen noemen wij niet."]),
+          "eerlijk"),
+ ]),
+},
+
+# ──────────────────────── GARAGEBEDRIJVEN ────────────────────────
+{
+ "bestand": "ai-voor-garagebedrijven.html",
+ "groep": "branche",
+ "dienst": "AI voor garagebedrijven",
+ "titel": "Automatisering en AI voor garagebedrijven — APK, telefoon, planning | Complete AI",
+ "beschrijving": "APK-herinneringen die vanzelf de deur uit gaan, een telefoon die wordt opgenomen terwijl u onder een auto ligt, en klanten die automatisch horen dat hun auto klaar staat.",
+ "omschrijving": "Automatisering voor garagebedrijven en autobedrijven: APK-herinneringen, online afspraken, een AI-telefonist voor in de werkplaats, statusberichten en facturatie zonder handwerk.",
+ "ogen": "Voor garagebedrijven",
+ "h1": 'U ligt onder een auto. <span class="glans">De telefoon wordt opgenomen.</span>',
+ "lead": "In een werkplaats is de telefoon het lastigste apparaat dat er staat. Hij gaat wanneer u vuile handen heeft, en wie niemand krijgt belt de garage verderop. Complete AI zorgt dat gesprekken worden aangenomen, APK-klanten vanzelf terugkomen en de administratie meeloopt met het werk in plaats van erachteraan.",
+ "levertijd": "Herinneringen binnen enkele werkdagen, telefoon binnen 2 weken",
+ "uitkomsten": [
+     ("100%", "van de APK-klanten krijgt op tijd bericht, zonder dat iemand een lijst bijhoudt"),
+     ("24/7", "bereikbaar, ook \u2019s avonds en in het weekend"),
+     ("0", "handmatige stappen tussen werkorder en factuur"),
+ ],
+ "slot_kop": "Een half uur, aan de balie.",
+ "slot_tekst": "Wij komen langs op een rustig moment en kijken mee met hoe het nu loopt: de telefoon, de planning, de APK-lijst en de facturatie. Daarna weet u waar de tijd verdwijnt. Kosteloos en vrijblijvend.",
+ "vragen": [
+   ("Wij werken met een garagepakket. Moet dat eruit?",
+    "Nee, en dat zouden wij ook niet adviseren. Uw pakket blijft de basis; wij zetten er onderdelen omheen die het pakket zelf niet doet \u2014 de telefoon aannemen, klanten op tijd bereiken, statusberichten versturen. Waar koppelen mogelijk is, koppelen we."),
+   ("Kan een AI-telefonist een technische vraag aan?",
+    "Voor eenvoudige vragen wel: openingstijden, of een APK deze week nog kan, wat een beurt inhoudt. Wordt het technisch of gaat het om schade en garantie, dan schakelt hij door of noteert hij een terugbelverzoek met transcript. U bepaalt zelf waar die grens ligt."),
+   ("Hoe komt de garage aan de APK-data?",
+    "Uit uw eigen systeem of uit de klantenlijst die u al bijhoudt. Wij bouwen daar de herinnering omheen: een bericht ruim voor de vervaldatum, met een link om direct in te plannen. Wat er in uw administratie staat blijft leidend."),
+   ("Krijgen klanten bericht als de auto klaar is?",
+    "Ja, en dat is doorgaans het onderdeel waar klanten het meest enthousiast over zijn. Zodra de werkorder op gereed staat, gaat er automatisch een bericht uit. Dat scheelt de balie een reeks telefoontjes per dag."),
+   ("Hoe lang duurt het voordat dit staat?",
+    "Herinneringen, statusberichten en facturatie zijn doorgaans binnen enkele werkdagen operationeel. De AI-telefonist staat binnen twee weken, omdat we die eerst met u afstemmen en testen."),
+ ],
+ "inhoud": "\n\n  <hr class=\"streep\">\n\n".join([
+   sectie("De situatie", "Waar het in een werkplaats standaard misgaat.",
+          "Niet door slordigheid, maar doordat het werk in de werkplaats en het werk aan de balie om dezelfde persoon vragen.",
+          pijnblok([
+            ("Gemiste gesprekken", "De telefoon gaat op het slechtst denkbare moment. Wie geen gehoor krijgt, belt de volgende garage."),
+            ("APK-klanten die wegblijven", "De herinnering is afhankelijk van iemand die eraan denkt. Bij drukte blijft de lijst liggen."),
+            ("De balie belt de hele dag", "\u201cUw auto staat klaar\u201d is tien keer per dag hetzelfde gesprek."),
+            ("Facturen die achterlopen", "De werkorder is klaar, de factuur volgt dagen later. Dat kost rechtstreeks werkkapitaal."),
+          ]), "herkenbaar"),
+
+   sectie("Wat wij inrichten", "Vijf onderdelen, elk gericht op \u00e9\u00e9n knelpunt.",
+          "U kiest welke u nodig heeft. Wat er al goed loopt, laten wij staan.",
+          krijgtblok([
+            ("APK-herinnering die vanzelf gaat", "Ruim voor de vervaldatum bericht, met een link om direct een moment te kiezen. Niemand hoeft een lijst bij te houden."),
+            ("Een AI-telefonist voor de werkplaats", "Neemt op in het Nederlands, kent uw diensten, plant in en schakelt door wanneer het technisch wordt."),
+            ("Online een afspraak maken", "Klanten kiezen zelf een moment binnen uw planning, ook buiten openingstijden."),
+            ("Statusbericht bij gereed", "Zodra de werkorder gereed is, krijgt de klant automatisch bericht. Dat scheelt de balie tientallen gesprekken per week."),
+            ("Factuur direct na afronding", "De factuur volgt op de werkorder, met een herinnering wanneer er niet wordt betaald. Zonder tussenkomst."),
+          ]), "wat-wij-inrichten"),
+
+   sectie("Voorbeelden", "Een doordeweekse dag in de werkplaats.",
+          "Elk van deze handelingen gebeurt zonder dat iemand aan de balie staat.",
+          voorbeeldblok([
+            ("08:20 \u2014 telefoon terwijl u aan het werk bent", "De AI-telefonist neemt op, hoort dat het om een APK gaat en plant donderdagochtend in."),
+            ("11:00 \u2014 APK-lijst voor volgende maand", "Alle klanten met een vervaldatum in november krijgen bericht. U heeft er niets voor gedaan."),
+            ("15:30 \u2014 auto gereed", "De werkorder gaat op gereed; de klant krijgt direct bericht en komt om 17:00 langs."),
+            ("17:05 \u2014 factuur", "De factuur staat in de mailbox van de klant voordat de auto de straat uit is."),
+          ]), "voorbeelden"),
+
+   sectie("Eerlijk", "Wat dit niet oplost.",
+          "Wat wij niet kunnen waarmaken, beloven wij niet.",
+          eerlijkblok(
+            "Grenzen die wij vooraf benoemen",
+            "Dit neemt handelingen over, geen vakwerk:",
+            ["Het <strong>sleutelt niet</strong>. Alles in de werkplaats blijft mensenwerk.",
+             "Het <strong>stelt geen diagnose</strong> en geeft geen technisch advies aan de telefoon. Daarvoor wordt doorgeschakeld.",
+             "Het <strong>trekt geen nieuwe klanten binnen</strong> uit zichzelf. Daar zijn vindbaarheid en advertenties voor; dit zorgt dat de klanten die u al heeft niet weglopen.",
+             "Wij <strong>vervangen uw garagepakket niet</strong>. Waar koppelen kan doen we dat, en waar het niet kan hoort u dat vooraf."]),
+          "eerlijk"),
+ ]),
+},
+
+# ─────────────────────────────── HORECA ───────────────────────────────
+{
+ "bestand": "ai-voor-de-horeca.html",
+ "groep": "branche",
+ "dienst": "AI voor de horeca",
+ "titel": "Automatisering en AI voor de horeca — reserveringen, telefoon, no-shows | Complete AI",
+ "beschrijving": "De telefoon gaat midden in de service. Reserveringen die vanzelf binnenkomen, bevestigingen en herinneringen tegen no-shows, en een AI-telefonist die opneemt wanneer de zaak vol staat.",
+ "omschrijving": "Automatisering voor restaurants, caf\u00e9s en afhaalzaken: online reserveren, een AI-telefonist tijdens de service, bevestiging en herinnering tegen no-shows, en reviews die vanzelf binnenkomen.",
+ "ogen": "Voor de horeca",
+ "h1": 'Midden in de service. <span class="glans">De telefoon wordt gewoon opgenomen.</span>',
+ "lead": "Een gemiste reservering is geen administratieve kwestie maar een lege tafel. En het uur waarin de telefoon het vaakst gaat, is precies het uur waarin niemand hem kan aannemen. Complete AI zorgt dat reserveringen binnenkomen en worden nagekomen, ook wanneer de zaak vol staat.",
+ "levertijd": "Reserveringen binnen enkele werkdagen, telefoon binnen 2 weken",
+ "uitkomsten": [
+     ("24/7", "reserveringen aannemen, ook wanneer de zaak gesloten is"),
+     ("2\u00d7", "bevestiging en herinnering, met de mogelijkheid zelf te annuleren"),
+     ("0", "gemiste gesprekken tijdens de drukte"),
+ ],
+ "slot_kop": "Een half uur, buiten de service om.",
+ "slot_tekst": "\u2019s Ochtends of op een sluitingsdag: wij komen langs en brengen in kaart hoeveel gesprekken u misloopt, hoeveel no-shows u heeft en wat daarvan te ondervangen valt. Kosteloos en vrijblijvend.",
+ "vragen": [
+   ("Wij hebben al een reserveringssysteem. Vervangt dit dat?",
+    "Alleen als u dat wilt. Werkt uw systeem naar behoren, dan laten wij het staan en zorgen wij dat de telefoon en de bevestigingen erop aansluiten. De winst zit meestal niet in een ander systeem, maar in de gesprekken die nu onbeantwoord blijven."),
+   ("Kan een AI-telefonist ook afhaalbestellingen aannemen?",
+    "Ja. Hij kent de kaart, neemt de bestelling op, controleert of alles beschikbaar is en noemt een afhaaltijd. Het gesprek komt in tekst binnen, zodat de keuken meteen kan beginnen."),
+   ("Wat als de zaak volgeboekt is?",
+    "Dan meldt hij dat, biedt een ander tijdstip of een andere dag aan en legt desgewenst een wachtlijstverzoek vast. Wat hij wel en niet mag toezeggen bepaalt u vooraf."),
+   ("Helpt dit tegen no-shows?",
+    "Een bevestiging en een herinnering met een annuleerknop is het enige middel dat structureel werkt: mensen die niet komen, laten het dan wél weten, en die tafel is opnieuw te vergeven. Een getal beloven wij niet \u2014 dat verschilt per zaak."),
+   ("Hoe snel staat dit?",
+    "Online reserveren, bevestigingen en herinneringen zijn doorgaans binnen enkele werkdagen operationeel. De AI-telefonist staat binnen twee weken."),
+ ],
+ "inhoud": "\n\n  <hr class=\"streep\">\n\n".join([
+   sectie("De situatie", "Waar in de horeca omzet weglekt.",
+          "Alle vier hebben dezelfde oorzaak: de drukste uren zijn ook de uren waarin er niemand vrij is.",
+          pijnblok([
+            ("De telefoon tijdens de service", "Precies wanneer de zaak vol staat. Wie geen gehoor krijgt, reserveert ergens anders."),
+            ("No-shows", "Een tafel die leeg blijft en te laat is om nog te vergeven."),
+            ("Reserveringen via vier kanalen", "Telefoon, mail, Instagram en de deur. Zonder \u00e9\u00e9n overzicht gaat het vroeg of laat mis."),
+            ("Reviews die uitblijven", "Voor een zaak die van vindbaarheid leeft, is dat een gemis dat direct in het kaartje van Google zichtbaar is."),
+          ]), "herkenbaar"),
+
+   sectie("Wat wij inrichten", "Vier onderdelen die de drukte opvangen.",
+          "U bepaalt wat u nodig heeft. Wat al goed loopt, blijft staan.",
+          krijgtblok([
+            ("Online reserveren", "Gasten kiezen zelf een tafel en tijdstip binnen uw capaciteit, ook wanneer de zaak dicht is."),
+            ("Een AI-telefonist tijdens de service", "Neemt op in het Nederlands, kent de openingstijden en de kaart, neemt reserveringen en afhaalbestellingen aan."),
+            ("Bevestiging en herinnering", "Direct een bevestiging, en kort van tevoren een herinnering met een annuleerknop. Wie afzegt, maakt de tafel weer vrij."),
+            ("Reviews die vanzelf binnenkomen", "Na het bezoek automatisch een verzoek om een beoordeling \u2014 het onderdeel dat het meest bijdraagt aan uw positie in Google."),
+          ]), "wat-wij-inrichten"),
+
+   sectie("Voorbeelden", "Een vrijdagavond.",
+          "Geen van deze handelingen onderbreekt de service.",
+          voorbeeldblok([
+            ("18:45 \u2014 telefoon tijdens het eerste rondje", "De AI-telefonist neemt op, hoort dat het om vier personen om 20:30 gaat en boekt de tafel."),
+            ("19:10 \u2014 afhaalbestelling", "Bestelling opgenomen, beschikbaarheid gecontroleerd, afhaaltijd genoemd. In tekst binnen bij de keuken."),
+            ("21:00 \u2014 herinnering voor morgen", "Alle gasten van morgen krijgen bericht. E\u00e9n zegt af; die tafel gaat opnieuw open."),
+            ("23:30 \u2014 review", "De gasten van vanavond krijgen een verzoek om een beoordeling."),
+          ]), "voorbeelden"),
+
+   sectie("Eerlijk", "Wat dit niet oplost.",
+          "Wat wij niet kunnen onderbouwen, beloven wij niet.",
+          eerlijkblok(
+            "Grenzen die wij vooraf benoemen",
+            "Automatisering vangt de drukte op, maar maakt de zaak niet:",
+            ["Het <strong>kookt niet en bedient niet</strong>. Alles in de zaak blijft mensenwerk.",
+             "Het <strong>vult geen lege avonden</strong> uit zichzelf. Daar zijn vindbaarheid en advertenties voor.",
+             "Een AI-telefonist <strong>voert geen gesprek over allergie\u00ebn of dieetwensen</strong> waarvan de gevolgen ernstig kunnen zijn; dat schakelt hij door.",
+             "Wij <strong>noemen geen percentage minder no-shows</strong>. Dat verschilt per zaak en per publiek."]),
+          "eerlijk"),
+ ]),
+},
+
+# ────────────────────── BOUW EN INSTALLATIE ──────────────────────
+{
+ "bestand": "ai-voor-bouw-en-installatie.html",
+ "groep": "branche",
+ "dienst": "AI voor bouw en installatie",
+ "titel": "Automatisering en AI voor bouw en installatie — offertes, telefoon, facturen | Complete AI",
+ "beschrijving": "Bellen vanaf de steiger kan niet, en offertes schrijven gebeurt \u2019s avonds. Een AI-telefonist die aanvragen aanneemt, offertes die klaarstaan en facturen die vanzelf de deur uit gaan.",
+ "omschrijving": "Automatisering voor aannemers, installateurs, loodgieters en klusbedrijven: een AI-telefonist tijdens het werk, aanvragen die direct worden vastgelegd, offertes, urenregistratie en facturatie zonder avondwerk.",
+ "ogen": "Voor bouw &amp; installatie",
+ "h1": 'U staat op de steiger. <span class="glans">De aanvraag wordt vastgelegd.</span>',
+ "lead": "In de bouw en de installatietechniek is de telefoon een probleem met twee kanten: opnemen kan niet, en niet opnemen kost een opdracht. Daar bovenop komt het avondwerk \u2014 offertes, uren, facturen. Complete AI zorgt dat aanvragen binnenkomen terwijl u werkt en dat de papieren kant meeloopt in plaats van zich op te stapelen.",
+ "levertijd": "Administratie binnen enkele werkdagen, telefoon binnen 2 weken",
+ "uitkomsten": [
+     ("24/7", "bereikbaar, ook wanneer u op een dak of in een kruipruimte zit"),
+     ("1 dag", "van aanvraag naar offerte, in plaats van een week"),
+     ("0", "avonden per week aan facturen en herinneringen"),
+ ],
+ "slot_kop": "Een half uur, in de bus of aan de keukentafel.",
+ "slot_tekst": "Wij komen langs of bellen op een moment dat het uitkomt. In een half uur brengen we in kaart hoeveel aanvragen u misloopt en hoeveel avonden per week aan administratie opgaan. Kosteloos en vrijblijvend.",
+ "vragen": [
+   ("Kan een AI-telefonist een spoedgeval herkennen?",
+    "Ja, en dat is voor een installateur het belangrijkste onderdeel. U bepaalt vooraf welke situaties als spoed gelden \u2014 een lekkage, een storing zonder warmte \u2014 en die schakelt hij direct naar u door. Alles wat kan wachten, legt hij vast als terugbelverzoek met volledig transcript."),
+   ("Schrijft het de offerte zelf?",
+    "Niet zelfstandig, en dat zou ook niet verstandig zijn: u bepaalt de prijs. Wat het wel doet, is de aanvraag volledig uitvragen en een concept klaarzetten met de gegevens, het werk en uw standaardposten. U kijkt na, past aan en verstuurt. Dat scheelt het grootste deel van het avondwerk."),
+   ("Wij werken met een boekhoudpakket. Blijft dat?",
+    "Ja. Wij vervangen uw boekhouding niet, wij zorgen dat er niets met de hand ingevoerd hoeft te worden. Waar een koppeling mogelijk is leggen we die; waar dat niet kan, hoort u dat in de nulmeting."),
+   ("Hoe zit het met urenregistratie?",
+    "Uren worden per project vastgelegd, met een eenvoudige handeling vanaf de telefoon. Aan het eind van het werk staan ze klaar voor de factuur, zodat er niets meer teruggezocht hoeft te worden."),
+   ("Hoe snel staat dit?",
+    "Offertes, urenregistratie, facturatie en herinneringen zijn doorgaans binnen enkele werkdagen operationeel. De AI-telefonist staat binnen twee weken."),
+ ],
+ "inhoud": "\n\n  <hr class=\"streep\">\n\n".join([
+   sectie("De situatie", "Waar de dag van een vakman eindigt.",
+          "Niet om vijf uur. De vier onderdelen hieronder zijn de reden.",
+          pijnblok([
+            ("Bellen kan niet tijdens het werk", "Op een dak, in een kruipruimte of met een machine aan. Wie geen gehoor krijgt, belt de volgende."),
+            ("Offertes schrijven \u2019s avonds", "En hoe langer een offerte duurt, hoe kleiner de kans dat de opdracht nog van u is."),
+            ("Uren die achteraf gereconstrueerd worden", "Wat betekent dat er uren verdwijnen die wel gemaakt zijn."),
+            ("Facturen en herinneringen die blijven liggen", "De klus is af, het geld staat er niet. Dat kost rechtstreeks werkkapitaal."),
+          ]), "herkenbaar"),
+
+   sectie("Wat wij inrichten", "Vijf onderdelen die de avonden teruggeven.",
+          "U kiest wat u nodig heeft. Elk onderdeel functioneert zelfstandig.",
+          krijgtblok([
+            ("Een AI-telefonist die aanvragen aanneemt", "Neemt op tijdens het werk, vraagt uit wat er aan de hand is, herkent spoed en schakelt die direct door."),
+            ("Aanvraag meteen vastgelegd", "Naam, adres, aard van het werk en gewenste termijn komen als tekst binnen. U hoeft niets terug te bellen om te achterhalen waar het over ging."),
+            ("Offerte binnen \u00e9\u00e9n dag", "Een concept staat klaar met uw standaardposten. U kijkt na, past aan, verstuurt \u2014 in plaats van vanaf niets te beginnen."),
+            ("Urenregistratie per project", "Vastgelegd tijdens het werk, klaar voor de factuur. Zonder terugzoeken."),
+            ("Facturatie en herinneringen", "De factuur volgt op de afgeronde klus, en wie niet betaalt krijgt automatisch een herinnering. Zonder ongemakkelijk telefoontje."),
+          ]), "wat-wij-inrichten"),
+
+   sectie("Voorbeelden", "Een gewone werkdag.",
+          "Geen van deze handelingen onderbreekt het werk.",
+          voorbeeldblok([
+            ("10:15 \u2014 telefoon terwijl u op een dak staat", "De AI-telefonist neemt op, hoort dat het om een offerte voor een badkamer gaat en legt de aanvraag volledig vast."),
+            ("10:40 \u2014 een lekkage", "Als spoed herkend en direct naar uw mobiel doorgeschakeld. Die neemt u wél aan."),
+            ("16:50 \u2014 klus afgerond", "Uren staan al vast; de factuur gaat dezelfde dag de deur uit."),
+            ("Vrijdag \u2014 openstaande posten", "Twee klanten hebben nog niet betaald. Beiden krijgen automatisch een herinnering."),
+          ]), "voorbeelden"),
+
+   sectie("Eerlijk", "Wat dit niet oplost.",
+          "Wat wij niet kunnen waarmaken, staat hier niet.",
+          eerlijkblok(
+            "Grenzen die wij vooraf benoemen",
+            "Dit neemt de papieren kant over, niet het vak:",
+            ["Het <strong>legt geen leiding en zet geen ketel</strong>. Het werk op locatie blijft volledig het uwe.",
+             "Het <strong>bepaalt geen prijzen</strong>. Een offerte gaat pas de deur uit nadat u ernaar gekeken heeft.",
+             "Het <strong>haalt geen nieuwe opdrachten binnen</strong> uit zichzelf. Daar zijn vindbaarheid en advertenties voor.",
+             "Bij <strong>spoed blijft u zelf aan de lijn</strong>. Dat is een bewuste keuze: een storing zonder warmte hoort niet bij een assistent te eindigen."]),
+          "eerlijk"),
+ ]),
+},
+
 ]

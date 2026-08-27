@@ -388,8 +388,9 @@ form .klein{font-size:.82rem;color:var(--inkt-dim);font-family:var(--f-tekst);
 /* ── voet ──────────────────────────────────────── */
 footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
   color:var(--inkt-zacht);background:transparent;position:relative;z-index:2}
-.voet{display:grid;grid-template-columns:minmax(0,1.5fr) repeat(2,minmax(0,1fr));gap:2.5rem}
-@media(max-width:780px){.voet{grid-template-columns:1fr;gap:2rem}}
+.voet{display:grid;grid-template-columns:minmax(0,1.4fr) repeat(3,minmax(0,1fr));gap:2.2rem}
+@media(max-width:980px){.voet{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:2.2rem}}
+@media(max-width:620px){.voet{grid-template-columns:1fr;gap:2rem}}
 .voetkop{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
   color:var(--inkt-dim);margin-bottom:1rem;font-weight:500}
 .voet ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.55rem}
