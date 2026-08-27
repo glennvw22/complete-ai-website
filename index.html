@@ -17,6 +17,10 @@
 <meta property="og:url" content="https://complete-ai.nl/">
 <meta property="og:title" content="Complete AI — het complete pakket voor je bedrijf online">
 <meta property="og:description" content="Website, vindbaarheid, advertenties, automatisering en een AI-telefonist die altijd opneemt. Eén aanspreekpunt in plaats van vijf leveranciers.">
+<meta property="og:image" content="https://complete-ai.nl/og-complete-ai.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Complete AI — Glenn van Wijngaarden">
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -334,17 +338,12 @@ main [id]{scroll-margin-top:78px}
 .over{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);
   gap:clamp(2.2rem,5vw,4.5rem);align-items:start;margin-top:3.2rem}
 @media(max-width:900px){.over{grid-template-columns:1fr}}
-.portret{position:relative;aspect-ratio:4/5;max-width:440px;border-radius:18px;overflow:hidden;
-  background:var(--vlak);border:1px solid var(--lijn);display:grid;place-items:center;
-  color:var(--inkt-dim);font-family:var(--f-mono);font-size:.74rem;letter-spacing:.08em;
-  text-align:center;line-height:1.9}
-.portret::before{content:"";position:absolute;inset:0;
-  background-image:linear-gradient(rgba(40,48,74,.5) 1px,transparent 1px),
-                   linear-gradient(90deg,rgba(40,48,74,.5) 1px,transparent 1px);
-  background-size:30px 30px;
-  mask-image:radial-gradient(70% 70% at 50% 50%,#000,transparent);
-  -webkit-mask-image:radial-gradient(70% 70% at 50% 50%,#000,transparent)}
-.portret span{position:relative;z-index:1}
+.portret{position:relative;aspect-ratio:4/5;max-width:440px;margin:0;border-radius:18px;
+  overflow:hidden;background:var(--vlak);border:1px solid var(--lijn)}
+.portret img{width:100%;height:100%;object-fit:cover;object-position:50% 14%;display:block}
+/* zachte verdonkering onderaan, zodat de lichte foto in de donkere pagina zakt */
+.portret::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(to bottom,transparent 52%,rgba(6,7,12,.6))}
 .over-tekst .groot{font-family:var(--f-kop);font-size:clamp(1.32rem,1.05rem+1.2vw,1.95rem);
   font-weight:500;letter-spacing:-.035em;line-height:1.28;margin-top:1.4rem;color:var(--inkt)}
 .over-tekst p+p{margin-top:1.2rem;color:var(--inkt-zacht)}
@@ -698,8 +697,16 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
       </div>
 
       <div class="over reveal">
-        <!-- VERVANG: portretfoto van Glenn, staand, verhouding 4:5 -->
-        <div class="portret"><span>PORTRETFOTO<br>4 : 5</span></div>
+        <figure class="portret">
+          <picture>
+            <source type="image/webp"
+                    srcset="glenn-440.webp 440w, glenn-880.webp 880w"
+                    sizes="(max-width:900px) min(100vw, 440px), 440px">
+            <img src="glenn-880.jpg" width="880" height="1322"
+                 alt="Glenn van Wijngaarden, oprichter van Complete AI"
+                 loading="lazy" decoding="async">
+          </picture>
+        </figure>
 
         <div class="over-tekst">
           <p class="groot">Ik ben Glenn van Wijngaarden. Ik heb Complete AI zelf opgericht, en ik bouw alles ook zelf.</p>
