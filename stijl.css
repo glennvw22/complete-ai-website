@@ -8,7 +8,7 @@
 
 :root{
   --void:#06070C;
-  --grond:#090B12;
+  --grond:#06070C;   /* gelijk aan --void: overal dezelfde achtergrond */
   --vlak:#0E1119;
   --vlak-hoog:#141826;
   --glas:rgba(20,24,38,.62);
@@ -108,17 +108,13 @@ img{max-width:100%;display:block}
 /* ── hero ──────────────────────────────────────── */
 .hero{position:relative;padding:clamp(3.5rem,8vw,7rem) 0 clamp(3rem,6vw,5rem);isolation:isolate}
 #stroomdoek{position:absolute;inset:0;width:100%;height:100%;z-index:0}
-.hero::before{content:"";position:absolute;z-index:0;left:50%;top:-18%;transform:translateX(-50%);
-  width:min(1100px,120%);height:560px;pointer-events:none;
-  background:radial-gradient(50% 50% at 50% 50%,rgba(61,109,255,.16),transparent 70%)}
-.hero::after{content:"";position:absolute;z-index:0;left:0;right:0;bottom:0;height:200px;
-  pointer-events:none;background:linear-gradient(to bottom,transparent,var(--void))}
+/* geen gloed of verloop over de achtergrond — de achtergrondkleur blijft overal gelijk */
 
 .hero-grid{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);
   gap:clamp(2.5rem,5vw,4.5rem);align-items:center}
 @media(max-width:1000px){.hero-grid{grid-template-columns:1fr;gap:3rem}}
 
-.hero h1{font-size:clamp(2.55rem,1rem + 5.9vw,4.9rem);font-weight:700;margin:1.7rem 0 0;
+.hero h1{font-size:clamp(2.15rem,1.15rem + 3.1vw,3.5rem);font-weight:700;margin:1.6rem 0 0;
   letter-spacing:-.045em;line-height:1.02}
 .hero h1 .glans{background:var(--verloop);-webkit-background-clip:text;background-clip:text;
   -webkit-text-fill-color:transparent}
@@ -186,7 +182,7 @@ img{max-width:100%;display:block}
 section{padding:var(--v) 0;position:relative;scroll-margin-top:78px}
 main [id]{scroll-margin-top:78px}
 .sectiekop{max-width:58ch}
-.sectiekop h2{font-size:clamp(2rem,1.3rem + 2.5vw,3.3rem);margin-top:1.4rem;font-weight:600}
+.sectiekop h2{font-size:clamp(1.65rem,1.15rem + 1.55vw,2.45rem);margin-top:1.3rem;font-weight:600}
 .sectiekop p{color:var(--inkt-zacht);margin-top:1.3rem;font-size:1.08rem}
 .streep{height:1px;background:linear-gradient(90deg,var(--lijn-op),transparent);border:0;margin:0;
   position:relative;z-index:2}
@@ -202,11 +198,10 @@ main [id]{scroll-margin-top:78px}
 .pijn small{color:var(--inkt-zacht);font-size:.93rem;line-height:1.55}
 
 .antwoord{position:relative;margin-top:2.8rem;padding:clamp(1.8rem,4vw,2.8rem);
-  border-radius:18px;overflow:hidden;
-  background:linear-gradient(135deg,rgba(61,109,255,.12),rgba(37,216,196,.06));
+  border-radius:18px;overflow:hidden;background:var(--vlak-hoog);
   border:1px solid var(--lijn-op)}
 .antwoord::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--verloop)}
-.antwoord p{font-family:var(--f-kop);font-size:clamp(1.25rem,1rem + 1.1vw,1.85rem);
+.antwoord p{font-family:var(--f-kop);font-size:clamp(1.15rem,.98rem + .75vw,1.55rem);
   font-weight:500;letter-spacing:-.03em;line-height:1.28;max-width:46ch}
 .antwoord p b{font-weight:600;background:var(--verloop);-webkit-background-clip:text;
   background-clip:text;-webkit-text-fill-color:transparent}
@@ -297,7 +292,7 @@ main [id]{scroll-margin-top:78px}
 /* zachte verdonkering onderaan, zodat de lichte foto in de donkere pagina zakt */
 .portret::after{content:"";position:absolute;inset:0;pointer-events:none;
   background:linear-gradient(to bottom,transparent 52%,rgba(6,7,12,.6))}
-.over-tekst .groot{font-family:var(--f-kop);font-size:clamp(1.32rem,1.05rem + 1.2vw,1.95rem);
+.over-tekst .groot{font-family:var(--f-kop);font-size:clamp(1.2rem,1.02rem + .8vw,1.6rem);
   font-weight:500;letter-spacing:-.035em;line-height:1.28;margin-top:1.4rem;color:var(--inkt)}
 .over-tekst p+p{margin-top:1.2rem;color:var(--inkt-zacht)}
 .handtekening{margin-top:2.2rem;padding-top:1.5rem;border-top:1px solid var(--lijn);
@@ -313,7 +308,7 @@ main [id]{scroll-margin-top:78px}
   padding:clamp(1.8rem,3vw,2.2rem);display:flex;flex-direction:column;gap:1.15rem;
   transition:transform .4s cubic-bezier(.2,.8,.2,1),border-color .4s ease}
 .pak:hover{transform:translateY(-5px);border-color:var(--lijn-op)}
-.pak.top{background:linear-gradient(170deg,rgba(61,109,255,.09),var(--vlak) 55%);
+.pak.top{background:var(--vlak-hoog);
   border-color:var(--blauw);box-shadow:0 30px 70px -45px var(--gloed)}
 .vlag{position:absolute;top:-11px;left:clamp(1.8rem,3vw,2.2rem);
   background:var(--verloop);color:#04060E;font-family:var(--f-mono);font-size:.63rem;
@@ -367,8 +362,7 @@ details p{padding:0 3.2rem 1.4rem 1.4rem;color:var(--inkt-zacht);font-size:.97re
   text-decoration:none;letter-spacing:-.03em;display:inline-block;transition:color .25s ease}
 .gegeven a:hover{color:var(--blauw-hel)}
 .gerust{margin-top:2.4rem;padding:1.2rem 1.4rem;border-radius:13px;font-size:.93rem;
-  color:var(--inkt-zacht);background:linear-gradient(135deg,rgba(37,216,196,.07),transparent);
-  border:1px solid var(--lijn)}
+  color:var(--inkt-zacht);background:var(--vlak);border:1px solid var(--lijn)}
 .gerust b{color:var(--inkt);font-weight:600}
 
 form{background:var(--vlak);border:1px solid var(--lijn);border-radius:18px;
@@ -436,10 +430,9 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
 
 /* ── kop van een onderpagina ── */
 .paginakop{padding:clamp(2rem,4vw,3.2rem) 0 clamp(2.5rem,5vw,4rem);position:relative}
-.paginakop::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
-  background:radial-gradient(60% 100% at 22% 0%,rgba(61,109,255,.13),transparent 70%)}
+
 .paginakop .wrap{position:relative;z-index:1}
-.paginakop h1{font-size:clamp(2.1rem,1.3rem + 3.4vw,3.5rem);font-weight:700;margin-top:1.3rem;
+.paginakop h1{font-size:clamp(2rem,1.25rem + 2.5vw,3.05rem);font-weight:700;margin-top:1.2rem;
   letter-spacing:-.042em;max-width:19ch}
 .paginakop h1 .glans{background:var(--verloop);-webkit-background-clip:text;background-clip:text;
   -webkit-text-fill-color:transparent}
@@ -455,7 +448,7 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
   background:var(--lijn);border:1px solid var(--lijn);border-radius:12px;overflow:hidden;
   margin-top:2.6rem}
 .uitkomsten div{background:var(--vlak);padding:1.3rem 1.4rem;display:flex;flex-direction:column;gap:.3rem}
-.uitkomsten b{font-family:var(--f-kop);font-size:clamp(1.5rem,1.2rem + 1vw,1.9rem);font-weight:700;
+.uitkomsten b{font-family:var(--f-kop);font-size:clamp(1.4rem,1.15rem + .8vw,1.75rem);font-weight:700;
   letter-spacing:-.04em;line-height:1;background:var(--verloop);
   -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .uitkomsten span{font-size:.88rem;color:var(--inkt-zacht);line-height:1.45}
@@ -478,7 +471,7 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
 .voorbeeld span{font-size:.88rem;color:var(--inkt-zacht);line-height:1.5}
 
 /* ── wat het niet doet ── */
-.eerlijk{background:linear-gradient(135deg,rgba(224,151,91,.07),transparent);
+.eerlijk{background:var(--vlak);
   border:1px solid var(--lijn);border-left:3px solid #E0975B;border-radius:13px;
   padding:1.5rem 1.6rem;margin-top:2.4rem}
 .eerlijk h3{font-size:1.12rem;font-weight:600;margin-bottom:.7rem}
@@ -488,10 +481,10 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
 .eerlijk li::before{content:"—";color:#E0975B;flex:none}
 
 /* ── afsluitend blok ── */
-.slotblok{background:linear-gradient(140deg,rgba(61,109,255,.11),rgba(37,216,196,.05));
+.slotblok{background:var(--vlak-hoog);
   border:1px solid var(--lijn-op);border-radius:18px;padding:clamp(1.9rem,4vw,3rem);
   margin-top:1rem;text-align:left}
-.slotblok h2{font-size:clamp(1.6rem,1.2rem + 1.6vw,2.3rem);font-weight:600;max-width:22ch}
+.slotblok h2{font-size:clamp(1.45rem,1.15rem + 1.05vw,2rem);font-weight:600;max-width:24ch}
 .slotblok p{color:var(--inkt-zacht);margin-top:1rem;max-width:52ch;font-size:1.02rem}
 .slotblok .knop{margin-top:1.8rem}
 
