@@ -21,7 +21,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=DM+Sans:wght@400;500;600&display=swap">
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%233D6DFF'/%3E%3Cstop offset='1' stop-color='%2325D8C4'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='%230A0C13'/%3E%3Cpath d='M6 10h4M6 16h4M6 22h4' stroke='url(%23g)' stroke-width='2' stroke-linecap='round' opacity='.55'/%3E%3Cpath d='M12 16h14' stroke='url(%23g)' stroke-width='2.5' stroke-linecap='round'/%3E%3Ccircle cx='12' cy='16' r='2.5' fill='url(%23g)'/%3E%3C/svg%3E">
 
@@ -71,7 +71,7 @@
 
   --f-kop:"Sora","Helvetica Neue",Helvetica,Arial,sans-serif;
   --f-tekst:"DM Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
-  --f-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --f-mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
 
   --rand:min(1200px, 100% - clamp(1.25rem,6vw,5.5rem));
   --v:clamp(4rem,9vw,8rem);
@@ -89,13 +89,6 @@ body{
   line-height:1.65;
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
-}
-
-/* fijne ruis over de hele pagina — haalt het digitale platte eraf */
-body::after{
-  content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.15;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
-  mix-blend-mode:overlay;
 }
 
 h1,h2,h3,h4{font-family:var(--f-kop);margin:0;line-height:1.08;letter-spacing:-.035em;
@@ -136,10 +129,9 @@ img{max-width:100%;display:block}
 :focus-visible{outline:2px solid var(--aqua);outline-offset:3px;border-radius:6px}
 
 /* ── kopbalk ───────────────────────────────────── */
-.balk{position:sticky;top:0;z-index:90;background:rgba(6,7,12,.72);
-  backdrop-filter:blur(16px) saturate(1.6);border-bottom:1px solid transparent;
+.balk{position:sticky;top:0;z-index:90;background:rgba(6,7,12,.86);border-bottom:1px solid transparent;
   transition:border-color .3s ease,background .3s ease}
-.balk.vast{border-bottom-color:var(--lijn);background:rgba(6,7,12,.9)}
+.balk.vast{border-bottom-color:var(--lijn);background:rgba(6,7,12,.96)}
 .balk .wrap{display:flex;align-items:center;gap:2rem;height:74px}
 .merk{display:flex;align-items:center;gap:.7rem;text-decoration:none;margin-right:auto;flex:none}
 .merk svg{width:30px;height:30px;flex:none}
@@ -188,7 +180,7 @@ img{max-width:100%;display:block}
 
 /* ── het paneel ────────────────────────────────── */
 .paneel{position:relative;border-radius:16px;overflow:hidden;
-  background:var(--glas);backdrop-filter:blur(18px) saturate(1.3);
+  background:#0F1320;
   border:1px solid var(--lijn-op);
   box-shadow:0 40px 90px -50px #000,0 0 60px -30px var(--gloed),
              0 1px 0 0 rgba(255,255,255,.05) inset}
@@ -219,19 +211,19 @@ img{max-width:100%;display:block}
   background:rgba(255,255,255,.015)}
 .paneel-voet b{color:var(--aqua);font-weight:500}
 
-/* ── loopband ──────────────────────────────────── */
+/* ── levertijden ───────────────────────────────── */
 .band{border-top:1px solid var(--lijn);border-bottom:1px solid var(--lijn);
-  padding:1.5rem 0;overflow:hidden;position:relative;background:var(--grond);z-index:2}
-.band::before,.band::after{content:"";position:absolute;top:0;bottom:0;width:16%;z-index:3;pointer-events:none}
-.band::before{left:0;background:linear-gradient(to right,var(--grond),transparent)}
-.band::after{right:0;background:linear-gradient(to left,var(--grond),transparent)}
-.spoor{display:flex;width:max-content;animation:schuif 38s linear infinite}
-.spoor span{font-family:var(--f-kop);font-size:clamp(1rem,.9rem+.5vw,1.28rem);font-weight:500;
-  letter-spacing:-.02em;color:var(--inkt-dim);white-space:nowrap;
-  display:inline-flex;align-items:center;gap:2.6rem;padding-right:2.6rem}
-.spoor span::after{content:"";width:5px;height:5px;border-radius:50%;background:var(--blauw);flex:none;opacity:.7}
-@keyframes schuif{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.band:hover .spoor{animation-play-state:paused}
+  padding:1.6rem 0;background:var(--grond);position:relative;z-index:2}
+.levertijden{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+@media(max-width:880px){.levertijden{grid-template-columns:repeat(2,1fr);gap:1.4rem 1.5rem}}
+@media(max-width:420px){.levertijden{grid-template-columns:1fr}}
+.levertijden div{display:flex;flex-direction:column;gap:.25rem;position:relative;padding-left:1rem}
+.levertijden div::before{content:"";position:absolute;left:0;top:.35rem;bottom:.35rem;width:2px;
+  border-radius:2px;background:var(--verloop);opacity:.55}
+.levertijden em{font-style:normal;font-family:var(--f-mono);font-size:.68rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--inkt-dim)}
+.levertijden b{font-family:var(--f-kop);font-size:clamp(.98rem,.9rem+.35vw,1.14rem);
+  font-weight:600;letter-spacing:-.025em;color:var(--inkt)}
 
 /* ── secties ───────────────────────────────────── */
 section{padding:var(--v) 0;position:relative;scroll-margin-top:78px}
@@ -285,6 +277,10 @@ main [id]{scroll-margin-top:78px}
 .dienst li{font-size:.93rem;color:var(--inkt-zacht);display:flex;gap:.65rem;line-height:1.5}
 .dienst li::before{content:"";width:5px;height:5px;flex:none;margin-top:.6rem;border-radius:1px;
   background:var(--verloop);transform:rotate(45deg)}
+.levertijd{margin-top:auto;padding-top:1.1rem;border-top:1px solid var(--lijn);
+  display:flex;align-items:center;gap:.5rem;font-family:var(--f-mono);font-size:.73rem;
+  letter-spacing:.06em;color:var(--aqua)}
+.levertijd svg{width:14px;height:14px;flex:none}
 
 /* ── uitgelicht ────────────────────────────────── */
 .uitgelicht{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
@@ -459,15 +455,15 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
   color:var(--inkt-dim);letter-spacing:.05em}
 
 /* ── onthullen ─────────────────────────────────── */
-.reveal{opacity:0;transform:translateY(22px);filter:blur(6px);
-  transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1),filter .8s ease}
-.reveal.in{opacity:1;transform:none;filter:blur(0)}
+.reveal{opacity:0;transform:translateY(20px);
+  transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
 
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;
     transition-duration:.001ms!important}
-  .reveal{opacity:1;transform:none;filter:none}
+  .reveal{opacity:1;transform:none}
   .op{opacity:1;transform:none}
   .regel{opacity:1;transform:none}
   .route .fase::after{width:100%}
@@ -519,7 +515,7 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
         </div>
         <div class="borg op" style="animation-delay:.46s">
           <span>Eén vast aanspreekpunt</span>
-          <span>Stap voor stap, geen big bang</span>
+          <span>Website live in 1–2 weken</span>
           <span>Alles meetbaar</span>
         </div>
       </div>
@@ -546,10 +542,13 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
     </div>
   </div>
 
-  <!-- ══ LOOPBAND ══ -->
-  <div class="band" aria-hidden="true">
-    <div class="spoor">
-      <span>Websites</span><span>Vindbaarheid — SEO</span><span>Adverteren — SEA</span><span>Automatisering</span><span>AI-telefonist</span><span>Onderhoud &amp; support</span><span>Websites</span><span>Vindbaarheid — SEO</span><span>Adverteren — SEA</span><span>Automatisering</span><span>AI-telefonist</span><span>Onderhoud &amp; support</span>
+  <!-- ══ LEVERTIJDEN ══ -->
+  <div class="band">
+    <div class="wrap levertijden">
+      <div><em>Websites</em><b>1 tot 2 weken</b></div>
+      <div><em>Automatiseringen</em><b>Enkele werkdagen</b></div>
+      <div><em>AI-telefonist</em><b>Binnen 2 weken</b></div>
+      <div><em>Adverteren</em><b>Op aanvraag</b></div>
     </div>
   </div>
 
@@ -583,7 +582,7 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
       <div class="sectiekop reveal">
         <p class="label"><i></i>Wat we doen</p>
         <h2>Vijf diensten. Los af te nemen, samen het sterkst.</h2>
-        <p>We beginnen nooit met alles tegelijk. In de nulmeting kijken we waar bij jou de meeste tijd- en omzetwinst zit — dáár beginnen we.</p>
+        <p>We beginnen nooit met alles tegelijk. In de nulmeting kijken we waar bij jou de meeste tijd- en omzetwinst zit — dáár beginnen we. En dan gaat het snel: veel van wat ik inzet staat al klaar.</p>
       </div>
 
       <div class="diensten reveal">
@@ -592,6 +591,7 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
           <h3>Websites</h3>
           <p>Een site die er niet alleen goed uitziet, maar ook klanten oplevert. Snel, mobielvriendelijk en gebouwd om gevonden te worden.</p>
           <ul><li>Ontwerp op maat van jouw zaak</li><li>Perfect op telefoon én laptop</li><li>Teksten en beeld regelen we mee</li><li>Meertalig waar dat zinvol is</li></ul>
+          <p class="levertijd"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="8" cy="8" r="6.2"/><path d="M8 4.6V8l2.4 1.5"/></svg>Live in 1 tot 2 weken</p>
         </article>
 
         <article class="dienst">
@@ -599,6 +599,7 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
           <h3>Vindbaarheid — SEO</h3>
           <p>Bovenaan komen bij de zoekopdrachten waar jouw klanten écht op zoeken. Structureel verkeer waar je niet per klik voor betaalt.</p>
           <ul><li>Lokale SEO voor jouw regio</li><li>Technische basis en laadsnelheid</li><li>Google-bedrijfsprofiel volledig ingericht</li><li>Content die op de juiste vragen antwoord geeft</li></ul>
+          <p class="levertijd"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="8" cy="8" r="6.2"/><path d="M8 4.6V8l2.4 1.5"/></svg>Doorlopend werk</p>
         </article>
 
         <article class="dienst">
@@ -606,6 +607,7 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
           <h3>Adverteren — SEA</h3>
           <p>Zichtbaar zijn op precies het moment dat iemand zoekt wat jij levert. We beginnen klein, meten alles en schalen op wat werkt.</p>
           <ul><li>Google Ads op zoekwoorden met koopintentie</li><li>Meta en retargeting voor wie nog twijfelt</li><li>Conversietracking, tot op de euro meetbaar</li><li>Maandelijks bijgestuurd, geen adverteren in het wild</li></ul>
+          <p class="levertijd"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="8" cy="8" r="6.2"/><path d="M8 4.6V8l2.4 1.5"/></svg>Op aanvraag</p>
         </article>
 
         <article class="dienst">
@@ -613,6 +615,7 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
           <h3>Automatisering</h3>
           <p>Het terugkerende werk dat je avonden opeet, gaat vanzelf. Orderintake, facturen, herinneringen, reviews — je merkt alleen dat het gebeurd is.</p>
           <ul><li>Bestellingen uit alle kanalen in één lijst</li><li>Facturen en betaalherinneringen automatisch</li><li>Koppeling met je boekhouding</li><li>Eén dashboard met je cijfers</li></ul>
+          <p class="levertijd"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="8" cy="8" r="6.2"/><path d="M8 4.6V8l2.4 1.5"/></svg>Enkele werkdagen</p>
         </article>
 
         <article class="dienst">
@@ -620,6 +623,7 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
           <h3>AI-telefonist</h3>
           <p>Een Nederlandstalige AI die opneemt als jij niet kunt — 's avonds, in het weekend of midden in de drukte. Neemt bestellingen aan en filtert verkopers eruit.</p>
           <ul><li>24/7 bereikbaar, ook buiten openingstijd</li><li>Neemt bestellingen en vragen netjes op</li><li>Schakelt urgente gesprekken door naar jou</li><li>Terugbelnotities met volledig transcript</li></ul>
+          <p class="levertijd"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="8" cy="8" r="6.2"/><path d="M8 4.6V8l2.4 1.5"/></svg>Operationeel binnen 2 weken</p>
         </article>
 
         <article class="dienst">
@@ -627,6 +631,7 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
           <h3>Onderhoud &amp; support</h3>
           <p>Na oplevering blijft het van ons allebei. Je belt of appt, en het wordt geregeld — geen ticketsysteem en geen wachtrij.</p>
           <ul><li>Hosting, back-ups en updates</li><li>Kleine wijzigingen zitten erbij</li><li>Reactie binnen één werkdag</li><li>Maandelijks opzegbaar</li></ul>
+          <p class="levertijd"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="8" cy="8" r="6.2"/><path d="M8 4.6V8l2.4 1.5"/></svg>Doorlopend, vanaf oplevering</p>
         </article>
       </div>
     </div>
@@ -676,7 +681,7 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
       <div class="route reveal" id="route">
         <div class="fase"><i>Fase 1</i><b>Nulmeting</b><p>Een half uur samen kijken waar jouw tijd en omzet weglekken. Gratis, en het verplicht tot niets.</p></div>
         <div class="fase"><i>Fase 2</i><b>Plan op maat</b><p>Binnen een werkdag een helder voorstel: wat we bouwen, wat het kost, wanneer het staat. Eén vaste prijs.</p></div>
-        <div class="fase"><i>Fase 3</i><b>Bouwen in stappen</b><p>We beginnen met de snelste winst. Je kijkt onderweg mee en stuurt bij — niet pas aan het eind.</p></div>
+        <div class="fase"><i>Fase 3</i><b>Bouwen in stappen</b><p>We beginnen met de snelste winst. Een site staat in één tot twee weken, automatiseringen vaak in een paar werkdagen. Je kijkt onderweg mee en stuurt bij.</p></div>
         <div class="fase"><i>Fase 4</i><b>Live &amp; bijsturen</b><p>Alles gaat live, ik loop het met je door, en daarna kijken we maandelijks naar de cijfers.</p></div>
       </div>
     </div>
@@ -783,7 +788,7 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
 
       <div class="vragen reveal">
         <details><summary>Moet ik van mijn huidige website af?</summary><p>Niet per se. Soms is je bestaande site prima en zit de winst ergens anders — in vindbaarheid of in het automatiseren van je administratie. Dat hoor je eerlijk in de nulmeting, ook als het antwoord is dat je niets bij mij hoeft af te nemen.</p></details>
-        <details><summary>Hoe lang duurt het voordat alles staat?</summary><p>Een website staat doorgaans binnen twee tot vier weken live. Automatisering en de AI-telefonist bouwen we in fases daarna, zodat je onderweg al resultaat hebt in plaats van maanden te wachten op één grote oplevering.</p></details>
+        <details><summary>Hoe lang duurt het voordat alles staat?</summary><p>Sneller dan je waarschijnlijk gewend bent. Een website staat doorgaans binnen <strong>één tot twee weken</strong> live. Automatiseringen gaan nog harder: veel van wat ik inzet heb ik al gebouwd en draaiend, dus die staan meestal binnen <strong>enkele werkdagen</strong> bij je. De AI-telefonist is doorgaans <strong>binnen twee weken</strong> operationeel. Adverteren stemmen we per situatie af.</p><p>We bouwen in fases, zodat je onderweg al resultaat hebt in plaats van maanden te wachten op één grote oplevering.</p></details>
         <details><summary>Zit ik ergens langdurig aan vast?</summary><p>Nee. Het abonnement is maandelijks opzegbaar. Ik werk liever met klanten die blijven omdat het werkt dan met klanten die vastzitten aan een contract.</p></details>
         <details><summary>Wat als de AI-telefonist iets verkeerd doet?</summary><p>Jij bepaalt vooraf wat hij zelfstandig mag afhandelen en wat altijd naar jou wordt doorgeschakeld. Van elk gesprek is een transcript beschikbaar, dus je kunt altijd teruglezen wat er gezegd is. In de eerste weken kijken we samen mee en sturen we bij.</p></details>
         <details><summary>Is mijn data veilig, en hoe zit het met de AVG?</summary><p>Je gegevens blijven van jou. Waar we persoonsgegevens verwerken — bijvoorbeeld bij telefoongesprekken of je klantenbestand — leggen we dat vast in een verwerkersovereenkomst, zoals de AVG voorschrijft. Dat regelen we vóór de start, niet achteraf.</p></details>
@@ -974,7 +979,8 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
      de belofte van Complete AI, rustig genoeg om niet af te leiden. */
   var doek = document.getElementById('stroomdoek');
   if (!doek || !doek.getContext) return;
-  var ctx = doek.getContext('2d'), B = 0, H = 0, deeltjes = [], loopId = 0, zichtbaar = true;
+  var ctx = doek.getContext('2d', {alpha:true}), B = 0, H = 0, deeltjes = [], loopId = 0,
+      zichtbaar = true, gloedCache = null, gloedX = 0, gloedY = 0, vorigeTijd = 0;
 
   function meet(){
     var r = doek.getBoundingClientRect();
@@ -999,8 +1005,8 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
   function bouw(){
     deeltjes = [];
     for (var i = 0; i < 5; i++){
-      for (var j = 0; j < 4; j++){
-        deeltjes.push({ lijn: i, f: (j / 4) + i * 0.05, snelheid: 0.0016 + (i % 3) * 0.00018 });
+      for (var j = 0; j < 3; j++){
+        deeltjes.push({ lijn: i, f: (j / 3) + i * 0.06, snelheid: 0.0018 + (i % 3) * 0.0002 });
       }
     }
   }
@@ -1027,10 +1033,13 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
     for (t = 0.02; t <= 1.0001; t += 0.02){ s = samen(t); ctx.lineTo(s.x, s.y); }
     ctx.strokeStyle = g; ctx.lineWidth = 2; ctx.stroke();
 
-    var rg = ctx.createRadialGradient(k.fx, k.fy, 0, k.fx, k.fy, 46);
-    rg.addColorStop(0, 'rgba(37,216,196,0.28)');
-    rg.addColorStop(1, 'rgba(37,216,196,0)');
-    ctx.beginPath(); ctx.arc(k.fx, k.fy, 46, 0, Math.PI * 2); ctx.fillStyle = rg; ctx.fill();
+    if (!gloedCache || gloedX !== k.fx || gloedY !== k.fy){
+      gloedCache = ctx.createRadialGradient(k.fx, k.fy, 0, k.fx, k.fy, 46);
+      gloedCache.addColorStop(0, 'rgba(37,216,196,0.28)');
+      gloedCache.addColorStop(1, 'rgba(37,216,196,0)');
+      gloedX = k.fx; gloedY = k.fy;
+    }
+    ctx.beginPath(); ctx.arc(k.fx, k.fy, 46, 0, Math.PI * 2); ctx.fillStyle = gloedCache; ctx.fill();
     ctx.beginPath(); ctx.arc(k.fx, k.fy, 2.6, 0, Math.PI * 2);
     ctx.fillStyle = 'rgba(37,216,196,0.85)'; ctx.fill();
 
@@ -1043,17 +1052,24 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
       else { pos = samen(q.f - 1); helder = 0.75 * (1 - (q.f - 1) * 0.85); }
       if (helder <= 0.02) continue;
       var straal = q.f < 1 ? 1.5 : 2.3;
-      var pg = ctx.createRadialGradient(pos.x, pos.y, 0, pos.x, pos.y, straal * 4);
-      pg.addColorStop(0, 'rgba(120,180,255,' + helder + ')');
-      pg.addColorStop(1, 'rgba(37,216,196,0)');
-      ctx.beginPath(); ctx.arc(pos.x, pos.y, straal * 4, 0, Math.PI * 2);
-      ctx.fillStyle = pg; ctx.fill();
+      ctx.globalAlpha = helder * 0.22;
+      ctx.beginPath(); ctx.arc(pos.x, pos.y, straal * 3.4, 0, Math.PI * 2);
+      ctx.fillStyle = '#78B4FF'; ctx.fill();
+      ctx.globalAlpha = Math.min(helder + 0.2, 1);
       ctx.beginPath(); ctx.arc(pos.x, pos.y, straal, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(200,225,255,' + Math.min(helder + 0.2, 1) + ')'; ctx.fill();
+      ctx.fillStyle = '#C8E1FF'; ctx.fill();
+      ctx.globalAlpha = 1;
     }
   }
-  function lus(){ if (zichtbaar) teken(); loopId = requestAnimationFrame(lus); }
+  function lus(nu){
+    loopId = requestAnimationFrame(lus);
+    if (!zichtbaar) return;
+    if (nu - vorigeTijd < 32) return;   // ~30 beelden per seconde
+    vorigeTijd = nu;
+    teken();
+  }
 
+  if (innerWidth < 700){ doek.style.display = 'none'; return; }
   meet(); bouw();
   if (rust){ teken(); }
   else {
