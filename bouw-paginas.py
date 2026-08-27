@@ -32,6 +32,7 @@ MERK_SVG = """<svg viewBox="0 0 32 32" aria-hidden="true">
 NAV = [("websites.html", "Websites"),
        ("automatisering.html", "Automatisering"),
        ("ai-telefonist.html", "AI-telefonist"),
+       ("social-media.html", "Social media"),
        ("index.html#pakketten", "Pakketten"),
        ("index.html#over", "Over Glenn")]
 
@@ -80,6 +81,7 @@ VOET = f"""<footer>
           <li><a href="index.html#diensten">Adverteren — SEA</a></li>
           <li><a href="automatisering.html">Automatisering</a></li>
           <li><a href="ai-telefonist.html">AI-telefonist</a></li>
+          <li><a href="social-media.html">Social media</a></li>
           <li><a href="case-aronza.html">Klantcase: Aronza</a></li>
           <li><a href="ai-voor-uw-bedrijf.html">Gids: AI voor uw bedrijf</a></li>
         </ul>
@@ -206,6 +208,8 @@ VERDER = [
      "Facturen, orders en herinneringen zonder tussenkomst."),
     ("ai-telefonist.html", "Dienst", "AI-telefonist",
      "Neemt op wanneer u dat niet kunt: 's avonds, weekend, drukte."),
+    ("social-media.html", "Dienst", "Social media",
+     "Elke week zichtbaar, zonder dat het u tijd kost."),
     ("case-aronza.html", "Klantcase", "Aronza",
      "Vier tot zes uur administratie per week teruggebracht tot nul."),
     ("ai-voor-uw-bedrijf.html", "Gids", "AI voor uw bedrijf",
@@ -229,8 +233,8 @@ BRANCHE_VERDER = [
      "Aanvragen vastleggen tijdens het werk, offertes en facturen zonder avondwerk."),
     ("ai-telefonist.html", "Dienst", "AI-telefonist",
      "Het onderdeel dat in elke branche als eerste terugkomt."),
-    ("automatisering.html", "Dienst", "Automatisering",
-     "Facturen, orders en herinneringen zonder tussenkomst."),
+    ("social-media.html", "Dienst", "Social media",
+     "Wekelijks zichtbaar in uw branche, zonder eigen tijd."),
 ]
 
 

@@ -95,14 +95,14 @@ img{max-width:100%;display:block}
 .merk b{font-family:var(--f-kop);font-size:1.2rem;font-weight:700;letter-spacing:-.045em}
 .merk b span{background:var(--verloop);-webkit-background-clip:text;background-clip:text;
   -webkit-text-fill-color:transparent}
-.menu{display:flex;gap:2rem}
+.menu{display:flex;gap:1.55rem}
 .menu a{position:relative;text-decoration:none;font-size:.94rem;font-weight:500;
   color:var(--inkt-zacht);transition:color .22s ease;padding:.2rem 0}
 .menu a::after{content:"";position:absolute;left:0;bottom:-2px;height:1px;width:100%;
   background:var(--verloop);transform:scaleX(0);transform-origin:right;transition:transform .3s ease}
 .menu a:hover{color:var(--inkt)}
 .menu a:hover::after{transform:scaleX(1);transform-origin:left}
-@media(max-width:1020px){.menu{display:none}}
+@media(max-width:1100px){.menu{display:none}}
 @media(max-width:560px){.balk .knop{padding:.7rem 1.1rem;font-size:.9rem}}
 
 /* ── hero ──────────────────────────────────────── */

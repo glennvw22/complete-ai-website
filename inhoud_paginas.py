@@ -534,6 +534,7 @@ PAGINAS = [
           krijgtblok([
             ("Een website die klanten oplevert", "Live binnen \u00e9\u00e9n tot twee weken, snel op mobiel, gebouwd om gevonden te worden."),
             ("Gevonden worden in de buurt", "Google-bedrijfsprofiel volledig ingericht, lokale zoekwoorden, reviews die binnenkomen zonder dat u erom hoeft te vragen."),
+            ("Zichtbaar blijven, elke week", "Uw bedrijfsprofiel en social media wekelijks bijgehouden in uw huisstijl. Voor een lokaal bedrijf is dat precies wat u in het kaartje omhoog brengt. <a href=\"social-media.html\">Zo werkt dat</a>."),
             ("Advertenties die renderen", "Google Ads en Meta, gericht op de regio, met conversiemeting zodat zichtbaar is wat een aanvraag werkelijk kost."),
             ("Terugkerend werk dat vanzelf gaat", "Facturen, orderverwerking, herinneringen, voorraad en klantcontact. Vaak binnen enkele werkdagen operationeel."),
             ("Een telefoon die altijd wordt opgenomen", "Een AI-telefonist die in het Nederlands opneemt, vragen beantwoordt, afspraken inplant en urgente gesprekken doorschakelt."),
@@ -624,6 +625,14 @@ PAGINAS = [
             ("19:30 \u2014 review", "De klant van vanmiddag krijgt een verzoek om een beoordeling en laat er een achter."),
           ]), "voorbeelden"),
 
+   sectie("Zichtbaarheid", "Wat social media in een salon doet.",
+          "Product van de maand, de agenda van volgende week, een nieuwe medewerker, een tip over haar in de winter \u2014 en vooral beeld. <a href=\"social-media.html\">Zo werkt onze social-mediadienst</a>.",
+          voorbeeldblok([
+            ("Voor-en-na", "Een kleuring of coupe in beeld. Beeld is in deze branche het halve werk, en het ligt al op uw telefoon."),
+            ("Google-aanbiedingen", "Werken hier uitzonderlijk goed, omdat mensen een kapper letterlijk in de kaart zoeken."),
+            ("Een stilstaand profiel valt op", "Een salon waarvan de laatste post maanden oud is, wekt de indruk dat het er rustig is."),
+          ]), "zichtbaarheid"),
+
    sectie("Eerlijk", "Wat dit niet oplost.",
           "Er wordt in deze branche veel beloofd. Dit is waar wij niet aan meedoen.",
           eerlijkblok(
@@ -697,6 +706,14 @@ PAGINAS = [
             ("17:05 \u2014 factuur", "De factuur staat in de mailbox van de klant voordat de auto de straat uit is."),
           ]), "voorbeelden"),
 
+   sectie("Zichtbaarheid", "Wat social media bij een garage doet.",
+          "Een binnengekomen inruil, een afgeronde reparatie, en de seizoensberichten die in deze branche vanzelf spreken. <a href=\"social-media.html\">Zo werkt onze social-mediadienst</a>.",
+          voorbeeldblok([
+            ("De klus die opviel", "Een inruil die net binnen is, of een reparatie waar iets bijzonders aan zat."),
+            ("Reviews zijn hier doorslaggevend", "Mensen kiezen een garage op vertrouwen, en dat vertrouwen bouwt zich op in de reviews \u00e9n in de reactie daarop."),
+            ("Seizoen en uitleg", "Banden wisselen bij de eerste vorst, de APK als herinneringsbericht, uitleg over waar die waarschuwingslamp voor staat."),
+          ]), "zichtbaarheid"),
+
    sectie("Eerlijk", "Wat dit niet oplost.",
           "Wat wij niet kunnen waarmaken, beloven wij niet.",
           eerlijkblok(
@@ -768,6 +785,14 @@ PAGINAS = [
             ("21:00 \u2014 herinnering voor morgen", "Alle gasten van morgen krijgen bericht. E\u00e9n zegt af; die tafel gaat opnieuw open."),
             ("23:30 \u2014 review", "De gasten van vanavond krijgen een verzoek om een beoordeling."),
           ]), "voorbeelden"),
+
+   sectie("Zichtbaarheid", "Wat social media in de horeca doet.",
+          "Hier is het Google-bedrijfsprofiel bijna belangrijker dan de website. <a href=\"social-media.html\">Zo werkt onze social-mediadienst</a>.",
+          voorbeeldblok([
+            ("Het gerecht van vandaag", "De wisseling van de kaart, een volle zaak op vrijdagavond, een evenement dat eraan komt."),
+            ("Mensen beslissen in de kaart", "Ze zoeken, kijken naar de foto\u2019s en de laatste berichten, en kiezen daar. Niet op uw website."),
+            ("Foto\u2019s van vorig jaar kosten gasten", "Letterlijk. Gewijzigde openingstijden horen er om dezelfde reden meteen op te staan."),
+          ]), "zichtbaarheid"),
 
    sectie("Eerlijk", "Wat dit niet oplost.",
           "Wat wij niet kunnen onderbouwen, beloven wij niet.",
@@ -842,6 +867,14 @@ PAGINAS = [
             ("Vrijdag \u2014 openstaande posten", "Twee klanten hebben nog niet betaald. Beiden krijgen automatisch een herinnering."),
           ]), "voorbeelden"),
 
+   sectie("Zichtbaarheid", "Wat social media bij een vakbedrijf doet.",
+          "In deze branche is de klus in beeld niet een onderdeel van de dienst \u2014 het \u00eds de dienst. <a href=\"social-media.html\">Zo werkt onze social-mediadienst</a>.",
+          voorbeeldblok([
+            ("Voor, tijdens, na", "Het overtuigendste bewijs dat er bestaat, en u maakt die foto\u2019s toch al."),
+            ("De vraag die iedereen stelt", "Over vergunningen, subsidies of doorlooptijd \u2014 precies wat mensen in Google intypen."),
+            ("Het beste materiaal ligt ongebruikt", "Deze branche heeft doorgaans de mooiste beelden liggen en gebruikt ze het minst. \u00c9\u00e9n appje per week lost dat op."),
+          ]), "zichtbaarheid"),
+
    sectie("Eerlijk", "Wat dit niet oplost.",
           "Wat wij niet kunnen waarmaken, staat hier niet.",
           eerlijkblok(
@@ -851,6 +884,144 @@ PAGINAS = [
              "Het <strong>bepaalt geen prijzen</strong>. Een offerte gaat pas de deur uit nadat u ernaar gekeken heeft.",
              "Het <strong>haalt geen nieuwe opdrachten binnen</strong> uit zichzelf. Daar zijn vindbaarheid en advertenties voor.",
              "Bij <strong>spoed blijft u zelf aan de lijn</strong>. Dat is een bewuste keuze: een storing zonder warmte hoort niet bij een assistent te eindigen."]),
+          "eerlijk"),
+ ]),
+},
+
+
+# ───────────────────────────── SOCIAL MEDIA ─────────────────────────────
+{
+ "bestand": "social-media.html",
+ "dienst": "Social media",
+ "titel": "Social media uitbesteden — elke week zichtbaar, zonder dat het u tijd kost | Complete AI",
+ "beschrijving": "Uw Google-bedrijfsprofiel en social media wekelijks bijgehouden, in uw huisstijl. U stuurt af en toe een foto, wij doen de rest. Maandelijks opzegbaar.",
+ "omschrijving": "Social media en Google-bedrijfsprofiel wekelijks bijgehouden voor lokale bedrijven: berichten in uw huisstijl, reviews beantwoord, en een maandrapport over vindbaarheid in plaats van over likes.",
+ "ogen": "Social media",
+ "h1": 'Elke week zichtbaar, <span class="glans">zonder dat het u tijd kost</span>.',
+ "lead": "De meeste bedrijfsaccounts staan stil. Niet uit onwil, maar omdat er altijd iets urgenters is. Het gevolg is een profiel waarvan de laatste post maanden oud is, terwijl de concurrent twee straten verderop elke week iets plaatst en daardoor bovenaan staat wanneer iemand in de buurt zoekt. Complete AI neemt dat ritme over: uw Google-bedrijfsprofiel en uw social media, wekelijks bijgehouden, in uw huisstijl.",
+ "levertijd": "Eerste bericht binnen een week",
+ "uitkomsten": [
+     ("1 uur", "eenmalig \u2014 dat is alles wat wij van uw kant nodig hebben om te beginnen"),
+     ("5 min", "per maand om de kalender goed te keuren, en dat mag later vervallen"),
+     ("7/7", "er wordt geplaatst, ook in vakanties en drukke weken"),
+ ],
+ "slot_kop": "Hoe zichtbaar bent u nu eigenlijk?",
+ "slot_tekst": "In een half uur kijken we samen naar uw bedrijfsprofiel, uw bestaande accounts en wat de bedrijven om u heen doen. U krijgt een eerlijk beeld van waar u staat \u2014 ook wanneer de conclusie is dat u hier niets voor nodig heeft.",
+ "vragen": [
+   ("Ik heb geen tijd om foto\u2019s aan te leveren. Werkt het dan wel?",
+    "Ja, maar minder goed, en dat zeggen we liever vooraf. Zonder eigen beeldmateriaal maken wij berichten op basis van uw diensten, het seizoen en veelgestelde vragen; dat houdt uw profiel actueel, en daar komt het grootste deel van de vindbaarheid vandaan. E\u00e9n foto per week tilt het van correct naar overtuigend. Daarom is het versturen zo eenvoudig mogelijk gemaakt: een appje, verder niets."),
+   ("Moet ik mijn wachtwoorden afgeven?",
+    "Nee, en dat zouden wij ook niet willen. Wij krijgen toegang via de offici\u00eble beheeromgevingen van Google en Meta, waar u ons als beheerder toevoegt. Uw accounts blijven van u, wij kunnen alleen wat u ons toestaat, en u trekt die toegang in \u00e9\u00e9n handeling weer in."),
+   ("Wat als ik het niet eens ben met een bericht?",
+    "U ziet de kalender voordat er iets naar buiten gaat en geeft in diezelfde link aan wat er anders moet. Er gaat niets ongezien de deur uit, tenzij u zelf aangeeft dat die stap mag vervallen."),
+   ("Krijg ik hier meer klanten van?",
+    "Dat kunnen wij niet beloven, en niemand anders kan dat. Wat wij w\u00e9l kunnen: ervoor zorgen dat u elke week zichtbaar bent, dat uw bedrijfsprofiel actueel is, en dat u maandelijks ziet hoe vaak u in Google bent getoond, hoe vaak er vanaf uw profiel is gebeld en hoe vaak er een route naar u is aangevraagd. Dat zijn de cijfers waar het om gaat, en die staan in het rapport."),
+   ("Waarom leggen jullie zoveel nadruk op Google en niet op Instagram?",
+    "Omdat daar het verschil zit tussen zichtbaar zijn en vermaakt worden. Een bericht op Instagram bereikt vooral mensen die u al kennen. Uw Google-bedrijfsprofiel bereikt mensen die op dit moment zoeken naar wat u verkoopt. Wij doen allebei, maar het rapport gaat over het tweede."),
+   ("Wordt dit met kunstmatige intelligentie gemaakt?",
+    "Deels, en dat is precies waarom het haalbaar en vol te houden is. De opzet, de teksten en het opmaken van beeld gebeuren geautomatiseerd; de keuzes over wat er wordt verteld, over uw vak en uw klanten, komen uit het inrichtingsgesprek en uit wat u aanlevert. Wat er niet gebeurt: verzonnen klantverhalen, verzonnen reviews, of beelden van mensen en panden die niet bestaan."),
+   ("Kan ik ermee stoppen?",
+    "Maandelijks opzegbaar. De profielen, de merkkit en alles wat er geplaatst is, blijven van u."),
+ ],
+ "inhoud": "\n\n  <hr class=\"streep\">\n\n".join([
+   sectie("De situatie", "Het is zelden een gebrek aan wil. Het is een gebrek aan ritme.",
+          "Social media vraagt geen groot talent, maar wekelijkse aandacht \u2014 en dat is precies wat een ondernemer met een volle agenda niet structureel kan opbrengen.",
+          pijnblok([
+            ("Het account staat stil", "De laatste post is van maanden geleden. Dat leest als een bedrijf waar het rustig is."),
+            ("Vijf berichten in \u00e9\u00e9n week, daarna niets", "Zichtbaarheid komt van regelmaat, niet van vlagen."),
+            ("Het bedrijfsprofiel is nooit meer aangeraakt", "Terwijl Google juist daar op actualiteit let bij de vraag wie er in de buurtresultaten bovenaan komt."),
+            ("Er ligt genoeg materiaal, het komt er nooit uit", "De foto\u2019s van het mooiste werk staan op de telefoon en blijven daar."),
+          ]), "herkenbaar"),
+
+   sectie("De keuze erachter", "Likes zijn geen doel. Gevonden worden wel.",
+          "Dit is waar deze dienst op rust, en het is meteen het onderscheid met elk goedkoop postpakket. Wij doen allebei, maar wij zijn eerlijk over waar de opbrengst zit.",
+          voorbeeldblok([
+            ("Een bericht op Instagram", "Bereikt vooral mensen die u al volgen. Prettig voor het vertrouwen, maar het levert zelden iemand op die u nog niet kende."),
+            ("Een bericht op uw Google-bedrijfsprofiel", "Houdt uw profiel actueel. Google weegt die actualiteit mee bij de vraag wie er bovenaan komt wanneer iemand in de buurt zoekt naar wat u verkoopt."),
+            ("Waarom wij allebei doen", "De zichtbare buitenkant is wat u zelf elke dag ziet, en waar u het vertrouwen aan ontleent dat er iets gebeurt. Het maandrapport gaat over het andere: vindbaarheid."),
+          ]), "de-keuze"),
+
+   sectie("Wat u krijgt", "Het ritme wordt overgenomen, de accounts blijven van u.",
+          "U kiest wat u nodig heeft. Wat er al goed loopt, laten wij staan.",
+          krijgtblok([
+            ("Google-bedrijfsprofiel bijgehouden", "Wekelijks een update, aanbieding of foto. Dit is het onderdeel dat aantoonbaar met vindbaarheid te maken heeft."),
+            ("Berichten in uw huisstijl", "Uw kleuren, uw lettertype, uw manier van praten. Een profiel dat er als \u00e9\u00e9n geheel uitziet."),
+            ("Een WhatsApp-nummer voor uw foto\u2019s", "U stuurt een foto van een afgerond werk, wij maken er het bericht van. Meer hoeft u niet te doen."),
+            ("Vaste rubrieken in plaats van losse invallen", "Klus in beeld, de vraag van de week, seizoen, team, review. Zo blijft het gevarieerd en herkenbaar."),
+            ("Vooraf zichtbaar, achteraf verantwoord", "U ziet de maand vooruit en keurt hem in vijf minuten goed. Achteraf krijgt u een rapport."),
+            ("Reviews beantwoord", "Binnen \u00e9\u00e9n dag, ook de kritische. Juist daar kijken mensen naar."),
+            ("Uw accounts blijven van u", "Wij werken via de offici\u00eble beheeromgevingen. Geen wachtwoorden, en u trekt de toegang in \u00e9\u00e9n handeling weer in."),
+            ("Maandelijks opzegbaar", "Geen jaarcontract. Wat er staat, blijft van u."),
+          ]), "wat-u-krijgt"),
+
+   sectie("De voerlijn", "Het eenvoudigste onderdeel, en tegelijk het belangrijkste.",
+          "Zonder invoer van uw kant maakt elk systeem \u2014 hoe geavanceerd ook \u2014 inwisselbare praatjes. E\u00e9n foto per week is genoeg om dat te voorkomen. Daarom is het versturen zo eenvoudig mogelijk gemaakt.",
+          routeblok([
+            ("U stuurt een foto", "Een afgerond werk, een volle zaak, een nieuwe levering, een tevreden klant. Naar \u00e9\u00e9n WhatsApp-nummer. Geen tekst, geen uitleg, geen inlogscherm."),
+            ("Wij maken er het bericht van", "Bijsnijden, opknappen, tekst erbij, in uw huisstijl. Uw eigen beeld krijgt altijd voorrang boven gegenereerd beeld."),
+            ("Het staat op het juiste moment op de juiste kanalen", "Geplaatst op de tijden die in uw branche werken, zeven dagen per week. Mislukt een plaatsing, dan wordt hij opnieuw aangeboden en merkt u er niets van."),
+          ]), "voerlijn"),
+
+   sectie("De inhoud", "Berichten worden niet verzonnen, maar uit vaste rubrieken opgebouwd.",
+          "Dat voorkomt dat alles op elkaar gaat lijken, en het maakt de dienst maand na maand voorspelbaar. Welke rubrieken passen en in welke verhouding, verschilt per bedrijf: een garagebedrijf heeft een andere mix dan een kapsalon.",
+          voorbeeldblok([
+            ("Klus in beeld", "Een afgerond werk, een voor-en-na, een geleverd product. Het enige bewijs dat telt: wat u werkelijk doet."),
+            ("De vraag van de week", "E\u00e9n veelgestelde klantvraag, beantwoord. Vaak letterlijk wat iemand in Google intypt."),
+            ("Aanbieding of actie", "Een tijdelijk aanbod, ook los te plaatsen als Google-aanbieding. Directe aanleiding tot contact."),
+            ("Seizoen en agenda", "Weer, feestdagen, vakanties, lokale evenementen. Sluit aan bij waar mensen op dat moment mee bezig zijn."),
+            ("Team en achter de schermen", "Wie er werkt en hoe het eraan toegaat. Bij lokale bedrijven doorgaans het best gelezen type bericht."),
+            ("Review uitgelicht", "Een echte klantreactie, netjes vormgegeven. Sociale bewijskracht zonder zelf te hoeven opscheppen."),
+            ("Tip van de vakman", "Praktisch advies uit het vak. Positioneert u als degene die het weet."),
+            ("Mythe ontkracht", "Een hardnekkig misverstand uit uw branche rechtzetten. Levert doorgaans de meeste reacties op."),
+          ]), "rubrieken"),
+
+   sectie("Kanalen", "Waar het geplaatst wordt, en waarom.",
+          "Voor kanalen die hier niet staan geldt: vragen kan altijd, maar wij nemen niets op wat wij niet betrouwbaar kunnen leveren.",
+          voorbeeldblok([
+            ("Google-bedrijfsprofiel", "Updates, aanbiedingen, evenementen, foto\u2019s en reviewreacties. De kern van de dienst; hier zit de meetbare opbrengst."),
+            ("Instagram", "Afbeelding, carrousel, korte video en Story. Vereist een zakelijk account dat aan een Facebook-pagina gekoppeld is \u2014 dat regelen wij."),
+            ("Facebook-pagina", "Tekst, beeld, video en links. Voor veel branches nog altijd het kanaal waar de klanten daadwerkelijk zitten."),
+            ("LinkedIn-bedrijfspagina", "Berichten en documenten. Alleen zinvol wanneer u aan zakelijke klanten levert."),
+            ("TikTok", "Video, op verzoek en in overleg. Vraagt een aparte goedkeuringsprocedure en een ander soort inhoud."),
+            ("Pinterest", "Pins. Alleen bij interieur, bouw, horeca en mode; daarbuiten levert het te weinig op."),
+          ]), "kanalen"),
+
+   sectie("Vertrekpunten", "Drie niveaus waar dit meestal begint.",
+          "Net als bij de pakketten op de homepage: dit zijn vertrekpunten, geen menukaart. Het aantal kanalen, de frequentie en de hoeveelheid werk verschillen per bedrijf, en de samenstelling volgt uit de nulmeting.",
+          krijgtblok([
+            ("Zichtbaar blijven", "Voor de eenmanszaak die vooral gevonden wil worden. Google-bedrijfsprofiel wekelijks bijgehouden, \u00e9\u00e9n social kanaal met een paar berichten per week, de voerlijn via WhatsApp en een maandrapport over vindbaarheid. Past bij: hovenier, klusbedrijf, praktijk, adviseur."),
+            ("Zichtbaar zijn", "Voor het bedrijf met personeel dat er verzorgd op wil staan. Meerdere kanalen, hogere frequentie, korte video\u2019s per maand, reviews die beantwoord worden en een kwartaalgesprek. Past bij: kapsalon, garagebedrijf, restaurant, makelaar, praktijk."),
+            ("De eerste zijn in de regio", "Voor wie lokaal de bekendste wil worden. Dagelijkse aanwezigheid op alle kanalen, wekelijkse video, volledige profieloptimalisatie, reviewbeheer, en de koppeling naar advertenties zodat het beste bericht ook bij nieuwe mensen terechtkomt. Past bij: bedrijven met meerdere vestigingen of een lopend advertentiebudget."),
+          ]), "vertrekpunten"),
+
+   sectie("Werkwijze", "Van nulmeting tot een ritme dat vanzelf doorloopt.",
+          "Voorbereiding is niet nodig. Wat wij vragen is een half uur, en daarna \u00e9\u00e9n gesprek van ongeveer een uur.",
+          routeblok([
+            ("Nulmeting", "Een half uur waarin we kijken wat er nu staat: het bedrijfsprofiel, de bestaande accounts, en wat de concurrent in de buurt doet. Kosteloos en vrijblijvend. U hoort ook wanneer de winst ergens anders ligt."),
+            ("Inrichting", "\u00c9\u00e9n gesprek van ongeveer een uur over uw diensten, uw klanten, uw manier van praten en wat er absoluut niet gezegd mag worden. Daarna zetten wij de profielen op orde en maken wij de merkkit."),
+            ("Eerste maand", "U ontvangt de kalender van de eerste maand ter goedkeuring, plus het WhatsApp-nummer waar u foto\u2019s naartoe stuurt. Vanaf dat moment loopt het."),
+            ("Doorlopend", "Elke maand een kalender vooraf en een rapport achteraf, in gewone taal. Maandelijks opzegbaar."),
+          ]), "werkwijze"),
+
+   sectie("Uw aandeel", "Wat u zelf moet doen \u2014 en dat is werkelijk alles.",
+          "Dit is het bezwaar dat iedereen heeft, dus staat het er zwart op wit. Geen wachtwoorden afgeven, geen inlogschermen, geen software leren.",
+          voorbeeldblok([
+            ("Eenmalig ongeveer een uur", "Het inrichtingsgesprek. Daarna hoeft dat niet meer."),
+            ("Vijf minuten per maand", "De kalender goedkeuren. Merkt u na een paar maanden dat u toch altijd akkoord geeft, dan mag die stap vervallen."),
+            ("Af en toe een foto", "Naar \u00e9\u00e9n WhatsApp-nummer. Geen verplichting en geen minimum \u2014 hoe meer u stuurt, hoe persoonlijker het wordt."),
+          ]), "uw-aandeel"),
+
+   sectie("Eerlijk", "Wat u van ons niet krijgt.",
+          "Deze dienst gaat over zichtbaarheid, niet over cijfers die goed ogen. Daarom een aantal dingen die wij nadrukkelijk niet doen.",
+          eerlijkblok(
+            "Grenzen die wij vooraf benoemen",
+            "Wie iets van dit rijtje w\u00e9l belooft, kan het niet waarmaken:",
+            ["Wij <strong>kopen geen volgers</strong> en gebruiken geen kunstmatige interactie. Dat werkt averechts en het is tegen de regels van elk platform.",
+             "Wij <strong>beloven geen aantallen</strong>. Wat wij beloven is dat er elke week iets gebeurt en dat u maandelijks ziet wat dat oplevert.",
+             "Wij doen <strong>geen influencermarketing</strong> en geen samenwerkingen met bekende gezichten.",
+             "Wij <strong>verzinnen geen klantverhalen</strong>. Reviews die wij uitlichten zijn echte reviews; foto\u2019s van uw werk zijn foto\u2019s van uw werk.",
+             "Wij plaatsen <strong>geen fotorealistische beelden van mensen of panden die niet bestaan</strong>. Illustratief beeld is prima en wordt als zodanig ingezet; een niet-bestaande medewerker die voor echt doorgaat, is dat niet.",
+             "Wij nemen <strong>geen bestaand account over waar wij niet achter kunnen staan</strong>. Staat er iets op dat schadelijk is, dan zegt u dat voordat we beginnen \u2014 en anders wij."]),
           "eerlijk"),
  ]),
 },
