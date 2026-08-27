@@ -525,3 +525,18 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
   font-size:.93rem;font-weight:600;color:var(--blauw-hel);transition:gap .25s ease}
 .dienstlink svg{width:14px;height:14px;flex:none;transition:transform .25s ease}
 .dienst:hover .dienstlink svg{transform:translateX(3px)}
+
+/* ── voorbeeldlabel op de pakketkaarten ── */
+.voorbeeldmerk{font-family:var(--f-mono);font-size:.63rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--inkt-dim);display:block;margin-bottom:.3rem}
+
+/* ── wat er verder mogelijk is ── */
+.breedte{margin-top:2.6rem;padding:clamp(1.7rem,3.5vw,2.4rem);border-radius:18px;
+  background:transparent;border:1px solid var(--lijn-op)}
+.breedte h3{font-size:1.28rem;font-weight:600;margin-bottom:.8rem}
+.breedte > p{color:var(--inkt-zacht);font-size:.99rem;max-width:66ch}
+.breedte-raster{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:1.4rem;margin-top:1.8rem}
+.breedte-raster div{display:flex;flex-direction:column;gap:.45rem}
+.breedte-raster b{font-family:var(--f-kop);font-size:1.02rem;font-weight:600;letter-spacing:-.025em}
+.breedte-raster span{font-size:.93rem;color:var(--inkt-zacht);line-height:1.55}
