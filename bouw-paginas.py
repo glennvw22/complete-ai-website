@@ -61,11 +61,11 @@ def kop_html(actief):
     </a>
     <nav class="menu">{links}
     </nav>
-    <a class="knop knop-vol" href="index.html#contact">Plan een nulmeting</a>
+    <a class="knop knop-vol" href="index.html#contact">Plan een intake</a>
   </div>
   <div class="mobiel-waas" id="mobielwaas"></div>
   <div class="mobiel" id="mobielmenu">
-    <a class="knop knop-vol mm-actie" href="index.html#contact">Plan een gratis nulmeting</a>
+    <a class="knop knop-vol mm-actie" href="index.html#contact">Plan een gratis intake</a>
     <p class="mm-kop">Diensten</p>
     <ul class="mm-lijst">
       <li><a href="websites.html">Websites<span>Live in 1 tot 2 weken</span></a></li>
@@ -81,7 +81,7 @@ def kop_html(actief):
       <li><a href="ai-voor-garagebedrijven.html">Garagebedrijven<span>APK, planning en statusberichten</span></a></li>
       <li><a href="ai-voor-de-horeca.html">Horeca<span>Reserveringen, ook midden in de service</span></a></li>
       <li><a href="ai-voor-bouw-en-installatie.html">Bouw &amp; installatie<span>Aanvragen, offertes en facturen</span></a></li>
-      <li><a href="bergen-op-zoom.html">Bergen op Zoom &amp; regio<span>Hier komen wij langs voor de nulmeting</span></a></li>
+      <li><a href="bergen-op-zoom.html">Bergen op Zoom &amp; regio<span>Hier komen wij langs voor de intake</span></a></li>
     </ul>
     <p class="mm-kop">Meer</p>
     <ul class="mm-lijst">
@@ -133,7 +133,7 @@ VOET = f"""<footer>
         <p class="voetkop">Contact</p>
         <ul>
           <li><a href="mailto:glenn@complete-ai.nl">glenn@complete-ai.nl</a></li>
-          <li><a href="index.html#contact">Plan een nulmeting</a></li>
+          <li><a href="index.html#contact">Plan een intake</a></li>
           <li><a href="index.html#vragen">Veelgestelde vragen</a></li>
           <li><a href="privacy.html">Privacyverklaring</a></li>
         </ul>
@@ -250,7 +250,7 @@ VERDER = [
     ("index.html#diensten", "Homepage", "Alle diensten",
      "Ook vindbaarheid in Google en advertenties die renderen."),
     ("bergen-op-zoom.html", "Regio", "Bergen op Zoom",
-     "Gevestigd in West-Brabant; hier komen wij langs voor de nulmeting."),
+     "Gevestigd in West-Brabant; hier komen wij langs voor de intake."),
 ]
 
 # Branchepagina's wijzen naar elkaar en naar de twee diensten die daar
@@ -318,7 +318,7 @@ def bouw(p):
       <h1>{p['h1']}</h1>
       <p class="lead">{p['lead']}</p>
       <div class="kop-acties">
-        <a class="knop knop-vol" href="index.html#contact">Plan een gratis nulmeting {PIJL}</a>
+        <a class="knop knop-vol" href="index.html#contact">Plan een gratis intake {PIJL}</a>
         <span class="kop-tijd">{KLOK}{p['levertijd']}</span>
       </div>
       <div class="uitkomsten reveal">
@@ -339,7 +339,7 @@ def bouw(p):
       <div class="slotblok reveal">
         <h2>{p['slot_kop']}</h2>
         <p>{p['slot_tekst']}</p>
-        <a class="knop knop-vol" href="index.html#contact">Plan een gratis nulmeting {PIJL}</a>
+        <a class="knop knop-vol" href="index.html#contact">Plan een gratis intake {PIJL}</a>
       </div>
     </div>
   </section>

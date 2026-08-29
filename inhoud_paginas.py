@@ -75,7 +75,7 @@ PAGINAS = [
  "slot_tekst": "In een half uur nemen we door wat er nu staat, wie uw klanten zijn en waar het misloopt. U ontvangt een onderbouwd advies — ook wanneer de conclusie is dat de site voldoet en de winst elders ligt.",
  "vragen": [
    ("Moet ik van mijn huidige website af?",
-    "Niet per se. Regelmatig voldoet een bestaande site prima en ligt de winst elders: in vindbaarheid, of in het automatiseren van de administratie. Dat hoort u in de nulmeting, ook wanneer de conclusie is dat u niets bij Complete AI hoeft af te nemen."),
+    "Niet per se. Regelmatig voldoet een bestaande site prima en ligt de winst elders: in vindbaarheid, of in het automatiseren van de administratie. Dat hoort u in de intake, ook wanneer de conclusie is dat u niets bij Complete AI hoeft af te nemen."),
    ("Ik heb geen teksten en geen goede foto's. Is dat een probleem?",
     "Nee, dat is eerder regel dan uitzondering. De teksten schrijven wij op basis van één gesprek waarin we doorvragen op wat u doet en voor wie. Voor beeldmateriaal werken we met wat er is, aangevuld met professionele beelden; is fotografie nodig, dan hoort u dat vooraf."),
    ("Kan ik later zelf wijzigingen doorvoeren?",
@@ -111,7 +111,7 @@ PAGINAS = [
    sectie("Werkwijze", "Van eerste gesprek tot oplevering in vier stappen.",
           "Voorbereiding is niet nodig. Het enige wat wij vragen is een half uur en een open beeld van hoe het nu loopt.",
           routeblok([
-            ("Nulmeting", "Een half uur om vast te stellen wat er nu staat, wie de klanten zijn en waar het misloopt. Kosteloos en vrijblijvend."),
+            ("Intake", "Een half uur om vast te stellen wat er nu staat, wie de klanten zijn en waar het misloopt. Kosteloos en vrijblijvend."),
             ("Voorstel", "Binnen één werkdag op papier: wat we bouwen, wat het kost en wanneer het staat. Eén vaste prijs."),
             ("Bouwen", "Na enkele dagen ontvangt u een link om mee te kijken. Aanpassingen verwerken we gaandeweg, niet pas bij oplevering."),
             ("Oplevering", "Wij zetten de site live, koppelen domein en e-mail, en nemen alles met u door tot u ermee overweg kunt."),
@@ -191,22 +191,13 @@ PAGINAS = [
    sectie("Werkwijze", "We beginnen bij de drie processen die de meeste tijd kosten.",
           "Nooit alles tegelijk. Dat houdt de investering beheersbaar en maakt sneller zichtbaar of het rendeert.",
           routeblok([
-            ("Nulmeting", "Een half uur om vast te stellen waar de week in gaat zitten. Meestal zijn het drie taken die het grootste deel opeisen."),
+            ("Intake", "Een half uur om vast te stellen waar de week in gaat zitten. Meestal zijn het drie taken die het grootste deel opeisen."),
             ("Voorstel", "Welke onderdelen wij inzetten, wat het kost en wanneer het staat. Eén vaste prijs, geen nacalculatie."),
             ("Inrichten", "Wij richten de onderdelen in met uw gegevens, huisstijl en werkwijze. Dagen, geen maanden."),
             ("Nazorg", "De eerste weken kijken wij mee en sturen we bij. Daarna ziet u alleen nog het resultaat."),
           ]), "werkwijze"),
 
-   sectie("Grenzen", "Wat het nog niet doet.",
-          "Beter nu helder dan een teleurstelling achteraf.",
-          eerlijkblok(
-            "Drie onderdelen die een externe koppeling vereisen",
-            "Deze onderdelen zijn volledig gebouwd tot aan de laatste stap. Die laatste stap vereist een account bij een externe partij; dat regelen wij in fase twee en u hoort het vooraf:",
-            ["<strong>Daadwerkelijk versturen van e-mail en sms.</strong> Het bericht wordt volledig opgesteld en klaargezet; de verzending koppelen wij aan zodra de provider is ingericht.",
-             "<strong>Automatisch incasseren.</strong> Betaallinks werken; automatische incasso vraagt een koppeling met Mollie of Stripe.",
-             "<strong>Rechtstreekse koppeling met de boekhouding.</strong> Export naar Excel en pdf werkt vandaag; de directe koppeling met Moneybird of e-Boekhouden bouwen wij op aanvraag."]),
-          "eerlijk"),
- ]),
+]),
 },
 
 # ───────────────────────────── AI-TELEFONIST ─────────────────────────────
@@ -273,23 +264,13 @@ PAGINAS = [
    sectie("Werkwijze", "Van akkoord tot een werkende telefonist in twee weken.",
           "Het meeste werk zit in het correct vullen van wat hij moet weten. Daarvoor hebben wij enkele keren kort uw input nodig.",
           routeblok([
-            ("Nulmeting", "Wanneer gaat de telefoon, wat wordt er gevraagd, en wat mag hij zelfstandig afhandelen? Een half uur."),
+            ("Intake", "Wanneer gaat de telefoon, wat wordt er gevraagd, en wat mag hij zelfstandig afhandelen? Een half uur."),
             ("Inrichten", "Wij vullen hem met uw assortiment, levertijden en toon. U leest mee en corrigeert."),
             ("Proefdraaien", "Eerst naast de bestaande lijn, zodat u hoort hoe hij functioneert zonder risico."),
             ("Live en bijsturen", "Hij wordt geactiveerd buiten openingstijden en tijdens drukte. De eerste weken luisteren wij mee en scherpen we aan."),
           ]), "werkwijze"),
 
-   sectie("Grenzen", "Wat hij niet doet.",
-          "Een AI-telefonist die alles kan bestaat niet. Dit is waar de grens ligt.",
-          eerlijkblok(
-            "Vier zaken die hij bewust niet doet",
-            "Niet omdat het technisch onmogelijk is, maar omdat het in de praktijk misgaat of onverstandig is:",
-            ["<strong>Doen alsof hij een mens is.</strong> Hij meldt zich als digitale assistent. Verhullen werkt averechts zodra de beller het merkt.",
-             "<strong>Verzinnen wat hij niet weet.</strong> Bij twijfel volgt een terugbelnotitie, geen aanname.",
-             "<strong>Klachten en gevoelige gesprekken afhandelen.</strong> Die schakelt hij door. Een ontevreden klant hoort een mens te spreken.",
-             "<strong>Uitbellen voor koude acquisitie.</strong> Daar beginnen wij niet aan: de regelgeving is streng en de opbrengst beperkt."]),
-          "eerlijk"),
- ]),
+]),
 },
 
 # ───────────────────────── KLANTCASE: ARONZA ─────────────────────────
@@ -371,14 +352,11 @@ PAGINAS = [
           ]), "resultaat"),
 
    sectie("Verantwoording", "Waarom deze case op deze site staat.",
-          "Transparantie hoort hier bij, dus het staat er expliciet bij.",
-          eerlijkblok(
-            "Aronza is het eigen bedrijf van de oprichter",
-            "Dat is bewust vermeld en niet weggelaten. Er zitten drie kanten aan:",
-            ["<strong>Het is geen onafhankelijke referentie.</strong> Een case bij een externe klant weegt zwaarder, en die volgt zodra de eerste opdrachten zijn afgerond.",
-             "<strong>Het is wél een echte implementatie.</strong> Deze systemen draaien dagelijks in een bedrijf waar de gevolgen van een fout direct voelbaar zijn. Dat is een strengere test dan een demo-omgeving.",
-             "<strong>Het verklaart de doorlooptijd.</strong> Dat automatiseringen bij klanten binnen enkele werkdagen kunnen staan, komt doordat ze hier al gebouwd, getest en in productie genomen zijn. Complete AI verkoopt geen software die het zelf niet gebruikt."]),
-          "verantwoording"),
+          "Aronza is het e-commercebedrijf van de oprichter van Complete AI. Dat staat er bewust bij, en het werkt in uw voordeel.",
+          krijgtblok([
+            ("Een implementatie die echt draait", "Deze systemen draaien dagelijks in een bedrijf waar de gevolgen van een fout direct voelbaar zijn. Dat is een strengere test dan een demo-omgeving."),
+            ("Het verklaart de doorlooptijd", "Dat automatiseringen bij klanten binnen enkele werkdagen kunnen staan, komt doordat ze hier al gebouwd, getest en in productie genomen zijn. Complete AI verkoopt geen software die het zelf niet gebruikt."),
+          ]), "verantwoording"),
  ]),
 },
 
@@ -388,8 +366,8 @@ PAGINAS = [
  "soort": "case",
  "dienst": "AI voor uw bedrijf",
  "titel": "AI in uw bedrijf: wat kan het concreet? | Complete AI",
- "beschrijving": "Welke taken AI vandaag echt kan overnemen in een klein bedrijf, wat het oplevert, hoe lang het duurt en waar de grens ligt. Met cijfers uit een implementatie die sinds mei draait.",
- "omschrijving": "Praktische gids: welke bedrijfstaken AI vandaag kan overnemen bij een mkb-bedrijf, wat dat oplevert, hoe lang het duurt en wat er nog niet kan.",
+ "beschrijving": "Welke taken AI vandaag echt kan overnemen in een klein bedrijf, wat het oplevert en hoe lang het duurt. Met cijfers uit een implementatie die sinds mei draait.",
+ "omschrijving": "Praktische gids: welke bedrijfstaken AI vandaag kan overnemen bij een mkb-bedrijf, wat dat oplevert en hoe lang het duurt.",
  "ogen": "Gids",
  "h1": 'AI in uw bedrijf: <span class="glans">wat kan het concreet?</span>',
  "lead": "Het korte antwoord: AI neemt vandaag vooral terugkerend administratief werk over — facturen opstellen en opvolgen, kosten registreren, orders verwerken, afspraken bevestigen, de telefoon aannemen buiten kantooruren. Bij een klein bedrijf gaat het al snel om vier tot zes uur per week. Wat AI in 2026 níet betrouwbaar doet, staat verderop op deze pagina.",
@@ -407,11 +385,11 @@ PAGINAS = [
    ("Hoe kan ik AI in mijn bedrijf implementeren?",
     "In fasen, te beginnen bij één proces. Breng eerst in kaart waar uw tijd naartoe gaat — meestal blijken drie taken het grootste deel op te eisen. Automatiseer daar één van, laat hem een paar weken draaien en meet of het klopt. Pas daarna de volgende. Een grote gelijktijdige invoering mislukt vaker en is duurder te herstellen."),
    ("Welke AI-toepassingen zijn er voor bedrijven?",
-    "Voor mkb-bedrijven zijn dit de toepassingen die vandaag daadwerkelijk werken: automatische facturatie en betaalherinneringen, kosten- en btw-registratie, orderintake uit telefoon, e-mail en WhatsApp in één lijst, voorraadbeheer dat meebeweegt, afspraakherinneringen, automatisch om reviews vragen, en een AI-telefonist die buiten openingstijden opneemt. Toepassingen die veel worden genoemd maar in de praktijk nog tegenvallen, staan op deze pagina onder 'Waar de grens ligt'."),
+    "Voor mkb-bedrijven zijn dit de toepassingen die vandaag daadwerkelijk werken: automatische facturatie en betaalherinneringen, kosten- en btw-registratie, orderintake uit telefoon, e-mail en WhatsApp in één lijst, voorraadbeheer dat meebeweegt, afspraakherinneringen, automatisch om reviews vragen, en een AI-telefonist die buiten openingstijden opneemt. Welke daarvan bij u het meeste oplevert, hangt af van waar nu de meeste tijd in gaat zitten."),
    ("Hoe kan ik mijn boekhouding automatiseren?",
     "Niet in één keer, maar in drie stappen. Eerst de facturatie: facturen automatisch opstellen op basis van de order en openstaande posten automatisch opvolgen. Daarna de kosten: uitgaven bij binnenkomst registreren en categoriseren, zodat de btw-aangifte geen inhaalslag meer is. Als laatste de koppeling met uw boekhoudpakket. Stap één en twee leveren het grootste deel van de tijdwinst op."),
    ("Wat kost het om dit te laten bouwen?",
-    "Dat hangt volledig af van welke processen u wilt automatiseren en hoe uw bedrijf werkt. Een standaardprijs zou voor het ene bedrijf te hoog en voor het andere te laag uitvallen. Na een nulmeting van een half uur ligt er één vaste prijs op papier: eenmalig voor de bouw en een vast maandbedrag voor onderhoud."),
+    "Dat hangt volledig af van welke processen u wilt automatiseren en hoe uw bedrijf werkt. Een standaardprijs zou voor het ene bedrijf te hoog en voor het andere te laag uitvallen. Na een intake van een half uur ligt er één vaste prijs op papier: eenmalig voor de bouw en een vast maandbedrag voor onderhoud."),
    ("Is AI gratis te gebruiken?",
     "Losse hulpmiddelen zoals ChatGPT hebben gratis varianten, en daar kunt u prima teksten mee schrijven of vragen mee uitzoeken. Wat niet gratis is, is het koppelen daarvan aan uw eigen systemen zodat het werk daadwerkelijk zonder tussenkomst verloopt. Dat vraagt inrichting, onderhoud en toezicht — en dat is precies waar het verschil zit tussen een handig hulpmiddel en werk dat u niet meer hoeft te doen."),
  ],
@@ -454,18 +432,7 @@ PAGINAS = [
       <p class="prijsnoot reveal">Dit is de implementatie bij Aronza, het e-commercebedrijf van de oprichter van Complete AI. Sinds de ingebruikname begin mei 2026 heeft de opzet geen enkele keer gefaald. Dat het een eigen bedrijf is, staat er bewust bij — <a href="case-aronza.html">de volledige case leest u hier</a>.</p>""",
           "wat-het-oplevert"),
 
-   sectie("Waar de grens ligt", "Wat AI in 2026 nog niet betrouwbaar doet.",
-          "Dit deel ontbreekt op vrijwel elke andere pagina over dit onderwerp, en het is juist het deel waar u iets aan heeft.",
-          eerlijkblok(
-            "Vier dingen die vaker beloofd dan waargemaakt worden",
-            "Niet omdat de techniek niet bestaat, maar omdat het in de dagelijkse praktijk van een klein bedrijf misgaat:",
-            ["<strong>Beslissingen nemen die geld of klanten raken.</strong> AI kan uitstekend voorbereiden en signaleren, maar de beoordeling of een korting verstandig is of een klant een uitzondering verdient, blijft mensenwerk.",
-             "<strong>Klachten en gevoelige gesprekken afhandelen.</strong> Technisch mogelijk, in de praktijk onverstandig. Een ontevreden klant hoort een mens te spreken.",
-             "<strong>Werken met rommelige brondata.</strong> Automatisering versterkt wat er al is. Staan uw gegevens verspreid over losse lijstjes, dan is opruimen de eerste stap — en dat is handwerk.",
-             "<strong>Zichzelf inrichten.</strong> De onderdelen bestaan, maar iemand moet ze aan uw manier van werken koppelen en de eerste weken meekijken. Dat kost tijd, en wie anders beweert, verkoopt u iets."]),
-          "grenzen"),
-
-   sectie("Zo begint u", "Drie stappen, en waarom juist die volgorde.",
+sectie("Zo begint u", "Drie stappen, en waarom juist die volgorde.",
           "De volgorde is belangrijker dan de techniek. Wie met het grootste project begint, ziet het langst niets gebeuren.",
           routeblok([
             ("Meet waar de tijd heen gaat", "Houd één week bij wat u aan terugkerend werk doet. Vrijwel altijd blijken drie taken het grootste deel op te eisen. Zonder deze stap automatiseert u het verkeerde."),
@@ -488,17 +455,17 @@ PAGINAS = [
  "lead": "Complete AI is gevestigd in Bergen op Zoom. Dat betekent geen callcenter in een andere provincie en geen accountmanager die u doorverbindt: u spreekt de persoon die het werk doet, en in deze regio kan dat gewoon aan tafel. Het werk zelf — de website, de vindbaarheid, de automatisering — gebeurt vervolgens op afstand, want daar is fysieke aanwezigheid niet voor nodig.",
  "levertijd": "Kennismaking in de regio op locatie",
  "uitkomsten": [
-     ("0 km", "afstand tot Bergen op Zoom — de nulmeting kan bij u op de zaak"),
+     ("0 km", "afstand tot Bergen op Zoom — de intake kan bij u op de zaak"),
      ("1\u20132 wk", "van akkoord tot een werkende website, ook voor bedrijven hier"),
      ("24/7", "telefonische bereikbaarheid, zonder dat er iemand bij hoeft te zitten"),
  ],
  "slot_kop": "Een half uur, hier in de regio.",
- "slot_tekst": "Zit u in Bergen op Zoom of daaromheen, dan komen wij langs voor de nulmeting. Een half uur, kosteloos, en u weet daarna waar in uw bedrijf de meeste tijd en omzet verloren gaan \u2014 ook wanneer de conclusie is dat u niets hoeft af te nemen.",
+ "slot_tekst": "Zit u in Bergen op Zoom of daaromheen, dan komen wij langs voor de intake. Een half uur, kosteloos, en u weet daarna waar in uw bedrijf de meeste tijd en omzet verloren gaan \u2014 ook wanneer de conclusie is dat u niets hoeft af te nemen.",
  "vragen": [
    ("Werkt Complete AI alleen in Bergen op Zoom?",
     "Nee. De vestiging staat in Bergen op Zoom, maar het werk gebeurt voor ondernemers in heel Nederland en Belgi\u00eb. Het verschil zit in de kennismaking: in West-Brabant komen wij langs, daarbuiten gaat het eerste gesprek via de telefoon of videobellen. Op het resultaat maakt dat geen verschil."),
    ("Wat kost het om langs te komen?",
-    "Niets. De nulmeting is kosteloos en vrijblijvend, of die nu bij u op de zaak plaatsvindt of via videobellen. U betaalt pas iets als u akkoord gaat met een voorstel, en dat voorstel bevat \u00e9\u00e9n vaste prijs."),
+    "Niets. De intake is kosteloos en vrijblijvend, of die nu bij u op de zaak plaatsvindt of via videobellen. U betaalt pas iets als u akkoord gaat met een voorstel, en dat voorstel bevat \u00e9\u00e9n vaste prijs."),
    ("Ik zit in Roosendaal of Steenbergen. Is dat ook regio?",
     "Ja. Roosendaal, Steenbergen, Halsteren, Woensdrecht, Hoogerheide, Tholen, Oud-Gastel, Rucphen, Etten-Leur en Breda vallen allemaal binnen het gebied waar wij zonder meer langskomen."),
    ("Waarom zou ik voor een lokale partij kiezen?",
@@ -517,7 +484,7 @@ PAGINAS = [
           ]), "herkenbaar"),
 
    sectie("Werkgebied", "Waar wij zonder meer langskomen.",
-          "Binnen dit gebied vindt de nulmeting plaats waar u wilt: bij u op de zaak, of via videobellen als dat sneller uitkomt.",
+          "Binnen dit gebied vindt de intake plaats waar u wilt: bij u op de zaak, of via videobellen als dat sneller uitkomt.",
           plaatsenblok([
             ("Bergen op Zoom", "Vestigingsplaats. Halsteren en Lepelstraat vallen hieronder."),
             ("Roosendaal", "Inclusief Nispen, Wouw en Heerle."),
@@ -544,24 +511,13 @@ PAGINAS = [
    sectie("Werkwijze", "Van kennismaking tot werkend systeem.",
           "Voorbereiding is niet nodig. Het enige wat wij vragen is een half uur en een eerlijk beeld van hoe het nu loopt.",
           routeblok([
-            ("Nulmeting op locatie", "Een half uur bij u op de zaak. Wij kijken mee met hoe het werk nu loopt en waar de tijd verdwijnt. Kosteloos."),
+            ("Intake op locatie", "Een half uur bij u op de zaak. Wij kijken mee met hoe het werk nu loopt en waar de tijd verdwijnt. Kosteloos."),
             ("Voorstel", "Binnen \u00e9\u00e9n werkdag op papier: wat we inrichten, wat het kost en wanneer het staat. \u00c9\u00e9n vaste prijs, geen nacalculatie."),
             ("Inrichten", "We beginnen bij de snelste winst. Een website staat in \u00e9\u00e9n tot twee weken, automatiseringen vaak binnen enkele werkdagen."),
             ("Bijsturen", "Alles gaat live, wordt met u doorgenomen, en daarna beoordelen we maandelijks de cijfers en sturen we bij."),
           ]), "werkwijze"),
 
-   sectie("Eerlijk", "Wat lokaal zijn w\u00e9l en niet betekent.",
-          "Er wordt in deze branche veel geleund op nabijheid. Dat is maar tot op zekere hoogte terecht.",
-          eerlijkblok(
-            "Waar de grens ligt",
-            "Nabijheid is prettig, maar het is geen kwaliteitskeurmerk. Wat wij er w\u00e9l aan verbinden:",
-            ["Het <strong>eerste gesprek</strong> voeren wij hier aan tafel, niet via een formulier of een callcenter.",
-             "U spreekt <strong>altijd dezelfde persoon</strong> \u2014 degene die het werk ook uitvoert.",
-             "Het <strong>bouwen en bijsturen</strong> gebeurt op afstand. Dat is geen tekortkoming; er is simpelweg niets aan een website of automatisering dat fysieke aanwezigheid vereist.",
-             "Wij zijn <strong>niet goedkoper omdat we dichtbij zitten</strong>. De prijs volgt uit wat er gebouwd wordt, niet uit de reisafstand.",
-             "Zit u <strong>buiten de regio</strong>, dan verandert er aan het resultaat niets \u2014 alleen aan de vorm van het eerste gesprek."]),
-          "eerlijk"),
- ]),
+]),
 },
 
 
@@ -590,7 +546,7 @@ PAGINAS = [
    ("Wat gebeurt er als iemand iets vraagt wat hij niet weet?",
     "Dan schakelt hij door of noteert hij een terugbelverzoek, inclusief volledig transcript van het gesprek. U bepaalt vooraf welke onderwerpen doorgeschakeld moeten worden en welke hij zelf mag afhandelen."),
    ("Wij werken al met een afsprakensysteem. Kan dat blijven?",
-    "In de meeste gevallen wel. Werkt u met een gangbaar salonsysteem, dan koppelen wij daaraan zodat afspraken op \u00e9\u00e9n plek blijven staan. Is koppelen niet mogelijk, dan hoort u dat in de nulmeting \u2014 v\u00f3\u00f3rdat u iets afneemt."),
+    "Ja. Werkt u met een gangbaar salonsysteem, dan koppelen wij daaraan zodat alle afspraken op \u00e9\u00e9n plek blijven staan. Welke koppeling bij uw systeem past, bepalen we in de intake."),
    ("Helpt dit werkelijk tegen no-shows?",
     "Een herinnering vooraf is de enige maatregel waarvan het effect breed erkend wordt, en het kost u niets om hem te versturen omdat het automatisch gaat. Wij beloven geen percentage \u2014 dat verschilt per salon en per klantenkring \u2014 maar het aantal vergeten afspraken loopt aantoonbaar terug."),
    ("Hoe snel staat dit?",
@@ -633,17 +589,7 @@ PAGINAS = [
             ("Een stilstaand profiel valt op", "Een salon waarvan de laatste post maanden oud is, wekt de indruk dat het er rustig is."),
           ]), "zichtbaarheid"),
 
-   sectie("Eerlijk", "Wat dit niet oplost.",
-          "Er wordt in deze branche veel beloofd. Dit is waar wij niet aan meedoen.",
-          eerlijkblok(
-            "Grenzen die wij vooraf benoemen",
-            "Automatisering neemt handelingen over, geen vakmanschap:",
-            ["Het <strong>knipt niet</strong>. Alles wat met handen gebeurt, blijft uw werk.",
-             "Het <strong>maakt geen nieuwe klanten</strong> uit het niets. Het zorgt dat de klanten die u al bereikt niet verloren gaan \u2014 daarvoor zijn vindbaarheid en advertenties het aangewezen middel.",
-             "Een AI-telefonist <strong>vervangt geen medewerker</strong> die ook klanten wast en de zaak opruimt. Hij neemt precies \u00e9\u00e9n taak over: het gesprek.",
-             "Wij <strong>beloven geen percentage minder no-shows</strong>. Dat hangt af van uw klantenkring, en cijfers die wij niet kunnen onderbouwen noemen wij niet."]),
-          "eerlijk"),
- ]),
+]),
 },
 
 # ──────────────────────── GARAGEBEDRIJVEN ────────────────────────
@@ -714,17 +660,7 @@ PAGINAS = [
             ("Seizoen en uitleg", "Banden wisselen bij de eerste vorst, de APK als herinneringsbericht, uitleg over waar die waarschuwingslamp voor staat."),
           ]), "zichtbaarheid"),
 
-   sectie("Eerlijk", "Wat dit niet oplost.",
-          "Wat wij niet kunnen waarmaken, beloven wij niet.",
-          eerlijkblok(
-            "Grenzen die wij vooraf benoemen",
-            "Dit neemt handelingen over, geen vakwerk:",
-            ["Het <strong>sleutelt niet</strong>. Alles in de werkplaats blijft mensenwerk.",
-             "Het <strong>stelt geen diagnose</strong> en geeft geen technisch advies aan de telefoon. Daarvoor wordt doorgeschakeld.",
-             "Het <strong>trekt geen nieuwe klanten binnen</strong> uit zichzelf. Daar zijn vindbaarheid en advertenties voor; dit zorgt dat de klanten die u al heeft niet weglopen.",
-             "Wij <strong>vervangen uw garagepakket niet</strong>. Waar koppelen kan doen we dat, en waar het niet kan hoort u dat vooraf."]),
-          "eerlijk"),
- ]),
+]),
 },
 
 # ─────────────────────────────── HORECA ───────────────────────────────
@@ -754,7 +690,7 @@ PAGINAS = [
    ("Wat als de zaak volgeboekt is?",
     "Dan meldt hij dat, biedt een ander tijdstip of een andere dag aan en legt desgewenst een wachtlijstverzoek vast. Wat hij wel en niet mag toezeggen bepaalt u vooraf."),
    ("Helpt dit tegen no-shows?",
-    "Een bevestiging en een herinnering met een annuleerknop is het enige middel dat structureel werkt: mensen die niet komen, laten het dan wél weten, en die tafel is opnieuw te vergeven. Een getal beloven wij niet \u2014 dat verschilt per zaak."),
+    "Ja. Een bevestiging en een herinnering met een annuleerknop is het middel dat structureel werkt: wie niet komt, laat het dan wél weten, en die tafel is opnieuw te vergeven. Hoeveel dat in uw zaak scheelt, ziet u terug in uw eigen cijfers."),
    ("Hoe snel staat dit?",
     "Online reserveren, bevestigingen en herinneringen zijn doorgaans binnen enkele werkdagen operationeel. De AI-telefonist staat binnen twee weken."),
  ],
@@ -794,17 +730,7 @@ PAGINAS = [
             ("Foto\u2019s van vorig jaar kosten gasten", "Letterlijk. Gewijzigde openingstijden horen er om dezelfde reden meteen op te staan."),
           ]), "zichtbaarheid"),
 
-   sectie("Eerlijk", "Wat dit niet oplost.",
-          "Wat wij niet kunnen onderbouwen, beloven wij niet.",
-          eerlijkblok(
-            "Grenzen die wij vooraf benoemen",
-            "Automatisering vangt de drukte op, maar maakt de zaak niet:",
-            ["Het <strong>kookt niet en bedient niet</strong>. Alles in de zaak blijft mensenwerk.",
-             "Het <strong>vult geen lege avonden</strong> uit zichzelf. Daar zijn vindbaarheid en advertenties voor.",
-             "Een AI-telefonist <strong>voert geen gesprek over allergie\u00ebn of dieetwensen</strong> waarvan de gevolgen ernstig kunnen zijn; dat schakelt hij door.",
-             "Wij <strong>noemen geen percentage minder no-shows</strong>. Dat verschilt per zaak en per publiek."]),
-          "eerlijk"),
- ]),
+]),
 },
 
 # ────────────────────── BOUW EN INSTALLATIE ──────────────────────
@@ -832,7 +758,7 @@ PAGINAS = [
    ("Schrijft het de offerte zelf?",
     "Niet zelfstandig, en dat zou ook niet verstandig zijn: u bepaalt de prijs. Wat het wel doet, is de aanvraag volledig uitvragen en een concept klaarzetten met de gegevens, het werk en uw standaardposten. U kijkt na, past aan en verstuurt. Dat scheelt het grootste deel van het avondwerk."),
    ("Wij werken met een boekhoudpakket. Blijft dat?",
-    "Ja. Wij vervangen uw boekhouding niet, wij zorgen dat er niets met de hand ingevoerd hoeft te worden. Waar een koppeling mogelijk is leggen we die; waar dat niet kan, hoort u dat in de nulmeting."),
+    "Ja. Wij vervangen uw boekhouding niet, wij zorgen dat er niets met de hand ingevoerd hoeft te worden. Waar een koppeling mogelijk is leggen we die; waar dat niet kan, hoort u dat in de intake."),
    ("Hoe zit het met urenregistratie?",
     "Uren worden per project vastgelegd, met een eenvoudige handeling vanaf de telefoon. Aan het eind van het werk staan ze klaar voor de factuur, zodat er niets meer teruggezocht hoeft te worden."),
    ("Hoe snel staat dit?",
@@ -875,17 +801,7 @@ PAGINAS = [
             ("Het beste materiaal ligt ongebruikt", "Deze branche heeft doorgaans de mooiste beelden liggen en gebruikt ze het minst. \u00c9\u00e9n appje per week lost dat op."),
           ]), "zichtbaarheid"),
 
-   sectie("Eerlijk", "Wat dit niet oplost.",
-          "Wat wij niet kunnen waarmaken, staat hier niet.",
-          eerlijkblok(
-            "Grenzen die wij vooraf benoemen",
-            "Dit neemt de papieren kant over, niet het vak:",
-            ["Het <strong>legt geen leiding en zet geen ketel</strong>. Het werk op locatie blijft volledig het uwe.",
-             "Het <strong>bepaalt geen prijzen</strong>. Een offerte gaat pas de deur uit nadat u ernaar gekeken heeft.",
-             "Het <strong>haalt geen nieuwe opdrachten binnen</strong> uit zichzelf. Daar zijn vindbaarheid en advertenties voor.",
-             "Bij <strong>spoed blijft u zelf aan de lijn</strong>. Dat is een bewuste keuze: een storing zonder warmte hoort niet bij een assistent te eindigen."]),
-          "eerlijk"),
- ]),
+]),
 },
 
 
@@ -915,7 +831,7 @@ PAGINAS = [
    ("Wat als ik het niet eens ben met een bericht?",
     "U ziet de kalender voordat er iets naar buiten gaat en geeft in diezelfde link aan wat er anders moet. Er gaat niets ongezien de deur uit, tenzij u zelf aangeeft dat die stap mag vervallen."),
    ("Krijg ik hier meer klanten van?",
-    "Dat kunnen wij niet beloven, en niemand anders kan dat. Wat wij w\u00e9l kunnen: ervoor zorgen dat u elke week zichtbaar bent, dat uw bedrijfsprofiel actueel is, en dat u maandelijks ziet hoe vaak u in Google bent getoond, hoe vaak er vanaf uw profiel is gebeld en hoe vaak er een route naar u is aangevraagd. Dat zijn de cijfers waar het om gaat, en die staan in het rapport."),
+    "Wij sturen op zichtbaarheid, en dat is precies wat u maandelijks terugziet: hoe vaak u in Google bent getoond, op welke zoekopdrachten, hoe vaak er vanaf uw profiel is gebeld en hoe vaak er een route naar u is aangevraagd. Dat zijn de cijfers die tot klanten leiden, en die staan in het rapport."),
    ("Waarom leggen jullie zoveel nadruk op Google en niet op Instagram?",
     "Omdat daar het verschil zit tussen zichtbaar zijn en vermaakt worden. Een bericht op Instagram bereikt vooral mensen die u al kennen. Uw Google-bedrijfsprofiel bereikt mensen die op dit moment zoeken naar wat u verkoopt. Wij doen allebei, maar het rapport gaat over het tweede."),
    ("Wordt dit met kunstmatige intelligentie gemaakt?",
@@ -987,17 +903,17 @@ PAGINAS = [
           ]), "kanalen"),
 
    sectie("Vertrekpunten", "Drie niveaus waar dit meestal begint.",
-          "Net als bij de pakketten op de homepage: dit zijn vertrekpunten, geen menukaart. Het aantal kanalen, de frequentie en de hoeveelheid werk verschillen per bedrijf, en de samenstelling volgt uit de nulmeting.",
+          "Net als bij de pakketten op de homepage: dit zijn vertrekpunten, geen menukaart. Het aantal kanalen, de frequentie en de hoeveelheid werk verschillen per bedrijf, en de samenstelling volgt uit de intake.",
           krijgtblok([
             ("Zichtbaar blijven", "Voor de eenmanszaak die vooral gevonden wil worden. Google-bedrijfsprofiel wekelijks bijgehouden, \u00e9\u00e9n social kanaal met een paar berichten per week, de voerlijn via WhatsApp en een maandrapport over vindbaarheid. Past bij: hovenier, klusbedrijf, praktijk, adviseur."),
             ("Zichtbaar zijn", "Voor het bedrijf met personeel dat er verzorgd op wil staan. Meerdere kanalen, hogere frequentie, korte video\u2019s per maand, reviews die beantwoord worden en een kwartaalgesprek. Past bij: kapsalon, garagebedrijf, restaurant, makelaar, praktijk."),
             ("De eerste zijn in de regio", "Voor wie lokaal de bekendste wil worden. Dagelijkse aanwezigheid op alle kanalen, wekelijkse video, volledige profieloptimalisatie, reviewbeheer, en de koppeling naar advertenties zodat het beste bericht ook bij nieuwe mensen terechtkomt. Past bij: bedrijven met meerdere vestigingen of een lopend advertentiebudget."),
           ]), "vertrekpunten"),
 
-   sectie("Werkwijze", "Van nulmeting tot een ritme dat vanzelf doorloopt.",
+   sectie("Werkwijze", "Van intake tot een ritme dat vanzelf doorloopt.",
           "Voorbereiding is niet nodig. Wat wij vragen is een half uur, en daarna \u00e9\u00e9n gesprek van ongeveer een uur.",
           routeblok([
-            ("Nulmeting", "Een half uur waarin we kijken wat er nu staat: het bedrijfsprofiel, de bestaande accounts, en wat de concurrent in de buurt doet. Kosteloos en vrijblijvend. U hoort ook wanneer de winst ergens anders ligt."),
+            ("Intake", "Een half uur waarin we kijken wat er nu staat: het bedrijfsprofiel, de bestaande accounts, en wat de concurrent in de buurt doet. Kosteloos en vrijblijvend. U hoort ook wanneer de winst ergens anders ligt."),
             ("Inrichting", "\u00c9\u00e9n gesprek van ongeveer een uur over uw diensten, uw klanten, uw manier van praten en wat er absoluut niet gezegd mag worden. Daarna zetten wij de profielen op orde en maken wij de merkkit."),
             ("Eerste maand", "U ontvangt de kalender van de eerste maand ter goedkeuring, plus het WhatsApp-nummer waar u foto\u2019s naartoe stuurt. Vanaf dat moment loopt het."),
             ("Doorlopend", "Elke maand een kalender vooraf en een rapport achteraf, in gewone taal. Maandelijks opzegbaar."),
@@ -1011,19 +927,7 @@ PAGINAS = [
             ("Af en toe een foto", "Naar \u00e9\u00e9n WhatsApp-nummer. Geen verplichting en geen minimum \u2014 hoe meer u stuurt, hoe persoonlijker het wordt."),
           ]), "uw-aandeel"),
 
-   sectie("Eerlijk", "Wat u van ons niet krijgt.",
-          "Deze dienst gaat over zichtbaarheid, niet over cijfers die goed ogen. Daarom een aantal dingen die wij nadrukkelijk niet doen.",
-          eerlijkblok(
-            "Grenzen die wij vooraf benoemen",
-            "Wie iets van dit rijtje w\u00e9l belooft, kan het niet waarmaken:",
-            ["Wij <strong>kopen geen volgers</strong> en gebruiken geen kunstmatige interactie. Dat werkt averechts en het is tegen de regels van elk platform.",
-             "Wij <strong>beloven geen aantallen</strong>. Wat wij beloven is dat er elke week iets gebeurt en dat u maandelijks ziet wat dat oplevert.",
-             "Wij doen <strong>geen influencermarketing</strong> en geen samenwerkingen met bekende gezichten.",
-             "Wij <strong>verzinnen geen klantverhalen</strong>. Reviews die wij uitlichten zijn echte reviews; foto\u2019s van uw werk zijn foto\u2019s van uw werk.",
-             "Wij plaatsen <strong>geen fotorealistische beelden van mensen of panden die niet bestaan</strong>. Illustratief beeld is prima en wordt als zodanig ingezet; een niet-bestaande medewerker die voor echt doorgaat, is dat niet.",
-             "Wij nemen <strong>geen bestaand account over waar wij niet achter kunnen staan</strong>. Staat er iets op dat schadelijk is, dan zegt u dat voordat we beginnen \u2014 en anders wij."]),
-          "eerlijk"),
- ]),
+]),
 },
 
 ]

@@ -103,7 +103,7 @@ img{max-width:100%;display:block}
 .menu a:hover{color:var(--inkt)}
 .menu a:hover::after{transform:scaleX(1);transform-origin:left}
 @media(max-width:1100px){.menu{display:none}}
-@media(max-width:560px){.balk .knop{padding:.7rem 1.1rem;font-size:.9rem}}
+@media(max-width:560px){.balk .wrap > .knop{padding:.7rem 1.1rem;font-size:.9rem}}
 
 /* ── hero ──────────────────────────────────────── */
 .hero{position:relative;padding:clamp(3.5rem,8vw,7rem) 0 clamp(3rem,6vw,5rem);isolation:isolate}
@@ -318,9 +318,9 @@ main [id]{scroll-margin-top:78px}
   padding-top:1.1rem;border-top:1px solid var(--lijn)}
 .niveau em{font-style:normal;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.13em;
   text-transform:uppercase;color:var(--inkt-zacht)}
-.balk{display:flex;gap:5px;flex:none}
-.balk i{width:22px;height:4px;border-radius:2px;background:var(--lijn-op)}
-.balk i.vol{background:var(--verloop)}
+.staaf{display:flex;gap:5px;flex:none}
+.staaf i{width:22px;height:4px;border-radius:2px;background:var(--lijn-op)}
+.staaf i.vol{background:var(--verloop)}
 .prijsuitleg{margin-top:2.6rem;padding:clamp(1.7rem,3.5vw,2.4rem);border-radius:18px;
   background:transparent;border:1px solid var(--lijn-op);max-width:72ch}
 .prijsuitleg h3{font-size:1.28rem;font-weight:600;margin-bottom:.9rem}
@@ -651,4 +651,5 @@ body.menu-open{overflow:hidden}
   .menuknop{display:flex}
   .balk .wrap{gap:.85rem}
 }
-@media(max-width:560px){.balk .knop{display:none}}
+/* alleen de knop in de balk zelf; die in de menulade moet blijven staan */
+@media(max-width:560px){.balk .wrap > .knop{display:none}}

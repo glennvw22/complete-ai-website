@@ -131,7 +131,7 @@
       'E-mail: ' + v('email'), 'Telefoon: ' + (v('telefoon') || '—'),
       'Onderwerp: ' + v('onderwerp'), '', v('bericht') || '(geen toelichting)'].join('\n');
     location.href = 'mailto:glenn@complete-ai.nl?subject=' +
-      encodeURIComponent('Aanvraag nulmeting — ' + (v('bedrijf') || v('naam'))) +
+      encodeURIComponent('Aanvraag intake — ' + (v('bedrijf') || v('naam'))) +
       '&body=' + encodeURIComponent(body);
   });
   /* ══ pakketsamensteller ══════════════════════════
@@ -275,7 +275,7 @@
       var n = gekozenThemas.length;
       var vol = n <= 2 ? 1 : (n <= 5 ? 2 : 3);
       var etiket = vol === 1 ? 'Gericht' : (vol === 2 ? 'Breed' : 'Volledig autonoom');
-      niveau.innerHTML = '<em>' + etiket + '</em><span class="balk">' +
+      niveau.innerHTML = '<em>' + etiket + '</em><span class="staaf">' +
         '<i class="' + (vol > 0 ? 'vol' : '') + '"></i>' +
         '<i class="' + (vol > 1 ? 'vol' : '') + '"></i>' +
         '<i class="' + (vol > 2 ? 'vol' : '') + '"></i></span>';
