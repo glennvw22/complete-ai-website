@@ -5,7 +5,19 @@ Kop, voet, navigatie en structuurdata staan hier één keer, zodat ze op
 elke pagina identiek zijn. Inhoud per pagina staat onderaan in PAGINAS.
 Draaien met:  python3 bouw-paginas.py
 """
-import json, html, os
+import json, html, os, hashlib, re
+
+
+def stempel(bestand):
+    """Korte afdruk van de inhoud. Verandert het bestand, dan verandert de URL,
+    en haalt elke browser hem opnieuw op in plaats van de oude uit zijn cache."""
+    pad = os.path.join(os.path.dirname(os.path.abspath(__file__)), bestand)
+    with open(pad, "rb") as f:
+        return hashlib.sha1(f.read()).hexdigest()[:8]
+
+
+CSS_V = stempel("stijl.css")
+JS_V = stempel("script.js")
 
 DOMEIN = "https://complete-ai.nl"
 
@@ -299,7 +311,7 @@ def bouw(p):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=DM+Sans:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="stijl.css">
+<link rel="stylesheet" href="stijl.css?v={CSS_V}">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%233D6DFF'/%3E%3Cstop offset='1' stop-color='%2325D8C4'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='%230A0C13'/%3E%3Cpath d='M6 10h4M6 16h4M6 22h4' stroke='url(%23g)' stroke-width='2' stroke-linecap='round' opacity='.55'/%3E%3Cpath d='M12 16h14' stroke='url(%23g)' stroke-width='2.5' stroke-linecap='round'/%3E%3Ccircle cx='12' cy='16' r='2.5' fill='url(%23g)'/%3E%3C/svg%3E">
 
 {schema(p)}
@@ -348,7 +360,7 @@ def bouw(p):
 
 {VOET}
 
-<script src="script.js" defer></script>
+<script src="script.js?v={JS_V}" defer></script>
 </body>
 </html>
 """
@@ -362,3 +374,19 @@ if __name__ == "__main__":
         with open(pad, "w", encoding="utf-8") as f:
             f.write(bouw(p))
         print(f"  {p['bestand']:24} {os.path.getsize(pad)//1024} kB")
+
+    # index.html en privacy.html worden met de hand onderhouden; hun
+    # verwijzingen naar stijl en script krijgen hier hetzelfde stempel.
+    for hand in ("index.html", "privacy.html"):
+        pad = os.path.join(hier, hand)
+        if not os.path.exists(pad):
+            continue
+        with open(pad, encoding="utf-8") as f:
+            t = f.read()
+        nieuw_t = re.sub(r'stijl\.css(\?v=[0-9a-f]+)?', "stijl.css?v=" + CSS_V, t)
+        nieuw_t = re.sub(r'script\.js(\?v=[0-9a-f]+)?', "script.js?v=" + JS_V, nieuw_t)
+        if nieuw_t != t:
+            with open(pad, "w", encoding="utf-8") as f:
+                f.write(nieuw_t)
+            print(f"  {hand:24} stempel bijgewerkt")
+    print(f"  stempels: stijl.css?v={CSS_V} · script.js?v={JS_V}")
