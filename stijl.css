@@ -102,8 +102,13 @@ img{max-width:100%;display:block}
   background:var(--verloop);transform:scaleX(0);transform-origin:right;transition:transform .3s ease}
 .menu a:hover{color:var(--inkt)}
 .menu a:hover::after{transform:scaleX(1);transform-origin:left}
+/* De knop in de balk is het enige ronde vlak op de site. Hij zit tegen
+   de bovenrand van de pagina; een scherpe hoek oogt daar krap. Hij is
+   ook een maatje kleiner, zodat er lucht boven en onder overblijft in
+   plaats van een dun randje. */
+.balk .wrap > .knop{border-radius:999px;padding:.7rem 1.45rem;font-size:.94rem}
+.balk .wrap > .knop::after{border-radius:999px}
 @media(max-width:1100px){.menu{display:none}}
-@media(max-width:560px){.balk .wrap > .knop{padding:.7rem 1.1rem;font-size:.9rem}}
 
 /* ── hero ──────────────────────────────────────── */
 .hero{position:relative;padding:clamp(3.5rem,8vw,7rem) 0 clamp(3rem,6vw,5rem);isolation:isolate}
