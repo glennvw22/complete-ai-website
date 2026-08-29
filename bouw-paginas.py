@@ -21,15 +21,6 @@ JS_V = stempel("script.js")
 
 DOMEIN = "https://complete-ai.nl"
 
-# Vestigingsplaats. Staat hier één keer; wordt gebruikt in de structuurdata,
-# de voet en de lokale pagina, zodat de gegevens overal identiek zijn (NAP).
-PLAATS = "Bergen op Zoom"
-ADRES = {"@type": "PostalAddress",
-         "addressLocality": PLAATS,
-         "addressRegion": "Noord-Brabant",
-         "addressCountry": "NL"}
-WERKGEBIED = ["Bergen op Zoom", "Halsteren", "Steenbergen", "Roosendaal", "Woensdrecht",
-              "Hoogerheide", "Tholen", "Oud-Gastel", "Rucphen", "Etten-Leur", "Breda"]
 
 MERK_SVG = """<svg viewBox="0 0 32 32" aria-hidden="true">
         <defs><linearGradient id="{id}" x1="0" y1="0" x2="1" y2="1">
@@ -87,23 +78,12 @@ def kop_html(actief):
       <li><a href="ai-telefonist.html">AI-telefonist<span>Operationeel binnen 2 weken</span></a></li>
       <li><a href="social-media.html">Social media<span>Eerste bericht binnen een week</span></a></li>
     </ul>
-    <p class="mm-kop">Voor uw branche</p>
-    <ul class="mm-lijst">
-      <li><a href="ai-voor-kapsalons.html">Kapsalons<span>Afspraken, no-shows en de telefoon</span></a></li>
-      <li><a href="ai-voor-garagebedrijven.html">Garagebedrijven<span>APK, planning en statusberichten</span></a></li>
-      <li><a href="ai-voor-de-horeca.html">Horeca<span>Reserveringen, ook midden in de service</span></a></li>
-      <li><a href="ai-voor-bouw-en-installatie.html">Bouw &amp; installatie<span>Aanvragen, offertes en facturen</span></a></li>
-      <li><a href="bergen-op-zoom.html">Bergen op Zoom &amp; regio<span>Hier komen wij langs voor de intake</span></a></li>
-    </ul>
     <p class="mm-kop">Meer</p>
     <ul class="mm-lijst">
       <li><a href="index.html#pakketten">Pakketten<span>Stel zelf een pakket samen</span></a></li>
       <li><a href="index.html#over">Over Glenn<span>Wie u aan de lijn krijgt</span></a></li>
-      <li><a href="case-aronza.html">Klantcase: Aronza<span>Vier tot zes uur per week naar nul</span></a></li>
-      <li><a href="ai-voor-uw-bedrijf.html">Gids: AI voor uw bedrijf<span>Wat AI vandaag echt kan overnemen</span></a></li>
-      <li><a href="index.html#vragen">Veelgestelde vragen<span>Kort en zonder omhaal beantwoord</span></a></li>
     </ul>
-    <p class="mm-voet">glenn@complete-ai.nl · Bergen op Zoom</p>
+    <p class="mm-voet">glenn@complete-ai.nl · Nederland &amp; België</p>
   </div>
 </header>"""
 
@@ -116,7 +96,7 @@ VOET = f"""<footer>
           {MERK_SVG.format(id='mg2')}
           <b>Complete<span> AI</span></b>
         </a>
-        <p style="max-width:38ch">Websites, vindbaarheid, advertenties, automatisering en AI-telefonie voor ondernemers in Nederland en België. Gevestigd in Bergen op Zoom.</p>
+        <p style="max-width:38ch">Websites, vindbaarheid, advertenties, automatisering en AI-telefonie voor ondernemers in Nederland en België.</p>
       </div>
       <div>
         <p class="voetkop">Diensten</p>
@@ -132,16 +112,6 @@ VOET = f"""<footer>
         </ul>
       </div>
       <div>
-        <p class="voetkop">Voor uw branche</p>
-        <ul>
-          <li><a href="ai-voor-kapsalons.html">Kapsalons</a></li>
-          <li><a href="ai-voor-garagebedrijven.html">Garagebedrijven</a></li>
-          <li><a href="ai-voor-de-horeca.html">Horeca</a></li>
-          <li><a href="ai-voor-bouw-en-installatie.html">Bouw &amp; installatie</a></li>
-          <li><a href="bergen-op-zoom.html">Bergen op Zoom &amp; regio</a></li>
-        </ul>
-      </div>
-      <div>
         <p class="voetkop">Contact</p>
         <ul>
           <li><a href="mailto:glenn@complete-ai.nl">glenn@complete-ai.nl</a></li>
@@ -154,7 +124,7 @@ VOET = f"""<footer>
     <!-- VERVANG: KvK- en btw-nummer invullen zodra de inschrijving rond is (wettelijk verplicht) -->
     <div class="slot">
       <span>© <span id="jaar">2026</span> Complete AI</span>
-      <span>Bergen op Zoom · Nederland &amp; België</span>
+      <span>Nederland &amp; België</span>
       <span><a href="privacy.html">Privacyverklaring</a></span>
     </div>
   </div>
@@ -180,11 +150,9 @@ def schema(p):
               "description": p["omschrijving"],
               "serviceType": p["dienst"],
               "provider": {"@type": "Organization", "@id": f"{DOMEIN}/#organisatie",
-                           "name": "Complete AI", "address": ADRES},
-              "areaServed": ([{"@type": "City", "name": n} for n in WERKGEBIED]
-                             if p.get("soort") == "lokaal" else
-                             [{"@type": "Country", "name": "Nederland"},
-                              {"@type": "Country", "name": "België"}]),
+                           "name": "Complete AI"},
+              "areaServed": [{"@type": "Country", "name": "Nederland"},
+                             {"@type": "Country", "name": "België"}],
               "url": f"{DOMEIN}/{p['bestand']}"})
     graaf = [
         hoofd,
@@ -261,8 +229,6 @@ VERDER = [
      "Welke taken AI vandaag echt kan overnemen — en waar de grens ligt."),
     ("index.html#diensten", "Homepage", "Alle diensten",
      "Ook vindbaarheid in Google en advertenties die renderen."),
-    ("bergen-op-zoom.html", "Regio", "Bergen op Zoom",
-     "Gevestigd in West-Brabant; hier komen wij langs voor de intake."),
 ]
 
 # Branchepagina's wijzen naar elkaar en naar de twee diensten die daar
