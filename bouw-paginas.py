@@ -74,7 +74,7 @@ def kop_html(actief):
       <li><a href="websites.html">Websites<span>Live in 1 tot 2 weken</span></a></li>
       <li><a href="index.html#diensten">Vindbaarheid — SEO<span>Lokale SEO en het Google-bedrijfsprofiel</span></a></li>
       <li><a href="index.html#diensten">Adverteren — SEA<span>Google Ads en Meta, op aanvraag</span></a></li>
-      <li><a href="automatisering.html">Automatisering<span>Vaak binnen enkele werkdagen</span></a></li>
+      <li><a href="automatisering.html">Automatisering<span>Live binnen enkele werkdagen</span></a></li>
       <li><a href="ai-telefonist.html">AI-telefonist<span>Operationeel binnen 2 weken</span></a></li>
       <li><a href="social-media.html">Social media<span>Eerste bericht binnen een week</span></a></li>
     </ul>
