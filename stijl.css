@@ -103,7 +103,7 @@ img{max-width:100%;display:block}
 .balk.vast{border-bottom-color:var(--lijn);background:rgba(6,7,12,.96)}
 .balk .wrap{display:flex;align-items:center;gap:2rem;height:74px}
 .merk{display:flex;align-items:center;gap:.7rem;text-decoration:none;margin-right:auto;flex:none}
-.merk svg{width:30px;height:30px;flex:none}
+.merk svg{width:34px;height:34px;flex:none}
 .merk b{font-family:var(--f-kop);font-size:1.2rem;font-weight:700;letter-spacing:-.03em}
 .merk b span{background:var(--verloop);-webkit-background-clip:text;background-clip:text;
   -webkit-text-fill-color:transparent}
