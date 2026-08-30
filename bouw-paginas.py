@@ -258,7 +258,7 @@ def bouw(p):
 <link rel="canonical" href="{DOMEIN}/{p['bestand']}">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#06070C">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; script-src 'self' 'unsafe-inline'; form-action 'self' mailto:; frame-ancestors 'none'; base-uri 'self'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; script-src 'self' 'unsafe-inline'; form-action 'self' https://formsubmit.co; frame-ancestors 'none'; base-uri 'self'; object-src 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 
 <meta property="og:type" content="website">

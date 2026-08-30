@@ -8,7 +8,7 @@
 <link rel="canonical" href="https://complete-ai.nl/">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#06070C">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; script-src 'self' 'unsafe-inline'; form-action 'self' mailto:; frame-ancestors 'none'; base-uri 'self'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; script-src 'self' 'unsafe-inline'; form-action 'self' https://formsubmit.co; connect-src 'self' https://formsubmit.co; frame-ancestors 'none'; base-uri 'self'; object-src 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 
 <meta property="og:type" content="website">
@@ -233,7 +233,7 @@
 }
 </script>
 
-<link rel="stylesheet" href="stijl.css?v=3666a62b">
+<link rel="stylesheet" href="stijl.css?v=c7355eb9">
 </head>
 <body>
 
@@ -700,7 +700,12 @@
           <div class="gerust"><b>Vrijblijvend en zonder verplichting.</b> De intake bestaat vooral uit vragen. Blijkt dat Complete AI niets voor u kan betekenen, dan hoort u dat.</div>
         </div>
 
-        <form id="contactformulier" novalidate>
+        <form id="contactformulier" method="POST" novalidate
+              action="https://formsubmit.co/glenn@complete-ai.nl">
+          <input type="hidden" name="_subject" value="Nieuwe aanvraag via complete-ai.nl">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="text" name="_honey" class="honing" tabindex="-1" autocomplete="off" aria-hidden="true">
           <div class="rij">
             <label>Naam<input type="text" name="naam" autocomplete="name" required></label>
             <label>Bedrijf<input type="text" name="bedrijf" autocomplete="organization"></label>
@@ -722,7 +727,8 @@
           <label>Waar loopt u tegenaan?
             <textarea name="bericht" placeholder="Bijvoorbeeld: er gaan wekelijks enkele uren in de facturatie zitten, en de telefoon gaat op momenten dat er niemand kan opnemen."></textarea>
           </label>
-          <button class="knop knop-vol" type="submit">Verstuur en plan een intake</button>
+          <button class="knop knop-vol" type="submit" id="verstuurknop">Verstuur en plan een intake</button>
+          <p class="formstand" id="formstand" role="status" hidden></p>
           <p class="klein">Uw gegevens worden uitsluitend gebruikt om contact op te nemen. Nooit doorverkocht, en nooit voor nieuwsbrieven zonder uw uitdrukkelijke toestemming.</p>
         </form>
       </div>
@@ -779,6 +785,6 @@
   </div>
 </footer>
 
-<script src="script.js?v=b1dfad3d" defer></script>
+<script src="script.js?v=57dd794d" defer></script>
 </body>
 </html>

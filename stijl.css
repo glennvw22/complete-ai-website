@@ -670,3 +670,13 @@ body.menu-open{overflow:hidden}
 }
 /* alleen de knop in de balk zelf; die in de menulade moet blijven staan */
 @media(max-width:560px){.balk .wrap > .knop{display:none}}
+
+/* ── contactformulier: spamval en terugkoppeling ──
+   .honing is een veld dat mensen niet zien maar robots wel invullen;
+   de endpoint gooit die inzendingen weg. */
+.honing{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
+.formstand{margin-top:.9rem;padding:.85rem 1rem;border-radius:2px;font-size:.92rem;line-height:1.55;
+  border:1px solid var(--lijn-op);background:transparent;color:var(--inkt-zacht)}
+.formstand.goed{border-color:var(--aqua);color:var(--inkt)}
+.formstand.mis{border-color:#E0975B;color:var(--inkt)}
+.formstand a{color:var(--blauw-hel);font-weight:600}

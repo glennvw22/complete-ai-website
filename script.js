@@ -119,21 +119,64 @@
     }
   }
 
-  /* ── contactformulier: stelt een e-mail op in het mailprogramma van
-       de bezoeker. Geen backend, geen derde partij.
-       LATER: vervang door een echte endpoint (Formspree/Web3Forms). ── */
+  /* ── contactformulier ──
+     Wordt echt verstuurd naar de mailbox, via de endpoint in het
+     action-attribuut. Lukt dat niet, dan krijgt de bezoeker het
+     e-mailadres én zijn eigen tekst te zien, zodat er niets verloren
+     gaat. Zonder JavaScript werkt het formulier ook: dan doet de
+     browser een gewone POST naar hetzelfde adres. ── */
   var f = document.getElementById('contactformulier');
-  if (f) f.addEventListener('submit', function(e){
-    e.preventDefault();
-    if (!f.reportValidity()) return;
-    var fd = new FormData(f), v = function(k){ return (fd.get(k) || '').toString().trim(); };
-    var body = ['Naam: ' + v('naam'), 'Bedrijf: ' + (v('bedrijf') || '—'),
-      'E-mail: ' + v('email'), 'Telefoon: ' + (v('telefoon') || '—'),
-      'Onderwerp: ' + v('onderwerp'), '', v('bericht') || '(geen toelichting)'].join('\n');
-    location.href = 'mailto:glenn@complete-ai.nl?subject=' +
-      encodeURIComponent('Aanvraag intake — ' + (v('bedrijf') || v('naam'))) +
-      '&body=' + encodeURIComponent(body);
-  });
+  if (f) {
+    var knop = document.getElementById('verstuurknop');
+    var stand = document.getElementById('formstand');
+    var knoptekst = knop ? knop.textContent : '';
+
+    var meld = function(tekst, soort){
+      stand.hidden = false;
+      stand.className = 'formstand ' + soort;
+      stand.textContent = tekst;
+    };
+
+    f.addEventListener('submit', function(e){
+      e.preventDefault();
+      if (!f.reportValidity()) return;
+
+      knop.disabled = true;
+      knop.textContent = 'Bezig met versturen\u2026';
+      stand.hidden = true;
+
+      var fd = new FormData(f);
+      var mislukt = function(){
+        var v = function(k){ return (fd.get(k) || '').toString().trim(); };
+        var body = ['Naam: ' + v('naam'), 'Bedrijf: ' + (v('bedrijf') || '\u2014'),
+                    'E-mail: ' + v('email'), 'Telefoon: ' + (v('telefoon') || '\u2014'),
+                    'Onderwerp: ' + v('onderwerp'), '', v('bericht') || ''].join('\n');
+        stand.hidden = false;
+        stand.className = 'formstand mis';
+        stand.innerHTML = 'Het versturen lukte niet. Stuur uw bericht rechtstreeks naar ' +
+          '<a href="mailto:glenn@complete-ai.nl?subject=' +
+          encodeURIComponent('Aanvraag intake \u2014 ' + (v('bedrijf') || v('naam'))) +
+          '&body=' + encodeURIComponent(body) + '">glenn@complete-ai.nl</a> \u2014 ' +
+          'uw gegevens staan er dan al in.';
+        knop.disabled = false;
+        knop.textContent = knoptekst;
+      };
+
+      fetch('https://formsubmit.co/ajax/glenn@complete-ai.nl', {
+        method: 'POST',
+        headers: {'Accept': 'application/json'},
+        body: fd
+      }).then(function(r){
+        return r.ok ? r.json() : Promise.reject(r.status);
+      }).then(function(){
+        f.reset();
+        knop.textContent = knoptekst;
+        knop.disabled = false;
+        meld('Uw aanvraag is verstuurd. U hoort binnen \u00e9\u00e9n werkdag van ons.', 'goed');
+      }).catch(mislukt);
+    });
+  }
+
   /* ══ pakketsamensteller ══════════════════════════
      De drie kaarten zijn vertrekpunten; de bezoeker past ze daarna aan.
      Zo is meteen zichtbaar dat een pakket wordt samengesteld en niet
