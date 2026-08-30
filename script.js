@@ -168,7 +168,14 @@
         body: fd
       }).then(function(r){
         return r.ok ? r.json() : Promise.reject(r.status);
-      }).then(function(){
+      }).then(function(d){
+        // de endpoint geeft ook bij een weigering http 200 terug, dus
+        // het veld 'success' is wat telt — anders tonen we ten onrechte
+        // dat de aanvraag verstuurd is
+        if (!d || String(d.success) !== 'true') {
+          if (d && d.message && window.console) console.warn('formulier:', d.message);
+          throw new Error('niet verstuurd');
+        }
         f.reset();
         knop.textContent = knoptekst;
         knop.disabled = false;
