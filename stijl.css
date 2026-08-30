@@ -6,6 +6,18 @@
    Archivo (koppen én tekst) · systeem-mono (labels)
    ══════════════════════════════════════════════════════════ */
 
+/* Archivo wordt van onze eigen server geladen. Via Google Fonts kostte
+   dat twee extra verbindingen en een blokkerende stylesheet: eerst
+   fonts.googleapis.com, dan pas fonts.gstatic.com. Dat is nu weg.
+   Archivo staat onder de SIL Open Font License; zelf hosten mag. */
+@font-face{
+  font-family:"Archivo";
+  font-style:normal;
+  font-weight:400 700;
+  font-display:swap;
+  src:url("archivo.woff2") format("woff2");
+}
+
 :root{
   --void:#06070C;
   --grond:#06070C;   /* gelijk aan --void: overal dezelfde achtergrond */
