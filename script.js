@@ -146,8 +146,9 @@
       stand.hidden = true;
 
       var fd = new FormData(f);
-      var mislukt = function(){
-        var v = function(k){ return (fd.get(k) || '').toString().trim(); };
+      var v = function(k){ return (fd.get(k) || '').toString().trim(); };
+
+      var terugval = function(){
         var body = ['Naam: ' + v('naam'), 'Bedrijf: ' + (v('bedrijf') || '\u2014'),
                     'E-mail: ' + v('email'), 'Telefoon: ' + (v('telefoon') || '\u2014'),
                     'Onderwerp: ' + v('onderwerp'), '', v('bericht') || ''].join('\n');
@@ -158,29 +159,33 @@
           encodeURIComponent('Aanvraag intake \u2014 ' + (v('bedrijf') || v('naam'))) +
           '&body=' + encodeURIComponent(body) + '">glenn@complete-ai.nl</a> \u2014 ' +
           'uw gegevens staan er dan al in.';
-        knop.disabled = false;
-        knop.textContent = knoptekst;
       };
 
-      fetch('https://formsubmit.co/ajax/glenn@complete-ai.nl', {
-        method: 'POST',
-        headers: {'Accept': 'application/json'},
-        body: fd
-      }).then(function(r){
-        return r.ok ? r.json() : Promise.reject(r.status);
-      }).then(function(d){
-        // de endpoint geeft ook bij een weigering http 200 terug, dus
-        // het veld 'success' is wat telt — anders tonen we ten onrechte
-        // dat de aanvraag verstuurd is
-        if (!d || String(d.success) !== 'true') {
-          if (d && d.message && window.console) console.warn('formulier:', d.message);
-          throw new Error('niet verstuurd');
-        }
-        f.reset();
-        knop.textContent = knoptekst;
+      // twee onafhankelijke routes: Telegram voor het seintje, e-mail voor
+      // het archief. Eén die aankomt is genoeg.
+      var geslaagd = function(r){
+        if (!r.ok) return false;
+        return r.json().then(function(d){ return String(d && d.success) === 'true'; })
+                       .catch(function(){ return false; });
+      };
+      var mislukking = function(){ return false; };
+
+      Promise.all([
+        fetch('https://hook.eu1.make.com/686j1boi7lr9263noxidmof61g1umle6',
+              {method:'POST', body: fd}).then(geslaagd).catch(mislukking),
+        fetch('https://formsubmit.co/ajax/glenn@complete-ai.nl',
+              {method:'POST', headers:{'Accept':'application/json'}, body: fd})
+              .then(geslaagd).catch(mislukking)
+      ]).then(function(uitkomsten){
         knop.disabled = false;
-        meld('Uw aanvraag is verstuurd. U hoort binnen \u00e9\u00e9n werkdag van ons.', 'goed');
-      }).catch(mislukt);
+        knop.textContent = knoptekst;
+        if (uitkomsten.indexOf(true) > -1) {
+          f.reset();
+          meld('Uw aanvraag is verstuurd. U hoort binnen \u00e9\u00e9n werkdag van ons.', 'goed');
+        } else {
+          terugval();
+        }
+      });
     });
   }
 
