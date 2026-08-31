@@ -64,11 +64,26 @@ class KvkResultaat:
 
 
 class KvkClient:
-    def __init__(self, sleutel: str | None = None, pauze_s: float = 0.35):
+    def __init__(self, sleutel: str | None = None, pauze_s: float = 0.35,
+                 via_proxy: bool | None = None):
+        """Twee manieren om de sleutel mee te geven:
+
+        1. `KVK_API_KEY` als omgevingsvariabele - de code zet de header zelf.
+        2. `KVK_VIA_PROXY=1` - de sleutel staat als API-credential op de
+           cloud-omgeving en Anthropics proxy plakt de header erop nadat het
+           verzoek de container verlaten heeft. De sleutel komt dan nooit in de
+           sessie terecht; dat is de veiligste route. In dat geval sturen we
+           zelf geen apikey-header mee.
+        """
         self.sleutel = sleutel if sleutel is not None else os.environ.get("KVK_API_KEY", "")
+        self.via_proxy = (via_proxy if via_proxy is not None
+                          else os.environ.get("KVK_VIA_PROXY", "").strip() in ("1", "ja", "true"))
         self.pauze_s = pauze_s
-        self.beschikbaar = bool(self.sleutel)
-        self.laatste_fout = "" if self.beschikbaar else "KVK_API_KEY niet gezet"
+        self.beschikbaar = bool(self.sleutel) or self.via_proxy
+        if self.beschikbaar:
+            self.laatste_fout = ""
+        else:
+            self.laatste_fout = "KVK_API_KEY niet gezet en KVK_VIA_PROXY staat uit"
         self._cache: dict[str, KvkResultaat] = {}
 
     # -- laag niveau ------------------------------------------------------
@@ -76,10 +91,12 @@ class KvkClient:
         if not self.beschikbaar:
             return None, "geen API-sleutel"
         volledig = f"{url}?{urllib.parse.urlencode(params)}" if params else url
-        verzoek = urllib.request.Request(
-            volledig,
-            headers={"apikey": self.sleutel, "Accept": "application/json"},
-        )
+        headers = {"Accept": "application/json"}
+        if self.sleutel:
+            headers["apikey"] = self.sleutel
+        # Zonder eigen sleutel gaat het verzoek kaal de deur uit en zet de
+        # proxy de header erop.
+        verzoek = urllib.request.Request(volledig, headers=headers)
         try:
             with urllib.request.urlopen(verzoek, timeout=25) as antwoord:
                 return json.loads(antwoord.read().decode("utf-8", "replace")), ""
@@ -101,12 +118,16 @@ class KvkClient:
     def zelftest(self) -> tuple[bool, str]:
         """Een echte call, zodat een run keihard kan melden of KVK werkt."""
         if not self.beschikbaar:
-            return False, "KVK_API_KEY ontbreekt in de omgeving van deze routine."
+            return False, ("Geen KVK-sleutel beschikbaar: KVK_API_KEY is niet gezet en "
+                           "KVK_VIA_PROXY staat uit. Zet een van beide in de "
+                           "cloud-omgeving van deze routine.")
         data, fout = self._get(ZOEKEN, {"naam": "Kamer van Koophandel",
                                         "pagina": 1, "resultatenPerPagina": 1})
         if fout:
             uitleg = {
-                "401": "sleutel afgewezen (401) - verkeerde of verlopen API-key.",
+                "401": ("sleutel afgewezen (401) - verkeerde of verlopen API-key"
+                        + (", of de proxy plakt de header er niet op"
+                           if self.via_proxy and not self.sleutel else "") + "."),
                 "403": "toegang geweigerd (403) - key heeft geen recht op deze API.",
                 "429": "te veel verzoeken (429) - limiet bereikt.",
             }
