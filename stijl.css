@@ -120,6 +120,15 @@ img{max-width:100%;display:block}
    plaats van een dun randje. */
 .balk .wrap > .knop{border-radius:999px;padding:.7rem 1.45rem;font-size:.94rem}
 .balk .wrap > .knop::after{border-radius:999px}
+
+/* Het telefoonnummer in de balk. Wie belt wil bellen, niet eerst een
+   formulier invullen; het staat daarom naast de knop en niet erin. */
+.balk-tel{flex:none;text-decoration:none;white-space:nowrap;
+  font-family:var(--f-mono);font-size:.82rem;letter-spacing:.02em;
+  color:var(--inkt-zacht);transition:color .22s ease}
+.balk-tel:hover{color:var(--inkt)}
+.balk-tel:focus-visible{outline:2px solid var(--blauw-hel);outline-offset:3px}
+@media(max-width:400px){.balk-tel{display:none}}
 @media(max-width:1100px){.menu{display:none}}
 
 /* ── hero ──────────────────────────────────────── */
@@ -650,6 +659,7 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
   .mobiel,.mobiel-waas{transition-duration:.01ms}
 }
 .mm-actie{display:flex;width:100%;justify-content:center}
+.mm-bel{margin-top:.65rem}
 .mm-kop{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;
   color:var(--inkt-dim);margin:1.8rem 0 .3rem}
 .mm-lijst{list-style:none;margin:0;padding:0}

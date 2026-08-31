@@ -62,6 +62,7 @@ def kop_html(actief):
     </a>
     <nav class="menu">{links}
     </nav>
+    <a class="balk-tel" href="tel:+31634997026">06 34 99 70 26</a>
     <a class="knop knop-vol" href="index.html#contact">Plan een intake</a>
   </div>
   <div class="mobiel-waas" id="mobielwaas"></div>
@@ -81,6 +82,7 @@ def kop_html(actief):
       <li><a href="index.html#pakketten">Pakketten<span>Stel zelf een pakket samen</span></a></li>
       <li><a href="index.html#over">Over Glenn<span>Wie u aan de lijn krijgt</span></a></li>
     </ul>
+    <a class="knop mm-actie mm-bel" href="tel:+31634997026">Bel 06 34 99 70 26</a>
     <p class="mm-voet">glenn@complete-ai.nl · Nederland &amp; België</p>
   </div>
 </header>"""
@@ -112,6 +114,7 @@ VOET = f"""<footer>
       <div>
         <p class="voetkop">Contact</p>
         <ul>
+          <li><a href="tel:+31634997026">06 34 99 70 26</a></li>
           <li><a href="mailto:glenn@complete-ai.nl">glenn@complete-ai.nl</a></li>
           <li><a href="index.html#contact">Plan een intake</a></li>
           <li><a href="index.html#vragen">Veelgestelde vragen</a></li>
