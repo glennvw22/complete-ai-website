@@ -17,6 +17,16 @@ cloud-SDK's. Elke andere host valt eruit. De oude routine kon dus alleen met
 zoekresultaat-fragmenten werken en nooit iets natrekken — precies het gedrag dat
 je zag.
 
+## Belangrijk: de KVK-route omzeilt het netwerkbeleid
+
+Een host die je op een **API-credential** van de omgeving zet, is bereikbaar
+ongeacht het netwerkniveau — dat verkeer gaat niet door de allowlist. Voor KVK
+hoef je het netwerkbeleid dus NIET open te zetten: zet de sleutel als
+API-credential op `api.kvk.nl` en die koppeling werkt meteen, ook op Trusted.
+
+Het netwerkbeleid openzetten is alleen nodig voor de twee andere bronnen:
+OpenStreetMap en het beoordelen van de websites van bedrijven zelf.
+
 ## Stap 1 — Netwerktoegang openzetten
 
 Ga naar [claude.ai/code](https://claude.ai/code), open de omgeving **Default**
@@ -59,23 +69,24 @@ Controleer welke API's op je sleutel staan. Voor deze machine heb je nodig:
 
 Zet de sleutel daarna op één van deze twee manieren in de omgeving:
 
-**Route A — omgevingsvariabele (simpel).** In de omgevingsinstellingen bij
-**Environment variables**:
-
-```
-KVK_API_KEY=jouw-sleutel-hier
-```
-
-**Route B — API-credential (veiliger, aanbevolen).** Bij **API credentials** in
-dezelfde dialoog: **Add credential**, met
+**Route B — API-credential (aanbevolen: veiliger én omzeilt de allowlist).**
+Bij **API credentials** in de omgevingsdialoog: **Add credential**, met
 
 - **Allowed websites**: `api.kvk.nl`
 - **Custom headers**: naam `apikey`, prefix leeg, waarde is je sleutel
 
 De sleutel komt dan nooit in de sessie terecht; de proxy plakt hem erop nadat
-het verzoek de container verlaten heeft. Zet bij route B ook de variabele
-`KVK_VIA_PROXY=1`, zodat de code weet dat hij zelf geen header hoeft mee te
+het verzoek de container verlaten heeft. Zet er ook de variabele
+`KVK_VIA_PROXY=1` bij, zodat de code weet dat hij zelf geen header hoeft mee te
 sturen.
+
+**Route A — omgevingsvariabele (simpeler, maar minder goed).** Bij
+**Environment variables**: `KVK_API_KEY=jouw-sleutel-hier`. Let op: hiermee komt
+de sleutel wél in elke sessie terecht, en `api.kvk.nl` blijft geblokkeerd zolang
+het netwerkbeleid op Trusted staat. Alleen zinvol als je stap 1 toch doet.
+
+Een KVK-sleutel bestaat uit 32 hexadecimale tekens (0-9 en a-f). Zit er een
+ander teken in, dan is er waarschijnlijk iets meegekopieerd.
 
 ## Stap 3 — De oude routines uitzetten
 

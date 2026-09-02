@@ -125,16 +125,29 @@ class KvkClient:
                                         "pagina": 1, "resultatenPerPagina": 1})
         if fout:
             uitleg = {
-                "401": ("sleutel afgewezen (401) - verkeerde of verlopen API-key"
-                        + (", of de proxy plakt de header er niet op"
+                "401": ("SLEUTEL AFGEWEZEN (401): de verbinding werkt wel, maar de "
+                        "API-key wordt niet geaccepteerd. Verkeerde of verlopen key"
+                        + (", of de proxy plakt de apikey-header er niet op"
                            if self.via_proxy and not self.sleutel else "") + "."),
-                "403": "toegang geweigerd (403) - key heeft geen recht op deze API.",
-                "429": "te veel verzoeken (429) - limiet bereikt.",
+                "403": ("TOEGANG GEWEIGERD (403): de verbinding werkt, maar deze key "
+                        "heeft geen recht op deze API. Vraag de API aan in het "
+                        "KVK Developer Portal."),
+                "404": "NIET GEVONDEN (404): het eindpunt klopt niet.",
+                "429": "LIMIET BEREIKT (429): te veel verzoeken.",
             }
             for code, tekst in uitleg.items():
                 if f"HTTP {code}" in fout:
                     return False, tekst
-            return False, f"KVK onbereikbaar: {fout}"
+            # Geen HTTP-antwoord betekent dat het verzoek de deur niet uit kwam.
+            # Dat is een netwerkkwestie, niet een sleutelkwestie - en dat
+            # onderscheid is precies wat we willen weten.
+            return False, (
+                "GEEN VERBINDING met api.kvk.nl - het verzoek kwam de container niet "
+                "uit. Dit zegt NIETS over de geldigheid van de sleutel. Oorzaak: het "
+                "netwerkbeleid van deze omgeving. Los op door de sleutel als "
+                "API-credential op api.kvk.nl te zetten (die route omzeilt de "
+                "allowlist), of door Network access op Full te zetten. "
+                f"Technische fout: {fout}")
         aantal = (data or {}).get("totaal", 0)
         return True, f"KVK API werkt (testzoekopdracht gaf {aantal} treffers)."
 
