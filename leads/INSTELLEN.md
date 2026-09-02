@@ -85,9 +85,9 @@ sturen.
 de sleutel wél in elke sessie terecht, en `api.kvk.nl` blijft geblokkeerd zolang
 het netwerkbeleid op Trusted staat. Alleen zinvol als je stap 1 toch doet.
 
-Controleer bij het plakken of er niets is meegekomen. Een KVK-sleutel bestaat
-uit hexadecimale tekens (0-9 en a-f); staat er een letter in die daar niet in
-past, dan is er bij het kopiëren iets misgegaan.
+Een KVK-sleutel begint met een kleine letter `l`, gevolgd door hexadecimale
+tekens — bijvoorbeeld `l7a4d9cdb...`. Die `l` hoort er dus bij; haal hem er niet
+af. Neem de sleutel over met de kopieerknop in het portaal, niet met de hand.
 
 ## Stap 3 — De oude routines uitzetten
 
