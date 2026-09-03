@@ -19,6 +19,17 @@ USER_AGENT = (
     "Mozilla/5.0 (compatible; Complete-AI-leadcheck/1.0; +https://complete-ai.nl)"
 )
 
+# Veel sites zetten een firewall voor alles wat zich als bot voorstelt. Die
+# geven dan 403 of 429 terug terwijl de site het voor bezoekers prima doet.
+# Bij zo'n code proberen we het nog een keer als gewone browser.
+BROWSER_AGENT = (
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+    "(KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
+)
+
+# Codes die zeggen "ik laat jou niet binnen", niet "deze site is stuk".
+BLOKKADE_CODES = (401, 403, 405, 406, 429, 999)
+
 # Bouwers/technieken die op een verouderde of afgeknepen site wijzen.
 VEROUDERDE_SPOREN = (
     ("jimdo", "Jimdo-site"),
@@ -63,6 +74,7 @@ class SiteRapport:
     online_afspraak: bool = False
     alleen_social: bool = False
     geparkeerd: bool = False
+    geblokkeerd: bool = False           # firewall weert de controle, site zelf onbekend
     bytes_html: int = 0
     fout: str = ""
 
@@ -81,11 +93,18 @@ def _normaliseer(url: str) -> str:
     return url
 
 
-def _lees(url: str, timeout: int = 15) -> tuple[int, str, bytes, bool]:
+def _lees(url: str, timeout: int = 15,
+          user_agent: str = USER_AGENT) -> tuple[int, str, bytes, bool]:
     """Geeft (status, eindurl, body, ssl_fout)."""
     context = ssl.create_default_context()
     verzoek = urllib.request.Request(
-        url, headers={"User-Agent": USER_AGENT, "Accept-Encoding": "gzip"}
+        url,
+        headers={
+            "User-Agent": user_agent,
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "Accept-Language": "nl,en;q=0.8",
+            "Accept-Encoding": "gzip",
+        },
     )
     try:
         with urllib.request.urlopen(verzoek, timeout=timeout, context=context) as a:
@@ -123,6 +142,19 @@ def controleer(url: str) -> SiteRapport:
         )
         ssl_fout = ssl_fout or ssl_fout_http
 
+    # Weggestuurd omdat we ons als bot voorstelden? Dan zegt die code niets
+    # over de site. Nog een keer, nu als gewone browser. De klok gaat opnieuw
+    # aan, anders telt de geweigerde poging mee als laadtijd.
+    if status in BLOKKADE_CODES:
+        start = time.monotonic()
+        status2, eindurl2, body2, ssl_fout2 = _lees(
+            genormaliseerd, user_agent=BROWSER_AGENT
+        )
+        if status2 not in BLOKKADE_CODES and status2 != 0:
+            status, eindurl, body, ssl_fout = status2, eindurl2, body2, ssl_fout2
+        else:
+            rapport.geblokkeerd = True
+
     rapport.laadtijd_ms = int((time.monotonic() - start) * 1000)
     rapport.status = status
     rapport.eindurl = eindurl
@@ -131,7 +163,11 @@ def controleer(url: str) -> SiteRapport:
     rapport.bytes_html = len(body)
 
     if status == 0 or not body:
-        rapport.fout = "onbereikbaar of leeg" if status == 0 else f"status {status}"
+        if rapport.geblokkeerd:
+            rapport.fout = f"controle geweerd door de site (status {status})"
+        else:
+            rapport.fout = ("onbereikbaar of leeg" if status == 0
+                            else f"status {status}")
         rapport.bereikbaar = status != 0 and 200 <= status < 400
         return rapport
 

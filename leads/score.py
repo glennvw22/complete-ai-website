@@ -98,7 +98,7 @@ def _bepaal_warmte(bedrijf, site, kvk_resultaat, branche: Branche) -> Warmte:
         if site.geparkeerd:
             voeg_toe(45, "Domein staat geparkeerd of 'binnenkort online' - ze zijn "
                          "er zelf al mee bezig maar komen er niet uit")
-        if not site.bereikbaar and bedrijf.website:
+        if not site.bereikbaar and not site.geblokkeerd and bedrijf.website:
             voeg_toe(40, "De website die ze opgeven doet het niet - dat kost ze nu klanten")
         if site.copyright_jaar and HUIDIG_JAAR - site.copyright_jaar >= 5:
             voeg_toe(20, f"Site is al {HUIDIG_JAAR - site.copyright_jaar} jaar niet "
@@ -149,6 +149,12 @@ def beoordeel(bedrijf, site, kvk_resultaat, branche: Branche) -> Beoordeling:
         elif site.geparkeerd:
             signalen.append(Signaal("website", 88,
                 "Domein staat geparkeerd of in aanbouw"))
+        elif site.geblokkeerd:
+            # De site weert onze controle, meer weten we niet. "Uw website doet
+            # het niet" is dan een bewering die aan de telefoon onderuit gaat,
+            # dus hier komt geen koopsignaal uit. Zit er verder niets, dan valt
+            # de lead vanzelf af wegens gebrek aan aanleiding.
+            pass
         elif not site.bereikbaar:
             signalen.append(Signaal("website", 90,
                 f"Website is onbereikbaar ({site.fout or 'geen antwoord'})"))
@@ -215,7 +221,7 @@ def beoordeel(bedrijf, site, kvk_resultaat, branche: Branche) -> Beoordeling:
                                     reden, hard=False))
 
     # ---------------- 4. AUTOMATISERING ----------------
-    if branche.online_afspraak:
+    if branche.online_afspraak and not (site is not None and site.geblokkeerd):
         if site is None or not site.bereikbaar:
             signalen.append(Signaal("automatisering", 52,
                 "Afspraken/bestellingen lopen volledig handmatig: geen online kanaal",
@@ -232,8 +238,9 @@ def beoordeel(bedrijf, site, kvk_resultaat, branche: Branche) -> Beoordeling:
             "Geen socialkanaal gevonden in een branche die daarvan leeft", hard=False))
 
     # ---------------- 6. ADVERTENTIES ----------------
-    if branche.sleutel in ("installatie", "bouw", "garage", "hovenier", "transport"):
-        if site is None or not site.bereikbaar or (site and not site.heeft_meta_omschrijving):
+    if branche.sleutel in ("installatie", "bouw", "garage", "hovenier", "transport") \
+            and not (site is not None and site.geblokkeerd):
+        if site is None or not site.bereikbaar or not site.heeft_meta_omschrijving:
             signalen.append(Signaal("sea", 40,
                 "Spoed- en offerteaanvragen gaan nu naar concurrenten die wel adverteren",
                 hard=False))
