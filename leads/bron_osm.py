@@ -18,13 +18,22 @@ from dataclasses import asdict, dataclass, field
 
 from catalogus import Branche
 
+# Volgorde = snelste eerst. Let op: neem hier alleen spiegels op met de HELE
+# planeet. Een regionaal extract (overpass.osm.ch draait alleen Zwitserland)
+# antwoordt op een Nederlandse query met HTTP 200 en nul elementen, en dat is
+# erger dan een foutmelding: het ziet eruit alsof de bron werkt.
 SPIEGELS = (
-    "https://overpass-api.de/api/interpreter",
+    "https://maps.mail.ru/osm/tools/overpass/api/interpreter",
     "https://overpass.kumi.systems/api/interpreter",
-    "https://overpass.osm.ch/api/interpreter",
+    "https://overpass.private.coffee/api/interpreter",
+    "https://overpass-api.de/api/interpreter",
 )
 
 USER_AGENT = "Complete-AI-leadmachine/1.0 (+https://complete-ai.nl)"
+
+QUERY_TIMEOUT = 180     # wat we de Overpass-server zelf gunnen
+OPHAAL_TIMEOUT = 240    # hoe lang wij op de verbinding wachten
+PAUZE = 3               # basispauze tussen pogingen, loopt op per poging
 
 # Tags waaronder een website kan zitten, in volgorde van betrouwbaarheid.
 WEBSITE_TAGS = ("website", "contact:website", "url", "website:official")
@@ -62,7 +71,7 @@ class Bedrijf:
         return d
 
 
-def bouw_query(gemeenten: list[str], branche: Branche, timeout: int = 180) -> str:
+def bouw_query(gemeenten: list[str], branche: Branche, timeout: int = QUERY_TIMEOUT) -> str:
     regels = []
     for i, gemeente in enumerate(gemeenten):
         gebied = f".g{i}"
@@ -117,6 +126,71 @@ def _element_naar_bedrijf(el: dict, gemeente_hint: str, land: str, branche: str)
     )
 
 
+def _vraag_spiegels(
+    query: str, fouten: list[str], pogingen_per_spiegel: int, logger
+) -> list[dict] | None:
+    """Stuur een query naar de spiegels tot er een antwoordt.
+
+    Geeft de elementen terug, of None als geen enkele spiegel een bruikbaar
+    antwoord gaf. Een lege lijst is dus iets anders dan None: dat is een
+    spiegel die wel werkte maar niets vond.
+    """
+    data = urllib.parse.urlencode({"data": query}).encode()
+
+    for spiegel in SPIEGELS:
+        for poging in range(1, pogingen_per_spiegel + 1):
+            wachten = PAUZE * poging
+            try:
+                verzoek = urllib.request.Request(
+                    spiegel, data=data, headers={"User-Agent": USER_AGENT}
+                )
+                with urllib.request.urlopen(verzoek, timeout=OPHAAL_TIMEOUT) as antwoord:
+                    rauw = json.loads(antwoord.read().decode("utf-8", "replace"))
+            except urllib.error.HTTPError as fout:
+                # 429 = te veel verzoeken, 504 = spiegel overbelast. Allebei
+                # gaan over met tijd, dus daar wachten we langer voor.
+                if fout.code in (429, 502, 503, 504):
+                    wachten = PAUZE * poging * 4
+                fouten.append(f"{spiegel} poging {poging}: HTTP {fout.code}")
+                time.sleep(wachten)
+                continue
+            except (urllib.error.URLError, TimeoutError, OSError,
+                    json.JSONDecodeError) as fout:
+                fouten.append(f"{spiegel} poging {poging}: {type(fout).__name__}: {fout}")
+                time.sleep(wachten)
+                continue
+
+            # Overpass meldt een mislukte query niet met een foutcode maar met
+            # een remark in een verder geldig JSON-antwoord.
+            opmerking = str(rauw.get("remark") or "").strip()
+            if opmerking:
+                fouten.append(f"{spiegel} poging {poging}: {opmerking}")
+                time.sleep(wachten * 2)
+                continue
+
+            return rauw.get("elements", [])
+
+    return None
+
+
+def _elementen_naar_bedrijven(
+    elementen: list[dict], gemeente_hint: str, land: str, branche: Branche,
+    gezien: set,
+) -> list[Bedrijf]:
+    bedrijven = []
+    for el in elementen:
+        bedrijf = _element_naar_bedrijf(el, gemeente_hint, land, branche.sleutel)
+        if bedrijf is None:
+            continue
+        # Dubbele vestigingen op naam+adres binnen een run wegfilteren.
+        sleutel = (bedrijf.naam.lower(), bedrijf.adres.lower())
+        if sleutel in gezien:
+            continue
+        gezien.add(sleutel)
+        bedrijven.append(bedrijf)
+    return bedrijven
+
+
 def haal_bedrijven(
     gemeenten: list[str],
     branche: Branche,
@@ -126,39 +200,43 @@ def haal_bedrijven(
 ) -> tuple[list[Bedrijf], list[str]]:
     """Haal alle bedrijven van deze branche in deze gemeenten op.
 
+    Eerst een query voor het hele blok gemeenten. Lukt dat niet, of komt er
+    niets uit, dan opnieuw per gemeente: die queries zijn een stuk lichter en
+    een enkele gemeente die de spiegel niet aankan gooit dan niet het hele
+    blok weg.
+
     Geeft (bedrijven, foutmeldingen) terug. Faalt nooit hard: als alle spiegels
     plat liggen krijg je een lege lijst plus de reden, zodat de routine dat
     eerlijk kan melden in plaats van stil niets op te leveren.
     """
-    query = bouw_query(gemeenten, branche)
-    data = urllib.parse.urlencode({"data": query}).encode()
     fouten: list[str] = []
+    gezien: set = set()
 
-    for spiegel in SPIEGELS:
-        for poging in range(1, pogingen_per_spiegel + 1):
-            try:
-                verzoek = urllib.request.Request(
-                    spiegel, data=data, headers={"User-Agent": USER_AGENT}
-                )
-                with urllib.request.urlopen(verzoek, timeout=240) as antwoord:
-                    rauw = json.loads(antwoord.read().decode("utf-8", "replace"))
-                elementen = rauw.get("elements", [])
-                bedrijven, gezien = [], set()
-                for el in elementen:
-                    bedrijf = _element_naar_bedrijf(el, gemeenten[0], land, branche.sleutel)
-                    if bedrijf is None:
-                        continue
-                    # Dubbele vestigingen op naam+adres binnen een run wegfilteren.
-                    sleutel = (bedrijf.naam.lower(), bedrijf.adres.lower())
-                    if sleutel in gezien:
-                        continue
-                    gezien.add(sleutel)
-                    bedrijven.append(bedrijf)
-                logger(f"[osm] {spiegel}: {len(bedrijven)} bedrijven voor {branche.sleutel}")
-                return bedrijven, fouten
-            except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, OSError,
-                    json.JSONDecodeError) as fout:
-                fouten.append(f"{spiegel} poging {poging}: {type(fout).__name__}: {fout}")
-                time.sleep(3 * poging)
+    elementen = _vraag_spiegels(
+        bouw_query(gemeenten, branche), fouten, pogingen_per_spiegel, logger
+    )
+    if elementen:
+        bedrijven = _elementen_naar_bedrijven(
+            elementen, gemeenten[0], land, branche, gezien
+        )
+        logger(f"[osm] {len(bedrijven)} bedrijven voor {branche.sleutel} "
+               f"in {', '.join(gemeenten)}")
+        return bedrijven, fouten
 
-    return [], fouten
+    if len(gemeenten) == 1:
+        logger(f"[osm] niets voor {branche.sleutel} in {gemeenten[0]}")
+        return [], fouten
+
+    logger(f"[osm] blokquery leverde niets op voor {branche.sleutel}; "
+           f"nu per gemeente")
+    bedrijven = []
+    for gemeente in gemeenten:
+        deel = _vraag_spiegels(
+            bouw_query([gemeente], branche), fouten, pogingen_per_spiegel, logger
+        )
+        if not deel:
+            continue
+        bedrijven += _elementen_naar_bedrijven(deel, gemeente, land, branche, gezien)
+    logger(f"[osm] {len(bedrijven)} bedrijven voor {branche.sleutel} "
+           f"(per gemeente opgehaald)")
+    return bedrijven, fouten
