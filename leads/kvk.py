@@ -221,9 +221,27 @@ class KvkClient:
             resultaat.vestigingen = aantal
 
 
+def _plaats_van_treffer(treffer: dict) -> str:
+    """De plaats zit in de Zoeken API niet op het hoogste niveau.
+
+    Ze staat onder adres.binnenlandsAdres.plaats (of buitenlandsAdres). Op
+    treffer["plaats"] gokken gaf altijd een lege string, waardoor elke treffer
+    even goed leek en de sortering op plaats niets deed.
+    """
+    adres = treffer.get("adres")
+    if not isinstance(adres, dict):
+        return ""
+    for sleutel in ("binnenlandsAdres", "buitenlandsAdres"):
+        deel = adres.get(sleutel)
+        if isinstance(deel, dict) and deel.get("plaats"):
+            return str(deel["plaats"]).strip()
+    return ""
+
+
 def _rang(treffer: dict, plaats: str) -> tuple:
     """Voorkeur voor de hoofdvestiging in de gezochte plaats."""
-    zelfde_plaats = 0 if (treffer.get("plaats") or "").lower() == plaats.lower() else 1
+    gevonden_plaats = _plaats_van_treffer(treffer).lower()
+    zelfde_plaats = 0 if gevonden_plaats and gevonden_plaats == plaats.lower() else 1
     hoofd = 0 if treffer.get("type") == "hoofdvestiging" else 1
     return (zelfde_plaats, hoofd)
 
@@ -242,6 +260,14 @@ def _pak_rechtsvorm(data: dict) -> str:
     ]
     embedded = data.get("_embedded")
     if isinstance(embedded, dict):
+        # Hier staat hij in werkelijkheid: de rechtsvorm hoort bij de EIGENAAR
+        # van de inschrijving, niet bij de vestiging. Een vestiging heeft geen
+        # eigen rechtsvorm, dus _embedded.hoofdvestiging leverde altijd niets
+        # op en daarmee viel elke Nederlandse lead af op 'rechtsvorm onbekend'.
+        eigenaar = embedded.get("eigenaar")
+        if isinstance(eigenaar, dict):
+            kandidaten.append(eigenaar.get("rechtsvorm"))
+            kandidaten.append(eigenaar.get("uitgebreideRechtsvorm"))
         hoofd = embedded.get("hoofdvestiging")
         if isinstance(hoofd, dict):
             kandidaten.append(hoofd.get("rechtsvorm"))
