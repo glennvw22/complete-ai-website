@@ -21,6 +21,12 @@ JS_V = stempel("script.js")
 
 DOMEIN = "https://complete-ai.nl"
 
+# Bezoekersstatistieken zonder cookies. Plausible bouwt geen profiel op en
+# bewaart geen persoonsgegevens, dus is er geen cookiebanner nodig. Deze regel
+# leegmaken schakelt de meting op alle gegenereerde pagina's tegelijk uit.
+STATISTIEK = ('<script defer data-domain="complete-ai.nl" '
+              'src="https://plausible.io/js/script.js"></script>')
+
 
 MERK_SVG = """<svg viewBox="0 0 32 32" aria-hidden="true">
         <rect x="2.34" y="2.34" width="27.32" height="27.32" rx="8.8" fill="none" stroke="#2E7BFF" stroke-width="1.68"/>
@@ -259,7 +265,7 @@ def bouw(p):
 <link rel="canonical" href="{DOMEIN}/{p['bestand']}">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#06070C">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; script-src 'self' 'unsafe-inline'; form-action 'self' https://formsubmit.co; frame-ancestors 'none'; base-uri 'self'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; script-src 'self' 'unsafe-inline' https://plausible.io; form-action 'self' https://formsubmit.co; connect-src 'self' https://plausible.io; frame-ancestors 'none'; base-uri 'self'; object-src 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 
 <meta property="og:type" content="website">
@@ -284,6 +290,7 @@ def bouw(p):
 <link rel="manifest" href="/site.webmanifest">
 
 {schema(p)}
+{STATISTIEK}
 </head>
 <body>
 
@@ -352,8 +359,10 @@ if __name__ == "__main__":
             continue
         with open(pad, encoding="utf-8") as f:
             t = f.read()
-        nieuw_t = re.sub(r'stijl\.css(\?v=[0-9a-f]+)?', "stijl.css?v=" + CSS_V, t)
-        nieuw_t = re.sub(r'script\.js(\?v=[0-9a-f]+)?', "script.js?v=" + JS_V, nieuw_t)
+        # De lookbehind houdt het stempel weg bij bestanden van derden,
+        # zoals plausible.io/js/script.js; alleen onze eigen twee krijgen er een.
+        nieuw_t = re.sub(r'(?<!/)stijl\.css(\?v=[0-9a-f]+)?', "stijl.css?v=" + CSS_V, t)
+        nieuw_t = re.sub(r'(?<!/)script\.js(\?v=[0-9a-f]+)?', "script.js?v=" + JS_V, nieuw_t)
         if nieuw_t != t:
             with open(pad, "w", encoding="utf-8") as f:
                 f.write(nieuw_t)
