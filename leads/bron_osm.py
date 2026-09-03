@@ -31,6 +31,26 @@ SPIEGELS = (
 
 USER_AGENT = "Complete-AI-leadmachine/1.0 (+https://complete-ai.nl)"
 
+# Spiegels die tijdens deze run al op verbindingsniveau faalden.
+_DODE_SPIEGELS: set[str] = set()
+
+# Fouten die betekenen: dit adres is vanuit deze container niet te bereiken.
+# Een trage of overbelaste spiegel valt hier bewust NIET onder - die verdient
+# een nieuwe poging, een geblokkeerde spiegel niet.
+_ONBEREIKBAAR_SPOREN = (
+    "connection reset by peer", "connection refused", "network is unreachable",
+    "name or service not known", "nodename nor servname", "no route to host",
+    "certificate", "ssl",
+)
+
+
+def _onbereikbaar(fout: Exception) -> bool:
+    tekst = str(fout).lower()
+    if "timed out" in tekst or "timeout" in tekst:
+        return False
+    return any(spoor in tekst for spoor in _ONBEREIKBAAR_SPOREN)
+
+
 QUERY_TIMEOUT = 180     # wat we de Overpass-server zelf gunnen
 OPHAAL_TIMEOUT = 240    # hoe lang wij op de verbinding wachten
 PAUZE = 3               # basispauze tussen pogingen, loopt op per poging
@@ -72,6 +92,14 @@ class Bedrijf:
 
 
 def bouw_query(gemeenten: list[str], branche: Branche, timeout: int = QUERY_TIMEOUT) -> str:
+    """Bouw een Overpass-query voor deze branche in deze gemeenten.
+
+    Elke `nwr(area.X)[...]` is voor Overpass een aparte doorloop van het gebied
+    en kost twintig tot vijfenveertig seconden. Vijf tags maal vier gemeenten
+    werd zo twintig doorlopen en liep tegen de server-timeout van 180 seconden
+    aan. Tags met dezelfde sleutel gaan daarom samen in een regex: craft=
+    plumber, electrician, hvac en gasfitter is een doorloop in plaats van vier.
+    """
     regels = []
     for i, gemeente in enumerate(gemeenten):
         gebied = f".g{i}"
@@ -79,10 +107,13 @@ def bouw_query(gemeenten: list[str], branche: Branche, timeout: int = QUERY_TIME
             f'area["name"="{gemeente}"]["boundary"="administrative"]'
             f'["admin_level"~"^(8|7)$"]->{gebied};'
         )
+    per_sleutel: dict[str, list[str]] = {}
+    for tag, waarde in branche.osm:
+        per_sleutel.setdefault(tag, []).append(waarde)
     binnen = []
     for i, _ in enumerate(gemeenten):
-        for tag, waarde in branche.osm:
-            binnen.append(f'  nwr(area.g{i})["{tag}"="{waarde}"];')
+        for tag, waarden in per_sleutel.items():
+            binnen.append(f'  nwr(area.g{i})["{tag}"~"^({"|".join(waarden)})$"];')
     return (
         f"[out:json][timeout:{timeout}];\n"
         + "\n".join(regels)
@@ -138,6 +169,8 @@ def _vraag_spiegels(
     data = urllib.parse.urlencode({"data": query}).encode()
 
     for spiegel in SPIEGELS:
+        if spiegel in _DODE_SPIEGELS:
+            continue
         for poging in range(1, pogingen_per_spiegel + 1):
             wachten = PAUZE * poging
             try:
@@ -157,6 +190,12 @@ def _vraag_spiegels(
             except (urllib.error.URLError, TimeoutError, OSError,
                     json.JSONDecodeError) as fout:
                 fouten.append(f"{spiegel} poging {poging}: {type(fout).__name__}: {fout}")
+                if _onbereikbaar(fout):
+                    # Het verzoek kwam de container niet eens uit. Dat gaat niet
+                    # over met tijd, dus deze spiegel de rest van de run
+                    # overslaan in plaats van bij elk gebied opnieuw afwachten.
+                    _DODE_SPIEGELS.add(spiegel)
+                    break
                 time.sleep(wachten)
                 continue
 

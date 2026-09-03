@@ -90,10 +90,30 @@ def test_query():
     branche = catalogus.BRANCHE_OP_SLEUTEL["kapsalon"]
     q = bron_osm.bouw_query(["Zwolle", "Kampen"], branche)
     bevestig('area["name"="Zwolle"]' in q, "gemeente komt in de query")
-    bevestig('["shop"="hairdresser"]' in q, "branchetag komt in de query")
-    bevestig(q.count("nwr(area.") == 2 * len(branche.osm),
-             "elke gemeente x elke tag geeft een queryregel")
+    bevestig("hairdresser" in q, "branchetag komt in de query")
+    # Tags met dezelfde sleutel horen samengevoegd tot een regex: een aparte
+    # regel per tag is een aparte gebiedsdoorloop, en vier gemeenten maal vijf
+    # tags maakte de query zo zwaar dat Overpass hem afkapte met een 504.
+    sleutels = {tag for tag, _ in branche.osm}
+    bevestig(q.count("nwr(area.") == 2 * len(sleutels),
+             "elke gemeente x elke tagsleutel geeft een queryregel")
+    bevestig(q.count("nwr(area.") < 2 * len(branche.osm),
+             "dat zijn er minder dan een regel per losse tag")
+    for _, waarde in branche.osm:
+        bevestig(waarde in q, f"waarde {waarde} zit in de samengevoegde regex")
     bevestig(q.strip().endswith("out center tags;"), "query vraagt tags op")
+
+
+def test_dode_spiegel():
+    print("\nGeblokkeerde spiegel overslaan")
+    bevestig(bron_osm._onbereikbaar(OSError("[Errno 104] Connection reset by peer")),
+             "een reset betekent: onbereikbaar, niet nog eens proberen")
+    bevestig(bron_osm._onbereikbaar(OSError("Connection refused")),
+             "een geweigerde verbinding ook")
+    bevestig(not bron_osm._onbereikbaar(TimeoutError("The read operation timed out")),
+             "een trage spiegel is NIET onbereikbaar en verdient een nieuwe poging")
+    bevestig(not bron_osm._onbereikbaar(OSError("HTTP Error 504: Gateway Timeout")),
+             "een overbelaste spiegel evenmin")
 
 
 def test_element_parsing():
@@ -116,6 +136,52 @@ def test_element_parsing():
     zonder_naam = bron_osm._element_naar_bedrijf(
         {"type": "node", "id": 1, "tags": {"shop": "hairdresser"}}, "Zwolle", "NL", "kapsalon")
     bevestig(zonder_naam is None, "bedrijf zonder naam wordt overgeslagen")
+
+
+def test_kvk_antwoord_lezen():
+    """Regressietest op het echte antwoordformaat van de KVK.
+
+    Hier ging het een keer helemaal mis: de rechtsvorm werd in
+    _embedded.hoofdvestiging gezocht terwijl de KVK hem bij de EIGENAAR van de
+    inschrijving zet. Dat gaf geen foutmelding maar een lege rechtsvorm, en dus
+    een hele dag leads die allemaal afvielen op "bij twijfel niet bellen".
+    """
+    print("\nKVK-antwoord lezen")
+    basisprofiel = {
+        "kvkNummer": "34367595",
+        "naam": "WMR Loodgieters B.V.",
+        "sbiActiviteiten": [{"sbiCode": "43221", "sbiOmschrijving": "Loodgieterswerk",
+                             "indHoofdactiviteit": "Ja"}],
+        "_embedded": {
+            "eigenaar": {"rsin": "1", "rechtsvorm": "Besloten Vennootschap",
+                         "uitgebreideRechtsvorm": "Besloten Vennootschap"},
+            "hoofdvestiging": {"vestigingsnummer": "1", "eersteHandelsnaam": "WMR"},
+        },
+    }
+    bevestig(kvk_mod._pak_rechtsvorm(basisprofiel) == "Besloten Vennootschap",
+             "rechtsvorm wordt bij de eigenaar gevonden, niet bij de vestiging")
+    bevestig(kvk_mod.classificeer_rechtsvorm(
+        kvk_mod._pak_rechtsvorm(basisprofiel)) is True,
+        "en die telt als rechtspersoon, dus belbaar")
+
+    eenmanszaak = {"_embedded": {"eigenaar": {"rechtsvorm": "Eenmanszaak"}}}
+    bevestig(kvk_mod.classificeer_rechtsvorm(
+        kvk_mod._pak_rechtsvorm(eenmanszaak)) is False,
+        "een eenmanszaak blijft een natuurlijk persoon")
+
+    bevestig(kvk_mod._pak_rechtsvorm({"_embedded": {"eigenaar": {}}}) == "",
+             "ontbrekende rechtsvorm geeft leeg en niet een gok")
+
+    # De plaats van een zoektreffer zit genest onder adres.binnenlandsAdres.
+    treffer = {"kvkNummer": "1", "naam": "Kapsalon Jansen", "type": "hoofdvestiging",
+               "adres": {"binnenlandsAdres": {"type": "bezoekadres",
+                                              "straatnaam": "Dorpsstraat",
+                                              "plaats": "Zwolle"}}}
+    bevestig(kvk_mod._plaats_van_treffer(treffer) == "Zwolle",
+             "plaats uit genest adres gelezen")
+    elders = dict(treffer, adres={"binnenlandsAdres": {"plaats": "Kampen"}})
+    bevestig(kvk_mod._rang(treffer, "Zwolle") < kvk_mod._rang(elders, "Zwolle"),
+             "de vestiging in de gezochte plaats gaat voor")
 
 
 # --------------------------------------------------------------- scoring
@@ -334,7 +400,9 @@ if __name__ == "__main__":
     test_rotatie()
     test_overschrijven()
     test_query()
+    test_dode_spiegel()
     test_element_parsing()
+    test_kvk_antwoord_lezen()
     test_scoring()
     test_geen_lege_dag()
     test_belbaarheid()
