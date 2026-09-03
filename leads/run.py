@@ -194,8 +194,7 @@ def naar_rij(bedrijf, site, kvk_resultaat, beoordeling, belbaarheid) -> dict:
     website_status = "geen website bekend"
     if bedrijf.website and site is not None:
         if site.geblokkeerd:
-            website_status = (f"niet te controleren: site weert automatische "
-                              f"controle (status {site.status})")
+            website_status = f"niet te controleren: {site.fout}"
         elif not site.bereikbaar:
             website_status = f"onbereikbaar ({site.fout})"
         elif site.alleen_social:

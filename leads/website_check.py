@@ -7,6 +7,7 @@ aan een dienst van Complete AI.
 from __future__ import annotations
 
 import gzip
+import http.client
 import re
 import ssl
 import time
@@ -74,7 +75,10 @@ class SiteRapport:
     online_afspraak: bool = False
     alleen_social: bool = False
     geparkeerd: bool = False
-    geblokkeerd: bool = False           # firewall weert de controle, site zelf onbekend
+    # De controle is niet gelukt en over de site zelf weten we dus niets:
+    # een firewall die ons weert, of een controle die stukliep. In beide
+    # gevallen mag hier geen koopsignaal uit komen.
+    geblokkeerd: bool = False
     bytes_html: int = 0
     fout: str = ""
 
@@ -121,6 +125,12 @@ def _lees(url: str, timeout: int = 15,
         return 0, url, b"", True
     except urllib.error.URLError as fout:
         return 0, url, b"", isinstance(fout.reason, ssl.SSLError)
+    except (TimeoutError, http.client.HTTPException, UnicodeError, OSError):
+        # Hier ging de hele run onderuit. Een read-timeout komt NIET als
+        # URLError naar boven maar als TimeoutError, en die is een OSError.
+        # Eén site die halverwege stilvalt liet zo 885 kandidaten verdampen.
+        # Een site die niet antwoordt is data, geen reden om te stoppen.
+        return 0, url, b"", False
 
 
 def controleer(url: str) -> SiteRapport:
@@ -206,11 +216,27 @@ def controleer(url: str) -> SiteRapport:
     return rapport
 
 
+def _veilig_controleer(url: str) -> SiteRapport:
+    """Vangnet: welke site ook ontploft, de run gaat door.
+
+    Eén onverwachte fout in één site mag nooit de hele oogst van een run
+    weggooien. Zo'n site geldt als 'niet vastgesteld', net als een site die
+    onze controle weert - dus zonder koopsignaal.
+    """
+    try:
+        return controleer(url)
+    except Exception as fout:  # noqa: BLE001 - bewust alles
+        return SiteRapport(
+            url=url, geblokkeerd=True,
+            fout=f"controle liep stuk ({type(fout).__name__})",
+        )
+
+
 def controleer_veel(urls: list[str], werkers: int = 12) -> dict[str, SiteRapport]:
     """Parallelle check. Netwerk is de bottleneck, dus threads volstaan."""
     uniek = [u for u in dict.fromkeys(urls) if u]
     if not uniek:
         return {}
     with ThreadPoolExecutor(max_workers=werkers) as pool:
-        rapporten = list(pool.map(controleer, uniek))
+        rapporten = list(pool.map(_veilig_controleer, uniek))
     return dict(zip(uniek, rapporten))
