@@ -51,6 +51,43 @@ Zet daarom `KVK_API_KEY` in de omgeving van de routine. Zonder sleutel draait
 alles gewoon door, maar meldt de run bovenaan dat KVK niet beschikbaar is in
 plaats van dat stil te laten.
 
+### Alleen belbare leads
+
+De lijst bevat uitsluitend bedrijven die je zonder nadenken mag draaien.
+
+- **Nederland**: alleen rechtspersonen (BV, NV, stichting, vereniging,
+  coöperatie), bevestigd door de rechtsvorm uit het KVK-basisprofiel.
+  Eenmanszaken, vof's, cv's en maatschappen vallen af; dat zijn natuurlijke
+  personen en die koud bellen levert klachten op. Blijft de rechtsvorm
+  onbekend, dan valt het bedrijf óók af — bij twijfel niet bellen.
+- **Vlaanderen**: zakelijk bellen mag, met "DNCM-scrub vereist" in de kolom
+  `let_op`.
+- Zonder telefoonnummer geen lead, en ook geen betaalde KVK-bevraging.
+
+Gevolg: van de kandidaten uit de bron valt in Nederland een fors deel af. De
+pijplijn haalt daarom zes keer zoveel kandidaten op als er leads nodig zijn.
+
+### Quota in plaats van alleen sorteren
+
+Puur op score sorteren geeft een lijst met honderd bedrijven zonder website en
+nooit een AI-telefonist. Daarom worden eerst de quota gevuld
+(`--min-website`, standaard 50; `--min-telefonist` en `--min-automatisering`,
+standaard 15) en pas daarna wordt aangevuld op score. Wordt een quotum niet
+gehaald, dan staat dat als tekort in `samenvatting.json` in plaats van
+stilzwijgend te verdwijnen.
+
+### Warmte: wat wel en niet kan
+
+Bij elke lead staat een warmte-inschatting met de sporen die eraan ten
+grondslag liggen: een geparkeerd domein of "binnenkort online", een website die
+het niet doet, wel een socialpagina maar geen site, geen online
+afspraakmogelijkheid, meerdere vestigingen.
+
+Wat **niet** kan: achterhalen wie er op internet naar "website laten maken"
+heeft gezocht. Zoekgedrag van bedrijven is geen openbare data — dat is precies
+wat je bij Google Ads koopt. De warmtesignalen hierboven zijn waarneembare
+sporen die dezelfde kant op wijzen, geen zoekintentie.
+
 ### De zes koopsignalen
 
 Elk bedrijf wordt op zes assen beoordeeld, elk gekoppeld aan een dienst:
@@ -74,12 +111,22 @@ meer zijn.
 ## Gebruik
 
 ```bash
-python3 leads/run.py --diagnose            # werken de bronnen vandaag?
-python3 leads/run.py --aantal 100          # dagelijkse run
-python3 leads/run.py --datum 2026-09-04    # reproduceerbaar, voor testen
-python3 leads/run.py --geen-kvk            # zonder KVK-verrijking
-python3 leads/test_logica.py               # alle logica, zonder netwerk
+python3 leads/run.py --diagnose                 # werken de bronnen vandaag?
+python3 leads/run.py --land NL --aantal 100     # dagelijkse belllijst
+python3 leads/run.py --land NL --aantal 100 --min-website 50 \
+        --min-telefonist 20 --min-automatisering 20 --kvk-budget 600
+python3 leads/run.py --branche installatie      # branche zelf kiezen
+python3 leads/test_logica.py                    # alle logica, zonder netwerk
 ```
+
+`--land NL` forceert Nederland. Zonder die vlag wisselt de rotatie per dag
+tussen Nederland en Vlaanderen, en Vlaamse leads moeten eerst langs de
+DNCM-lijst voordat je mag bellen.
+
+**Kosten.** Elke KVK-basisprofielbevraging kost ongeveer 2 cent. Om honderd
+belbare Nederlandse leads te vinden zijn er al snel 300 tot 600 nodig, dus reken
+op 6 tot 12 euro per dag. `--kvk-budget` zet het plafond; de run meldt achteraf
+wat hij verbruikt heeft.
 
 Uitvoer komt in `leads/uitvoer/<datum>/` als `leads.csv`, `leads.json` en
 `samenvatting.json`.
