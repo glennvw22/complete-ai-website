@@ -49,7 +49,7 @@ def _verstuur_portie(url: str, sleutel: str, portie: list[dict]) -> None:
         url,
         data=payload,
         method="POST",
-        headers={"Content-Type": "application/json", "x-leads-sleutel": sleutel},
+        headers={"Content-Type": "application/json", **({"x-leads-sleutel": sleutel} if sleutel else {})},
     )
 
     try:
@@ -97,8 +97,13 @@ def stuur_naar_dashboard(pad_naar_csv) -> None:
     """
     basis_url = os.environ.get("DASHBOARD_URL", "").strip()
     sleutel = os.environ.get("LEADS_IMPORT_SLEUTEL", "").strip()
-    if not basis_url or not sleutel:
-        log("DASHBOARD_URL of LEADS_IMPORT_SLEUTEL niet gezet; stap overgeslagen "
+    # Geen sleutel in de omgeving? Dan rekenen we erop dat de Claude-omgeving
+    # de header x-leads-sleutel zelf toevoegt (API-credential op de host, zie
+    # INSTELLEN.md — zelfde mechanisme als de KVK-sleutel). Nooit hier hardcoden.
+    if not sleutel:
+        log("LEADS_IMPORT_SLEUTEL niet in de omgeving; ga ervan uit dat de omgeving de header toevoegt.")
+    if not basis_url:
+        log("DASHBOARD_URL niet gezet; stap overgeslagen "
             "(de leads staan wel gewoon lokaal in leads.csv/leads.json)")
         return
 
