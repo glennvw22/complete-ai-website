@@ -27,6 +27,7 @@ sys.path.insert(0, str(HIER))
 import belbaar as belbaar_mod       # noqa: E402
 import bron_osm                      # noqa: E402
 import catalogus                     # noqa: E402
+import dashboard                     # noqa: E402
 import kvk as kvk_mod                # noqa: E402
 import samenstelling as samen_mod    # noqa: E402
 import score as score_mod            # noqa: E402
@@ -337,6 +338,7 @@ def main() -> int:
                     land=argumenten.land, branche=argumenten.branche, quota=quota,
                     max_gebieden=argumenten.max_gebieden)
     samenvatting = schrijf(uitslag, UITVOER / str(datum))
+    dashboard.stuur_naar_dashboard(samenvatting["csv"])
     print(json.dumps(samenvatting, ensure_ascii=False, indent=2))
     return 0
 

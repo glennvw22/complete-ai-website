@@ -138,6 +138,29 @@ de bron van complete-ai.nl). Bedrijfsgegevens, telefoonnummers en e-mailadressen
 horen daar niet in. De dagelijkse lijsten gaan naar Google Drive; alleen de code
 staat hier.
 
+## Dashboard-koppeling
+
+Na elke run stuurt `leads/dashboard.py` (functie `stuur_naar_dashboard()`,
+aangeroepen vanuit `run.py` direct na `schrijf()`) dezelfde `leads.csv` ook
+rechtstreeks naar `POST /api/leads/import` op het Complete AI-dashboard, in
+porties van 200 rijen — bovenop, niet in plaats van, de lokale bestanden en
+de Google Drive-stap hierboven. Daarvoor zijn twee omgevingsvariabelen nodig:
+
+| Variabele | Betekenis |
+|---|---|
+| `DASHBOARD_URL` | Basis-URL van het dashboard, zonder pad — bv. `https://dashboard.complete-ai.nl` |
+| `LEADS_IMPORT_SLEUTEL` | Geheime sleutel; moet exact overeenkomen met `LEADS_IMPORT_SLEUTEL` op de dashboardserver zelf (gaat mee als header `x-leads-sleutel`) |
+
+Ontbreekt een van beide, dan slaat `run.py` deze stap simpelweg over met een
+duidelijke logregel — de leads staan dan nog gewoon lokaal in `leads.csv` en
+`leads.json`, er gaat niets verloren. Een netwerkfout tijdens het versturen
+crasht de run ook nooit: die wordt gelogd, en de run gaat door.
+
+**De sleutel hoort nooit in deze repository.** Zet `LEADS_IMPORT_SLEUTEL` (en
+`DASHBOARD_URL`) als omgevingsvariabele in de omgeving waar `run.py` draait
+(de Claude Routine, zie hierboven) — nooit hardcoded, nooit in een commit,
+nooit in `routine-prompt.md`.
+
 ## Territoriumrotatie
 
 Het jachtgebied volgt uit de datum, zonder willekeur en zonder geheugen:
