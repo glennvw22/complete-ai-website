@@ -74,8 +74,11 @@ def diagnose(kvk_client: kvk_mod.KvkClient) -> dict:
 
 # ---------------------------------------------------------------- hoofdrun
 def draai(datum: _dt.date, aantal: int, gebruik_kvk: bool,
-          kvk_diepte: int, gemeenten_per_dag: int) -> dict:
-    terrein = catalogus.territorium_voor(datum, gemeenten_per_dag=gemeenten_per_dag)
+          kvk_diepte: int, gemeenten_per_dag: int,
+          land: str | None = None, branche: str | None = None) -> dict:
+    terrein = catalogus.territorium_voor(
+        datum, gemeenten_per_dag=gemeenten_per_dag, land=land, branche_sleutel=branche
+    )
     kvk_client = kvk_mod.KvkClient() if gebruik_kvk else kvk_mod.KvkClient(sleutel="")
     kvk_werkt, kvk_bericht = kvk_client.zelftest()
 
@@ -92,10 +95,10 @@ def draai(datum: _dt.date, aantal: int, gebruik_kvk: bool,
     while len(bedrijven) < aantal * 1.5 and extra_dagen < 6:
         extra_dagen += 2 if terrein.land == "NL" else 2
         buur = catalogus.territorium_voor(
-            datum + _dt.timedelta(days=extra_dagen), gemeenten_per_dag=gemeenten_per_dag
+            datum + _dt.timedelta(days=extra_dagen),
+            gemeenten_per_dag=gemeenten_per_dag,
+            land=terrein.land, branche_sleutel=terrein.branche.sleutel,
         )
-        if buur.land != terrein.land:
-            continue
         log(f"[uitbreiding] te weinig bedrijven ({len(bedrijven)}), "
             f"erbij: {', '.join(buur.gemeenten)}")
         extra, fouten = bron_osm.haal_bedrijven(
@@ -241,6 +244,10 @@ def main() -> int:
     ontleder.add_argument("--gemeenten", type=int, default=4)
     ontleder.add_argument("--kvk-diepte", type=int, default=40,
                           help="voor hoeveel topleads KVK wordt geraadpleegd")
+    ontleder.add_argument("--land", choices=["NL", "BE"], default=None,
+                          help="overschrijf de rotatie; NL als je vandaag wilt bellen")
+    ontleder.add_argument("--branche", default=None,
+                          help="overschrijf de branche, bv. installatie of horeca")
     ontleder.add_argument("--geen-kvk", action="store_true")
     ontleder.add_argument("--diagnose", action="store_true")
     argumenten = ontleder.parse_args()
@@ -253,7 +260,8 @@ def main() -> int:
     datum = (_dt.date.fromisoformat(argumenten.datum) if argumenten.datum
              else _dt.date.today())
     uitslag = draai(datum, argumenten.aantal, not argumenten.geen_kvk,
-                    argumenten.kvk_diepte, argumenten.gemeenten)
+                    argumenten.kvk_diepte, argumenten.gemeenten,
+                    land=argumenten.land, branche=argumenten.branche)
     samenvatting = schrijf(uitslag, UITVOER / str(datum))
     print(json.dumps(samenvatting, ensure_ascii=False, indent=2))
     return 0

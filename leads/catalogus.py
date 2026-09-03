@@ -179,19 +179,26 @@ class Territorium:
 _EPOCH = _dt.date(2026, 1, 1)
 
 
-def territorium_voor(datum: _dt.date, gemeenten_per_dag: int = 4) -> Territorium:
+def territorium_voor(datum: _dt.date, gemeenten_per_dag: int = 4,
+                    land: str | None = None,
+                    branche_sleutel: str | None = None) -> Territorium:
     """Kies deterministisch het jachtgebied van vandaag.
 
     Geen willekeur en geen geheugen nodig: dezelfde datum geeft altijd dezelfde
     combinatie, en de cyclus is zo lang dat terrein jarenlang niet terugkeert.
 
-    Twee co-prime stappen (gemeente-offset en branche-index) zorgen dat de
-    combinatie gemeente x branche pas na (aantal_gemeenten x aantal_branches)
-    dagen herhaalt in plaats van na aantal_gemeenten dagen.
+    `land` en `branche_sleutel` overschrijven de rotatie. Dat is nodig omdat de
+    twee markten verschillende belregels hebben: Belgische leads moeten eerst
+    langs de DNCM-lijst voordat je mag bellen, dus wie vandaag wil bellen kiest
+    NL. Het terrein blijft ook dan deterministisch uit de datum volgen.
     """
     dag = (datum - _EPOCH).days
-    # Even dagen Nederland, oneven dagen Vlaanderen: beide markten blijven lopen.
-    land = "NL" if dag % 2 == 0 else "BE"
+    if land in ("NL", "BE"):
+        gekozen_land = land
+    else:
+        # Even dagen Nederland, oneven dagen Vlaanderen: beide markten blijven lopen.
+        gekozen_land = "NL" if dag % 2 == 0 else "BE"
+    land = gekozen_land
     pool = GEMEENTEN_NL if land == "NL" else GEMEENTEN_BE
     ronde = dag // 2  # hoeveelste dag binnen dit land
 
@@ -202,6 +209,13 @@ def territorium_voor(datum: _dt.date, gemeenten_per_dag: int = 4) -> Territorium
     # en niet drie maanden achter elkaar hoveniers is), en elk paar
     # (branche, blok) komt precies een keer voorbij voordat er iets herhaalt.
     branche = BRANCHES[ronde % len(BRANCHES)]
+    if branche_sleutel:
+        if branche_sleutel not in BRANCHE_OP_SLEUTEL:
+            raise ValueError(
+                f"onbekende branche {branche_sleutel!r}; kies uit: "
+                + ", ".join(BRANCHE_OP_SLEUTEL)
+            )
+        branche = BRANCHE_OP_SLEUTEL[branche_sleutel]
     blok = (ronde // len(BRANCHES)) % blokken
 
     start = (blok * gemeenten_per_dag) % len(pool)

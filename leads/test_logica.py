@@ -56,6 +56,32 @@ def test_rotatie():
 
 
 # --------------------------------------------------------------- overpass
+def test_overschrijven():
+    print("\nLand en branche overschrijven")
+    d = _dt.date(2026, 9, 3)
+    vanzelf = catalogus.territorium_voor(d)
+    geforceerd = catalogus.territorium_voor(d, land="NL")
+    bevestig(geforceerd.land == "NL", "land NL forceren werkt")
+    bevestig(vanzelf.branche == geforceerd.branche,
+             "de branche verandert niet als je alleen het land forceert")
+    bevestig(all(g in catalogus.GEMEENTEN_NL for g in geforceerd.gemeenten),
+             "geforceerd NL levert alleen Nederlandse gemeenten")
+
+    met_branche = catalogus.territorium_voor(d, land="NL", branche_sleutel="horeca")
+    bevestig(met_branche.branche.sleutel == "horeca", "branche forceren werkt")
+
+    try:
+        catalogus.territorium_voor(d, branche_sleutel="bestaat-niet")
+        bevestig(False, "onbekende branche geeft een duidelijke fout")
+    except ValueError as fout:
+        bevestig("onbekende branche" in str(fout),
+                 "onbekende branche geeft een duidelijke fout")
+
+    zelfde = catalogus.territorium_voor(d, land="BE")
+    bevestig(all(g in catalogus.GEMEENTEN_BE for g in zelfde.gemeenten),
+             "geforceerd BE levert alleen Vlaamse gemeenten")
+
+
 def test_query():
     print("\nOverpass-query")
     branche = catalogus.BRANCHE_OP_SLEUTEL["kapsalon"]
@@ -209,6 +235,7 @@ def test_normaliseren():
 
 if __name__ == "__main__":
     test_rotatie()
+    test_overschrijven()
     test_query()
     test_element_parsing()
     test_scoring()
