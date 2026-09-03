@@ -34,6 +34,7 @@ class Samenstelling:
     per_quotum: dict = field(default_factory=dict)
     tekorten: dict = field(default_factory=dict)
     afgevallen_niet_belbaar: int = 0
+    afgevallen_zonder_reden: int = 0
     redenen_afgevallen: dict = field(default_factory=dict)
 
 
@@ -47,14 +48,20 @@ def stel_samen(kandidaten: list, aantal: int, quota: Quota) -> Samenstelling:
 
     belbaar_lijst = []
     for rij in kandidaten:
-        belbaarheid = rij[4]
-        if belbaarheid.mag_bellen:
-            belbaar_lijst.append(rij)
-        else:
+        belbaarheid, beoordeling = rij[4], rij[3]
+        if not belbaarheid.mag_bellen:
             uitslag.afgevallen_niet_belbaar += 1
             sleutel = belbaarheid.reden.split(" (")[0]
             uitslag.redenen_afgevallen[sleutel] = \
                 uitslag.redenen_afgevallen.get(sleutel, 0) + 1
+            continue
+        # Harde ondergrens: een bedrijf zonder enig koopsignaal is geen lead.
+        # Een moderne site, online boeken, goed bereikbaar - daar hebben we
+        # niets te verkopen, en zo iemand bellen verspilt Glenns tijd.
+        if not beoordeling.signalen:
+            uitslag.afgevallen_zonder_reden += 1
+            continue
+        belbaar_lijst.append(rij)
 
     belbaar_lijst.sort(key=lambda r: (-r[3].score, -r[3].warmte.punten))
 

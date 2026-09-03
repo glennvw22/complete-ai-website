@@ -79,7 +79,7 @@ def diagnose(kvk_client: kvk_mod.KvkClient) -> dict:
 def draai(datum: _dt.date, aantal: int, gebruik_kvk: bool,
           kvk_budget: int, gemeenten_per_dag: int,
           land: str | None = None, branche: str | None = None,
-          quota: samen_mod.Quota | None = None) -> dict:
+          quota: samen_mod.Quota | None = None, max_gebieden: int = 30) -> dict:
     terrein = catalogus.territorium_voor(
         datum, gemeenten_per_dag=gemeenten_per_dag, land=land, branche_sleutel=branche
     )
@@ -95,30 +95,34 @@ def draai(datum: _dt.date, aantal: int, gebruik_kvk: bool,
             "Nederlandse lead belbaar.")
 
     # 1. Bron. Er is een ruime overmaat nodig: in Nederland valt het grootste
-    #    deel af op rechtsvorm, dus je hebt veel meer kandidaten dan leads nodig.
-    bedrijven, osm_fouten = bron_osm.haal_bedrijven(
-        list(terrein.gemeenten), terrein.branche, terrein.land, logger=log
-    )
-    nodig = aantal * 6 if terrein.land == "NL" else aantal * 2
-    extra_dagen = 0
-    while len(bedrijven) < nodig and extra_dagen < 40:
-        extra_dagen += 2
-        buur = catalogus.territorium_voor(
-            datum + _dt.timedelta(days=extra_dagen),
-            gemeenten_per_dag=gemeenten_per_dag,
-            land=terrein.land, branche_sleutel=terrein.branche.sleutel,
-        )
-        log(f"[uitbreiding] {len(bedrijven)} van {nodig} kandidaten, "
-            f"erbij: {', '.join(buur.gemeenten)}")
-        extra, fouten = bron_osm.haal_bedrijven(
-            list(buur.gemeenten), terrein.branche, terrein.land, logger=log
+    #    deel af op rechtsvorm, dus je hebt veel meer kandidaten dan leads
+    #    nodig. We lopen de jachtvolgorde af tot er genoeg bedrijven MET
+    #    telefoonnummer zijn - zonder nummer wordt het toch nooit een bellead.
+    nodig = aantal * 8 if terrein.land == "NL" else aantal * 3
+    bedrijven: list = []
+    osm_fouten: list[str] = []
+    gezien: set = set()
+    gebieden: list[str] = []
+
+    for branche, blok in catalogus.jachtvolgorde(terrein, gemeenten_per_dag):
+        met_nummer_nu = sum(1 for b in bedrijven if b.telefoon)
+        if met_nummer_nu >= nodig or len(gebieden) >= max_gebieden:
+            break
+        gevonden, fouten = bron_osm.haal_bedrijven(
+            list(blok), branche, terrein.land, logger=log
         )
         osm_fouten += fouten
-        bekend = {(b.naam.lower(), b.adres.lower()) for b in bedrijven}
-        bedrijven += [b for b in extra
-                      if (b.naam.lower(), b.adres.lower()) not in bekend]
-        if not extra:
-            break
+        nieuw_aantal = 0
+        for bedrijf in gevonden:
+            sleutel = (bedrijf.naam.lower(), bedrijf.adres.lower())
+            if sleutel in gezien:
+                continue
+            gezien.add(sleutel)
+            bedrijven.append(bedrijf)
+            nieuw_aantal += 1
+        gebieden.append(f"{branche.sleutel}: {', '.join(blok)}")
+        log(f"[bron] +{nieuw_aantal} uit {branche.sleutel} {blok[0]}... "
+            f"(totaal {len(bedrijven)}, met nummer {met_nummer_nu + nieuw_aantal})")
 
     log(f"[bron] {len(bedrijven)} kandidaten uit OpenStreetMap")
 
@@ -175,6 +179,7 @@ def draai(datum: _dt.date, aantal: int, gebruik_kvk: bool,
         "samenstelling": uitslag_samen,
         "totaal_gevonden": len(bedrijven),
         "met_nummer": len(met_nummer),
+        "gebieden": gebieden,
         "osm_fouten": osm_fouten,
         "kvk_werkt": kvk_werkt,
         "kvk_bericht": kvk_bericht,
@@ -255,6 +260,7 @@ def schrijf(uitslag: dict, map_pad: Path) -> dict:
         "land": terrein.land,
         "branche": terrein.branche.naam,
         "gemeenten": list(terrein.gemeenten),
+        "gebieden_afgezocht": uitslag.get("gebieden", []),
         "kandidaten_uit_bron": uitslag["totaal_gevonden"],
         "kandidaten_met_telefoon": uitslag["met_nummer"],
         "leads_geleverd": len(rijen),
@@ -268,6 +274,7 @@ def schrijf(uitslag: dict, map_pad: Path) -> dict:
             for label in ("warm", "lauw", "koud")
         },
         "afgevallen_niet_belbaar": samen.afgevallen_niet_belbaar,
+        "afgevallen_zonder_koopsignaal": samen.afgevallen_zonder_reden,
         "redenen_afgevallen": samen.redenen_afgevallen,
         "kvk_werkt": uitslag["kvk_werkt"],
         "kvk_bericht": uitslag["kvk_bericht"],
@@ -288,9 +295,11 @@ def schrijf(uitslag: dict, map_pad: Path) -> dict:
 def main() -> int:
     ontleder = argparse.ArgumentParser(description="Lead-run Complete AI")
     ontleder.add_argument("--datum", default="")
-    ontleder.add_argument("--aantal", type=int, default=100)
+    ontleder.add_argument("--aantal", type=int, default=150)
     ontleder.add_argument("--gemeenten", type=int, default=4)
-    ontleder.add_argument("--kvk-budget", type=int, default=400,
+    ontleder.add_argument("--max-gebieden", type=int, default=30,
+                          help="hoeveel branche x gemeenteblok-combinaties maximaal")
+    ontleder.add_argument("--kvk-budget", type=int, default=900,
                           help="maximaal aantal KVK-bevragingen (ca. 2 cent per stuk)")
     ontleder.add_argument("--min-website", type=int, default=50,
                           help="minimaal aantal leads met geen/slechte website")
@@ -316,7 +325,8 @@ def main() -> int:
                             automatisering=argumenten.min_automatisering)
     uitslag = draai(datum, argumenten.aantal, not argumenten.geen_kvk,
                     argumenten.kvk_budget, argumenten.gemeenten,
-                    land=argumenten.land, branche=argumenten.branche, quota=quota)
+                    land=argumenten.land, branche=argumenten.branche, quota=quota,
+                    max_gebieden=argumenten.max_gebieden)
     samenvatting = schrijf(uitslag, UITVOER / str(datum))
     print(json.dumps(samenvatting, ensure_ascii=False, indent=2))
     return 0

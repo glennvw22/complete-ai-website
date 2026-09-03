@@ -258,6 +258,30 @@ def test_samenstelling():
     bevestig(krap.tekorten.get("website", 0) > 0,
              "een onhaalbaar quotum wordt als tekort gemeld in plaats van verzwegen")
 
+    # Een bedrijf zonder enkel koopsignaal hoort er niet in, ook niet als de
+    # lijst daardoor korter wordt dan gevraagd.
+    perfect_site = website_check.SiteRapport(
+        url="https://top.nl", bereikbaar=True, status=200, eindurl="https://top.nl",
+        https=True, laadtijd_ms=200, mobiel_geschikt=True, heeft_titel=True,
+        heeft_meta_omschrijving=True, heeft_structuurdata=True, copyright_jaar=2026,
+        online_afspraak=True)
+    installatie = catalogus.BRANCHE_OP_SLEUTEL["installatie"]
+    geen_reden = _bedrijf(osm_id="perfect", branche="installatie",
+                          telefoon="038-9", email="info@top.nl",
+                          website="https://top.nl", social="https://facebook.com/t",
+                          openingstijden="24/7")
+    beoordeling = score_mod.beoordeel(geen_reden, perfect_site, bv, installatie)
+    bevestig(not beoordeling.signalen,
+             "een bedrijf dat niets mist heeft geen enkel koopsignaal")
+    schoon = samen_mod.stel_samen(
+        [(geen_reden, perfect_site, bv, beoordeling,
+          belbaar_mod.beoordeel_belbaarheid(geen_reden, bv))],
+        10, samen_mod.Quota(0, 0, 0))
+    bevestig(len(schoon.gekozen) == 0,
+             "zo'n bedrijf komt niet in de lijst, ook al is er ruimte")
+    bevestig(schoon.afgevallen_zonder_reden == 1,
+             "en het wordt geteld als afgevallen zonder koopsignaal")
+
 
 def test_schrijven():
     print("\nWegschrijven van de uitvoer")

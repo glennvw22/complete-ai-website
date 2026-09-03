@@ -228,3 +228,36 @@ def territorium_voor(datum: _dt.date, gemeenten_per_dag: int = 4,
         branche=branche,
         cyclus_dagen=blokken * len(BRANCHES) * 2,
     )
+
+
+def gemeente_blokken(land: str, gemeenten_per_dag: int = 4) -> list[tuple[str, ...]]:
+    """Deel de gemeenten van een land op in blokken van vaste grootte."""
+    pool = GEMEENTEN_NL if land == "NL" else GEMEENTEN_BE
+    return [tuple(pool[i:i + gemeenten_per_dag])
+            for i in range(0, len(pool), gemeenten_per_dag)]
+
+
+def jachtvolgorde(terrein: Territorium, gemeenten_per_dag: int = 4):
+    """De volgorde waarin gebieden worden afgezocht als er meer nodig is.
+
+    Begint bij het terrein van vandaag en loopt dan verder: eerst dezelfde
+    branche in aangrenzende gemeenteblokken, daarna de volgende branches. Zo
+    blijft de dag herkenbaar (een branche waar je je op kunt voorbereiden),
+    maar loop je nooit leeg omdat een gemeente te klein was.
+    """
+    blokken = gemeente_blokken(terrein.land, gemeenten_per_dag)
+    if not blokken:
+        return
+    start_blok = 0
+    for index, blok in enumerate(blokken):
+        if blok and blok[0] == terrein.gemeenten[0]:
+            start_blok = index
+            break
+
+    branche_index = BRANCHES.index(terrein.branche)
+    branches = [BRANCHES[(branche_index + i) % len(BRANCHES)]
+                for i in range(len(BRANCHES))]
+
+    for branche in branches:
+        for stap in range(len(blokken)):
+            yield branche, blokken[(start_blok + stap) % len(blokken)]

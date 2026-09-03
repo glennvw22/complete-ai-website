@@ -116,7 +116,8 @@ def _bepaal_warmte(bedrijf, site, kvk_resultaat, branche: Branche) -> Warmte:
         voeg_toe(20, "Klanten kunnen niet online boeken of bestellen, terwijl de "
                      "concurrent dat wel biedt")
 
-    if branche.beldruk >= 0.9 and not bedrijf.openingstijden:
+    if branche.beldruk >= 0.9 and not bedrijf.openingstijden \
+            and "24/7" not in (bedrijf.openingstijden or ""):
         voeg_toe(15, "Hoge belbranche zonder gepubliceerde openingstijden - "
                      "gemiste oproepen buiten kantooruren")
 
@@ -193,16 +194,25 @@ def beoordeel(bedrijf, site, kvk_resultaat, branche: Branche) -> Beoordeling:
             hard=False))
 
     # ---------------- 3. AI-TELEFONIST ----------------
-    if bedrijf.telefoon:
-        beldruk_punten = int(branche.beldruk * 55)
-        reden = f"Telefoon is de hoofdingang in deze branche ({branche.naam.lower()})"
-        if not bedrijf.openingstijden:
-            beldruk_punten += 8
-        elif "24/7" not in bedrijf.openingstijden:
-            beldruk_punten += 12
-            reden += "; buiten openingstijden gaat de telefoon nu niet op"
-        if branche.beldruk >= 0.85:
-            signalen.append(Signaal("telefonist", min(beldruk_punten, 72), reden, hard=False))
+    # Alleen een signaal als er een echt bereikbaarheidsgat is. Een bedrijf dat
+    # 24/7 opneemt heeft geen probleem dat wij oplossen; die op de lijst zetten
+    # is tijdverspilling aan de telefoon.
+    if bedrijf.telefoon and branche.beldruk >= 0.85:
+        altijd_bereikbaar = "24/7" in (bedrijf.openingstijden or "")
+        if not altijd_bereikbaar:
+            beldruk_punten = int(branche.beldruk * 55)
+            if not bedrijf.openingstijden:
+                beldruk_punten += 8
+                reden = (f"Telefoon is de hoofdingang in deze branche "
+                         f"({branche.naam.lower()}) en er staan nergens "
+                         f"openingstijden - onduidelijk wanneer er opgenomen wordt")
+            else:
+                beldruk_punten += 12
+                reden = (f"Telefoon is de hoofdingang in deze branche "
+                         f"({branche.naam.lower()}); buiten openingstijden "
+                         f"({bedrijf.openingstijden}) gaat de telefoon niet op")
+            signalen.append(Signaal("telefonist", min(beldruk_punten, 72),
+                                    reden, hard=False))
 
     # ---------------- 4. AUTOMATISERING ----------------
     if branche.online_afspraak:
