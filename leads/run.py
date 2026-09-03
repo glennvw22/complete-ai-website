@@ -30,6 +30,7 @@ import catalogus                     # noqa: E402
 import kvk as kvk_mod                # noqa: E402
 import samenstelling as samen_mod    # noqa: E402
 import score as score_mod            # noqa: E402
+import status as status_mod          # noqa: E402
 import website_check                 # noqa: E402
 
 UITVOER = HIER / "uitvoer"
@@ -39,6 +40,7 @@ CSV_KOLOMMEN = [
     "verkoop_primair", "verkoop_secundair", "waarom_lead", "waarom_warm",
     "bellen_mag", "bellen_grond", "let_op", "rechtsvorm", "kvk_nummer",
     "website", "website_status", "email", "adres", "sbi", "zekerheid", "osm_id",
+    "status", "notitie", "laatst_gebeld",
 ]
 
 
@@ -236,6 +238,11 @@ def naar_rij(bedrijf, site, kvk_resultaat, beoordeling, belbaarheid) -> dict:
                 if kvk_resultaat else ""),
         "zekerheid": beoordeling.zekerheid,
         "osm_id": bedrijf.osm_id,
+        # Kolommen om in te vullen tijdens het bellen. Ze staan al in de CSV
+        # zodat de bellijst en het dashboard dezelfde vorm inlezen.
+        "status": status_mod.BEGINSTATUS,
+        "notitie": "",
+        "laatst_gebeld": "",
     }
 
 
