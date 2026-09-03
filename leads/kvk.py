@@ -52,6 +52,8 @@ class KvkResultaat:
     sbi: str = ""
     sbi_omschrijving: str = ""
     vestigingen: int = 0
+    zoek_type: str = ""      # 'hoofdvestiging' / 'rechtspersoon' / 'nevenvestiging'
+    bron: str = ""           # 'zoeken' (gratis) of 'basisprofiel' (betaald)
     fout: str = ""
 
     @property
@@ -152,8 +154,15 @@ class KvkClient:
         return True, f"KVK API werkt (testzoekopdracht gaf {aantal} treffers)."
 
     # -- verrijking -------------------------------------------------------
-    def zoek(self, naam: str, plaats: str = "") -> KvkResultaat:
-        cachesleutel = f"{naam}|{plaats}".lower()
+    def zoek(self, naam: str, plaats: str = "",
+             met_basisprofiel: bool = True) -> KvkResultaat:
+        """Zoek een bedrijf op naam en plaats.
+
+        De Zoeken API is gratis, het Basisprofiel kost per bevraging. Met
+        `met_basisprofiel=False` doe je alleen de gratis stap; die geeft het
+        KVK-nummer en het type inschrijving, genoeg voor een eerste schifting.
+        """
+        cachesleutel = f"{naam}|{plaats}|{met_basisprofiel}".lower()
         if cachesleutel in self._cache:
             return self._cache[cachesleutel]
 
@@ -182,8 +191,10 @@ class KvkClient:
         resultaat.gevonden = True
         resultaat.kvk_nummer = str(beste.get("kvkNummer", "") or "")
         resultaat.handelsnaam = beste.get("naam", "") or ""
+        resultaat.zoek_type = (beste.get("type") or "").lower()
+        resultaat.bron = "zoeken"
 
-        if resultaat.kvk_nummer:
+        if resultaat.kvk_nummer and met_basisprofiel:
             self._vul_basisprofiel(resultaat)
 
         self._cache[cachesleutel] = resultaat
@@ -197,6 +208,7 @@ class KvkClient:
 
         resultaat.rechtsvorm = _pak_rechtsvorm(data)
         resultaat.is_rechtspersoon = classificeer_rechtsvorm(resultaat.rechtsvorm)
+        resultaat.bron = "basisprofiel"
 
         activiteiten = data.get("sbiActiviteiten") or []
         if activiteiten and isinstance(activiteiten[0], dict):

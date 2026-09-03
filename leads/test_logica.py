@@ -6,6 +6,7 @@ Draaien:  python3 leads/test_logica.py
 from __future__ import annotations
 
 import datetime as _dt
+import json
 import sys
 import tempfile
 from pathlib import Path
@@ -13,10 +14,12 @@ from pathlib import Path
 HIER = Path(__file__).resolve().parent
 sys.path.insert(0, str(HIER))
 
+import belbaar as belbaar_mod
 import bron_osm
 import catalogus
 import kvk as kvk_mod
 import run as run_mod
+import samenstelling as samen_mod
 import score as score_mod
 import website_check
 
@@ -196,32 +199,102 @@ def test_geen_lege_dag():
 
 
 # --------------------------------------------------------------- uitvoer
+def test_belbaarheid():
+    print("\nBelbaarheid (regelgeving)")
+    bv = kvk_mod.KvkResultaat(gevonden=True, rechtsvorm="Besloten Vennootschap",
+                              is_rechtspersoon=True)
+    ez = kvk_mod.KvkResultaat(gevonden=True, rechtsvorm="Eenmanszaak",
+                              is_rechtspersoon=False)
+    onbekend = kvk_mod.KvkResultaat(gevonden=True, zoek_type="rechtspersoon")
+
+    bevestig(belbaar_mod.beoordeel_belbaarheid(_bedrijf(telefoon="038-1"), bv).mag_bellen,
+             "NL rechtspersoon met nummer mag gebeld worden")
+    bevestig(not belbaar_mod.beoordeel_belbaarheid(_bedrijf(telefoon="038-1"), ez).mag_bellen,
+             "NL eenmanszaak mag NIET gebeld worden")
+    bevestig(not belbaar_mod.beoordeel_belbaarheid(_bedrijf(telefoon="038-1"), onbekend).mag_bellen,
+             "NL met onbekende rechtsvorm valt af, ook bij een aanwijzing")
+    bevestig(not belbaar_mod.beoordeel_belbaarheid(_bedrijf(telefoon="038-1"), None).mag_bellen,
+             "NL zonder KVK-treffer valt af")
+    bevestig(not belbaar_mod.beoordeel_belbaarheid(_bedrijf(), bv).mag_bellen,
+             "zonder telefoonnummer geen bellead")
+
+    be = belbaar_mod.beoordeel_belbaarheid(_bedrijf(land="BE", telefoon="09-1"), None)
+    bevestig(be.mag_bellen, "BE met nummer mag gebeld worden zonder KVK")
+    bevestig("DNCM" in be.let_op, "BE krijgt de DNCM-waarschuwing mee")
+
+
+def test_samenstelling():
+    print("\nSamenstelling met quota")
+    kapsalon = catalogus.BRANCHE_OP_SLEUTEL["kapsalon"]
+    bv = kvk_mod.KvkResultaat(gevonden=True, rechtsvorm="Besloten Vennootschap",
+                              is_rechtspersoon=True)
+    ez = kvk_mod.KvkResultaat(gevonden=True, rechtsvorm="Eenmanszaak",
+                              is_rechtspersoon=False)
+
+    kandidaten = []
+    for i in range(30):
+        b = _bedrijf(osm_id=f"ok{i}", naam=f"OK{i}", telefoon="038-1")
+        kandidaten.append((b, None, bv, score_mod.beoordeel(b, None, bv, kapsalon),
+                           belbaar_mod.beoordeel_belbaarheid(b, bv)))
+    for i in range(20):
+        b = _bedrijf(osm_id=f"nee{i}", naam=f"NEE{i}", telefoon="038-2")
+        kandidaten.append((b, None, ez, score_mod.beoordeel(b, None, ez, kapsalon),
+                           belbaar_mod.beoordeel_belbaarheid(b, ez)))
+
+    uitslag = samen_mod.stel_samen(kandidaten, 25, samen_mod.Quota(
+        website=10, telefonist=5, automatisering=5))
+    bevestig(len(uitslag.gekozen) == 25, f"25 leads gekozen (nu {len(uitslag.gekozen)})")
+    bevestig(all(r[4].mag_bellen for r in uitslag.gekozen),
+             "elke gekozen lead is belbaar")
+    bevestig(not any(r[0].osm_id.startswith("nee") for r in uitslag.gekozen),
+             "geen enkele eenmanszaak in de lijst")
+    bevestig(uitslag.afgevallen_niet_belbaar == 20,
+             f"20 afgevallen als niet-belbaar (nu {uitslag.afgevallen_niet_belbaar})")
+    ids = [r[0].osm_id for r in uitslag.gekozen]
+    bevestig(len(ids) == len(set(ids)), "geen dubbele leads")
+
+    krap = samen_mod.stel_samen(kandidaten, 25, samen_mod.Quota(
+        website=99, telefonist=0, automatisering=0))
+    bevestig(krap.tekorten.get("website", 0) > 0,
+             "een onhaalbaar quotum wordt als tekort gemeld in plaats van verzwegen")
+
+
 def test_schrijven():
     print("\nWegschrijven van de uitvoer")
     kapsalon = catalogus.BRANCHE_OP_SLEUTEL["kapsalon"]
-    rijen = []
+    bv = kvk_mod.KvkResultaat(gevonden=True, kvk_nummer="12345678",
+                              rechtsvorm="Besloten Vennootschap", is_rechtspersoon=True)
+    kandidaten = []
     for i in range(3):
         b = _bedrijf(osm_id=f"node/{i}", naam=f"Bedrijf {i}", telefoon="038-1234567")
-        beoordeling = score_mod.beoordeel(b, None, None, kapsalon)
-        rijen.append((b, None, None, beoordeling))
+        kandidaten.append((b, None, bv, score_mod.beoordeel(b, None, bv, kapsalon),
+                           belbaar_mod.beoordeel_belbaarheid(b, bv)))
+    samen = samen_mod.stel_samen(kandidaten, 3, samen_mod.Quota(1, 1, 1))
 
     uitslag = {
-        "terrein": catalogus.territorium_voor(_dt.date(2026, 9, 1)),
-        "rijen": rijen, "totaal_gevonden": 3, "osm_fouten": [],
-        "kvk_werkt": False, "kvk_bericht": "geen sleutel", "kvk_gedaan": 0,
+        "terrein": catalogus.territorium_voor(_dt.date(2026, 9, 1), land="NL"),
+        "rijen": samen.gekozen, "samenstelling": samen,
+        "totaal_gevonden": 3, "met_nummer": 3, "osm_fouten": [],
+        "kvk_werkt": True, "kvk_bericht": "ok", "kvk_gedaan": 3,
+        "quota": samen_mod.Quota(1, 1, 1),
     }
     with tempfile.TemporaryDirectory() as tijdelijk:
         samenvatting = run_mod.schrijf(uitslag, Path(tijdelijk) / "test")
         csv_pad = Path(samenvatting["csv"])
         bevestig(csv_pad.exists(), "CSV is weggeschreven")
         inhoud = csv_pad.read_text(encoding="utf-8")
-        bevestig(inhoud.startswith("score,zekerheid,beste_dienst"), "CSV heeft kopregel")
+        bevestig(inhoud.startswith("score,warmte,bedrijf,telefoon"),
+                 "CSV begint met de kolommen die je bij het bellen nodig hebt")
         bevestig(len(inhoud.strip().splitlines()) == 4, "CSV heeft 3 leads + kop")
-        bevestig(samenvatting["leads_geleverd"] == 3, "samenvatting telt de leads")
-        bevestig(samenvatting["mail_leads"] == 3,
-                 "zonder KVK gaat alles naar de mailbaan (bij twijfel niet bellen)")
-        bevestig("per_dienst" in samenvatting and samenvatting["per_dienst"],
-                 "samenvatting splitst per dienst")
+        bevestig(samenvatting["alles_belbaar"] is True,
+                 "de samenvatting bevestigt dat alles belbaar is")
+        bevestig("kvk_kosten_indicatie_eur" in samenvatting,
+                 "de samenvatting noemt de KVK-kosten van de run")
+        eerste = json.loads((Path(tijdelijk) / "test" / "leads.json").read_text())[0]
+        bevestig(eerste["waarom_lead"].startswith("1. "),
+                 "de redenen staan genummerd in de rij")
+        bevestig(eerste["verkoop_primair"], "er staat een dienst om te verkopen bij")
+        bevestig(eerste["bellen_mag"] == "JA", "bellen_mag staat op JA")
 
 
 def test_normaliseren():
@@ -240,6 +313,8 @@ if __name__ == "__main__":
     test_element_parsing()
     test_scoring()
     test_geen_lege_dag()
+    test_belbaarheid()
+    test_samenstelling()
     test_schrijven()
     test_normaliseren()
     print("\n" + ("ALLE TESTS GESLAAGD" if not MISLUKT

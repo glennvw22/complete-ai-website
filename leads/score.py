@@ -28,16 +28,103 @@ class Signaal:
 
 
 @dataclass
+class Warmte:
+    """Aanwijzingen dat dit bedrijf NU met het onderwerp bezig is.
+
+    Belangrijk om eerlijk over te zijn: wie er op internet naar "website laten
+    maken" heeft gezocht, is niet te achterhalen. Zoekgedrag van bedrijven is
+    geen openbare data; dat is precies wat je bij Google Ads koopt. Wat hier
+    staat zijn waarneembare sporen die dezelfde kant op wijzen.
+    """
+    punten: int = 0
+    redenen: list[str] = field(default_factory=list)
+
+    @property
+    def label(self) -> str:
+        if self.punten >= 45:
+            return "warm"
+        if self.punten >= 20:
+            return "lauw"
+        return "koud"
+
+
+@dataclass
 class Beoordeling:
     signalen: list[Signaal] = field(default_factory=list)
     score: int = 0
     beste_dienst: str = ""
     zekerheid: str = "laag"     # hoog / midden / laag
     bereikbaar: bool = False
+    warmte: Warmte = field(default_factory=Warmte)
 
     @property
     def redenen(self) -> str:
         return " | ".join(f"{s.reden}" for s in self.signalen[:4])
+
+    @property
+    def alle_redenen(self) -> str:
+        """Elke reden, genummerd - dit is wat Glenn voor zich heeft bij het bellen."""
+        return " ".join(
+            f"{i}. {s.reden} [{DIENSTEN.get(s.dienst, s.dienst)}]"
+            for i, s in enumerate(self.signalen, 1)
+        )
+
+    @property
+    def diensten_op_volgorde(self) -> list[str]:
+        gezien, uit = set(), []
+        for s in self.signalen:
+            if s.dienst not in gezien:
+                gezien.add(s.dienst)
+                uit.append(s.dienst)
+        return uit
+
+    def heeft_dienst(self, sleutel: str) -> bool:
+        return any(s.dienst == sleutel for s in self.signalen)
+
+    @property
+    def website_gat(self) -> bool:
+        """Geen, slechte of verouderde website - de klassieke ingang."""
+        return any(s.dienst == "website" for s in self.signalen)
+
+
+def _bepaal_warmte(bedrijf, site, kvk_resultaat, branche: Branche) -> Warmte:
+    warmte = Warmte()
+
+    def voeg_toe(punten: int, reden: str):
+        warmte.punten += punten
+        warmte.redenen.append(reden)
+
+    if site is not None:
+        if site.geparkeerd:
+            voeg_toe(45, "Domein staat geparkeerd of 'binnenkort online' - ze zijn "
+                         "er zelf al mee bezig maar komen er niet uit")
+        if not site.bereikbaar and bedrijf.website:
+            voeg_toe(40, "De website die ze opgeven doet het niet - dat kost ze nu klanten")
+        if site.copyright_jaar and HUIDIG_JAAR - site.copyright_jaar >= 5:
+            voeg_toe(20, f"Site is al {HUIDIG_JAAR - site.copyright_jaar} jaar niet "
+                         f"aangeraakt (copyright {site.copyright_jaar})")
+
+    if bedrijf.social and not bedrijf.website:
+        voeg_toe(30, "Wel actief op social, geen eigen site - ze investeren al in "
+                     "online zichtbaarheid, alleen op de verkeerde plek")
+
+    if bedrijf.email and not bedrijf.website:
+        voeg_toe(15, "Heeft wel een zakelijk mailadres maar geen site")
+
+    if branche.online_afspraak and site is not None and site.bereikbaar \
+            and not site.online_afspraak:
+        voeg_toe(20, "Klanten kunnen niet online boeken of bestellen, terwijl de "
+                     "concurrent dat wel biedt")
+
+    if branche.beldruk >= 0.9 and not bedrijf.openingstijden:
+        voeg_toe(15, "Hoge belbranche zonder gepubliceerde openingstijden - "
+                     "gemiste oproepen buiten kantooruren")
+
+    if kvk_resultaat is not None and kvk_resultaat.vestigingen > 1:
+        voeg_toe(20, f"{kvk_resultaat.vestigingen} vestigingen - groeiend bedrijf "
+                     f"met budget")
+
+    return warmte
 
 
 def beoordeel(bedrijf, site, kvk_resultaat, branche: Branche) -> Beoordeling:
@@ -171,6 +258,8 @@ def beoordeel(bedrijf, site, kvk_resultaat, branche: Branche) -> Beoordeling:
                 rauw += 5   # mag koud gebeld worden
 
         beoordeling.score = max(0, min(100, rauw))
+
+    beoordeling.warmte = _bepaal_warmte(bedrijf, site, kvk_resultaat, branche)
 
     harde = sum(1 for s in beoordeling.signalen if s.hard)
     if harde >= 2 and beoordeling.bereikbaar:
