@@ -8,7 +8,7 @@ van de wisselende opbrengst, niet de prompt.
 |---|---|
 | Overpass / OpenStreetMap | geblokkeerd door het netwerkbeleid |
 | Websites van bedrijven ophalen | geblokkeerd door het netwerkbeleid |
-| KVK API | geen sleutel aanwezig, en host zou ook geblokkeerd zijn |
+| KVK API | sleutel hoort in ~/.config/complete-ai/.env; api.kvk.nl is vanaf de Mac bereikbaar (gemeten 6-9-2026) |
 | GitHub | werkt (loopt via een eigen proxy, staat los van het netwerkbeleid) |
 | WebSearch | werkt (loopt via Anthropic, niet via het netwerk van de container) |
 
@@ -67,23 +67,31 @@ Controleer welke API's op je sleutel staan. Voor deze machine heb je nodig:
   Deze kost ongeveer € 6,40 per maand per sleutel plus € 0,02 per bevraging.
   Bij 40 verrijkingen per dag is dat ruwweg € 25 per maand.
 
-Zet de sleutel daarna op één van deze twee manieren in de omgeving:
+Zet de sleutel daarna op DE vaste plek — er is er maar één:
 
-**Route B — API-credential (aanbevolen: veiliger én omzeilt de allowlist).**
-Bij **API credentials** in de omgevingsdialoog: **Add credential**, met
+```
+echo 'KVK_API_KEY=jouw-sleutel-hier' >> ~/.config/complete-ai/.env
+chmod 600 ~/.config/complete-ai/.env
+```
 
-- **Allowed websites**: `api.kvk.nl`
-- **Custom headers**: naam `apikey`, prefix leeg, waarde is je sleutel
+Dat is alles. `leads/kvk.py` leest dit bestand zelf, dus geen enkele routine,
+sessie of shell hoeft de sleutel nog te exporteren. Controleer met:
 
-De sleutel komt dan nooit in de sessie terecht; de proxy plakt hem erop nadat
-het verzoek de container verlaten heeft. Zet er ook de variabele
-`KVK_VIA_PROXY=1` bij, zodat de code weet dat hij zelf geen header hoeft mee te
-sturen.
+```
+python3 leads/run.py --diagnose
+```
 
-**Route A — omgevingsvariabele (simpeler, maar minder goed).** Bij
-**Environment variables**: `KVK_API_KEY=jouw-sleutel-hier`. Let op: hiermee komt
-de sleutel wél in elke sessie terecht, en `api.kvk.nl` blijft geblokkeerd zolang
-het netwerkbeleid op Trusted staat. Alleen zinvol als je stap 1 toch doet.
+**Zet hem NIET in een cloud-omgeving.** Dat is jarenlang de fout geweest en de
+oude tekst hier stuurde daar zelfs op aan. De dagelijkse leadroutine draait als
+geplande taak op de Mac zelf (`~/.claude/scheduled-tasks/leads-naar-dashboard/`),
+niet in de cloud. Een sleutel die in een cloudsessie is gezet, is bij de
+volgende sessie weg — vandaar dat hij elke week opnieuw gevraagd werd. Het
+bestand `~/.config/complete-ai/.env` heeft rechten 600, staat buiten deze
+(openbare) repository en blijft staan.
+
+De route via `KVK_VIA_PROXY=1` en een API-credential bestaat nog in de code en
+is prima voor een run die daadwerkelijk ín een cloud-omgeving draait. Voor de
+dagelijkse routine is die route niet van toepassing.
 
 Een KVK-sleutel begint met een kleine letter `l`, gevolgd door hexadecimale
 tekens — bijvoorbeeld `l7a4d9cdb...`. Die `l` hoort er dus bij; haal hem er niet

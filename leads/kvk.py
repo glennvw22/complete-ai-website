@@ -65,21 +65,68 @@ class KvkResultaat:
         return "MAIL"
 
 
+# --------------------------------------------------------------------------
+# De sleutelkluis op de machine zelf.
+#
+# Dit bestand is de ENIGE plek waar de KVK-sleutel hoort te staan. Reden:
+# de leadroutine draait als geplande taak op de Mac van Glenn, niet in een
+# cloud-omgeving. Een sleutel die in een cloudsessie is gezet, is bij de
+# volgende sessie weg - en dat is precies wat er maandenlang gebeurde: de
+# oude foutmelding stuurde naar "de cloud-omgeving van deze routine",
+# terwijl de routine lokaal draait. Elke week opnieuw invullen dus.
+#
+# Door het bestand hier zelf te lezen hoeft geen enkele routine, sessie of
+# shell de sleutel nog te exporteren. Zet hem er een keer in en het werkt,
+# ook als iemand run.py met de hand start.
+#
+# Het bestand staat bewust BUITEN deze repository (die is openbaar) en heeft
+# rechten 600. Alleen het pad staat hier; de sleutel nooit.
+SLEUTELKLUIS = os.path.expanduser("~/.config/complete-ai/.env")
+
+
+def _uit_kluis(naam: str) -> str:
+    """Lees een variabele uit de sleutelkluis. Nooit een fout, altijd een
+    string: ontbreekt het bestand of de regel, dan is het antwoord leeg en
+    meldt de zelftest dat verderop netjes."""
+    try:
+        with open(SLEUTELKLUIS, "r", encoding="utf-8") as bestand:
+            for regel in bestand:
+                regel = regel.strip()
+                if not regel or regel.startswith("#") or "=" not in regel:
+                    continue
+                sleutel, _, waarde = regel.partition("=")
+                if sleutel.strip() == naam:
+                    # aanhalingstekens eromheen zijn gebruikelijk in .env-bestanden
+                    return waarde.strip().strip('"').strip("'")
+    except OSError:
+        pass
+    return ""
+
+
 class KvkClient:
     def __init__(self, sleutel: str | None = None, pauze_s: float = 0.35,
                  via_proxy: bool | None = None):
-        """Twee manieren om de sleutel mee te geven:
+        """Waar de sleutel vandaan komt, in deze volgorde:
 
-        1. `KVK_API_KEY` als omgevingsvariabele - de code zet de header zelf.
-        2. `KVK_VIA_PROXY=1` - de sleutel staat als API-credential op de
+        1. Meegegeven aan de constructor (voor tests).
+        2. `KVK_API_KEY` als omgevingsvariabele.
+        3. `KVK_API_KEY` uit de sleutelkluis ~/.config/complete-ai/.env.
+           Dit is de vaste plek; zet hem daar en hij blijft staan.
+        4. `KVK_VIA_PROXY=1` - de sleutel staat als API-credential op een
            cloud-omgeving en Anthropics proxy plakt de header erop nadat het
-           verzoek de container verlaten heeft. De sleutel komt dan nooit in de
-           sessie terecht; dat is de veiligste route. In dat geval sturen we
-           zelf geen apikey-header mee.
+           verzoek de container verlaten heeft. Alleen zinvol voor runs die
+           daadwerkelijk IN die cloud-omgeving draaien; de dagelijkse routine
+           draait dat niet.
         """
-        self.sleutel = sleutel if sleutel is not None else os.environ.get("KVK_API_KEY", "")
-        self.via_proxy = (via_proxy if via_proxy is not None
-                          else os.environ.get("KVK_VIA_PROXY", "").strip() in ("1", "ja", "true"))
+        if sleutel is not None:
+            self.sleutel = sleutel
+        else:
+            self.sleutel = os.environ.get("KVK_API_KEY", "") or _uit_kluis("KVK_API_KEY")
+        if via_proxy is not None:
+            self.via_proxy = via_proxy
+        else:
+            vlag = (os.environ.get("KVK_VIA_PROXY", "") or _uit_kluis("KVK_VIA_PROXY")).strip()
+            self.via_proxy = vlag in ("1", "ja", "true")
         self.pauze_s = pauze_s
         self.beschikbaar = bool(self.sleutel) or self.via_proxy
         if self.beschikbaar:
@@ -120,9 +167,13 @@ class KvkClient:
     def zelftest(self) -> tuple[bool, str]:
         """Een echte call, zodat een run keihard kan melden of KVK werkt."""
         if not self.beschikbaar:
-            return False, ("Geen KVK-sleutel beschikbaar: KVK_API_KEY is niet gezet en "
-                           "KVK_VIA_PROXY staat uit. Zet een van beide in de "
-                           "cloud-omgeving van deze routine.")
+            return False, (
+                "Geen KVK-sleutel gevonden. Zet hem op de vaste plek en hij blijft staan:\n"
+                f"    echo 'KVK_API_KEY=jouw-sleutel' >> {SLEUTELKLUIS}\n"
+                f"    chmod 600 {SLEUTELKLUIS}\n"
+                "Zet hem NIET in een cloud-omgeving: de dagelijkse leadroutine draait "
+                "lokaal op deze machine, dus een sleutel in een cloudsessie is bij de "
+                "volgende sessie weg. Controleer met: python3 leads/run.py --diagnose")
         data, fout = self._get(ZOEKEN, {"naam": "Kamer van Koophandel",
                                         "pagina": 1, "resultatenPerPagina": 1})
         if fout:
