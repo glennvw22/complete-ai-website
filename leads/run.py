@@ -192,6 +192,12 @@ def draai(datum: _dt.date, aantal: int, gebruik_kvk: bool,
 
 
 def naar_rij(bedrijf, site, kvk_resultaat, beoordeling, belbaarheid) -> dict:
+    # LET OP bij het wijzigen van deze exacte tekst: het belscherm in het
+    # dashboard (jarvis-dashboard, components/bellen/Gespreksadvies.tsx,
+    # constante WEBSITE_ONBEVESTIGD) matcht hier letterlijk op om een
+    # veiligheidswaarschuwing te tonen ("dit is een aanname, geen meting -
+    # vraag het na"). Verander je deze string, verander hem dan ook daar,
+    # anders verdwijnt die waarschuwing stilletjes zonder dat iemand het merkt.
     website_status = "geen website bekend"
     if bedrijf.website and site is not None:
         if site.geblokkeerd:
