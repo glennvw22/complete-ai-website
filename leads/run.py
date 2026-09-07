@@ -327,6 +327,14 @@ def main() -> int:
                           help="overschrijf de branche, bv. installatie of horeca")
     ontleder.add_argument("--geen-kvk", action="store_true")
     ontleder.add_argument("--diagnose", action="store_true")
+    ontleder.add_argument("--geen-post", action="store_true",
+                          help="schrijf de CSV maar verstuur nog niet naar het dashboard — "
+                               "gebruikt door de dagelijkse routine, die tussen het schrijven "
+                               "en het versturen eerst controleert of 'geen website bekend' "
+                               "(een aanname bij ontbrekende data, geen meting) ook echt klopt. "
+                               "Versturen daarna met: python3 -c \"import sys; "
+                               "sys.path.insert(0,'leads'); import dashboard; "
+                               "dashboard.stuur_naar_dashboard('<pad-naar-leads.csv>')\"")
     argumenten = ontleder.parse_args()
 
     if argumenten.diagnose:
@@ -344,7 +352,11 @@ def main() -> int:
                     land=argumenten.land, branche=argumenten.branche, quota=quota,
                     max_gebieden=argumenten.max_gebieden)
     samenvatting = schrijf(uitslag, UITVOER / str(datum))
-    dashboard.stuur_naar_dashboard(samenvatting["csv"])
+    if argumenten.geen_post:
+        log(f"[post] overgeslagen (--geen-post) — CSV staat klaar op {samenvatting['csv']}, "
+            "nog niet verstuurd naar het dashboard")
+    else:
+        dashboard.stuur_naar_dashboard(samenvatting["csv"])
     print(json.dumps(samenvatting, ensure_ascii=False, indent=2))
     return 0
 
