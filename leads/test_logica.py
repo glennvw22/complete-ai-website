@@ -17,6 +17,7 @@ sys.path.insert(0, str(HIER))
 import belbaar as belbaar_mod
 import bron_osm
 import catalogus
+import dncm as dncm_mod
 import kvk as kvk_mod
 import run as run_mod
 import samenstelling as samen_mod
@@ -286,7 +287,27 @@ def test_belbaarheid():
 
     be = belbaar_mod.beoordeel_belbaarheid(_bedrijf(land="BE", telefoon="09-1"), None)
     bevestig(be.mag_bellen, "BE met nummer mag gebeld worden zonder KVK")
-    bevestig("DNCM" in be.let_op, "BE krijgt de DNCM-waarschuwing mee")
+    bevestig("DNCM" in be.let_op, "BE krijgt de DNCM-waarschuwing mee zonder DNCM-koppeling")
+
+    # Met een (gesimuleerde) werkende DNCM-koppeling vervalt de handmatige
+    # waarschuwing: het antwoord van de lijst beslist meteen.
+    niet_op_lijst = dncm_mod.DncmResultaat(gevonden=True, op_lijst=False)
+    op_lijst = dncm_mod.DncmResultaat(gevonden=True, op_lijst=True)
+    onbevraagd = dncm_mod.DncmResultaat(gevonden=False, fout="geen sleutel")
+
+    be_vrij = belbaar_mod.beoordeel_belbaarheid(
+        _bedrijf(land="BE", telefoon="09-1"), None, niet_op_lijst)
+    bevestig(be_vrij.mag_bellen, "BE niet op de DNCM-lijst mag gebeld worden")
+    bevestig(not be_vrij.let_op, "BE automatisch DNCM-vrij heeft geen handmatige waarschuwing meer")
+
+    be_geblokkeerd = belbaar_mod.beoordeel_belbaarheid(
+        _bedrijf(land="BE", telefoon="09-1"), None, op_lijst)
+    bevestig(not be_geblokkeerd.mag_bellen, "BE op de DNCM-lijst mag NIET gebeld worden")
+
+    be_onbevraagd = belbaar_mod.beoordeel_belbaarheid(
+        _bedrijf(land="BE", telefoon="09-1"), None, onbevraagd)
+    bevestig(be_onbevraagd.mag_bellen and "DNCM" in be_onbevraagd.let_op,
+             "BE met mislukte DNCM-bevraging valt terug op de handmatige waarschuwing")
 
 
 def test_samenstelling():

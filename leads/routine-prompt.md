@@ -83,7 +83,9 @@ Blijf niet hangen op een bron die blokkeert: één poging, dan door.
   basis van de KVK-rechtsvorm. Staat er geen rechtsvorm, dan blijft het MAIL:
   bij twijfel niet bellen.
 - Vlaanderen: vóór bellen moet de DNCM-lijst (donotcallme.be) geschoond worden,
-  ook zakelijk. Markeer elke Belgische bellead met "DNCM-scrub vereist".
+  ook zakelijk. Staat `DNCM_API_SLEUTEL` in de omgeving, dan gebeurt dat al
+  automatisch per nummer (`leads/dncm.py`) en is er niets meer te markeren.
+  Zonder sleutel: markeer elke Belgische bellead met "DNCM-scrub vereist".
 - Gebruik alleen algemene bedrijfsnummers en algemene mailadressen.
 - Controleer eens per week (op maandag) kort of de regels rond koude acquisitie
   in NL of BE gewijzigd zijn en meld afwijkingen bovenaan.

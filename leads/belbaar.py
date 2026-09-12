@@ -3,7 +3,10 @@
 De regel voor Nederland: koud bellen mag alleen naar rechtspersonen. Een
 eenmanszaak, vof, cv of maatschap geldt als natuurlijk persoon en valt onder het
 bel-me-niet-regime; die bellen levert klachten en boetes op. In Vlaanderen mag
-zakelijk bellen wel, mits de DNCM-lijst vooraf geschoond is.
+zakelijk bellen wel, mits de DNCM-lijst vooraf geschoond is — met een werkende
+DNCM_API_SLEUTEL (zie dncm.py) gebeurt die scrub hier automatisch per nummer;
+zonder sleutel krijgt de lead de oude waarschuwing mee en moet er in het
+dashboard met de hand afgevinkt worden.
 
 Dit bestand is bewust streng: alles waarvan we het NIET zeker weten valt af.
 Een lijst die je zonder nadenken kunt afbellen is meer waard dan een langere
@@ -24,12 +27,29 @@ class Beloordeel:
     let_op: str = ""
 
 
-def beoordeel_belbaarheid(bedrijf, kvk_resultaat) -> Beloordeel:
-    """bedrijf: bron_osm.Bedrijf, kvk_resultaat: kvk.KvkResultaat of None."""
+def beoordeel_belbaarheid(bedrijf, kvk_resultaat, dncm_resultaat=None) -> Beloordeel:
+    """bedrijf: bron_osm.Bedrijf, kvk_resultaat: kvk.KvkResultaat of None.
+
+    dncm_resultaat: dncm.DncmResultaat of None — alleen relevant voor BE.
+    None betekent "niet bevraagd" (geen sleutel, of geen Belgisch bedrijf) en
+    geeft exact het oude gedrag: waarschuwing meegeven, handmatig afvinken in
+    het dashboard. Is de lijst wél bevraagd, dan beslist het antwoord meteen
+    of dit bedrijf mag worden gebeld — geen los vinkje meer nodig.
+    """
     if not bedrijf.telefoon:
         return Beloordeel(False, "geen telefoonnummer gevonden")
 
     if bedrijf.land == "BE":
+        if dncm_resultaat is not None and dncm_resultaat.gevonden:
+            if dncm_resultaat.op_lijst:
+                return Beloordeel(
+                    False, "Staat op de DNCM-lijst (donotcallme.be) — niet bellen"
+                )
+            return Beloordeel(
+                True,
+                "Belgisch bedrijf, automatisch tegen de DNCM-lijst gecontroleerd "
+                "(donotcallme.be) — niet gevonden, bellen mag",
+            )
         return Beloordeel(
             True,
             "Belgisch bedrijf met telefoonnummer; zakelijk bellen is toegestaan",

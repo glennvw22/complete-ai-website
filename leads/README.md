@@ -51,6 +51,12 @@ Zet daarom `KVK_API_KEY` in de omgeving van de routine. Zonder sleutel draait
 alles gewoon door, maar meldt de run bovenaan dat KVK niet beschikbaar is in
 plaats van dat stil te laten.
 
+Hetzelfde patroon bestaat voor België: `leads/dncm.py` bevraagt de DNCM-lijst
+(donotcallme.be) automatisch per Belgisch nummer zodra `DNCM_API_SLEUTEL` in
+de omgeving staat — zie [DNCM_API_SLEUTEL instellen](INSTELLEN.md). Zonder
+sleutel valt een Belgische lead terug op de oude waarschuwing in `let_op`, die
+in het dashboard met de hand afgevinkt moet worden.
+
 ### Alleen belbare leads
 
 De lijst bevat uitsluitend bedrijven die je zonder nadenken mag draaien.
@@ -60,8 +66,11 @@ De lijst bevat uitsluitend bedrijven die je zonder nadenken mag draaien.
   Eenmanszaken, vof's, cv's en maatschappen vallen af; dat zijn natuurlijke
   personen en die koud bellen levert klachten op. Blijft de rechtsvorm
   onbekend, dan valt het bedrijf óók af — bij twijfel niet bellen.
-- **Vlaanderen**: zakelijk bellen mag, met "DNCM-scrub vereist" in de kolom
-  `let_op`.
+- **Vlaanderen**: zakelijk bellen mag, mits de DNCM-lijst geschoond is. Staat
+  `DNCM_API_SLEUTEL` in de omgeving, dan gebeurt dat hier al automatisch per
+  nummer (staat het nummer erop, dan valt het bedrijf af, net als een NL
+  eenmanszaak). Zonder sleutel krijgt de lead "DNCM-scrub vereist" mee in de
+  kolom `let_op` en moet dat vóór het bellen alsnog met de hand gebeuren.
 - Zonder telefoonnummer geen lead, en ook geen betaalde KVK-bevraging.
 
 Gevolg: van de kandidaten uit de bron valt in Nederland een fors deel af. De

@@ -28,6 +28,7 @@ import belbaar as belbaar_mod       # noqa: E402
 import bron_osm                      # noqa: E402
 import catalogus                     # noqa: E402
 import dashboard                     # noqa: E402
+import dncm as dncm_mod              # noqa: E402
 import kvk as kvk_mod                # noqa: E402
 import samenstelling as samen_mod    # noqa: E402
 import score as score_mod            # noqa: E402
@@ -89,6 +90,7 @@ def draai(datum: _dt.date, aantal: int, gebruik_kvk: bool,
     quota = quota or samen_mod.Quota()
     kvk_client = kvk_mod.KvkClient() if gebruik_kvk else kvk_mod.KvkClient(sleutel="")
     kvk_werkt, kvk_bericht = kvk_client.zelftest()
+    dncm_client = dncm_mod.DncmClient()
 
     log(f"[plan] {terrein.datum} {terrein.land} | {terrein.branche.naam} "
         f"| {', '.join(terrein.gemeenten)}")
@@ -96,6 +98,10 @@ def draai(datum: _dt.date, aantal: int, gebruik_kvk: bool,
     if terrein.land == "NL" and not kvk_werkt:
         log("[let op] KVK werkt niet; zonder rechtsvorm is geen enkele "
             "Nederlandse lead belbaar.")
+    if terrein.land == "BE" and not dncm_client.beschikbaar:
+        log("[let op] DNCM_API_SLEUTEL niet gezet; Belgische leads krijgen de "
+            "oude waarschuwing mee en moeten in het dashboard met de hand "
+            "tegen donotcallme.be afgevinkt worden.")
 
     # 1. Bron. Er is een ruime overmaat nodig: in Nederland valt het grootste
     #    deel af op rechtsvorm, dus je hebt veel meer kandidaten dan leads
@@ -155,6 +161,7 @@ def draai(datum: _dt.date, aantal: int, gebruik_kvk: bool,
     #    budget op is. Elke basisprofiel-bevraging kost geld, dus we stoppen
     #    zodra we genoeg hebben in plaats van de hele lijst af te gaan.
     kandidaten, kvk_gedaan, belbaar_gevonden = [], 0, 0
+    dncm_gedaan, dncm_geblokkeerd = 0, 0
     streef = int(aantal * 1.6)
     for bedrijf, site, _ in voorlopig:
         resultaat = None
@@ -164,14 +171,24 @@ def draai(datum: _dt.date, aantal: int, gebruik_kvk: bool,
             kvk_gedaan += 1
             if kvk_gedaan % 25 == 0:
                 log(f"[kvk] {kvk_gedaan} bevraagd, {belbaar_gevonden} belbaar")
+        dncm_resultaat = None
+        if (bedrijf.land == "BE" and bedrijf.telefoon and dncm_client.beschikbaar
+                and belbaar_gevonden < streef):
+            dncm_resultaat = dncm_client.check_nummer(bedrijf.telefoon)
+            dncm_gedaan += 1
+            if dncm_resultaat.op_lijst:
+                dncm_geblokkeerd += 1
         beoordeling = score_mod.beoordeel(bedrijf, site, resultaat, terrein.branche)
-        belbaarheid = belbaar_mod.beoordeel_belbaarheid(bedrijf, resultaat)
+        belbaarheid = belbaar_mod.beoordeel_belbaarheid(bedrijf, resultaat, dncm_resultaat)
         if belbaarheid.mag_bellen:
             belbaar_gevonden += 1
         kandidaten.append((bedrijf, site, resultaat, beoordeling, belbaarheid))
 
     log(f"[kvk] {kvk_gedaan} bevragingen, {belbaar_gevonden} belbare bedrijven "
         f"({kvk_bericht})")
+    if dncm_gedaan:
+        log(f"[dncm] {dncm_gedaan} nummers automatisch tegen de DNCM-lijst "
+            f"gecontroleerd, {dncm_geblokkeerd} stonden erop en zijn geblokkeerd")
 
     # 6. Samenstellen met quota.
     uitslag_samen = samen_mod.stel_samen(kandidaten, aantal, quota)

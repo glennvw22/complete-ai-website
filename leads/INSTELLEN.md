@@ -97,6 +97,49 @@ Een KVK-sleutel begint met een kleine letter `l`, gevolgd door hexadecimale
 tekens — bijvoorbeeld `l7a4d9cdb...`. Die `l` hoort er dus bij; haal hem er niet
 af. Neem de sleutel over met de kopieerknop in het portaal, niet met de hand.
 
+## Stap 2b — DNCM_API_SLEUTEL: de Belgische DNCM-scrub automatisch maken
+
+Zonder deze stap blijft elke Belgische lead de oude waarschuwing dragen en
+moet iemand 'm met de hand tegen donotcallme.be afvinken in het dashboard —
+dat is vandaag (12-9-2026) nog zo. Met deze sleutel doet `leads/dncm.py` die
+scrub zelf, automatisch, per nummer, vóórdat de lead er überhaupt is.
+
+Dit kan alleen Glenn zelf: het vraagt een account aanmaken en een betaalde
+licentie kopen bij DNCM VZW, en dat zijn allebei dingen die niet namens hem
+gedaan worden (zie Grenzen — Wat je nooit voor Glenn doet).
+
+1. Ga naar **<https://www.donotcallme.be/nl/telemarketeers/>**, registreer
+   Complete AI als bedrijf en maak een account aan (met 2-staps­verificatie via
+   Google Authenticator).
+2. Koop een licentie als **Adverteerder** (Complete AI belt voor haar eigen
+   dienstverlening, niet namens een ander bedrijf — dat is geen "Service
+   provider"/callcenter). Prijzen, live nagekeken op donotcallme.be/nl/licenties/
+   op 12-9-2026, voor ≤ 250 medewerkers, excl. 21% btw:
+   - € 60/maand — geen jaarverplichting, wordt niet automatisch verlengd.
+   - € 600/jaar — wordt stilzwijgend verlengd tenzij je uiterlijk 1 maand vóór
+     de vervaldatum opzegt.
+   Begin met de maandlicentie om de koppeling te beproeven; overstappen op de
+   jaarlicentie kan later.
+3. Log in op het account en activeer **"Integratie via API"** (in je online
+   account, bij het Bel-Me-Niet-Meer bestand). Dat toont een unieke
+   **Secret Key**. Kopieer die.
+4. Zet de sleutel op dezelfde vaste plek als de KVK-sleutel:
+   ```
+   echo 'DNCM_API_SLEUTEL=jouw-secret-key-hier' >> ~/.config/complete-ai/.env
+   chmod 600 ~/.config/complete-ai/.env
+   ```
+5. Het exacte HTTP-verzoek (eindpunt, headers, antwoordformaat) van de API
+   staat pas ná activering in je account zelf, niet publiek gedocumenteerd.
+   `leads/dncm.py`, functie `_bevraag()`, heeft daarvoor een duidelijk
+   gemarkeerde open plek — geef door wat daar staat (bijvoorbeeld een
+   schermafbeelding van de API-documentatie in je account), dan wordt die ene
+   functie afgemaakt. Tot dan geeft de sleutel alléén toegang; de koppeling
+   zelf blijft "onbekend" en valt terug op de handmatige controle.
+
+De DNCM-lijst kent, net als bij KVK, ook een limiet: **maximaal 20 checks per
+minuut** — `leads/dncm.py` houdt zich daar zelf aan, dus dit vraagt geen
+verdere actie.
+
 ## Stap 3 — De oude routines uitzetten
 
 Twee oude routines draaien allebei om 09:00 en leveren dubbel werk:
