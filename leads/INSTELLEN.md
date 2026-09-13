@@ -97,16 +97,21 @@ Een KVK-sleutel begint met een kleine letter `l`, gevolgd door hexadecimale
 tekens — bijvoorbeeld `l7a4d9cdb...`. Die `l` hoort er dus bij; haal hem er niet
 af. Neem de sleutel over met de kopieerknop in het portaal, niet met de hand.
 
-## Stap 2b — DNCM_API_SLEUTEL: de Belgische DNCM-scrub automatisch maken
+## Stap 2b — DNCM_API_SLEUTEL: alleen als Glenn zelf ooit besluit dat de licentie het waard is
 
-Zonder deze stap blijft elke Belgische lead de oude waarschuwing dragen en
-moet iemand 'm met de hand tegen donotcallme.be afvinken in het dashboard —
-dat is vandaag (12-9-2026) nog zo. Met deze sleutel doet `leads/dncm.py` die
-scrub zelf, automatisch, per nummer, vóórdat de lead er überhaupt is.
+**Niet iets om uit te voeren of voor te stellen.** Er bleek geen gratis manier
+te zijn om de Belgische DNCM-lijst te raadplegen (nagezocht 13-9-2026: DNCM
+VZW's eigen FAQ, de wettelijke basis — KB 28-6-2015 —, de FOD Economie-pagina
+en een brancheorganisatie zeggen alle drie hetzelfde: een licentie is de
+wettelijk voorgeschreven weg, geen vrijstelling voor kleine bedrijven). Omdat
+Complete AI geen nieuwe vaste lasten aangaat (zie de kluis, Grenzen — Geen
+betaalde oplossingen), is een Belgisch bedrijf zonder deze sleutel gewoon
+**niet belbaar** in `leads/belbaar.py` — geen waarschuwing-met-vinkje, want
+dat is geen garantie. Dat is de huidige, bewuste, gratis stand van zaken.
 
-Dit kan alleen Glenn zelf: het vraagt een account aanmaken en een betaalde
-licentie kopen bij DNCM VZW, en dat zijn allebei dingen die niet namens hem
-gedaan worden (zie Grenzen — Wat je nooit voor Glenn doet).
+Deze stap staat hier alleen als referentie voor het geval Glenn zelf, op enig
+moment, besluit dat de licentie het waard is — dat is aan hem, niet iets om
+opnieuw voor te leggen.
 
 1. Ga naar **<https://www.donotcallme.be/nl/telemarketeers/>**, registreer
    Complete AI als bedrijf en maak een account aan (met 2-staps­verificatie via
@@ -118,8 +123,6 @@ gedaan worden (zie Grenzen — Wat je nooit voor Glenn doet).
    - € 60/maand — geen jaarverplichting, wordt niet automatisch verlengd.
    - € 600/jaar — wordt stilzwijgend verlengd tenzij je uiterlijk 1 maand vóór
      de vervaldatum opzegt.
-   Begin met de maandlicentie om de koppeling te beproeven; overstappen op de
-   jaarlicentie kan later.
 3. Log in op het account en activeer **"Integratie via API"** (in je online
    account, bij het Bel-Me-Niet-Meer bestand). Dat toont een unieke
    **Secret Key**. Kopieer die.
@@ -134,7 +137,8 @@ gedaan worden (zie Grenzen — Wat je nooit voor Glenn doet).
    gemarkeerde open plek — geef door wat daar staat (bijvoorbeeld een
    schermafbeelding van de API-documentatie in je account), dan wordt die ene
    functie afgemaakt. Tot dan geeft de sleutel alléén toegang; de koppeling
-   zelf blijft "onbekend" en valt terug op de handmatige controle.
+   zelf blijft "onbekend" en een Belgisch bedrijf blijft niet-belbaar — er
+   verandert dus niets vanzelf door alleen de sleutel te zetten.
 
 De DNCM-lijst kent, net als bij KVK, ook een limiet: **maximaal 20 checks per
 minuut** — `leads/dncm.py` houdt zich daar zelf aan, dus dit vraagt geen

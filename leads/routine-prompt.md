@@ -83,9 +83,13 @@ Blijf niet hangen op een bron die blokkeert: één poging, dan door.
   basis van de KVK-rechtsvorm. Staat er geen rechtsvorm, dan blijft het MAIL:
   bij twijfel niet bellen.
 - Vlaanderen: vóór bellen moet de DNCM-lijst (donotcallme.be) geschoond worden,
-  ook zakelijk. Staat `DNCM_API_SLEUTEL` in de omgeving, dan gebeurt dat al
-  automatisch per nummer (`leads/dncm.py`) en is er niets meer te markeren.
-  Zonder sleutel: markeer elke Belgische bellead met "DNCM-scrub vereist".
+  ook zakelijk, en dat kost geld om te controleren (geen gratis weg gevonden,
+  nagezocht 13-9-2026). Staat `DNCM_API_SLEUTEL` in de omgeving, dan gebeurt
+  die scrub automatisch per nummer (`leads/dncm.py`). Zonder sleutel is een
+  Belgisch bedrijf hier niet belbaar — dat is geen bug, dat is de gratis stand
+  van zaken (zie Grenzen — Geen betaalde oplossingen). Zie je toch een
+  Belgische bellead met `bellen_mag = JA`, meld dat dan: dat hoort niet meer
+  voor te komen zonder de sleutel.
 - Gebruik alleen algemene bedrijfsnummers en algemene mailadressen.
 - Controleer eens per week (op maandag) kort of de regels rond koude acquisitie
   in NL of BE gewijzigd zijn en meld afwijkingen bovenaan.

@@ -286,8 +286,8 @@ def test_belbaarheid():
              "zonder telefoonnummer geen bellead")
 
     be = belbaar_mod.beoordeel_belbaarheid(_bedrijf(land="BE", telefoon="09-1"), None)
-    bevestig(be.mag_bellen, "BE met nummer mag gebeld worden zonder KVK")
-    bevestig("DNCM" in be.let_op, "BE krijgt de DNCM-waarschuwing mee zonder DNCM-koppeling")
+    bevestig(not be.mag_bellen,
+             "BE zonder DNCM-koppeling mag NIET gebeld worden — geen gratis controle, dus geen garantie")
 
     # Met een (gesimuleerde) werkende DNCM-koppeling vervalt de handmatige
     # waarschuwing: het antwoord van de lijst beslist meteen.
@@ -306,8 +306,8 @@ def test_belbaarheid():
 
     be_onbevraagd = belbaar_mod.beoordeel_belbaarheid(
         _bedrijf(land="BE", telefoon="09-1"), None, onbevraagd)
-    bevestig(be_onbevraagd.mag_bellen and "DNCM" in be_onbevraagd.let_op,
-             "BE met mislukte DNCM-bevraging valt terug op de handmatige waarschuwing")
+    bevestig(not be_onbevraagd.mag_bellen,
+             "BE met mislukte DNCM-bevraging valt terug op geblokkeerd, niet op vrij")
 
 
 def test_samenstelling():

@@ -3,10 +3,18 @@
 De regel voor Nederland: koud bellen mag alleen naar rechtspersonen. Een
 eenmanszaak, vof, cv of maatschap geldt als natuurlijk persoon en valt onder het
 bel-me-niet-regime; die bellen levert klachten en boetes op. In Vlaanderen mag
-zakelijk bellen wel, mits de DNCM-lijst vooraf geschoond is — met een werkende
-DNCM_API_SLEUTEL (zie dncm.py) gebeurt die scrub hier automatisch per nummer;
-zonder sleutel krijgt de lead de oude waarschuwing mee en moet er in het
-dashboard met de hand afgevinkt worden.
+zakelijk bellen wel, mits de DNCM-lijst (donotcallme.be) vooraf geschoond is.
+
+Die scrub kost geld: een licentie bij DNCM VZW (de door KB van 28-6-2015 erkende
+beheerder) is de wettelijk voorgeschreven manier om de lijst te raadplegen, geen
+vendor-upsell met een gratis alternatief — nagezocht 13-9-2026, geen vrijstelling
+voor kleine bedrijven of laag belvolume gevonden. Complete AI stelt geen nieuwe
+vaste lasten voor (zie Grenzen — Geen betaalde oplossingen). Daarom: staat
+DNCM_API_SLEUTEL niet in de omgeving, dan is een Belgisch bedrijf hier NIET
+belbaar — geen waarschuwing-met-vinkje meer, want een vinkje zonder een
+geverifieerde controle erachter is geen garantie. Alleen met een werkende
+DNCM-koppeling (zie dncm.py) wordt een Belgisch nummer automatisch, per stuk,
+tegen de lijst gecontroleerd en pas dan vrijgegeven.
 
 Dit bestand is bewust streng: alles waarvan we het NIET zeker weten valt af.
 Een lijst die je zonder nadenken kunt afbellen is meer waard dan een langere
@@ -31,10 +39,13 @@ def beoordeel_belbaarheid(bedrijf, kvk_resultaat, dncm_resultaat=None) -> Beloor
     """bedrijf: bron_osm.Bedrijf, kvk_resultaat: kvk.KvkResultaat of None.
 
     dncm_resultaat: dncm.DncmResultaat of None — alleen relevant voor BE.
-    None betekent "niet bevraagd" (geen sleutel, of geen Belgisch bedrijf) en
-    geeft exact het oude gedrag: waarschuwing meegeven, handmatig afvinken in
-    het dashboard. Is de lijst wél bevraagd, dan beslist het antwoord meteen
-    of dit bedrijf mag worden gebeld — geen los vinkje meer nodig.
+    None betekent "niet bevraagd" (geen DNCM_API_SLEUTEL) — en dan is een
+    Belgisch bedrijf NIET belbaar. Er bestaat geen gratis manier om de
+    DNCM-lijst te raadplegen (nagezocht 13-9-2026, zie belbaar.py-kop), dus
+    zonder een werkende, betaalde koppeling is er geen garantie te geven en
+    valt het bedrijf af — precies zoals een NL-eenmanszaak. Is de lijst wél
+    bevraagd, dan beslist dat antwoord meteen of dit bedrijf gebeld mag
+    worden.
     """
     if not bedrijf.telefoon:
         return Beloordeel(False, "geen telefoonnummer gevonden")
@@ -51,9 +62,9 @@ def beoordeel_belbaarheid(bedrijf, kvk_resultaat, dncm_resultaat=None) -> Beloor
                 "(donotcallme.be) — niet gevonden, bellen mag",
             )
         return Beloordeel(
-            True,
-            "Belgisch bedrijf met telefoonnummer; zakelijk bellen is toegestaan",
-            let_op="DNCM-scrub vereist vóór bellen (donotcallme.be)",
+            False,
+            "geen DNCM-controle beschikbaar — zonder geverifieerde scrub "
+            "geen garantie, dus niet bellen",
         )
 
     # Nederland: rechtspersoon of niet bellen.

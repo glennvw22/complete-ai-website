@@ -53,9 +53,14 @@ plaats van dat stil te laten.
 
 Hetzelfde patroon bestaat voor België: `leads/dncm.py` bevraagt de DNCM-lijst
 (donotcallme.be) automatisch per Belgisch nummer zodra `DNCM_API_SLEUTEL` in
-de omgeving staat — zie [DNCM_API_SLEUTEL instellen](INSTELLEN.md). Zonder
-sleutel valt een Belgische lead terug op de oude waarschuwing in `let_op`, die
-in het dashboard met de hand afgevinkt moet worden.
+de omgeving staat. Er is geen gratis manier om die lijst te raadplegen —
+nagezocht 13-9-2026, geen vrijstelling voor kleine bedrijven gevonden, de
+licentie bij DNCM VZW is de wettelijk voorgeschreven weg, geen vendor-upsell.
+Complete AI stelt geen nieuwe vaste lasten voor (zie de kluis, Grenzen — Geen
+betaalde oplossingen), dus **zonder sleutel is een Belgisch bedrijf hier
+gewoon niet belbaar** — geen waarschuwing-met-vinkje meer, want dat is geen
+garantie. Zet Glenn de sleutel later alsnog (zijn keuze, niet iets om hem
+opnieuw voor te leggen): zie [DNCM_API_SLEUTEL instellen](INSTELLEN.md).
 
 ### Alleen belbare leads
 
@@ -66,11 +71,12 @@ De lijst bevat uitsluitend bedrijven die je zonder nadenken mag draaien.
   Eenmanszaken, vof's, cv's en maatschappen vallen af; dat zijn natuurlijke
   personen en die koud bellen levert klachten op. Blijft de rechtsvorm
   onbekend, dan valt het bedrijf óók af — bij twijfel niet bellen.
-- **Vlaanderen**: zakelijk bellen mag, mits de DNCM-lijst geschoond is. Staat
-  `DNCM_API_SLEUTEL` in de omgeving, dan gebeurt dat hier al automatisch per
-  nummer (staat het nummer erop, dan valt het bedrijf af, net als een NL
-  eenmanszaak). Zonder sleutel krijgt de lead "DNCM-scrub vereist" mee in de
-  kolom `let_op` en moet dat vóór het bellen alsnog met de hand gebeuren.
+- **Vlaanderen**: zakelijk bellen mag, mits de DNCM-lijst geschoond is, en dat
+  kost geld om te controleren (zie hierboven). Staat `DNCM_API_SLEUTEL` in de
+  omgeving, dan gebeurt die scrub hier automatisch per nummer (staat het
+  nummer erop, dan valt het bedrijf af, net als een NL-eenmanszaak). Staat de
+  sleutel er niet — vandaag (13-9-2026) het geval — dan valt elk Belgisch
+  bedrijf hier af, zonder uitzondering: geen garantie, dus niet bellen.
 - Zonder telefoonnummer geen lead, en ook geen betaalde KVK-bevraging.
 
 Gevolg: van de kandidaten uit de bron valt in Nederland een fors deel af. De
