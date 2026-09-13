@@ -177,9 +177,13 @@ def _beoordeel_be(bedrijf, dncm_resultaat, kbo_resultaat, opt_in_datum) -> Beloo
             "en niet mailen zonder opt-in",
             baan=AF,
         )
+    herkomst = (
+        " (in KBO teruggevonden op het vestigingsadres, niet op de naam)"
+        if getattr(kbo_resultaat, "via_adres", False) else ""
+    )
     return Beloordeel(
         False,
-        f"rechtspersoon ({kbo_resultaat.rechtsvorm or 'vorm onbekend'}) met "
+        f"rechtspersoon ({kbo_resultaat.rechtsvorm or 'vorm onbekend'}){herkomst} met "
         "onpersoonlijk adres — ongevraagde zakelijke e-mail mag; bellen pas na "
         "een expliciete opt-in",
         let_op="Nog niet bellen: eerst opt-in via e-mail vragen",

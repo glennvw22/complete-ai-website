@@ -60,6 +60,10 @@ _NUMMER = re.compile(r"\b(\d{4}\.\d{3}\.\d{3})\b")
 @dataclass
 class KboResultaat:
     gevonden: bool = False
+    # True als de koppeling op het adres is gelegd en niet op de naam. Dat is
+    # zwakker bewijs: op één adres kan een andere onderneming zitten. De reden
+    # bij de lead vermeldt dit, zodat het zichtbaar is in plaats van verstopt.
+    via_adres: bool = False
     is_rechtspersoon: bool | None = None   # None = onbekend
     ondernemingsnummer: str = ""
     naam: str = ""
@@ -412,8 +416,7 @@ class KboClient:
                 alle = self._alle_nummers_op_adres(html)
                 if len(alle) == 1:
                     uitslag = self._entiteit(alle.pop())
-                    if uitslag.gevonden:
-                        uitslag.fout = "gekoppeld op adres, niet op naam"
+                    uitslag.via_adres = uitslag.gevonden
                     return uitslag
             return KboResultaat(fout="niet op naam en niet op adres teruggevonden")
         except urllib.error.HTTPError as fout:
