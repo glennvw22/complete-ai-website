@@ -29,6 +29,7 @@ import bron_osm                      # noqa: E402
 import catalogus                     # noqa: E402
 import dashboard                     # noqa: E402
 import dncm as dncm_mod              # noqa: E402
+import kbo as kbo_mod                # noqa: E402
 import kvk as kvk_mod                # noqa: E402
 import samenstelling as samen_mod    # noqa: E402
 import score as score_mod            # noqa: E402
@@ -40,7 +41,7 @@ UITVOER = HIER / "uitvoer"
 CSV_KOLOMMEN = [
     "score", "warmte", "bedrijf", "telefoon", "plaats", "land", "branche",
     "verkoop_primair", "verkoop_secundair", "waarom_lead", "waarom_warm",
-    "bellen_mag", "bellen_grond", "let_op", "rechtsvorm", "kvk_nummer",
+    "baan", "bellen_mag", "bellen_grond", "let_op", "rechtsvorm", "kvk_nummer",
     "website", "website_status", "email", "adres", "sbi", "zekerheid", "osm_id",
     "status", "notitie", "laatst_gebeld",
 ]
@@ -91,6 +92,7 @@ def draai(datum: _dt.date, aantal: int, gebruik_kvk: bool,
     kvk_client = kvk_mod.KvkClient() if gebruik_kvk else kvk_mod.KvkClient(sleutel="")
     kvk_werkt, kvk_bericht = kvk_client.zelftest()
     dncm_client = dncm_mod.DncmClient()
+    kbo_client = kbo_mod.KboClient()
 
     log(f"[plan] {terrein.datum} {terrein.land} | {terrein.branche.naam} "
         f"| {', '.join(terrein.gemeenten)}")
@@ -135,6 +137,11 @@ def draai(datum: _dt.date, aantal: int, gebruik_kvk: bool,
 
     log(f"[bron] {len(bedrijven)} kandidaten uit OpenStreetMap")
 
+    # KBO kan alleen op postcode afbakenen en OSM heeft die bij ongeveer de
+    # helft van de bedrijven niet. Leer ze daarom uit deze partij zelf, vóór
+    # de opzoekingen beginnen — zie kbo.py.
+    kbo_client.leer_postcodes(bedrijven)
+
     # 2. Zonder telefoonnummer wordt het nooit een belbare lead.
     met_nummer = [b for b in bedrijven if b.telefoon]
     log(f"[filter] {len(met_nummer)} daarvan hebben een telefoonnummer")
@@ -162,6 +169,7 @@ def draai(datum: _dt.date, aantal: int, gebruik_kvk: bool,
     #    zodra we genoeg hebben in plaats van de hele lijst af te gaan.
     kandidaten, kvk_gedaan, belbaar_gevonden = [], 0, 0
     dncm_gedaan, dncm_geblokkeerd = 0, 0
+    kbo_rechtspersonen = 0
     streef = int(aantal * 1.6)
     for bedrijf, site, _ in voorlopig:
         resultaat = None
@@ -178,8 +186,19 @@ def draai(datum: _dt.date, aantal: int, gebruik_kvk: bool,
             dncm_gedaan += 1
             if dncm_resultaat.op_lijst:
                 dncm_geblokkeerd += 1
+        # KBO is gratis, dus elke Belgische kandidaat die iets te benaderen
+        # heeft wordt opgezocht. Zonder rechtsvorm is er geen grond om te
+        # bellen én geen grond om te mailen, dus dit bepaalt of de lead
+        # bestaat.
+        kbo_resultaat = None
+        if (belbaar_mod.kandidaat_voor_kbo(bedrijf)
+                and len(kandidaten) < streef * 2):
+            kbo_resultaat = kbo_client.zoek_bedrijf(bedrijf)
+            if kbo_resultaat.gevonden and kbo_resultaat.is_rechtspersoon:
+                kbo_rechtspersonen += 1
         beoordeling = score_mod.beoordeel(bedrijf, site, resultaat, terrein.branche)
-        belbaarheid = belbaar_mod.beoordeel_belbaarheid(bedrijf, resultaat, dncm_resultaat)
+        belbaarheid = belbaar_mod.beoordeel_belbaarheid(
+            bedrijf, resultaat, dncm_resultaat, kbo_resultaat)
         if belbaarheid.mag_bellen:
             belbaar_gevonden += 1
         kandidaten.append((bedrijf, site, resultaat, beoordeling, belbaarheid))
@@ -189,6 +208,9 @@ def draai(datum: _dt.date, aantal: int, gebruik_kvk: bool,
     if dncm_gedaan:
         log(f"[dncm] {dncm_gedaan} nummers automatisch tegen de DNCM-lijst "
             f"gecontroleerd, {dncm_geblokkeerd} stonden erop en zijn geblokkeerd")
+    if kbo_client.bevragingen:
+        log(f"[kbo] {kbo_client.bevragingen} gratis opzoekingen, "
+            f"{kbo_rechtspersonen} rechtspersonen gevonden")
 
     # 6. Samenstellen met quota.
     uitslag_samen = samen_mod.stel_samen(kandidaten, aantal, quota)
@@ -251,6 +273,7 @@ def naar_rij(bedrijf, site, kvk_resultaat, beoordeling, belbaarheid) -> dict:
         "waarom_lead": beoordeling.alle_redenen,
         "waarom_warm": " ".join(f"{i}. {r}" for i, r
                                 in enumerate(beoordeling.warmte.redenen, 1)),
+        "baan": getattr(belbaarheid, "baan", ""),
         "bellen_mag": "JA" if belbaarheid.mag_bellen else "NEE",
         "bellen_grond": belbaarheid.reden,
         "let_op": belbaarheid.let_op,
@@ -282,6 +305,16 @@ def schrijf(uitslag: dict, map_pad: Path) -> dict:
         schrijver.writeheader()
         schrijver.writerows(rijen)
 
+    # De MAIL-baan in een eigen bestand: dit zijn geen belleads en ze horen
+    # dus niet in de bellijst, maar weggooien is precies wat de Belgische
+    # stroom kostte. Zie belbaar.py voor wie hier terechtkomt.
+    mail_rijen = [naar_rij(*r) for r in uitslag["samenstelling"].mailbaan]
+    mail_pad = map_pad / "mailbaan.csv"
+    with mail_pad.open("w", newline="", encoding="utf-8") as bestand:
+        schrijver = csv.DictWriter(bestand, fieldnames=CSV_KOLOMMEN)
+        schrijver.writeheader()
+        schrijver.writerows(mail_rijen)
+
     per_dienst: dict[str, int] = {}
     for rij in rijen:
         per_dienst[rij["verkoop_primair"]] = per_dienst.get(rij["verkoop_primair"], 0) + 1
@@ -297,6 +330,7 @@ def schrijf(uitslag: dict, map_pad: Path) -> dict:
         "kandidaten_uit_bron": uitslag["totaal_gevonden"],
         "kandidaten_met_telefoon": uitslag["met_nummer"],
         "leads_geleverd": len(rijen),
+        "mailbaan_geleverd": len(mail_rijen),
         "alles_belbaar": all(r["bellen_mag"] == "JA" for r in rijen),
         "quota_gevraagd": uitslag["quota"].als_dict(),
         "quota_gehaald": samen.per_quotum,

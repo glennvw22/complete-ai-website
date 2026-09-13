@@ -31,6 +31,10 @@ class Quota:
 @dataclass
 class Samenstelling:
     gekozen: list = field(default_factory=list)
+    # De MAIL-baan: bedrijven die (nog) niet gebeld mogen worden, maar wel
+    # gemaild. Die werden hier vroeger weggegooid; dat kostte de hele
+    # Belgische stroom. Zie belbaar.py voor wie op welke baan komt.
+    mailbaan: list = field(default_factory=list)
     per_quotum: dict = field(default_factory=dict)
     tekorten: dict = field(default_factory=dict)
     afgevallen_niet_belbaar: int = 0
@@ -50,6 +54,12 @@ def stel_samen(kandidaten: list, aantal: int, quota: Quota) -> Samenstelling:
     for rij in kandidaten:
         belbaarheid, beoordeling = rij[4], rij[3]
         if not belbaarheid.mag_bellen:
+            # Niet belbaar is niet hetzelfde als waardeloos: mag er wél
+            # gemaild worden, dan gaat dit bedrijf naar de MAIL-baan in
+            # plaats van de vuilnisbak.
+            if getattr(belbaarheid, "mag_mailen", False) and beoordeling.signalen:
+                uitslag.mailbaan.append(rij)
+                continue
             uitslag.afgevallen_niet_belbaar += 1
             sleutel = belbaarheid.reden.split(" (")[0]
             uitslag.redenen_afgevallen[sleutel] = \

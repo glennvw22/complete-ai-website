@@ -83,12 +83,71 @@ def _vereenvoudig(naam: str) -> str:
     return re.sub(r"\s+", " ", laag).strip()
 
 
+# Woorden die niets onderscheiden: die mogen nooit alleen een match dragen.
+_LEGE_WOORDEN = frozenset({
+    "de", "het", "een", "en", "van", "der", "den", "bij", "aan", "in", "op",
+    "the", "and", "group", "groep", "company", "belgium", "belgie", "bvba",
+    "zaak", "winkel", "shop", "store", "service", "services", "center",
+    "centrum", "salon", "kapsalon", "garage", "bakkerij", "slagerij",
+    "installatie", "installaties", "techniek", "technics", "bouw", "bouwwerken",
+})
+
+
+def _kernwoorden(naam: str) -> set[str]:
+    """De woorden in een naam die iets onderscheiden: lang genoeg en niet
+    generiek. "Kapsalon Nuyttens" houdt dus alleen "nuyttens" over."""
+    return {w for w in _vereenvoudig(naam).split()
+            if len(w) >= 4 and w not in _LEGE_WOORDEN}
+
+
+def _namen_horen_bij_elkaar(osm_naam: str, kbo_naam: str) -> bool:
+    """Zijn dit dezelfde zaak? Exact gelijk na vereenvoudiging, of ze delen
+    minstens één onderscheidend woord ("Nuyttens Automatisatie" tegenover
+    "NUYTTENS AUTOMATISATIE BV"). Alleen generieke woorden gemeen hebben is
+    geen match — anders koppelt "Garage Janssens" aan "Garage Peeters"."""
+    if not osm_naam or not kbo_naam:
+        return False
+    if _vereenvoudig(osm_naam) == _vereenvoudig(kbo_naam):
+        return True
+    return bool(_kernwoorden(osm_naam) & _kernwoorden(kbo_naam))
+
+
 class KboClient:
     def __init__(self, pauze_s: float = PAUZE_S):
         self.pauze_s = pauze_s
         self._cache: dict[tuple[str, str], KboResultaat] = {}
         self._laatste_verzoek = 0.0
         self.bevragingen = 0
+        # Zowel het zoeken op naam als op adres werkt bij KBO alléén met een
+        # postcode; de gemeentenaam wordt genegeerd (zelf getest 13-9-2026).
+        # OpenStreetMap heeft die postcode bij ongeveer de helft van de
+        # bedrijven niet. Daarom onthouden we per gemeente welke postcodes we
+        # bij ándere bedrijven in diezelfde gemeente wél zagen, en gebruiken
+        # die als terugval. Dat is waargenomen data, geen aanname — en zit de
+        # gok ernaast, dan levert de opzoeking "niets gevonden" op en nooit
+        # een verkeerde koppeling, want het adres in het antwoord wordt alsnog
+        # tegen de gemeentenaam gehouden.
+        self._postcodes_per_gemeente: dict[str, list[str]] = {}
+
+    def leer_postcodes(self, bedrijven) -> None:
+        """Onthoud per gemeente de postcodes die in deze partij voorkomen."""
+        for bedrijf in bedrijven:
+            gemeente = (bedrijf.gemeente or bedrijf.plaats or "").strip().lower()
+            postcode = (bedrijf.postcode or "").strip()
+            if not gemeente or not postcode:
+                continue
+            lijst = self._postcodes_per_gemeente.setdefault(gemeente, [])
+            if postcode not in lijst:
+                lijst.append(postcode)
+
+    def _postcodes_voor(self, bedrijf) -> list[str]:
+        eigen = (bedrijf.postcode or "").strip()
+        if eigen:
+            return [eigen]
+        gemeente = (bedrijf.gemeente or bedrijf.plaats or "").strip().lower()
+        # Maximaal drie pogingen: anders kost één lead in een gemeente met
+        # veel postcodes onnodig veel verzoeken aan een gratis dienst.
+        return self._postcodes_per_gemeente.get(gemeente, [])[:3]
 
     def _wacht(self) -> None:
         verstreken = time.monotonic() - self._laatste_verzoek
@@ -167,7 +226,6 @@ class KboClient:
         daarna naar de entiteit zelf, en dáár staat of het een rechtspersoon
         is — dat wordt nooit uit de naam geraden.
         """
-        doel = _vereenvoudig(gezocht)
         gebied = (postcode.strip() or gemeente.strip()).lower()
         nummers: set[str] = set()
 
@@ -178,7 +236,21 @@ class KboClient:
             adres = cellen[-1].lower()
             if gebied and gebied not in adres:
                 continue
-            if _vereenvoudig(cellen[-2]) != doel:
+            if not _namen_horen_bij_elkaar(gezocht, cellen[-2]):
+                continue
+            for cel in cellen:
+                treffer = _NUMMER.search(cel)
+                if treffer:
+                    nummers.add(treffer.group(1))
+                    break
+        return nummers
+
+    def _alle_nummers_op_adres(self, html: str) -> set[str]:
+        """Elke onderneming die op dit adres staat, ongeacht de naam."""
+        nummers: set[str] = set()
+        for rij in _RIJ.findall(html):
+            cellen = [_schoon(c) for c in _CEL.findall(rij)]
+            if len(cellen) < 5:
                 continue
             for cel in cellen:
                 treffer = _NUMMER.search(cel)
@@ -256,26 +328,52 @@ class KboClient:
         Blijft het onbekend, dan is dat het antwoord. Onbekend betekent
         verderop: niet benaderen.
         """
-        uitslag = self.zoek(bedrijf.naam, postcode=bedrijf.postcode,
-                            gemeente=bedrijf.gemeente or bedrijf.plaats)
-        if uitslag.gevonden:
-            return uitslag
-
-        if not (bedrijf.straat and bedrijf.huisnummer):
-            return uitslag
         gemeente = bedrijf.gemeente or bedrijf.plaats
-        if not (bedrijf.postcode or gemeente):
-            return uitslag
+        postcodes = self._postcodes_voor(bedrijf)
 
+        laatste = KboResultaat(fout="niet teruggevonden")
+        for postcode in postcodes:
+            laatste = self.zoek(bedrijf.naam, postcode=postcode, gemeente=gemeente)
+            if laatste.gevonden:
+                return laatste
+
+        # Ook zonder postcode nog één poging: een landelijke naamzoekopdracht,
+        # waarbij het adres in het antwoord tegen de gemeentenaam wordt
+        # gehouden. Werkt alleen bij een onderscheidende naam — bij een
+        # generieke naam staat de juiste zaak niet op de eerste pagina en
+        # levert dit niets op, en dat is dan ook het antwoord.
+        if gemeente:
+            zonder_postcode = self.zoek(bedrijf.naam, postcode="", gemeente=gemeente)
+            if zonder_postcode.gevonden:
+                return zonder_postcode
+            laatste = zonder_postcode
+
+        if not (bedrijf.straat and bedrijf.huisnummer) or not postcodes:
+            return laatste
+
+        postcode = postcodes[0]
         try:
-            html = self._haal_op_adres(bedrijf.postcode, gemeente,
+            html = self._haal_op_adres(postcode, gemeente,
                                        bedrijf.straat, bedrijf.huisnummer)
+            # Eerst op naam binnen dit adres: dat is de sterkste match.
             nummers = self._nummers_uit_resultaat(
-                html, bedrijf.naam, bedrijf.postcode, gemeente)
+                html, bedrijf.naam, postcode, gemeente)
             if len(nummers) == 1:
                 return self._entiteit(nummers.pop())
             if len(nummers) > 1:
                 return KboResultaat(fout="meerdere ondernemingen op dit adres met deze naam")
+
+            # Geen naamtreffer, maar staat er precies één onderneming op dit
+            # exacte adres (straat + huisnummer + postcode), dan IS dat de zaak
+            # op dat adres — dat is een vaststelling, geen gok. Alleen met een
+            # postcode erbij, want zonder postcode is het adres te ruim.
+            if postcode.strip():
+                alle = self._alle_nummers_op_adres(html)
+                if len(alle) == 1:
+                    uitslag = self._entiteit(alle.pop())
+                    if uitslag.gevonden:
+                        uitslag.fout = "gekoppeld op adres, niet op naam"
+                    return uitslag
             return KboResultaat(fout="niet op naam en niet op adres teruggevonden")
         except urllib.error.HTTPError as fout:
             return KboResultaat(fout=f"HTTP {fout.code} bij adresopzoeking")

@@ -18,6 +18,7 @@ import belbaar as belbaar_mod
 import bron_osm
 import catalogus
 import dncm as dncm_mod
+import kbo as kbo_mod
 import kvk as kvk_mod
 import run as run_mod
 import samenstelling as samen_mod
@@ -285,29 +286,78 @@ def test_belbaarheid():
     bevestig(not belbaar_mod.beoordeel_belbaarheid(_bedrijf(), bv).mag_bellen,
              "zonder telefoonnummer geen bellead")
 
-    be = belbaar_mod.beoordeel_belbaarheid(_bedrijf(land="BE", telefoon="09-1"), None)
-    bevestig(not be.mag_bellen,
-             "BE zonder DNCM-koppeling mag NIET gebeld worden — geen gratis controle, dus geen garantie")
+    bevestig(belbaar_mod.beoordeel_belbaarheid(_bedrijf(telefoon="038-1"), bv).baan == belbaar_mod.BEL,
+             "NL rechtspersoon komt op de BEL-baan")
+    bevestig(belbaar_mod.beoordeel_belbaarheid(_bedrijf(telefoon="038-1"), ez).baan == belbaar_mod.AF,
+             "NL eenmanszaak valt af, ook voor mail (openstaande vraag in de kluis)")
 
-    # Met een (gesimuleerde) werkende DNCM-koppeling vervalt de handmatige
-    # waarschuwing: het antwoord van de lijst beslist meteen.
+
+def test_belbaarheid_belgie():
+    print("\nBelbaarheid België (DNCM, KBO, opt-in)")
+    rp = kbo_mod.KboResultaat(gevonden=True, is_rechtspersoon=True,
+                              rechtsvorm="Besloten Vennootschap")
+    np_ = kbo_mod.KboResultaat(gevonden=True, is_rechtspersoon=False)
+    kbo_onbekend = kbo_mod.KboResultaat(gevonden=False, fout="niet teruggevonden")
+
+    def be(**kw):
+        velden = dict(land="BE", telefoon="09-1")
+        velden.update(kw)
+        return _bedrijf(**velden)
+
+    # Zonder enige verrijking: niets is vastgesteld, dus niets mag.
+    kaal = belbaar_mod.beoordeel_belbaarheid(be(), None)
+    bevestig(kaal.baan == belbaar_mod.AF,
+             "BE zonder KBO en zonder opt-in valt af — geen grond om te bellen of te mailen")
+
+    # Rechtspersoon + onpersoonlijk adres = mailbaar, nog niet belbaar.
+    mailbaar = belbaar_mod.beoordeel_belbaarheid(
+        be(email="info@zaak.be"), None, kbo_resultaat=rp)
+    bevestig(mailbaar.baan == belbaar_mod.MAIL, "BE rechtspersoon met info@ komt op de MAIL-baan")
+    bevestig(not mailbaar.mag_bellen, "een MAIL-lead mag niet gebeld worden")
+    bevestig(mailbaar.mag_mailen, "een MAIL-lead mag wel gemaild worden")
+
+    # Persoonlijk adres mag niet ongevraagd gemaild worden.
+    persoonlijk = belbaar_mod.beoordeel_belbaarheid(
+        be(email="jan.peeters@zaak.be"), None, kbo_resultaat=rp)
+    bevestig(persoonlijk.baan == belbaar_mod.AF,
+             "BE rechtspersoon met persoonlijk adres valt af — geen grond voor ongevraagde mail")
+
+    # Natuurlijk persoon: noch bellen noch mailen.
+    natuurlijk = belbaar_mod.beoordeel_belbaarheid(
+        be(email="info@zaak.be"), None, kbo_resultaat=np_)
+    bevestig(natuurlijk.baan == belbaar_mod.AF, "BE natuurlijk persoon valt af")
+
+    onbekend_kbo = belbaar_mod.beoordeel_belbaarheid(
+        be(email="info@zaak.be"), None, kbo_resultaat=kbo_onbekend)
+    bevestig(onbekend_kbo.baan == belbaar_mod.AF, "BE zonder KBO-treffer valt af")
+
+    # Een geldige, gedateerde opt-in gaat vóór de DNCM-lijst.
+    vandaag = _dt.date.today()
+    met_optin = belbaar_mod.beoordeel_belbaarheid(
+        be(email="info@zaak.be"), None, kbo_resultaat=rp,
+        opt_in_datum=vandaag - _dt.timedelta(days=3))
+    bevestig(met_optin.baan == belbaar_mod.BEL and met_optin.mag_bellen,
+             "BE met verse opt-in mag gebeld worden, zonder de lijst te kopen")
+
+    verlopen = belbaar_mod.beoordeel_belbaarheid(
+        be(email="info@zaak.be"), None, kbo_resultaat=rp,
+        opt_in_datum=vandaag - _dt.timedelta(days=belbaar_mod.OPT_IN_GELDIG_DAGEN + 1))
+    bevestig(verlopen.baan == belbaar_mod.MAIL,
+             "een verlopen opt-in zakt terug naar de MAIL-baan, niet naar BEL")
+
+    # Met een werkende (betaalde) DNCM-koppeling beslist de lijst zelf.
     niet_op_lijst = dncm_mod.DncmResultaat(gevonden=True, op_lijst=False)
     op_lijst = dncm_mod.DncmResultaat(gevonden=True, op_lijst=True)
-    onbevraagd = dncm_mod.DncmResultaat(gevonden=False, fout="geen sleutel")
+    bevestig(belbaar_mod.beoordeel_belbaarheid(be(), None, niet_op_lijst).mag_bellen,
+             "BE niet op de DNCM-lijst mag gebeld worden")
+    bevestig(not belbaar_mod.beoordeel_belbaarheid(be(), None, op_lijst).mag_bellen,
+             "BE op de DNCM-lijst mag NIET gebeld worden")
 
-    be_vrij = belbaar_mod.beoordeel_belbaarheid(
-        _bedrijf(land="BE", telefoon="09-1"), None, niet_op_lijst)
-    bevestig(be_vrij.mag_bellen, "BE niet op de DNCM-lijst mag gebeld worden")
-    bevestig(not be_vrij.let_op, "BE automatisch DNCM-vrij heeft geen handmatige waarschuwing meer")
-
-    be_geblokkeerd = belbaar_mod.beoordeel_belbaarheid(
-        _bedrijf(land="BE", telefoon="09-1"), None, op_lijst)
-    bevestig(not be_geblokkeerd.mag_bellen, "BE op de DNCM-lijst mag NIET gebeld worden")
-
-    be_onbevraagd = belbaar_mod.beoordeel_belbaarheid(
-        _bedrijf(land="BE", telefoon="09-1"), None, onbevraagd)
-    bevestig(not be_onbevraagd.mag_bellen,
-             "BE met mislukte DNCM-bevraging valt terug op geblokkeerd, niet op vrij")
+    # De adrescheck zelf.
+    bevestig(belbaar_mod.onpersoonlijk_adres("info@zaak.be"), "info@ is onpersoonlijk")
+    bevestig(belbaar_mod.onpersoonlijk_adres("contact-be@zaak.be"), "contact-be@ is onpersoonlijk")
+    bevestig(not belbaar_mod.onpersoonlijk_adres("jan@zaak.be"), "jan@ is persoonlijk")
+    bevestig(not belbaar_mod.onpersoonlijk_adres(""), "leeg adres is niet mailbaar")
 
 
 def test_samenstelling():
@@ -427,6 +477,7 @@ if __name__ == "__main__":
     test_scoring()
     test_geen_lege_dag()
     test_belbaarheid()
+    test_belbaarheid_belgie()
     test_samenstelling()
     test_schrijven()
     test_normaliseren()
