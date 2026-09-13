@@ -99,15 +99,15 @@ af. Neem de sleutel over met de kopieerknop in het portaal, niet met de hand.
 
 ## Stap 2b — DNCM_API_SLEUTEL: alleen als Glenn zelf ooit besluit dat de licentie het waard is
 
-**Niet iets om uit te voeren of voor te stellen.** Er bleek geen gratis manier
+**Niet nodig, en niet iets om voor te stellen.** Er bleek geen gratis manier
 te zijn om de Belgische DNCM-lijst te raadplegen (nagezocht 13-9-2026: DNCM
 VZW's eigen FAQ, de wettelijke basis — KB 28-6-2015 —, de FOD Economie-pagina
-en een brancheorganisatie zeggen alle drie hetzelfde: een licentie is de
-wettelijk voorgeschreven weg, geen vrijstelling voor kleine bedrijven). Omdat
-Complete AI geen nieuwe vaste lasten aangaat (zie de kluis, Grenzen — Geen
-betaalde oplossingen), is een Belgisch bedrijf zonder deze sleutel gewoon
-**niet belbaar** in `leads/belbaar.py` — geen waarschuwing-met-vinkje, want
-dat is geen garantie. Dat is de huidige, bewuste, gratis stand van zaken.
+en een brancheorganisatie). Complete AI gaat geen nieuwe vaste lasten aan
+(zie de kluis, Grenzen — Geen betaalde oplossingen), en dat hoeft ook niet:
+een Belgisch bedrijf wordt gratis en wettelijk benaderd via de MAIL-baan en
+wordt belbaar zodra het zelf toestemming geeft. Deze sleutel zou alleen een
+snelkoppeling zijn: dan mag er meteen gebeld worden zonder die opt-in af te
+wachten.
 
 Deze stap staat hier alleen als referentie voor het geval Glenn zelf, op enig
 moment, besluit dat de licentie het waard is — dat is aan hem, niet iets om

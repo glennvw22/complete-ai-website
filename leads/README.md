@@ -51,16 +51,19 @@ Zet daarom `KVK_API_KEY` in de omgeving van de routine. Zonder sleutel draait
 alles gewoon door, maar meldt de run bovenaan dat KVK niet beschikbaar is in
 plaats van dat stil te laten.
 
-Hetzelfde patroon bestaat voor België: `leads/dncm.py` bevraagt de DNCM-lijst
-(donotcallme.be) automatisch per Belgisch nummer zodra `DNCM_API_SLEUTEL` in
-de omgeving staat. Er is geen gratis manier om die lijst te raadplegen —
-nagezocht 13-9-2026, geen vrijstelling voor kleine bedrijven gevonden, de
-licentie bij DNCM VZW is de wettelijk voorgeschreven weg, geen vendor-upsell.
-Complete AI stelt geen nieuwe vaste lasten voor (zie de kluis, Grenzen — Geen
-betaalde oplossingen), dus **zonder sleutel is een Belgisch bedrijf hier
-gewoon niet belbaar** — geen waarschuwing-met-vinkje meer, want dat is geen
-garantie. Zet Glenn de sleutel later alsnog (zijn keuze, niet iets om hem
-opnieuw voor te leggen): zie [DNCM_API_SLEUTEL instellen](INSTELLEN.md).
+Voor België is de rechtsvorm juist **gratis**: `leads/kbo.py` vraagt de
+Kruispuntbank van Ondernemingen (KBO Public Search, geen account nodig) of een
+bedrijf een rechtspersoon of een natuurlijk persoon is. Natuurlijke personen
+vallen af — de KBO-gebruiksvoorwaarden verbieden hergebruik van
+persoonsgegevens voor direct marketing, en de Belgische spam-uitzondering
+geldt ook alleen voor rechtspersonen.
+
+Bellen in België vraagt een schoning langs de DNCM-lijst, en die is alleen
+tegen betaling te raadplegen (nagezocht 13-9-2026, geen gratis route). Daarom
+loopt de Belgische weg via e-mail: een rechtspersoon met een onpersoonlijk
+adres mag ongevraagd zakelijk gemaild worden, en geeft het bedrijf daarna
+expliciet toestemming, dan mag er gebeld worden — DNCM zegt zelf dat zo'n
+opt-in vóór de lijst gaat.
 
 ### Alleen belbare leads
 
@@ -71,12 +74,11 @@ De lijst bevat uitsluitend bedrijven die je zonder nadenken mag draaien.
   Eenmanszaken, vof's, cv's en maatschappen vallen af; dat zijn natuurlijke
   personen en die koud bellen levert klachten op. Blijft de rechtsvorm
   onbekend, dan valt het bedrijf óók af — bij twijfel niet bellen.
-- **Vlaanderen**: zakelijk bellen mag, mits de DNCM-lijst geschoond is, en dat
-  kost geld om te controleren (zie hierboven). Staat `DNCM_API_SLEUTEL` in de
-  omgeving, dan gebeurt die scrub hier automatisch per nummer (staat het
-  nummer erop, dan valt het bedrijf af, net als een NL-eenmanszaak). Staat de
-  sleutel er niet — vandaag (13-9-2026) het geval — dan valt elk Belgisch
-  bedrijf hier af, zonder uitzondering: geen garantie, dus niet bellen.
+- **Vlaanderen**: een rechtspersoon (bevestigd via KBO) met een onpersoonlijk
+  e-mailadres komt op de **MAIL-baan** — mailen mag, bellen nog niet. Zodra het
+  bedrijf zelf toestemming geeft, gaat hij naar de BEL-baan. Een natuurlijk
+  persoon valt af, en een bedrijf waarvan de rechtsvorm niet terug te vinden
+  is ook: bij twijfel niet benaderen.
 - Zonder telefoonnummer geen lead, en ook geen betaalde KVK-bevraging.
 
 Gevolg: van de kandidaten uit de bron valt in Nederland een fors deel af. De
