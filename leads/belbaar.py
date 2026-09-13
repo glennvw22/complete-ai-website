@@ -222,10 +222,20 @@ def kandidaat_voor_kvk(bedrijf) -> bool:
     return bool(bedrijf.telefoon) and bedrijf.land == "NL"
 
 
-def kandidaat_voor_kbo(bedrijf) -> bool:
-    """Loont een KBO-opzoeking? Die is gratis, dus de enige eis is dat er
-    iets te benaderen valt: een telefoonnummer (voor later, na opt-in) of een
-    onpersoonlijk e-mailadres (voor nu)."""
+def kandidaat_voor_kbo(bedrijf, dncm_beschikbaar: bool = False) -> bool:
+    """Loont een KBO-opzoeking?
+
+    De opzoeking is gratis maar niet gratis in tijd: KBO Public Search wordt
+    bewust op één verzoek per seconde bevraagd. Dus alleen opzoeken waar het
+    tot een lead kán leiden.
+
+    Zonder DNCM-koppeling loopt de enige weg naar een Belgische lead via een
+    e-mail naar een onpersoonlijk adres — geen zo'n adres, geen lead, hoe
+    netjes de rest ook is. Met een werkende DNCM-koppeling telt een
+    telefoonnummer weer wel, want dan kan er rechtstreeks gebeld worden.
+    """
     if bedrijf.land != "BE":
         return False
-    return bool(bedrijf.telefoon) or onpersoonlijk_adres(bedrijf.email)
+    if onpersoonlijk_adres(bedrijf.email):
+        return True
+    return dncm_beschikbaar and bool(bedrijf.telefoon)

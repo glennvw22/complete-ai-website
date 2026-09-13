@@ -206,7 +206,7 @@ def draai(datum: _dt.date, aantal: int, gebruik_kvk: bool,
         # bellen én geen grond om te mailen, dus dit bepaalt of de lead
         # bestaat.
         kbo_resultaat = None
-        if (belbaar_mod.kandidaat_voor_kbo(bedrijf)
+        if (belbaar_mod.kandidaat_voor_kbo(bedrijf, dncm_client.beschikbaar)
                 and len(kandidaten) < streef * 2):
             kbo_resultaat = kbo_client.zoek_bedrijf(bedrijf)
             if kbo_resultaat.gevonden and kbo_resultaat.is_rechtspersoon:
