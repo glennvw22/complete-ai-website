@@ -131,7 +131,7 @@ def _beoordeel_be(bedrijf, dncm_resultaat, kbo_resultaat, opt_in_datum) -> Beloo
             True,
             "expliciete opt-in voor telefonisch contact, gedateerd — die gaat "
             "vóór de DNCM-lijst",
-            baan=BEL, mag_mailen=True,
+            baan=BEL, mag_mailen=onpersoonlijk_adres(bedrijf.email),
         )
 
     # 2. Is de lijst wél te bevragen (betaalde koppeling actief), dan beslist
@@ -145,7 +145,7 @@ def _beoordeel_be(bedrijf, dncm_resultaat, kbo_resultaat, opt_in_datum) -> Beloo
             True,
             "automatisch tegen de DNCM-lijst gecontroleerd (donotcallme.be) — "
             "niet gevonden, bellen mag",
-            baan=BEL, mag_mailen=True,
+            baan=BEL, mag_mailen=onpersoonlijk_adres(bedrijf.email),
         )
 
     # 3. Geen opt-in en geen lijst: bellen kan niet gegarandeerd worden.
@@ -197,7 +197,7 @@ def _beoordeel_nl(bedrijf, kvk_resultaat) -> Beloordeel:
     if kvk_resultaat.is_rechtspersoon is True:
         return Beloordeel(
             True, f"rechtspersoon ({kvk_resultaat.rechtsvorm}) — koud bellen toegestaan",
-            baan=BEL, mag_mailen=True,
+            baan=BEL, mag_mailen=onpersoonlijk_adres(bedrijf.email),
         )
     if kvk_resultaat.is_rechtspersoon is False:
         return Beloordeel(
