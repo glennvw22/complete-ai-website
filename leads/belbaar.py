@@ -151,6 +151,18 @@ def _beoordeel_be(bedrijf, dncm_resultaat, kbo_resultaat, opt_in_datum) -> Beloo
     # 3. Geen opt-in en geen lijst: bellen kan niet gegarandeerd worden.
     #    Dan is de vraag of dit bedrijf gemaild mag worden, en daarvoor moet
     #    het een rechtspersoon zijn met een onpersoonlijk adres.
+    #
+    #    Het adres eerst, want dat verklaart verreweg de meeste afvallers en
+    #    het scheelt een opzoeking. Stond de KBO-reden hier bovenaan, dan meldt
+    #    het ochtendrapport "niet in KBO teruggevonden" bij bedrijven die
+    #    nooit zijn opgezocht — een onware verklaring van een echt getal.
+    if not onpersoonlijk_adres(bedrijf.email):
+        return Beloordeel(
+            False,
+            "geen onpersoonlijk e-mailadres gevonden — niets om mee te "
+            "benaderen zonder te bellen",
+            baan=AF,
+        )
     if kbo_resultaat is None or not kbo_resultaat.gevonden:
         return Beloordeel(
             False,
@@ -163,14 +175,6 @@ def _beoordeel_be(bedrijf, dncm_resultaat, kbo_resultaat, opt_in_datum) -> Beloo
             False,
             "natuurlijk persoon volgens KBO — niet bellen zonder DNCM-controle, "
             "en niet mailen zonder opt-in",
-            baan=AF,
-        )
-    if not onpersoonlijk_adres(bedrijf.email):
-        return Beloordeel(
-            False,
-            f"rechtspersoon ({kbo_resultaat.rechtsvorm or 'vorm onbekend'}) maar geen "
-            "onpersoonlijk e-mailadres — zonder info@-achtig adres geen grond "
-            "om ongevraagd te mailen",
             baan=AF,
         )
     return Beloordeel(
