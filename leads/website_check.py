@@ -12,6 +12,7 @@ import re
 import ssl
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass, field, asdict
@@ -213,6 +214,15 @@ def controleer(url: str) -> SiteRapport:
 
     rapport.emails = _emails_uit(tekst, eindurl)
 
+    # Staat er geen adres op de voorpagina, kijk dan één keer op de
+    # contactpagina. Dat is waar de meeste bedrijven hun info@ zetten, en het
+    # is de grootste rem op de Belgische stroom: gemeten 13-9-2026 viel 300
+    # van de 487 kandidaten af op "geen onpersoonlijk e-mailadres". Eén extra
+    # verzoek, en alleen bij sites die er zelf naar verwijzen — geen gegok op
+    # paden die toch een 404 geven.
+    if not rapport.emails:
+        rapport.emails = _emails_van_contactpagina(tekst, eindurl)
+
     # Geparkeerd/te koop domein: weinig inhoud plus typische bewoording.
     if len(body) < 6000 and any(
         s in laag for s in ("domein te koop", "this domain", "domain for sale",
@@ -262,6 +272,37 @@ def _emails_uit(tekst: str, eindurl: str) -> tuple:
                 "kantoor@", "mail@", "post@", "salon@", "shop@", "winkel@")
     gevonden.sort(key=lambda a: 0 if a.startswith(algemeen) else 1)
     return tuple(gevonden[:5])
+
+
+def _emails_van_contactpagina(tekst: str, eindurl: str) -> tuple:
+    """Volgt de eigen contactlink van een site, één niveau diep.
+
+    Bewust alleen een link die de site zélf aanbiedt en die op hetzelfde
+    domein staat: geen paden raden, geen externe hosts volgen.
+    """
+    treffer = re.search(
+        r'<a[^>]+href=["\']([^"\']+)["\'][^>]*>(?:(?!</a>).){0,80}?'
+        r'(contact|contacteer|neem contact|kontakt)',
+        tekst, re.I | re.S,
+    )
+    if not treffer:
+        return ()
+
+    try:
+        doel = urllib.parse.urljoin(eindurl, treffer.group(1).strip())
+    except Exception:
+        return ()
+
+    basis = urllib.parse.urlparse(eindurl).netloc.lower()
+    if urllib.parse.urlparse(doel).netloc.lower() != basis:
+        return ()
+    if doel.rstrip("/") == (eindurl or "").rstrip("/"):
+        return ()
+
+    status, contact_eindurl, body, _ = _lees(doel, timeout=10)
+    if status == 0 or not body:
+        return ()
+    return _emails_uit(body.decode("utf-8", "replace"), contact_eindurl or doel)
 
 
 def _veilig_controleer(url: str) -> SiteRapport:
