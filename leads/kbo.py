@@ -136,9 +136,29 @@ class KboClient:
             postcode = (bedrijf.postcode or "").strip()
             if not gemeente or not postcode:
                 continue
-            lijst = self._postcodes_per_gemeente.setdefault(gemeente, [])
-            if postcode not in lijst:
-                lijst.append(postcode)
+            self._onthoud_postcode(gemeente, postcode)
+
+    def _onthoud_postcode(self, gemeente: str, postcode: str) -> None:
+        lijst = self._postcodes_per_gemeente.setdefault(gemeente.strip().lower(), [])
+        if postcode not in lijst:
+            lijst.append(postcode)
+
+    def _leer_uit_html(self, html: str, gemeente: str) -> None:
+        """Pik de postcodes van deze gemeente op uit een zoekresultaat.
+
+        Elk antwoord bevat volledige adressen ("2800 Mechelen"). Die zijn
+        gratis: ze staan er toch al. Zo kent de machine na één opzoeking de
+        postcodes van een gemeente, ook als OpenStreetMap ze niet meegaf —
+        en daarmee kunnen de vólgende bedrijven in diezelfde gemeente wél op
+        postcode worden afgebakend.
+        """
+        gemeente = (gemeente or "").strip()
+        if not gemeente:
+            return
+        for postcode in re.findall(
+            r"\b(\d{4})\s+" + re.escape(gemeente), _schoon(html), re.I
+        ):
+            self._onthoud_postcode(gemeente, postcode)
 
     def _postcodes_voor(self, bedrijf) -> list[str]:
         eigen = (bedrijf.postcode or "").strip()
@@ -198,6 +218,7 @@ class KboClient:
 
         try:
             html = self._haal(naam, postcode.strip())
+            self._leer_uit_html(html, gemeente)
             nummers = self._nummers_uit_resultaat(html, naam, postcode, gemeente)
             if not nummers:
                 uitslag = KboResultaat(fout="geen naamtreffer in dit gebied")
@@ -341,17 +362,37 @@ class KboClient:
         # waarbij het adres in het antwoord tegen de gemeentenaam wordt
         # gehouden. Werkt alleen bij een onderscheidende naam — bij een
         # generieke naam staat de juiste zaak niet op de eerste pagina en
-        # levert dit niets op, en dat is dan ook het antwoord.
+        # levert dit niets op, en dat is dan ook het antwoord. Het antwoord
+        # leert ons wél de postcodes van deze gemeente.
         if gemeente:
             zonder_postcode = self.zoek(bedrijf.naam, postcode="", gemeente=gemeente)
             if zonder_postcode.gevonden:
                 return zonder_postcode
             laatste = zonder_postcode
+            # Inmiddels kennen we misschien wél een postcode voor deze
+            # gemeente, geleerd uit dit of een eerder antwoord.
+            if not postcodes:
+                postcodes = self._postcodes_voor(bedrijf)
+                for postcode in postcodes:
+                    opnieuw = self.zoek(bedrijf.naam, postcode=postcode, gemeente=gemeente)
+                    if opnieuw.gevonden:
+                        return opnieuw
+                    laatste = opnieuw
 
         if not (bedrijf.straat and bedrijf.huisnummer) or not postcodes:
             return laatste
 
-        postcode = postcodes[0]
+        # Het adres bevragen met elke postcode die we van deze gemeente
+        # kennen: een gemeente heeft er vaak meerdere en alleen de juiste
+        # geeft een antwoord.
+        for postcode in postcodes:
+            uitslag = self._zoek_op_adres(bedrijf, postcode, gemeente)
+            if uitslag.gevonden:
+                return uitslag
+            laatste = uitslag
+        return laatste
+
+    def _zoek_op_adres(self, bedrijf, postcode: str, gemeente: str) -> KboResultaat:
         try:
             html = self._haal_op_adres(postcode, gemeente,
                                        bedrijf.straat, bedrijf.huisnummer)

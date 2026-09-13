@@ -81,10 +81,16 @@ class SiteRapport:
     geblokkeerd: bool = False
     bytes_html: int = 0
     fout: str = ""
+    # E-mailadressen die op de site zelf staan. De pagina is hier toch al
+    # opgehaald voor de kwaliteitscontrole, dus dit kost geen enkel extra
+    # verzoek. OpenStreetMap heeft bij de meeste bedrijven geen adres, en
+    # zonder adres is er niets te mailen — vandaar dat dit hier gebeurt.
+    emails: tuple = ()
 
     def als_dict(self) -> dict:
         d = asdict(self)
         d["verouderde_techniek"] = ", ".join(self.verouderde_techniek)
+        d["emails"] = ", ".join(self.emails)
         return d
 
 
@@ -205,6 +211,8 @@ def controleer(url: str) -> SiteRapport:
         label for spoor, label in VEROUDERDE_SPOREN if spoor in laag
     )
 
+    rapport.emails = _emails_uit(tekst, eindurl)
+
     # Geparkeerd/te koop domein: weinig inhoud plus typische bewoording.
     if len(body) < 6000 and any(
         s in laag for s in ("domein te koop", "this domain", "domain for sale",
@@ -214,6 +222,46 @@ def controleer(url: str) -> SiteRapport:
         rapport.geparkeerd = True
 
     return rapport
+
+
+_EMAIL = re.compile(r"[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}")
+
+# Adressen van bouwers, fotografen en trackers die op elke site staan maar
+# niets met dit bedrijf te maken hebben.
+_EMAIL_ONZIN = (
+    "example.", "sentry.io", "wixpress.com", "godaddy", "wordpress.",
+    "elementor.", "jquery", "domain", ".png", ".jpg", ".webp", ".svg",
+)
+
+
+def _emails_uit(tekst: str, eindurl: str) -> tuple:
+    """Adressen van het bedrijf zelf, uit zijn eigen pagina.
+
+    Alleen adressen op het eigen domein tellen mee: het adres van de
+    webbouwer in de voettekst is niet het adres van dit bedrijf. Volgorde:
+    het meest 'algemene' adres eerst, want naar een onpersoonlijk adres van
+    een rechtspersoon mag ongevraagde zakelijke e-mail en naar een
+    persoonlijk adres niet (zie belbaar.py).
+    """
+    domein = ""
+    treffer = re.search(r"https?://([^/]+)", eindurl or "")
+    if treffer:
+        domein = treffer.group(1).lower().removeprefix("www.")
+
+    gevonden: list[str] = []
+    for adres in _EMAIL.findall(tekst):
+        laag = adres.lower().rstrip(".")
+        if any(onzin in laag for onzin in _EMAIL_ONZIN):
+            continue
+        if domein and not laag.endswith("@" + domein) and not laag.endswith("." + domein):
+            continue
+        if laag not in gevonden:
+            gevonden.append(laag)
+
+    algemeen = ("info@", "contact@", "hallo@", "hello@", "onthaal@", "office@",
+                "kantoor@", "mail@", "post@", "salon@", "shop@", "winkel@")
+    gevonden.sort(key=lambda a: 0 if a.startswith(algemeen) else 1)
+    return tuple(gevonden[:5])
 
 
 def _veilig_controleer(url: str) -> SiteRapport:

@@ -156,6 +156,21 @@ def draai(datum: _dt.date, aantal: int, gebruik_kvk: bool,
             return None
         return site_rapporten.get(website_check._normaliseer(bedrijf.website))
 
+    # Staat er geen e-mailadres in OpenStreetMap, maar wel een op de eigen
+    # site die we net toch al ophaalden, neem die dan over. Zonder adres valt
+    # een Belgische lead af, en dat is zonde van een bedrijf dat gewoon een
+    # info@ op zijn contactpagina heeft staan.
+    uit_site = 0
+    for bedrijf in met_nummer:
+        if bedrijf.email:
+            continue
+        site = site_van(bedrijf)
+        if site and site.emails:
+            bedrijf.email = site.emails[0]
+            uit_site += 1
+    if uit_site:
+        log(f"[web] {uit_site} e-mailadressen overgenomen van de eigen website")
+
     # 4. Voorlopige score, om de KVK-bevragingen op de beste kandidaten te richten.
     voorlopig = []
     for bedrijf in met_nummer:
@@ -349,6 +364,7 @@ def schrijf(uitslag: dict, map_pad: Path) -> dict:
         "kvk_kosten_indicatie_eur": round(uitslag["kvk_gedaan"] * 0.02, 2),
         "osm_fouten": uitslag["osm_fouten"][:5],
         "csv": str(csv_pad),
+        "mailbaan_csv": str(mail_pad) if mail_rijen else "",
     }
     (map_pad / "samenvatting.json").write_text(
         json.dumps(samenvatting, ensure_ascii=False, indent=2), encoding="utf-8"
@@ -408,6 +424,12 @@ def main() -> int:
             "nog niet verstuurd naar het dashboard")
     else:
         dashboard.stuur_naar_dashboard(samenvatting["csv"])
+        # De mailbaan gaat mee dezelfde route in: het zijn gewone leads, alleen
+        # met baan=MAIL, en het dashboard weet daardoor dat ze benaderd mogen
+        # worden per e-mail maar (nog) niet gebeld. Zonder deze regel blijven
+        # ze op de schijf staan en is de Belgische stroom alsnog onzichtbaar.
+        if samenvatting.get("mailbaan_csv"):
+            dashboard.stuur_naar_dashboard(samenvatting["mailbaan_csv"])
     print(json.dumps(samenvatting, ensure_ascii=False, indent=2))
     return 0
 
