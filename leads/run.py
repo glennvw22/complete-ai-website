@@ -205,9 +205,15 @@ def draai(datum: _dt.date, aantal: int, gebruik_kvk: bool,
         # heeft wordt opgezocht. Zonder rechtsvorm is er geen grond om te
         # bellen én geen grond om te mailen, dus dit bepaalt of de lead
         # bestaat.
+        # Géén plafond op het aantal KBO-opzoekingen. Dat stond er eerst wel,
+        # gekoppeld aan het belquotum (streef * 2) — maar dat quotum gaat over
+        # de BEL-baan en KBO vult juist de MAIL-baan. Gemeten 13-9-2026: 60
+        # gebieden gaven 597 kandidaten met nummer maar bleven op 77 leads
+        # steken doordat dit plafond de opzoekingen afkapte. De echte rem zit
+        # al eerder: alleen bedrijven met een onpersoonlijk e-mailadres worden
+        # opgezocht, en KBO kost niets.
         kbo_resultaat = None
-        if (belbaar_mod.kandidaat_voor_kbo(bedrijf, dncm_client.beschikbaar)
-                and len(kandidaten) < streef * 2):
+        if belbaar_mod.kandidaat_voor_kbo(bedrijf, dncm_client.beschikbaar):
             kbo_resultaat = kbo_client.zoek_bedrijf(bedrijf)
             if kbo_resultaat.gevonden and kbo_resultaat.is_rechtspersoon:
                 kbo_rechtspersonen += 1
