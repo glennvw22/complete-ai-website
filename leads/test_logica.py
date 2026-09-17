@@ -186,6 +186,71 @@ def test_kvk_antwoord_lezen():
              "de vestiging in de gezochte plaats gaat voor")
 
 
+def test_filiaal_en_leeftijd():
+    """Regressietest voor de wijziging van 18-9-2026 (aanleiding: Boerenbond
+    Roosendaal kreeg score 100 terwijl het een filiaal van een keten met 70+
+    winkels is): filialen mogen geen betaald basisprofiel meer kosten, en
+    bedrijfsleeftijd geeft nu een warmtebonus terwijl 'meerdere vestigingen'
+    er geen meer geeft."""
+    print("\nFiliaalfilter en bedrijfsleeftijd")
+
+    nevenvestiging = kvk_mod.KvkResultaat(gevonden=True, kvk_nummer="1",
+                                           zoek_type="nevenvestiging")
+    hoofdvestiging = kvk_mod.KvkResultaat(gevonden=True, kvk_nummer="2",
+                                           zoek_type="hoofdvestiging")
+    niet_gevonden = kvk_mod.KvkResultaat(gevonden=False)
+
+    bevestig(belbaar_mod.is_filiaal(nevenvestiging) is True,
+             "nevenvestiging wordt herkend als filiaal")
+    bevestig(belbaar_mod.is_filiaal(hoofdvestiging) is False,
+             "hoofdvestiging is geen filiaal")
+    bevestig(belbaar_mod.is_filiaal(niet_gevonden) is False,
+             "niet gevonden is geen filiaal (er is gewoon niets bekend)")
+    bevestig(belbaar_mod.is_filiaal(None) is False,
+             "geen kvk-resultaat is geen filiaal")
+
+    # Basisprofiel-antwoordformaat - het exacte veldpad is (nog) niet met een
+    # echte aanroep bevestigd, zie de docstrings in kvk.py. Deze test dekt het
+    # pad dat de KVK-ontwikkelaarsdocumentatie noemt.
+    profiel = {
+        "materieleRegistratie": {"datumAanvang": "20200315"},
+        "totaalWerkzamePersonen": 3,
+    }
+    bevestig(kvk_mod._pak_oprichtingsdatum(profiel) == "20200315",
+             "oprichtingsdatum uit materieleRegistratie.datumAanvang gelezen")
+    bevestig(kvk_mod._pak_medewerkers(profiel) == 3,
+             "medewerkers uit totaalWerkzamePersonen gelezen")
+    bevestig(kvk_mod._pak_oprichtingsdatum({}) == "",
+             "ontbrekende oprichtingsdatum geeft leeg, geen gok")
+    bevestig(kvk_mod._pak_medewerkers({}) is None,
+             "ontbrekend medewerkersaantal geeft None, geen verzonnen 0")
+
+    kapsalon = catalogus.BRANCHE_OP_SLEUTEL["kapsalon"]
+    bedrijf = _bedrijf(telefoon="038-1234567")
+    dit_jaar = _dt.date.today().year
+
+    kvk_jong = kvk_mod.KvkResultaat(gevonden=True, is_rechtspersoon=True,
+                                     oprichtingsdatum=f"{dit_jaar - 3}0101")
+    beoordeling_jong = score_mod.beoordeel(bedrijf, None, kvk_jong, kapsalon)
+    bevestig(any("relatief jong" in r for r in beoordeling_jong.warmte.redenen),
+             "3 jaar oud bedrijf krijgt de jong-bedrijf warmtebonus")
+
+    kvk_oud = kvk_mod.KvkResultaat(gevonden=True, is_rechtspersoon=True,
+                                    oprichtingsdatum=f"{dit_jaar - 25}0101")
+    beoordeling_oud = score_mod.beoordeel(bedrijf, None, kvk_oud, kapsalon)
+    bevestig(not any("relatief jong" in r for r in beoordeling_oud.warmte.redenen),
+             "25 jaar oud bedrijf krijgt geen jong-bedrijf bonus")
+
+    # De oude bug: >1 vestiging gaf altijd +20 warmtepunten ("groeiend bedrijf
+    # met budget"). Nu mag dat veld geen enkel verschil meer maken - filialen
+    # worden al eerder (is_filiaal, kostenfilter) uitgesloten.
+    kvk_veel_vestigingen = kvk_mod.KvkResultaat(gevonden=True, is_rechtspersoon=True,
+                                                 vestigingen=70)
+    beoordeling_veel = score_mod.beoordeel(bedrijf, None, kvk_veel_vestigingen, kapsalon)
+    bevestig(not any("vestiging" in r for r in beoordeling_veel.warmte.redenen),
+             "aantal vestigingen geeft geen warmtepunten meer (was de Boerenbond-bug)")
+
+
 # --------------------------------------------------------------- scoring
 def _bedrijf(**kw):
     basis = dict(osm_id="node/1", naam="Testbedrijf", gemeente="Zwolle", land="NL",
@@ -436,7 +501,8 @@ def test_schrijven():
         "terrein": catalogus.territorium_voor(_dt.date(2026, 9, 1), land="NL"),
         "rijen": samen.gekozen, "samenstelling": samen,
         "totaal_gevonden": 3, "met_nummer": 3, "osm_fouten": [],
-        "kvk_werkt": True, "kvk_bericht": "ok", "kvk_gedaan": 3,
+        "kvk_werkt": True, "kvk_bericht": "ok",
+        "kvk_zoek_gedaan": 3, "kvk_basis_gedaan": 3, "afgevallen_filiaal": 0,
         "quota": samen_mod.Quota(1, 1, 1),
     }
     with tempfile.TemporaryDirectory() as tijdelijk:
@@ -474,6 +540,7 @@ if __name__ == "__main__":
     test_dode_spiegel()
     test_element_parsing()
     test_kvk_antwoord_lezen()
+    test_filiaal_en_leeftijd()
     test_scoring()
     test_geen_lege_dag()
     test_belbaarheid()

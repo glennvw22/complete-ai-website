@@ -221,6 +221,27 @@ def _beoordeel_nl(bedrijf, kvk_resultaat) -> Beloordeel:
     return Beloordeel(False, "rechtsvorm onbekend — bij twijfel niet bellen", baan=AF)
 
 
+def is_filiaal(kvk_resultaat) -> bool:
+    """Is dit een nevenvestiging (filiaal van een grotere keten)?
+
+    Puur een KOSTENfilter, geen wettelijke regel: bepaalt of het de moeite
+    waard is om het betaalde basisprofiel op te vragen, niet of er gebeld mag
+    worden (dat blijft beoordeel_belbaarheid hierboven, en die is hier
+    bewust niet voor aangepast). Gebaseerd op de GRATIS Zoeken-stap
+    (kvk_resultaat.zoek_type) - kost dus niets om te controleren.
+
+    Vastgesteld 17/18-9-2026: een filiaal van een keten (Boerenbond,
+    Kwikfit, Hunkemöller, ...) heeft op die locatie geen besluitvormer met
+    budget voor website/telefonist/automatisering. We geven er dus geen
+    betaalde bevraging meer aan uit - met als praktisch gevolg dat zo'n lead
+    zonder basisprofiel ook nooit een bevestigde rechtsvorm krijgt en dus via
+    beoordeel_belbaarheid() hierboven alsnog op AF uitkomt. Twee aparte
+    redenen die toevallig naar dezelfde uitkomst leiden, expres niet
+    samengevoegd tot één regel."""
+    return bool(kvk_resultaat and kvk_resultaat.gevonden
+                and kvk_resultaat.zoek_type == "nevenvestiging")
+
+
 def kandidaat_voor_kvk(bedrijf) -> bool:
     """Is het de moeite waard om hier een betaalde KVK-bevraging aan te wagen?
 

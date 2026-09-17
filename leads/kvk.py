@@ -52,6 +52,8 @@ class KvkResultaat:
     sbi: str = ""
     sbi_omschrijving: str = ""
     vestigingen: int = 0
+    oprichtingsdatum: str = ""   # ruwe KVK-datumstring, alleen uit basisprofiel
+    medewerkers: int | None = None  # totaalWerkzamePersonen, alleen uit basisprofiel
     zoek_type: str = ""      # 'hoofdvestiging' / 'rechtspersoon' / 'nevenvestiging'
     bron: str = ""           # 'zoeken' (gratis) of 'basisprofiel' (betaald)
     fout: str = ""
@@ -251,6 +253,23 @@ class KvkClient:
         self._cache[cachesleutel] = resultaat
         return resultaat
 
+    def verrijk_met_basisprofiel(self, resultaat: KvkResultaat) -> KvkResultaat:
+        """Haalt het BETAALDE basisprofiel op voor een resultaat dat al uit de
+        gratis zoekstap komt (resultaat.kvk_nummer is dus al bekend).
+
+        Bewust een aparte methode in plaats van zoek(..., met_basisprofiel=True):
+        zo is er in de aanroepende code (run.py) een harde knip tussen de gratis
+        stap (altijd) en deze betaalde stap (alleen voor de voorgeselecteerde
+        kandidaten die de gratis filters - o.a. nevenvestiging, zie belbaar.py
+        is_filiaal() - al doorstaan zijn). Muteert resultaat in place en geeft
+        het ook terug, voor het gemak van de aanroeper.
+        """
+        if not resultaat.kvk_nummer:
+            resultaat.fout = "geen kvk-nummer bekend, basisprofiel overgeslagen"
+            return resultaat
+        self._vul_basisprofiel(resultaat)
+        return resultaat
+
     def _vul_basisprofiel(self, resultaat: KvkResultaat) -> None:
         data, fout = self._get(f"{BASISPROFIEL}/{resultaat.kvk_nummer}", {})
         if fout or not data:
@@ -270,6 +289,9 @@ class KvkClient:
         aantal = data.get("aantalVestigingen")
         if isinstance(aantal, int):
             resultaat.vestigingen = aantal
+
+        resultaat.oprichtingsdatum = _pak_oprichtingsdatum(data)
+        resultaat.medewerkers = _pak_medewerkers(data)
 
 
 def _plaats_van_treffer(treffer: dict) -> str:
@@ -326,6 +348,53 @@ def _pak_rechtsvorm(data: dict) -> str:
         if isinstance(kandidaat, str) and kandidaat.strip():
             return kandidaat.strip()
     return ""
+
+
+def _pak_oprichtingsdatum(data: dict) -> str:
+    """Startdatum van de onderneming (materieleRegistratie).
+
+    Net als bij rechtsvorm hierboven: het exacte veldpad in de KVK-respons is
+    NIET bevestigd met een echte testaanroep (18-9-2026), alleen met de
+    ontwikkelaarsdocumentatie die zegt dat materieleRegistratie een
+    "start- en einddatum van de onderneming" bevat zonder de JSON-sleutel te
+    noemen. Daarom hier, net als bij rechtsvorm, meerdere kandidaat-paden
+    proberen in plaats van op één naam te gokken. Geeft "" als niets van dit
+    alles een waarde oplevert - dan is de jong-bedrijf-bonus in score.py
+    simpelweg niet van toepassing, in plaats van een verzonnen datum.
+    """
+    mat = data.get("materieleRegistratie")
+    kandidaten = []
+    if isinstance(mat, dict):
+        kandidaten += [mat.get("datumAanvang"), mat.get("datumAanvangOnderneming"),
+                       mat.get("startdatum")]
+    kandidaten += [data.get("datumAanvang"), data.get("datumOprichting")]
+    embedded = data.get("_embedded")
+    if isinstance(embedded, dict):
+        hoofd = embedded.get("hoofdvestiging")
+        if isinstance(hoofd, dict):
+            kandidaten.append(hoofd.get("datumAanvang"))
+    for kandidaat in kandidaten:
+        if isinstance(kandidaat, str) and kandidaat.strip():
+            return kandidaat.strip()
+    return ""
+
+
+def _pak_medewerkers(data: dict) -> int | None:
+    """Aantal werkzame personen, indien de basisprofiel-respons dat geeft.
+
+    Zelfde voorbehoud als hierboven: veldpad niet met een echte aanroep
+    geverifieerd, meerdere plekken geprobeerd. None (niet 0) als er niets
+    gevonden is - 0 zou een echte meting suggereren die er niet is."""
+    kandidaten = [data.get("totaalWerkzamePersonen")]
+    embedded = data.get("_embedded")
+    if isinstance(embedded, dict):
+        hoofd = embedded.get("hoofdvestiging")
+        if isinstance(hoofd, dict):
+            kandidaten.append(hoofd.get("totaalWerkzamePersonen"))
+    for kandidaat in kandidaten:
+        if isinstance(kandidaat, int):
+            return kandidaat
+    return None
 
 
 def classificeer_rechtsvorm(rechtsvorm: str) -> bool | None:

@@ -2,7 +2,7 @@
 """Dagelijkse lead-run voor Complete AI.
 
 Gebruik:
-    python3 leads/run.py                      # vandaag, standaard 100 leads
+    python3 leads/run.py                      # vandaag, standaard 50 leads
     python3 leads/run.py --aantal 150
     python3 leads/run.py --datum 2026-09-04   # herhaalbaar, voor testen
     python3 leads/run.py --geen-kvk           # sla KVK-verrijking over
@@ -42,7 +42,8 @@ CSV_KOLOMMEN = [
     "score", "warmte", "bedrijf", "telefoon", "plaats", "land", "branche",
     "verkoop_primair", "verkoop_secundair", "waarom_lead", "waarom_warm",
     "baan", "bellen_mag", "bellen_grond", "let_op", "rechtsvorm", "kvk_nummer",
-    "website", "website_status", "email", "adres", "sbi", "zekerheid", "osm_id",
+    "website", "website_status", "email", "adres", "sbi", "vestigingen",
+    "opgericht", "medewerkers", "zekerheid", "osm_id",
     "status", "notitie", "laatst_gebeld",
 ]
 
@@ -179,21 +180,50 @@ def draai(datum: _dt.date, aantal: int, gebruik_kvk: bool,
                           score_mod.beoordeel(bedrijf, site, None, terrein.branche)))
     voorlopig.sort(key=lambda r: -r[2].score)
 
-    # 5. KVK: van hoog naar laag, tot er genoeg belbare leads zijn of het
-    #    budget op is. Elke basisprofiel-bevraging kost geld, dus we stoppen
-    #    zodra we genoeg hebben in plaats van de hele lijst af te gaan.
-    kandidaten, kvk_gedaan, belbaar_gevonden = [], 0, 0
+    # 5. KVK, in twee stappen - 18-9-2026, op uitdrukkelijk verzoek van Glenn
+    #    na de Boerenbond-Roosendaal-ontdekking: we betaalden voor het
+    #    basisprofiel van AL wat een telefoonnummer had, ook filialen van
+    #    ketens die er toch nooit in hadden gehoord. Dat is nu andersom:
+    #
+    #    Fase 1 (GRATIS, Zoeken API): kvk-nummer + hoofd/nevenvestiging voor
+    #    iedere kandidaat. Kost niets, dus geen budget-check nodig.
+    #    Fase 2 (BETAALD, Basisprofiel): alleen voor wie fase 1 doorstaat -
+    #    geen filiaal, geen kvk-nummer dat deze ronde al voorbijkwam - en
+    #    alleen tot kvk_budget op is. Dat budget staat daarom nu ook veel
+    #    lager (zie --kvk-budget): het hoeft alleen nog de shortlist te
+    #    dekken, niet meer alles met een telefoonnummer.
+    kandidaten, belbaar_gevonden = [], 0
+    kvk_zoek_gedaan, kvk_basis_gedaan, afgevallen_filiaal = 0, 0, 0
+    kvk_gezien_nummers: set[str] = set()
     dncm_gedaan, dncm_geblokkeerd = 0, 0
     kbo_rechtspersonen = 0
     streef = int(aantal * 1.6)
     for bedrijf, site, _ in voorlopig:
         resultaat = None
         if (kvk_werkt and belbaar_mod.kandidaat_voor_kvk(bedrijf)
-                and kvk_gedaan < kvk_budget and belbaar_gevonden < streef):
-            resultaat = kvk_client.zoek(bedrijf.naam, bedrijf.gemeente)
-            kvk_gedaan += 1
-            if kvk_gedaan % 25 == 0:
-                log(f"[kvk] {kvk_gedaan} bevraagd, {belbaar_gevonden} belbaar")
+                and belbaar_gevonden < streef):
+            # Fase 1: gratis, dus geen budget-plafond - alleen streef, om niet
+            # door te zoeken zodra we toch al genoeg hebben.
+            resultaat = kvk_client.zoek(bedrijf.naam, bedrijf.gemeente,
+                                        met_basisprofiel=False)
+            kvk_zoek_gedaan += 1
+            if resultaat.gevonden and (
+                belbaar_mod.is_filiaal(resultaat)
+                or resultaat.kvk_nummer in kvk_gezien_nummers
+            ):
+                afgevallen_filiaal += 1
+                # Geen basisprofiel voor deze: resultaat blijft zonder
+                # bevestigde rechtsvorm, dus beoordeel_belbaarheid() hieronder
+                # zet 'm vanzelf op AF. Niet apart afhandelen hier.
+            elif resultaat.gevonden and kvk_basis_gedaan < kvk_budget:
+                # Fase 2: alleen nu de betaalde stap.
+                kvk_client.verrijk_met_basisprofiel(resultaat)
+                kvk_basis_gedaan += 1
+                if resultaat.kvk_nummer:
+                    kvk_gezien_nummers.add(resultaat.kvk_nummer)
+                if kvk_basis_gedaan % 25 == 0:
+                    log(f"[kvk] {kvk_basis_gedaan} basisprofielen bevraagd, "
+                        f"{belbaar_gevonden} belbaar")
         dncm_resultaat = None
         if (bedrijf.land == "BE" and bedrijf.telefoon and dncm_client.beschikbaar
                 and belbaar_gevonden < streef):
@@ -224,8 +254,9 @@ def draai(datum: _dt.date, aantal: int, gebruik_kvk: bool,
             belbaar_gevonden += 1
         kandidaten.append((bedrijf, site, resultaat, beoordeling, belbaarheid))
 
-    log(f"[kvk] {kvk_gedaan} bevragingen, {belbaar_gevonden} belbare bedrijven "
-        f"({kvk_bericht})")
+    log(f"[kvk] {kvk_zoek_gedaan} gratis zoekopdrachten, {kvk_basis_gedaan} betaalde "
+        f"basisprofielen, {afgevallen_filiaal} filialen/dubbele kvk-nummers gratis "
+        f"afgevangen, {belbaar_gevonden} belbare bedrijven ({kvk_bericht})")
     if dncm_gedaan:
         log(f"[dncm] {dncm_gedaan} nummers automatisch tegen de DNCM-lijst "
             f"gecontroleerd, {dncm_geblokkeerd} stonden erop en zijn geblokkeerd")
@@ -246,7 +277,9 @@ def draai(datum: _dt.date, aantal: int, gebruik_kvk: bool,
         "osm_fouten": osm_fouten,
         "kvk_werkt": kvk_werkt,
         "kvk_bericht": kvk_bericht,
-        "kvk_gedaan": kvk_gedaan,
+        "kvk_zoek_gedaan": kvk_zoek_gedaan,
+        "kvk_basis_gedaan": kvk_basis_gedaan,
+        "afgevallen_filiaal": afgevallen_filiaal,
         "quota": quota,
     }
 
@@ -306,6 +339,9 @@ def naar_rij(bedrijf, site, kvk_resultaat, beoordeling, belbaarheid) -> dict:
         "adres": bedrijf.adres,
         "sbi": (f"{kvk_resultaat.sbi} {kvk_resultaat.sbi_omschrijving}".strip()
                 if kvk_resultaat else ""),
+        "vestigingen": kvk_resultaat.vestigingen if kvk_resultaat else None,
+        "opgericht": kvk_resultaat.oprichtingsdatum if kvk_resultaat else "",
+        "medewerkers": kvk_resultaat.medewerkers if kvk_resultaat else None,
         "zekerheid": beoordeling.zekerheid,
         "osm_id": bedrijf.osm_id,
         # Kolommen om in te vullen tijdens het bellen. Ze staan al in de CSV
@@ -363,11 +399,16 @@ def schrijf(uitslag: dict, map_pad: Path) -> dict:
         },
         "afgevallen_niet_belbaar": samen.afgevallen_niet_belbaar,
         "afgevallen_zonder_koopsignaal": samen.afgevallen_zonder_reden,
+        "afgevallen_filiaal_of_dubbel_kvk": uitslag["afgevallen_filiaal"],
         "redenen_afgevallen": samen.redenen_afgevallen,
         "kvk_werkt": uitslag["kvk_werkt"],
         "kvk_bericht": uitslag["kvk_bericht"],
-        "kvk_bevragingen": uitslag["kvk_gedaan"],
-        "kvk_kosten_indicatie_eur": round(uitslag["kvk_gedaan"] * 0.02, 2),
+        # Gratis (Zoeken) en betaald (Basisprofiel) bewust apart: alleen de
+        # tweede kost geld. Vóór 18-9-2026 stond hier één geteld aantal dat in
+        # werkelijkheid alleen de (toen nog altijd-betaalde) stap was.
+        "kvk_zoekopdrachten_gratis": uitslag["kvk_zoek_gedaan"],
+        "kvk_basisprofielen_betaald": uitslag["kvk_basis_gedaan"],
+        "kvk_kosten_indicatie_eur": round(uitslag["kvk_basis_gedaan"] * 0.02, 2),
         "osm_fouten": uitslag["osm_fouten"][:5],
         "csv": str(csv_pad),
         "mailbaan_csv": str(mail_pad) if mail_rijen else "",
@@ -384,16 +425,26 @@ def schrijf(uitslag: dict, map_pad: Path) -> dict:
 def main() -> int:
     ontleder = argparse.ArgumentParser(description="Lead-run Complete AI")
     ontleder.add_argument("--datum", default="")
-    ontleder.add_argument("--aantal", type=int, default=150)
+    # 50, niet 150 - vaste afspraak sinds 18-9-2026: kwaliteit boven volume,
+    # zie leads/samenstelling.py Quota voor de bijbehorende verdeling.
+    ontleder.add_argument("--aantal", type=int, default=50)
     ontleder.add_argument("--gemeenten", type=int, default=4)
     ontleder.add_argument("--max-gebieden", type=int, default=30,
                           help="hoeveel branche x gemeenteblok-combinaties maximaal")
-    ontleder.add_argument("--kvk-budget", type=int, default=900,
-                          help="maximaal aantal KVK-bevragingen (ca. 2 cent per stuk)")
-    ontleder.add_argument("--min-website", type=int, default=50,
+    # Was 900. Dat dekte vroeger IEDERE kandidaat met een telefoonnummer, want
+    # de betaalde basisprofiel-stap gebeurde toen voor alles. Sinds de
+    # tweefasenstructuur hierboven (gratis zoeken -> filiaal/dubbel-kvk eruit
+    # -> pas dan betaald basisprofiel) hoeft dit budget alleen nog de
+    # shortlist te dekken: ruwweg aantal * 1.6 aan kandidaten die de gratis
+    # filters doorstaan. 150 is een eerste inschatting bij aantal=50, geen
+    # gemeten getal - bijstellen na de eerste --geen-post testrun.
+    ontleder.add_argument("--kvk-budget", type=int, default=150,
+                          help="maximaal aantal BETAALDE KVK-basisprofielen "
+                               "(ca. 2 cent per stuk; de gratis zoekstap telt hier niet in mee)")
+    ontleder.add_argument("--min-website", type=int, default=30,
                           help="minimaal aantal leads met geen/slechte website")
-    ontleder.add_argument("--min-telefonist", type=int, default=15)
-    ontleder.add_argument("--min-automatisering", type=int, default=15)
+    ontleder.add_argument("--min-telefonist", type=int, default=10)
+    ontleder.add_argument("--min-automatisering", type=int, default=10)
     ontleder.add_argument("--land", choices=["NL", "BE"], default=None,
                           help="overschrijf de rotatie; NL als je vandaag wilt bellen")
     ontleder.add_argument("--branche", default=None,

@@ -16,9 +16,12 @@ from dataclasses import dataclass, field
 @dataclass
 class Quota:
     """Hoeveel leads er minimaal van elk soort in de lijst moeten."""
-    website: int = 50
-    telefonist: int = 15
-    automatisering: int = 15
+    # Verlaagd 18-9-2026 (was 50/15/15, bij een dagtotaal van 150): Glenn wil
+    # 50 leads per dag, niet meer - kwaliteit boven volume. Zie
+    # leads/run.py --aantal.
+    website: int = 30
+    telefonist: int = 10
+    automatisering: int = 10
 
     def als_dict(self) -> dict[str, int]:
         return {

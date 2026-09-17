@@ -121,9 +121,23 @@ def _bepaal_warmte(bedrijf, site, kvk_resultaat, branche: Branche) -> Warmte:
         voeg_toe(15, "Hoge belbranche zonder gepubliceerde openingstijden - "
                      "gemiste oproepen buiten kantooruren")
 
-    if kvk_resultaat is not None and kvk_resultaat.vestigingen > 1:
-        voeg_toe(20, f"{kvk_resultaat.vestigingen} vestigingen - groeiend bedrijf "
-                     f"met budget")
+    # Vroeger stond hier: >1 vestiging = +20 punten, "groeiend bedrijf met
+    # budget". Dat is precies omgekeerd gebleken (17/18-9-2026, n.a.v.
+    # Boerenbond Roosendaal): een filiaal van een keten heeft geen
+    # besluitvormer met marketingbudget op die locatie. Filialen worden nu al
+    # vóór het basisprofiel uitgesloten (belbaar.is_filiaal, kostenfilter) en
+    # aantal vestigingen krijgt daarom geen aparte score meer - een lead die
+    # hier komt, is per definitie geen bekend filiaal meer.
+
+    if kvk_resultaat is not None and kvk_resultaat.oprichtingsdatum:
+        try:
+            opgericht_jaar = int(kvk_resultaat.oprichtingsdatum[:4])
+            leeftijd = HUIDIG_JAAR - opgericht_jaar
+        except (ValueError, TypeError):
+            leeftijd = None
+        if leeftijd is not None and 1 <= leeftijd <= 10:
+            voeg_toe(15, f"Bedrijf is {leeftijd} jaar oud (opgericht {opgericht_jaar}) - "
+                         f"relatief jong, waarschijnlijk nog geen vaste marketingpartner")
 
     return warmte
 
