@@ -13,10 +13,10 @@ lijst waar je bij elke regel moet twijfelen.
 NEDERLAND — koud bellen mag alleen naar rechtspersonen (bv, nv, stichting,
 vereniging, coöperatie), bevestigd met de rechtsvorm uit het KVK-basisprofiel.
 Een eenmanszaak, vof, cv of maatschap is een natuurlijk persoon en valt onder
-het bel-me-niet-regime. Die gaan hier NIET naar de mailbaan: of koude e-mail
-naar een NL-eenmanszaak zonder opt-in mag, is in de kluis een openstaande
-vraag met twee bronnen die elkaar tegenspreken. Niet aannemen — dus AF tot dat
-beslecht is.
+het bel-me-niet-regime. Die gaan hier bewust NIET naar de mailbaan, maar naar
+AF. Dat is geen open vraag meer (opgelost 17-9-2026). Het is dezelfde regel als
+voor een Belgisch natuurlijk persoon hieronder: niet bellen en niet mailen
+zonder voorafgaande opt-in.
 
 BELGIË — zakelijk bellen mag, maar alleen na het schonen van de DNCM-lijst
 (donotcallme.be), en die lijst is voor derden alleen tegen betaling te
