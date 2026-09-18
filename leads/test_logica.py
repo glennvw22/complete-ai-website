@@ -371,6 +371,99 @@ def test_ketens():
     bevestig(not oordeel.mag_bellen, "een herkende keten mag niet gebeld worden")
 
 
+def test_landelijke_spreiding():
+    """Regressietest voor de vondst van 18-9-2026: Tuinland (Groningen én
+    Zwolle, elk een EIGEN kvk-nummer) stond niet op de vaste ketenlijst en
+    kwam gewoon weer door de bellijst heen. Een vaste naamlijst lost dat
+    structureel niet op - er is altijd een volgende keten. ketens.
+    landelijke_spreiding() vervangt dat door een gratis, landelijke
+    naamzoekopdracht: hoeveel andere plaatsen hebben een KVK-treffer met
+    hetzelfde merk in de naam? De fixtures hieronder zijn de ECHTE
+    KVK-antwoorden van 18-9-2026 (zelfde dag), niet verzonnen."""
+    print("\nLandelijke spreiding (dynamische ketenherkenning, geen naamlijst)")
+
+    tuinland_treffers = [
+        {"naam": "Tuinland Wilp", "adres": {"binnenlandsAdres": {"plaats": "Wilp"}}},
+        {"naam": "Tuinland Webshop B.V.", "adres": {"binnenlandsAdres": {"plaats": "Tegelen"}}},
+        {"naam": "Tuinland Zwolle", "adres": {"binnenlandsAdres": {"plaats": "Zwolle"}}},
+        {"naam": "Tuinland Assen", "adres": {"binnenlandsAdres": {"plaats": "Assen"}}},
+        {"naam": "Tuinland Groningen", "adres": {"binnenlandsAdres": {"plaats": "Groningen"}}},
+        {"naam": "Tuinland", "adres": {"binnenlandsAdres": {"plaats": "Vleuten"}}},
+        {"naam": "Drenth Tuincentrum Wilp B.V.", "adres": {}},
+        {"naam": "Tuinland Webshop B.V.", "adres": {}},
+        {"naam": "Tuinland", "adres": {"binnenlandsAdres": {"plaats": "Nijverdal"}}},
+        {"naam": "Tuinland", "adres": {"binnenlandsAdres": {"plaats": "Nijverdal"}}},
+    ]
+    # Elke andere naam is een toevallige naamgenoot, geen keten - de KVK
+    # Zoeken API matcht los op woorden ("Jansen"), niet op de aaneengesloten
+    # reeks "Kapsalon Jansen".
+    kapsalon_jansen_treffers = [
+        {"naam": "Kapsalon Jansen", "adres": {"binnenlandsAdres": {"plaats": "Lichtenvoorde"}}},
+        {"naam": "Kapsalon Jansen", "adres": {"binnenlandsAdres": {"plaats": "Albergen"}}},
+        {"naam": "Kapsalon Astrid Jansen", "adres": {"binnenlandsAdres": {"plaats": "Emmer-Compascuum"}}},
+        {"naam": "Kapsalon Monique Jansen", "adres": {"binnenlandsAdres": {"plaats": "Emmer-Compascuum"}}},
+        {"naam": "Kapsalon Rob Jansen", "adres": {"binnenlandsAdres": {"plaats": "Naaldwijk"}}},
+        {"naam": "De Barbier van Buren", "adres": {"binnenlandsAdres": {"plaats": "Veenendaal"}}},
+        {"naam": "Kapsalon Jansen V.o.F.", "adres": {}},
+    ]
+
+    class NepClient:
+        """Geeft alleen treffers terug als er op het MERK alleen gezocht
+        wordt, niet op de volle kandidaatnaam - dat ving live tegen de echte
+        KVK API een echte bug (18-9-2026): zoeken op "Tuinland Zwolle" gaf
+        maar 1 treffer, zoeken op "Tuinland" gaf er 10. Deze nep-client faalt
+        dus expres hard als landelijke_spreiding ooit weer de volle naam
+        doorgeeft in plaats van het gestripte merk."""
+        def __init__(self, treffers, verwacht_naam):
+            self.treffers = treffers
+            self.verwacht_naam = verwacht_naam
+            self.gezocht_op: list[str] = []
+
+        def zoek_landelijk(self, naam, resultaten=20):
+            self.gezocht_op.append(naam)
+            assert naam == self.verwacht_naam, (
+                f"landelijke_spreiding zocht op {naam!r}, verwacht {self.verwacht_naam!r} "
+                "(het merk, niet de volle kandidaatnaam)"
+            )
+            return self.treffers
+
+    tuinland_aantal = ketens_mod.landelijke_spreiding(
+        NepClient(tuinland_treffers, "tuinland"), "Tuinland Zwolle", "Zwolle")
+    bevestig(tuinland_aantal >= ketens_mod.LANDELIJKE_SPREIDING_DREMPEL,
+             f"Tuinland: {tuinland_aantal} andere plaatsen, dat is een keten")
+    bevestig(ketens_mod.is_landelijke_spreiding(
+        NepClient(tuinland_treffers, "tuinland"), "Tuinland Groningen", "Groningen"),
+        "Tuinland Groningen wordt nu wél herkend, zonder dat de naam ooit op een lijst stond")
+
+    jansen_aantal = ketens_mod.landelijke_spreiding(
+        NepClient(kapsalon_jansen_treffers, "kapsalon jansen"), "Kapsalon Jansen", "Lichtenvoorde")
+    bevestig(jansen_aantal < ketens_mod.LANDELIJKE_SPREIDING_DREMPEL,
+             f"Kapsalon Jansen: {jansen_aantal} echte match(es), geen keten - "
+             "andere Jansens zijn losse naamgenoten")
+    bevestig(not ketens_mod.is_landelijke_spreiding(
+        NepClient(kapsalon_jansen_treffers, "kapsalon jansen"), "Kapsalon Jansen", "Lichtenvoorde"),
+        "Kapsalon Jansen mag niet ten onrechte wegvallen")
+
+    # Merk-tokens: een plaatsnaam op het eind wordt gestript, een naam zonder
+    # overlap met de plaats blijft heel. Is de naam GELIJK aan de plaats (dus
+    # niets zou overblijven), dan wordt er bewust NIET gestript - een lege
+    # zoekopdracht is zinlozer dan op de eigen naam zoeken.
+    bevestig(ketens_mod._merk_tokens("Tuinland Zwolle", "Zwolle") == ("tuinland",),
+             "plaatsnaam-suffix wordt van het merk gestript")
+    bevestig(ketens_mod._merk_tokens("Kapsalon Jansen", "Lichtenvoorde")
+             == ("kapsalon", "jansen"),
+             "geen overlap met de plaats, dus blijft de hele naam het merk")
+    bevestig(ketens_mod._merk_tokens("Zwolle", "Zwolle") == ("zwolle",),
+             "naam gelijk aan de plaats wordt niet leeggestript")
+
+    # Geen kandidaten (geen duidelijk merk): 0, geen crash, en geen API-aanroep.
+    lege_naam_client = NepClient([], "")
+    bevestig(ketens_mod.landelijke_spreiding(lege_naam_client, "", "Zwolle") == 0,
+             "lege naam geeft 0, geen crash")
+    bevestig(lege_naam_client.gezocht_op == [],
+             "bij een lege naam wordt zoek_landelijk niet eens aangeroepen")
+
+
 # --------------------------------------------------------------- scoring
 def _bedrijf(**kw):
     basis = dict(osm_id="node/1", naam="Testbedrijf", gemeente="Zwolle", land="NL",
@@ -663,6 +756,7 @@ if __name__ == "__main__":
     test_kvk_dedupe_op_naam()
     test_filiaal_en_leeftijd()
     test_ketens()
+    test_landelijke_spreiding()
     test_scoring()
     test_geen_lege_dag()
     test_belbaarheid()

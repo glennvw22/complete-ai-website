@@ -196,6 +196,7 @@ def draai(datum: _dt.date, aantal: int, gebruik_kvk: bool,
     kandidaten, belbaar_gevonden = [], 0
     kvk_zoek_gedaan, kvk_basis_gedaan, afgevallen_filiaal = 0, 0, 0
     afgevallen_keten = 0
+    afgevallen_keten_spreiding = 0
     kvk_gezien_nummers: set[str] = set()
     dncm_gedaan, dncm_geblokkeerd = 0, 0
     kbo_rechtspersonen = 0
@@ -228,6 +229,15 @@ def draai(datum: _dt.date, aantal: int, gebruik_kvk: bool,
                 # Geen basisprofiel voor deze: resultaat blijft zonder
                 # bevestigde rechtsvorm, dus beoordeel_belbaarheid() hieronder
                 # zet 'm vanzelf op AF. Niet apart afhandelen hier.
+            elif resultaat.gevonden and ketens_mod.is_landelijke_spreiding(
+                kvk_client, resultaat.handelsnaam or bedrijf.naam, bedrijf.gemeente
+            ):
+                # Laag 2 (18-9-2026, aanleiding Tuinland): geen vaste
+                # naamlijst, geen KVK-nevenvestiging, maar wél landelijk
+                # verspreid onder dezelfde merknaam - dus ook geen betaald
+                # basisprofiel. Zelfde afhandeling als hierboven: resultaat
+                # blijft zonder bevestigde rechtsvorm, valt vanzelf op AF.
+                afgevallen_keten_spreiding += 1
             elif resultaat.gevonden and kvk_basis_gedaan < kvk_budget:
                 # Fase 2: alleen nu de betaalde stap.
                 kvk_client.verrijk_met_basisprofiel(resultaat)
@@ -269,8 +279,10 @@ def draai(datum: _dt.date, aantal: int, gebruik_kvk: bool,
 
     log(f"[kvk] {kvk_zoek_gedaan} gratis zoekopdrachten, {kvk_basis_gedaan} betaalde "
         f"basisprofielen, {afgevallen_filiaal} filialen/dubbele kvk-nummers gratis "
-        f"afgevangen, {afgevallen_keten} bekende ketens op naam herkend (geen "
-        f"KVK-bevraging), {belbaar_gevonden} belbare bedrijven ({kvk_bericht})")
+        f"afgevangen, {afgevallen_keten} bekende ketens op naam herkend, "
+        f"{afgevallen_keten_spreiding} ketens herkend op landelijke spreiding "
+        f"(geen van alle een KVK-bevraging), {belbaar_gevonden} belbare bedrijven "
+        f"({kvk_bericht})")
     if dncm_gedaan:
         log(f"[dncm] {dncm_gedaan} nummers automatisch tegen de DNCM-lijst "
             f"gecontroleerd, {dncm_geblokkeerd} stonden erop en zijn geblokkeerd")
@@ -295,6 +307,7 @@ def draai(datum: _dt.date, aantal: int, gebruik_kvk: bool,
         "kvk_basis_gedaan": kvk_basis_gedaan,
         "afgevallen_filiaal": afgevallen_filiaal,
         "afgevallen_keten": afgevallen_keten,
+        "afgevallen_keten_spreiding": afgevallen_keten_spreiding,
         "quota": quota,
     }
 
@@ -416,6 +429,7 @@ def schrijf(uitslag: dict, map_pad: Path) -> dict:
         "afgevallen_zonder_koopsignaal": samen.afgevallen_zonder_reden,
         "afgevallen_filiaal_of_dubbel_kvk": uitslag["afgevallen_filiaal"],
         "afgevallen_bekende_keten": uitslag.get("afgevallen_keten", 0),
+        "afgevallen_keten_spreiding": uitslag.get("afgevallen_keten_spreiding", 0),
         "redenen_afgevallen": samen.redenen_afgevallen,
         "kvk_werkt": uitslag["kvk_werkt"],
         "kvk_bericht": uitslag["kvk_bericht"],

@@ -208,6 +208,24 @@ class KvkClient:
         aantal = (data or {}).get("totaal", 0)
         return True, f"KVK API werkt (testzoekopdracht gaf {aantal} treffers)."
 
+    def zoek_landelijk(self, naam: str, resultaten: int = 20) -> list[dict]:
+        """Gratis Zoeken-aanroep ZONDER plaats-filter: alle KVK-treffers op
+        deze naam, in heel Nederland. Geen KvkResultaat (dat is een koppeling
+        aan één bedrijf) maar de ruwe trefferlijst - dit is bedoeld om te
+        TELLEN, niet om te koppelen. Zie ketens.landelijke_spreiding() voor
+        waarvoor dit dient: een keten herkennen die niet op een vaste
+        naamlijst staat en niet als KVK-nevenvestiging geregistreerd staat
+        (18-9-2026, aanleiding: Tuinland — elke vestiging een eigen
+        rechtspersoon, dus is_filiaal() en de vaste ketens-lijst misten het
+        allebei)."""
+        if not self.beschikbaar:
+            return []
+        params = {"naam": naam, "pagina": 1, "resultatenPerPagina": resultaten}
+        data, fout = self._get(ZOEKEN, params)
+        if fout or not data:
+            return []
+        return data.get("resultaten") or []
+
     # -- verrijking -------------------------------------------------------
     def zoek(self, naam: str, plaats: str = "",
              met_basisprofiel: bool = True) -> KvkResultaat:
