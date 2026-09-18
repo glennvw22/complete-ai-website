@@ -463,6 +463,43 @@ def test_landelijke_spreiding():
     bevestig(lege_naam_client.gezocht_op == [],
              "bij een lege naam wordt zoek_landelijk niet eens aangeroepen")
 
+    # Fout gevonden 18-9-2026 bij het controleren van de eigen resultaten:
+    # "Mixed Hockey Club Purmerend" en "Dierenkliniek Oosterhout" haalden
+    # allebei ruim de drempel, maar zijn GEEN ketens - acht onafhankelijke
+    # hockeyverenigingen heten toevallig allemaal "Mixed Hockey Club <eigen
+    # plaats>", en een stuk of wat losse dierenklinieken heten "Dierenkliniek
+    # <eigen plaats>". Een generiek categoriewoord (of -woorden) als heel het
+    # merk is geen betrouwbaar signaal - zie _te_generiek_voor_spreiding().
+    bevestig(ketens_mod._te_generiek_voor_spreiding(("dierenkliniek",)),
+             "een los categoriewoord is te generiek")
+    bevestig(ketens_mod._te_generiek_voor_spreiding(("mixed", "hockey", "club")),
+             "'Mixed Hockey Club' is volledig generieke sportclub-taal")
+    bevestig(ketens_mod._te_generiek_voor_spreiding(("de", "kroeg")),
+             "'De Kroeg' is volledig generiek (lidwoord + generiek horeca-woord)")
+    bevestig(not ketens_mod._te_generiek_voor_spreiding(("tuinland",)),
+             "een echt merk is niet generiek")
+    bevestig(not ketens_mod._te_generiek_voor_spreiding(("mixed", "hockey", "club", "purmerend")),
+             "zodra er een niet-generiek woord bij zit (een plaatsnaam die niet gestript is), "
+             "telt het niet meer als volledig generiek")
+    bevestig(ketens_mod._te_generiek_voor_spreiding(()),
+             "een leeg merk is ook te generiek (niets om op te zoeken)")
+
+    hockeyclub_treffers = [
+        {"naam": "Mixed Hockey Club Lelystad", "adres": {"binnenlandsAdres": {"plaats": "Lelystad"}}},
+        {"naam": "Mixed Hockey Club Dieren", "adres": {"binnenlandsAdres": {"plaats": "Dieren"}}},
+        {"naam": "Mixed Hockey Club Roden", "adres": {"binnenlandsAdres": {"plaats": "Roden"}}},
+        {"naam": "Mixed Hockey Club Almelo", "adres": {"binnenlandsAdres": {"plaats": "Almelo"}}},
+    ]
+    hockeyclub_client = NepClient(hockeyclub_treffers, "IK WORD NOOIT AANGEROEPEN")
+    bevestig(
+        ketens_mod.landelijke_spreiding(hockeyclub_client, "Mixed Hockey Club Purmerend", "Purmerend") == 0,
+        "Mixed Hockey Club Purmerend geeft 0 - te generiek om te zoeken, ondanks 4 treffers "
+        "in de fixture"
+    )
+    bevestig(hockeyclub_client.gezocht_op == [],
+             "bij een te generiek merk wordt zoek_landelijk niet eens aangeroepen - geen "
+             "zinloze bevraging van een gratis dienst")
+
 
 def test_landelijke_spreiding_in_oogst():
     """Regressietest voor laag 3 (18-9-2026): Glenn vroeg expliciet om de

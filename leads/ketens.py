@@ -197,6 +197,45 @@ def _merk_tokens(naam: str, eigen_plaats: str) -> tuple[str, ...]:
     return tuple(tokens)
 
 
+# Vastgesteld 18-9-2026, ná het live draaien van landelijke_spreiding tegen de
+# echte database: "Mixed Hockey Club Purmerend" (8 andere plaatsen) en
+# "Dierenkliniek Oosterhout" (4) haalden de drempel, maar zijn GEEN ketens -
+# het zijn acht verschillende, onafhankelijke hockeyverenigingen en een
+# stuk of wat losse dierenklinieken die toevallig dezelfde generieke
+# categorie-naam ("Mixed Hockey Club <eigen plaats>", "Dierenkliniek <eigen
+# plaats>") gebruiken. Hetzelfde probleem als "Van Eijck" (een veelvoorkomende
+# achternaam), maar dan met een categorie-woord in plaats van een achternaam.
+# Deze lijst vangt dat af: is het HELE merk (na het strippen van de plaats)
+# opgebouwd uit alleen dit soort woorden, dan is spreiding geen betrouwbaar
+# signaal en wordt er niet geteld. Bewust een lijst van CATEGORIEËN
+# (rechtsvorm, sport, zorg, horeca-type), niet van merknamen - dat is een
+# kleine, stabiele, taalkundige lijst die niet meegroeit zoals een
+# ketennamenlijst dat wel zou doen.
+_GENERIEKE_WOORDEN = frozenset({
+    "de", "het", "een", "en", "van", "der", "den", "bij", "aan", "in", "op",
+    "the", "and", "group", "groep", "company", "bv", "bvba", "vof", "nv",
+    "zaak", "winkel", "shop", "store", "service", "services", "center",
+    "centrum", "salon", "kapsalon", "garage", "bakkerij", "slagerij",
+    "installatie", "installaties", "techniek", "technics", "bouw",
+    "bouwwerken", "praktijk", "kliniek", "dierenkliniek", "artsenpraktijk",
+    "huisartsenpraktijk", "tandartsenpraktijk", "fysiotherapie",
+    "fysiopraktijk", "apotheek", "makelaardij", "advocatenkantoor",
+    "notariskantoor", "accountantskantoor", "kroeg", "café", "cafe",
+    "restaurant", "eetcafe", "snackbar", "cafetaria", "hotel", "pension",
+    "club", "vereniging", "sportvereniging", "hockey", "voetbal", "korfbal",
+    "tennis", "handbal", "volleybal", "atletiek", "gymnastiek", "zwemclub",
+    "wielerclub", "sport", "sportclub", "sportschool",
+    "mixed", "dames", "heren", "jeugd", "junioren", "senioren",
+})
+
+
+def _te_generiek_voor_spreiding(merk: tuple[str, ...]) -> bool:
+    """Bestaat dit merk volledig uit generieke categorie-woorden? Dan is
+    spreiding onder die naam geen betrouwbaar signaal (zie hierboven) - een
+    leeg merk telt ook als te generiek (niets om op te zoeken)."""
+    return not merk or all(w in _GENERIEKE_WOORDEN for w in merk)
+
+
 def landelijke_spreiding(kvk_client: "KvkClient", naam: str, eigen_plaats: str) -> int:
     """Hoeveel DISTINCTE andere plaatsen hebben een KVK-treffer die overduidelijk
     hetzelfde merk is als deze kandidaat, alleen in een andere plaats? Eén
@@ -225,9 +264,17 @@ def landelijke_spreiding(kvk_client: "KvkClient", naam: str, eigen_plaats: str) 
     naamgenoten meestal NIET doen. Dit is een heuristiek, geen garantie: een
     veelvoorkomende achternaam kan in zeldzame gevallen alsnog een paar keer
     toevallig als "<achternaam> <stad>" voorkomen. Vandaar de vrij hoge
-    drempel (LANDELIJKE_SPREIDING_DREMPEL)."""
+    drempel (LANDELIJKE_SPREIDING_DREMPEL).
+
+    Vastgesteld 18-9-2026, ná een controlerun tegen de eigen database: is het
+    HELE merk een generieke categorie-omschrijving (_te_generiek_voor_
+    spreiding) - "Mixed Hockey Club", "Dierenkliniek" - dan wordt er
+    helemaal niet geteld. Acht verschillende, onafhankelijke hockey-
+    verenigingen heten allemaal "Mixed Hockey Club <eigen plaats>" zonder dat
+    dat één keten is; hetzelfde patroon als de Van Eijck-achternaam
+    hierboven, maar dan met een categoriewoord in plaats van een achternaam."""
     merk = _merk_tokens(naam, eigen_plaats)
-    if not merk:
+    if _te_generiek_voor_spreiding(merk):
         return 0
     treffers = kvk_client.zoek_landelijk(" ".join(merk))
     plekken: set[str] = set()
