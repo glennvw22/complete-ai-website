@@ -19,6 +19,7 @@ import bron_osm
 import catalogus
 import dncm as dncm_mod
 import kbo as kbo_mod
+import ketens as ketens_mod
 import kvk as kvk_mod
 import run as run_mod
 import samenstelling as samen_mod
@@ -182,8 +183,85 @@ def test_kvk_antwoord_lezen():
     bevestig(kvk_mod._plaats_van_treffer(treffer) == "Zwolle",
              "plaats uit genest adres gelezen")
     elders = dict(treffer, adres={"binnenlandsAdres": {"plaats": "Kampen"}})
-    bevestig(kvk_mod._rang(treffer, "Zwolle") < kvk_mod._rang(elders, "Zwolle"),
+    bevestig(kvk_mod._rang(treffer, "Kapsalon Jansen", "Zwolle")
+             < kvk_mod._rang(elders, "Kapsalon Jansen", "Zwolle"),
              "de vestiging in de gezochte plaats gaat voor")
+
+
+def test_kvk_dedupe_op_naam():
+    """Regressietest voor de matching-bug van 17/18-9-2026: Boerenbond (ID
+    508) en Pets Place (ID 1303) in de dashboard-database bleken hetzelfde
+    KVK-nummer (09165890) te hebben onder twee verschillende bedrijfsnamen.
+    Oorzaak: _rang() sorteerde treffers alleen op vestigingsadres/-type, nooit
+    op de naam van de treffer zelf - dus won een compleet ander bedrijf op
+    hetzelfde (voormalige) adres de rangschikking. Nu moet elke koppeling een
+    harde naam-match hebben."""
+    print("\nKVK: geen dedupe-koppeling zonder harde naam-match")
+
+    bevestig(kvk_mod._naam_matcht("Pets Place", "Pets Place Nederland B.V."),
+             "naam plus rechtsvormstaart telt als match")
+    bevestig(kvk_mod._naam_matcht("Pets Place", "PETS PLACE"),
+             "hoofdletters maken niets uit")
+    bevestig(not kvk_mod._naam_matcht("Boerenbond", "Pets Place"),
+             "twee losse bedrijfsnamen zijn geen match")
+    bevestig(not kvk_mod._naam_matcht("", "Pets Place"), "lege gezochte naam is geen match")
+    bevestig(not kvk_mod._naam_matcht("Pets Place", ""), "lege treffernaam is geen match")
+
+    # _rang: een treffer met de juiste naam moet winnen van een treffer met
+    # een andere naam op hetzelfde adres.
+    juiste_naam = {"naam": "Pets Place", "type": "hoofdvestiging",
+                    "adres": {"binnenlandsAdres": {"plaats": "Roosendaal"}}}
+    andere_naam_zelfde_adres = {"naam": "Vorige Huurder B.V.", "type": "hoofdvestiging",
+                                 "adres": {"binnenlandsAdres": {"plaats": "Roosendaal"}}}
+    bevestig(kvk_mod._rang(juiste_naam, "Pets Place", "Roosendaal")
+             < kvk_mod._rang(andere_naam_zelfde_adres, "Pets Place", "Roosendaal"),
+             "de treffer met de juiste naam wint, ook al staat de ander op hetzelfde adres")
+
+    # End-to-end via zoek(): de KVK Zoeken API geeft voor twee verschillende
+    # bedrijfsnamen op hetzelfde (voormalige) adres allebei alleen het
+    # bedrijf terug dat er ooit zat - precies de Boerenbond/Pets Place-bug.
+    def antwoord_alleen_vorige_huurder(url, params):
+        if url != kvk_mod.ZOEKEN:
+            return None, "onverwacht endpoint in test"
+        return {"totaal": 1, "resultaten": [
+            {"kvkNummer": "09165890", "naam": "Vorige Huurder B.V.",
+             "type": "hoofdvestiging",
+             "adres": {"binnenlandsAdres": {"plaats": "Roosendaal"}}},
+        ]}, ""
+
+    client = kvk_mod.KvkClient(sleutel="test-sleutel")
+    client._get = antwoord_alleen_vorige_huurder
+
+    boerenbond = client.zoek("Boerenbond", "Roosendaal", met_basisprofiel=False)
+    pets_place = client.zoek("Pets Place", "Roosendaal", met_basisprofiel=False)
+    bevestig(not boerenbond.gevonden,
+             "Boerenbond krijgt GEEN KVK-nummer toegewezen zonder naam-match")
+    bevestig(not pets_place.gevonden,
+             "Pets Place krijgt GEEN KVK-nummer toegewezen zonder naam-match")
+    bevestig(boerenbond.kvk_nummer == "" and pets_place.kvk_nummer == "",
+             "geen van beide krijgt het KVK-nummer van de vorige huurder (09165890)")
+    bevestig(boerenbond.fout and pets_place.fout,
+             "een geweigerde koppeling meldt een reden in plaats van stil te falen")
+
+    # Zet meerdere treffers neer, waarvan er één wél de juiste naam heeft maar
+    # NIET het beste adres/vestigingstype - die moet nu toch winnen.
+    def antwoord_meerdere_treffers(url, params):
+        if url != kvk_mod.ZOEKEN:
+            return None, "onverwacht endpoint in test"
+        return {"totaal": 2, "resultaten": [
+            {"kvkNummer": "11111111", "naam": "Ander Bedrijf B.V.",
+             "type": "hoofdvestiging",
+             "adres": {"binnenlandsAdres": {"plaats": "Roosendaal"}}},
+            {"kvkNummer": "22222222", "naam": "Pets Place Nederland B.V.",
+             "type": "nevenvestiging",
+             "adres": {"binnenlandsAdres": {"plaats": "Amsterdam"}}},
+        ]}, ""
+
+    client2 = kvk_mod.KvkClient(sleutel="test-sleutel")
+    client2._get = antwoord_meerdere_treffers
+    juist = client2.zoek("Pets Place", "Roosendaal", met_basisprofiel=False)
+    bevestig(juist.gevonden and juist.kvk_nummer == "22222222",
+             "bij meerdere treffers wint de juiste naam, ook al klopt het adres niet")
 
 
 def test_filiaal_en_leeftijd():
@@ -249,6 +327,48 @@ def test_filiaal_en_leeftijd():
     beoordeling_veel = score_mod.beoordeel(bedrijf, None, kvk_veel_vestigingen, kapsalon)
     bevestig(not any("vestiging" in r for r in beoordeling_veel.warmte.redenen),
              "aantal vestigingen geeft geen warmtepunten meer (was de Boerenbond-bug)")
+
+
+def test_ketens():
+    """Regressietest voor de vondst van 17/18-9-2026: 13 leads in de
+    dashboard-database bleken overduidelijk filialen van landelijke ketens
+    (Boerenbond, C&A, Kwik-Fit x3, Van Mossel x2, Tesla, Basic-Fit, Pets
+    Place, SnowWorld Amsterdam, Lucardi x2), maar GEEN daarvan stond
+    geregistreerd als KVK-nevenvestiging - belbaar.is_filiaal() mist dit
+    type dus volledig. ketens.py vult dat gat met naamherkenning."""
+    print("\nKetens-uitsluiting op naam")
+
+    # De drie schrijfwijzen van Kwik-Fit die in de praktijk zijn aangetroffen.
+    bevestig(ketens_mod.is_landelijke_keten("Kwik-Fit Almere"), "Kwik-Fit met streepje")
+    bevestig(ketens_mod.is_landelijke_keten("Kwik Fit Almere"), "Kwik Fit met spatie")
+    bevestig(ketens_mod.is_landelijke_keten("KwikFit Almere"), "KwikFit aaneengeschreven")
+
+    # De overige 8 uit de 13 gevonden leads (Kwik-Fit hierboven al gedekt).
+    for naam in ("Boerenbond Roosendaal", "C&A Utrecht", "Van Mossel Peugeot",
+                 "Tesla Amsterdam", "Basic-Fit Zwolle", "Pets Place",
+                 "SnowWorld Amsterdam", "Lucardi Juweliers"):
+        bevestig(ketens_mod.is_landelijke_keten(naam), f"{naam} wordt herkend als keten")
+
+    # Een paar andere landelijke ketens die er zelf bij zijn gezet.
+    for naam in ("Hunkemöller Rotterdam", "Zeeman", "Action Nieuwerkerk",
+                 "Bruna Boekhandel", "Etos Drogist", "Kruidvat"):
+        bevestig(ketens_mod.is_landelijke_keten(naam), f"{naam} wordt herkend als keten")
+
+    # Geen enkele lokale zelfstandige mag hierdoor ten onrechte wegvallen -
+    # vooral belangrijk rond de korte/ambigue namen (C&A, Action).
+    for naam in ("Kapsalon Jansen", "Loodgietersbedrijf De Vries",
+                 "Capsalon Anna", "Actionfoto Zwolle", "Willy's Autobanden"):
+        bevestig(not ketens_mod.is_landelijke_keten(naam),
+                 f"{naam} is GEEN keten en mag niet worden uitgesloten")
+
+    bevestig(not ketens_mod.is_landelijke_keten(""), "lege naam is geen keten")
+    bevestig(not ketens_mod.is_landelijke_keten(None), "None als naam crasht niet")
+
+    # Dezelfde soort uitkomst als is_filiaal(): geen betaalde KVK-bevraging,
+    # en de lead valt af (AF), niet naar de mailbaan.
+    oordeel = belbaar_mod.keten_beoordeling()
+    bevestig(oordeel.baan == belbaar_mod.AF, "een herkende keten komt op AF, niet MAIL")
+    bevestig(not oordeel.mag_bellen, "een herkende keten mag niet gebeld worden")
 
 
 # --------------------------------------------------------------- scoring
@@ -540,7 +660,9 @@ if __name__ == "__main__":
     test_dode_spiegel()
     test_element_parsing()
     test_kvk_antwoord_lezen()
+    test_kvk_dedupe_op_naam()
     test_filiaal_en_leeftijd()
+    test_ketens()
     test_scoring()
     test_geen_lege_dag()
     test_belbaarheid()

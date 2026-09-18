@@ -20,7 +20,9 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import time
+import unicodedata
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -240,7 +242,18 @@ class KvkClient:
             self._cache[cachesleutel] = resultaat
             return resultaat
 
-        beste = sorted(treffers, key=lambda t: _rang(t, plaats))[0]
+        beste = sorted(treffers, key=lambda t: _rang(t, naam, plaats))[0]
+        if not _naam_matcht(naam, beste.get("naam", "") or ""):
+            # Geen enkele treffer had een naam die overeenkomt met de
+            # zoekopdracht - de "beste" treffer hierboven won alleen op
+            # plaats/vestigingstype. Dat gebeurde op 17/18-9-2026 met
+            # "Boerenbond" en "Pets Place": twee verschillende bedrijfsnamen op
+            # (ooit) hetzelfde adres kregen zo hetzelfde KVK-nummer. Zonder
+            # harde naam-match is dit geen treffer, punt - bij twijfel niet
+            # koppelen.
+            resultaat.fout = "geen treffer met een overeenkomende bedrijfsnaam (alleen op adres/plaats)"
+            self._cache[cachesleutel] = resultaat
+            return resultaat
         resultaat.gevonden = True
         resultaat.kvk_nummer = str(beste.get("kvkNummer", "") or "")
         resultaat.handelsnaam = beste.get("naam", "") or ""
@@ -311,12 +324,46 @@ def _plaats_van_treffer(treffer: dict) -> str:
     return ""
 
 
-def _rang(treffer: dict, plaats: str) -> tuple:
-    """Voorkeur voor de hoofdvestiging in de gezochte plaats."""
+def _normaliseer_naam(naam: str) -> str:
+    """Kleine letters, geen accenten, geen leestekens - alleen de woorden."""
+    naam = unicodedata.normalize("NFKD", naam or "")
+    naam = "".join(teken for teken in naam if not unicodedata.combining(teken))
+    return " ".join(re.findall(r"[a-z0-9]+", naam.lower()))
+
+
+def _naam_matcht(gezocht: str, gevonden: str) -> bool:
+    """Harde naam-match tussen de gezochte naam en een KVK-treffer.
+
+    Bewust conservatief (bij twijfel geen match): gelijk, of de één zit
+    volledig in de ander (dekt "Pets Place" tegen "Pets Place Nederland
+    B.V." en andersom). GEEN gok op basis van adres of vestigingstype - dat
+    was precies de bug van 17/18-9-2026 (zie _rang en zoek() hieronder)."""
+    a = _normaliseer_naam(gezocht)
+    b = _normaliseer_naam(gevonden)
+    if not a or not b:
+        return False
+    return a == b or a in b or b in a
+
+
+def _rang(treffer: dict, naam: str, plaats: str) -> tuple:
+    """Voorkeur voor een treffer wiens NAAM ook echt overeenkomt met de
+    zoekopdracht, dan de hoofdvestiging, dan de gezochte plaats.
+
+    Vóór 18-9-2026 keek deze functie alleen naar plaats en vestigingstype,
+    NOOIT naar de naam van de treffer zelf. Zocht de KVK Zoeken API dan
+    (bijvoorbeeld bij geen exacte naamtreffer) iets terug op basis van
+    vestigingsadres, dan kon een treffer die niets met de gezochte naam te
+    maken had toch als "beste" resultaat winnen - vastgesteld toen
+    "Boerenbond" en "Pets Place" (ooit hetzelfde pand, andere huurder)
+    hetzelfde KVK-nummer kregen toegewezen. De naam-match staat daarom nu
+    voorop; zoek() hieronder wijst een treffer bovendien hard af als zelfs de
+    beste van de reeks geen naam-match heeft."""
+    treffer_naam = treffer.get("naam", "") or ""
+    geen_naam_match = 0 if _naam_matcht(naam, treffer_naam) else 1
     gevonden_plaats = _plaats_van_treffer(treffer).lower()
     zelfde_plaats = 0 if gevonden_plaats and gevonden_plaats == plaats.lower() else 1
     hoofd = 0 if treffer.get("type") == "hoofdvestiging" else 1
-    return (zelfde_plaats, hoofd)
+    return (geen_naam_match, zelfde_plaats, hoofd)
 
 
 def _pak_rechtsvorm(data: dict) -> str:

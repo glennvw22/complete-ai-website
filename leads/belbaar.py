@@ -242,6 +242,23 @@ def is_filiaal(kvk_resultaat) -> bool:
                 and kvk_resultaat.zoek_type == "nevenvestiging")
 
 
+def keten_beoordeling() -> Beloordeel:
+    """Vast AF-oordeel voor een herkende landelijke/internationale keten
+    (ketens.is_landelijke_keten). Zelfde soort uitkomst als is_filiaal()
+    hierboven — geen lokale besluitvormer met budget voor
+    website/telefonist/automatisering, dus geen bruikbare lead — maar dan al
+    herkend aan de bedrijfsnaam zelf, dus vóórdat er enige KVK-bevraging
+    (gratis of betaald) nodig is. Vastgesteld 17/18-9-2026: geen van de 13
+    gevonden ketenfilialen stond geregistreerd als KVK-nevenvestiging, dus
+    is_filiaal() alleen ving dit type niet af."""
+    return Beloordeel(
+        False,
+        "landelijke/internationale keten (naamherkenning) — geen lokale "
+        "besluitvormer met budget voor website/telefonist/automatisering",
+        baan=AF,
+    )
+
+
 def kandidaat_voor_kvk(bedrijf) -> bool:
     """Is het de moeite waard om hier een betaalde KVK-bevraging aan te wagen?
 

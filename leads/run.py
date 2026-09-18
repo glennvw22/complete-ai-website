@@ -30,6 +30,7 @@ import catalogus                     # noqa: E402
 import dashboard                     # noqa: E402
 import dncm as dncm_mod              # noqa: E402
 import kbo as kbo_mod                # noqa: E402
+import ketens as ketens_mod          # noqa: E402
 import kvk as kvk_mod                # noqa: E402
 import samenstelling as samen_mod    # noqa: E402
 import score as score_mod            # noqa: E402
@@ -194,11 +195,23 @@ def draai(datum: _dt.date, aantal: int, gebruik_kvk: bool,
     #    dekken, niet meer alles met een telefoonnummer.
     kandidaten, belbaar_gevonden = [], 0
     kvk_zoek_gedaan, kvk_basis_gedaan, afgevallen_filiaal = 0, 0, 0
+    afgevallen_keten = 0
     kvk_gezien_nummers: set[str] = set()
     dncm_gedaan, dncm_geblokkeerd = 0, 0
     kbo_rechtspersonen = 0
     streef = int(aantal * 1.6)
     for bedrijf, site, _ in voorlopig:
+        # Herkende landelijke/internationale keten (ketens.py): op naam
+        # herkend, dus vóórdat er enige KVK/KBO-bevraging (gratis of betaald)
+        # aan te pas komt. Zelfde soort uitkomst als is_filiaal() verderop,
+        # maar dit vangt het type filiaal af dat niet als KVK-nevenvestiging
+        # geregistreerd staat (vastgesteld 17/18-9-2026, zie ketens.py).
+        if ketens_mod.is_landelijke_keten(bedrijf.naam):
+            afgevallen_keten += 1
+            beoordeling = score_mod.beoordeel(bedrijf, site, None, terrein.branche)
+            belbaarheid = belbaar_mod.keten_beoordeling()
+            kandidaten.append((bedrijf, site, None, beoordeling, belbaarheid))
+            continue
         resultaat = None
         if (kvk_werkt and belbaar_mod.kandidaat_voor_kvk(bedrijf)
                 and belbaar_gevonden < streef):
@@ -256,7 +269,8 @@ def draai(datum: _dt.date, aantal: int, gebruik_kvk: bool,
 
     log(f"[kvk] {kvk_zoek_gedaan} gratis zoekopdrachten, {kvk_basis_gedaan} betaalde "
         f"basisprofielen, {afgevallen_filiaal} filialen/dubbele kvk-nummers gratis "
-        f"afgevangen, {belbaar_gevonden} belbare bedrijven ({kvk_bericht})")
+        f"afgevangen, {afgevallen_keten} bekende ketens op naam herkend (geen "
+        f"KVK-bevraging), {belbaar_gevonden} belbare bedrijven ({kvk_bericht})")
     if dncm_gedaan:
         log(f"[dncm] {dncm_gedaan} nummers automatisch tegen de DNCM-lijst "
             f"gecontroleerd, {dncm_geblokkeerd} stonden erop en zijn geblokkeerd")
@@ -280,6 +294,7 @@ def draai(datum: _dt.date, aantal: int, gebruik_kvk: bool,
         "kvk_zoek_gedaan": kvk_zoek_gedaan,
         "kvk_basis_gedaan": kvk_basis_gedaan,
         "afgevallen_filiaal": afgevallen_filiaal,
+        "afgevallen_keten": afgevallen_keten,
         "quota": quota,
     }
 
@@ -400,6 +415,7 @@ def schrijf(uitslag: dict, map_pad: Path) -> dict:
         "afgevallen_niet_belbaar": samen.afgevallen_niet_belbaar,
         "afgevallen_zonder_koopsignaal": samen.afgevallen_zonder_reden,
         "afgevallen_filiaal_of_dubbel_kvk": uitslag["afgevallen_filiaal"],
+        "afgevallen_bekende_keten": uitslag.get("afgevallen_keten", 0),
         "redenen_afgevallen": samen.redenen_afgevallen,
         "kvk_werkt": uitslag["kvk_werkt"],
         "kvk_bericht": uitslag["kvk_bericht"],
