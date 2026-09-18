@@ -1,4 +1,4 @@
-"""Landelijke/internationale ketens herkennen — twee lagen, allebei gratis.
+"""Landelijke/internationale ketens herkennen — drie lagen, allemaal gratis.
 
 Aanleiding laag 1 (17/18-9-2026): `belbaar.is_filiaal()` herkent alleen een
 officieel geregistreerde KVK-NEVENVESTIGING. Bij controle van de
@@ -31,12 +31,37 @@ naamzoekopdracht van de KVK matcht los op woorden, dus "Jansen" alleen is
 geen betrouwbaar signaal; er moet een AANEENGESLOTEN woordreeks matchen,
 zie `_bevat_subreeks`).
 
-Beide lagen zijn puur een KOSTENfilter, net als is_filiaal() in belbaar.py:
-een filiaal van een keten heeft op die locatie geen lokale besluitvormer met
-budget voor website, telefonist of automatisering, dus is het geen bruikbare
-lead — ongeacht wat de KVK over de juridische structuur zegt. Bij twijfel
-niet uitsluiten: een gemiste uitsluiting kost twee cent (een basisprofiel dat
-overbodig blijkt); een onterechte uitsluiting kost een echte lead.
+**Aanleiding laag 3 (18-9-2026, zelfde dag): laag 2 werkt niet voor België.**
+Glenn vroeg expliciet: "pas het ook toe op België." Maar de KBO Public
+Search (kbo.py) ondersteunt geen landelijke naamzoekopdracht zonder
+plaats-afbakening — "zonder postcode of gemeente is een fonetische
+naamzoekopdracht niet te vertrouwen" staat letterlijk in kbo.py, met het
+bewijs erbij ("Barber" gaf 200+ treffers door heel België). Er is dus geen
+Belgisch equivalent van kvk.zoek_landelijk te bouwen zonder zelf, tegen de
+eigen regels van die gratis overheidsdienst in, tientallen steden na te
+gaan.
+
+Laag 3 (`landelijke_spreiding_in_oogst`, onderaan) lost dit anders op: de
+leadsmachine scant sowieso al tientallen gemeenten per dag (zie
+catalogus.jachtvolgorde). Een landelijke keten die in meerdere van die
+gemeenten een vestiging heeft, staat dus vaak al MEERDERE KEREN in de
+OpenStreetMap-oogst van diezelfde dag — dat kost geen enkele extra
+netwerkaanroep, het is puur tellen in wat er toch al binnenkomt. Land-
+onafhankelijk, dus dit werkt voor NL én BE tegelijk. Zwakker dan laag 2 (een
+keten die vandaag maar op één gescande locatie voorkomt, wordt gemist -
+mogelijk pas een andere dag gevangen als die andere stad dan wél aan de
+beurt is), maar het enige gratis signaal dat voor België beschikbaar is.
+Retroactief tegen de bestaande database getest (18-9-2026, met dezelfde
+"zelfde naam >=3 plaatsen"-logica): Aveve (10x), Bel&Bo (9x), Horta (4x),
+ZEB (3x) - allemaal landelijke Belgische ketens, geen van alle op een lijst.
+
+Alle drie lagen zijn puur een KOSTENfilter, net als is_filiaal() in
+belbaar.py: een filiaal van een keten heeft op die locatie geen lokale
+besluitvormer met budget voor website, telefonist of automatisering, dus is
+het geen bruikbare lead — ongeacht wat de KVK/KBO over de juridische
+structuur zegt. Bij twijfel niet uitsluiten: een gemiste uitsluiting kost op
+zijn hoogst twee cent (een basisprofiel dat overbodig blijkt); een
+onterechte uitsluiting kost een echte lead.
 """
 from __future__ import annotations
 
@@ -230,3 +255,39 @@ def is_landelijke_spreiding(kvk_client: "KvkClient", naam: str, eigen_plaats: st
     lijst hierboven staat? Zie landelijke_spreiding() en de moduledocstring
     (aanleiding: Tuinland, 18-9-2026)."""
     return landelijke_spreiding(kvk_client, naam, eigen_plaats) >= LANDELIJKE_SPREIDING_DREMPEL
+
+
+# ── laag 3: dezelfde-dag-oogst, land-onafhankelijk (NL én BE) ───────────────
+
+def bouw_oogst_index(bedrijven) -> dict[str, set[str]]:
+    """Groepeert de dagelijkse OpenStreetMap-oogst op genormaliseerde naam ->
+    de gemeenten waarin die naam voorkomt. Eén keer bouwen per run (run.py),
+    niet per kandidaat - dit is puur in-memory boekhouding over data die
+    toch al binnen is, geen extra netwerkaanroep. Zie de moduledocstring
+    (aanleiding laag 3, 18-9-2026: geen landelijke naamzoekopdracht mogelijk
+    voor België)."""
+    index: dict[str, set[str]] = {}
+    for bedrijf in bedrijven:
+        sleutel = " ".join(_tokens(bedrijf.naam))
+        if not sleutel:
+            continue
+        gemeente = (bedrijf.gemeente or bedrijf.plaats or "").strip().lower()
+        if not gemeente:
+            continue
+        index.setdefault(sleutel, set()).add(gemeente)
+    return index
+
+
+def landelijke_spreiding_in_oogst(oogst_index: dict[str, set[str]], naam: str) -> int:
+    """Hoeveel DISTINCTE gemeenten heeft deze naam vandaag al opgeleverd,
+    binnen dezelfde oogst? Zie bouw_oogst_index()."""
+    sleutel = " ".join(_tokens(naam))
+    if not sleutel:
+        return 0
+    return len(oogst_index.get(sleutel, set()))
+
+
+def is_landelijke_spreiding_in_oogst(oogst_index: dict[str, set[str]], naam: str) -> bool:
+    """Is deze naam vandaag al in genoeg andere gemeenten opgedoken om als
+    keten te gelden? Zelfde drempel als laag 2, voor consistentie."""
+    return landelijke_spreiding_in_oogst(oogst_index, naam) >= LANDELIJKE_SPREIDING_DREMPEL

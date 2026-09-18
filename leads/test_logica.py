@@ -464,6 +464,49 @@ def test_landelijke_spreiding():
              "bij een lege naam wordt zoek_landelijk niet eens aangeroepen")
 
 
+def test_landelijke_spreiding_in_oogst():
+    """Regressietest voor laag 3 (18-9-2026): Glenn vroeg expliciet om de
+    ketenherkenning ook op België toe te passen, maar de KBO ondersteunt geen
+    landelijke naamzoekopdracht zonder plaats (zie kbo.py en de
+    moduledocstring van ketens.py). Deze laag telt in plaats daarvan hoe vaak
+    dezelfde naam voorkomt binnen de eigen dagelijkse OSM-oogst - gratis,
+    land-onafhankelijk, en precies de aanpak waarmee Aveve/Bel&Bo/Horta/ZEB
+    retroactief uit de Belgische wachtrij zijn gehaald."""
+    print("\nLandelijke spreiding binnen de dagoogst (NL + BE)")
+
+    oogst = [
+        _bedrijf(naam="Aveve", gemeente="Mechelen", land="BE"),
+        _bedrijf(naam="Aveve", gemeente="Oostende", land="BE"),
+        _bedrijf(naam="Aveve", gemeente="Gent", land="BE"),
+        _bedrijf(naam="Aveve", gemeente="Brugge", land="BE"),
+        _bedrijf(naam="Aveve", gemeente="Mechelen", land="BE"),  # dubbel, telt maar 1x
+        _bedrijf(naam="Bakkerij Peeters", gemeente="Mechelen", land="BE"),
+        _bedrijf(naam="Bakkerij Peeters", gemeente="Gent", land="BE"),
+        _bedrijf(naam="Kapsalon Nuyttens", gemeente="Roeselare", land="BE"),
+    ]
+    index = ketens_mod.bouw_oogst_index(oogst)
+
+    bevestig(ketens_mod.landelijke_spreiding_in_oogst(index, "Aveve") == 4,
+             "Aveve: 4 distincte gemeenten (het dubbele Mechelen telt maar 1x)")
+    bevestig(ketens_mod.is_landelijke_spreiding_in_oogst(index, "Aveve"),
+             "Aveve haalt de drempel binnen de oogst van vandaag")
+    bevestig(ketens_mod.landelijke_spreiding_in_oogst(index, "Bakkerij Peeters") == 2,
+             "Bakkerij Peeters: 2 gemeenten, onder de drempel")
+    bevestig(not ketens_mod.is_landelijke_spreiding_in_oogst(index, "Bakkerij Peeters"),
+             "Bakkerij Peeters mag niet ten onrechte wegvallen (nog geen keten-bewijs)")
+    bevestig(ketens_mod.landelijke_spreiding_in_oogst(index, "Kapsalon Nuyttens") == 1,
+             "een zelfstandige met één vestiging in de oogst geeft gewoon 1")
+    bevestig(ketens_mod.landelijke_spreiding_in_oogst(index, "Onbekende Zaak") == 0,
+             "een naam die niet in de oogst voorkomt geeft 0, geen crash")
+
+    # Bedrijven zonder gemeente mogen de index niet crashen of vervuilen.
+    index_met_gat = ketens_mod.bouw_oogst_index(
+        oogst + [_bedrijf(naam="Geen Plaats B.V.", gemeente="", land="NL")]
+    )
+    bevestig(ketens_mod.landelijke_spreiding_in_oogst(index_met_gat, "Geen Plaats B.V.") == 0,
+             "een kandidaat zonder gemeente wordt overgeslagen, niet gecrasht")
+
+
 # --------------------------------------------------------------- scoring
 def _bedrijf(**kw):
     basis = dict(osm_id="node/1", naam="Testbedrijf", gemeente="Zwolle", land="NL",
@@ -757,6 +800,7 @@ if __name__ == "__main__":
     test_filiaal_en_leeftijd()
     test_ketens()
     test_landelijke_spreiding()
+    test_landelijke_spreiding_in_oogst()
     test_scoring()
     test_geen_lege_dag()
     test_belbaarheid()

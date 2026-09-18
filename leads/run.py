@@ -144,6 +144,13 @@ def draai(datum: _dt.date, aantal: int, gebruik_kvk: bool,
     # de opzoekingen beginnen — zie kbo.py.
     kbo_client.leer_postcodes(bedrijven)
 
+    # Ketenherkenning laag 3 (18-9-2026, zie ketens.py): dezelfde naam op
+    # meerdere plaatsen BINNEN de oogst van vandaag. Werkt voor NL én BE,
+    # kost geen enkele extra bevraging - puur tellen in wat er toch al is.
+    # Vóór het telefoonnummer-filter gebouwd, want de spreiding van een keten
+    # staat los van welke vestigingen toevallig een nummer hebben.
+    oogst_index = ketens_mod.bouw_oogst_index(bedrijven)
+
     # 2. Zonder telefoonnummer wordt het nooit een belbare lead.
     met_nummer = [b for b in bedrijven if b.telefoon]
     log(f"[filter] {len(met_nummer)} daarvan hebben een telefoonnummer")
@@ -200,6 +207,7 @@ def draai(datum: _dt.date, aantal: int, gebruik_kvk: bool,
     kvk_gezien_nummers: set[str] = set()
     dncm_gedaan, dncm_geblokkeerd = 0, 0
     kbo_rechtspersonen = 0
+    afgevallen_keten_oogst = 0
     streef = int(aantal * 1.6)
     for bedrijf, site, _ in voorlopig:
         # Herkende landelijke/internationale keten (ketens.py): op naam
@@ -207,8 +215,19 @@ def draai(datum: _dt.date, aantal: int, gebruik_kvk: bool,
         # aan te pas komt. Zelfde soort uitkomst als is_filiaal() verderop,
         # maar dit vangt het type filiaal af dat niet als KVK-nevenvestiging
         # geregistreerd staat (vastgesteld 17/18-9-2026, zie ketens.py).
+        # Land-onafhankelijk (geldt voor NL én BE).
         if ketens_mod.is_landelijke_keten(bedrijf.naam):
             afgevallen_keten += 1
+            beoordeling = score_mod.beoordeel(bedrijf, site, None, terrein.branche)
+            belbaarheid = belbaar_mod.keten_beoordeling()
+            kandidaten.append((bedrijf, site, None, beoordeling, belbaarheid))
+            continue
+        # Laag 3 (18-9-2026): dezelfde naam op meerdere plaatsen binnen de
+        # oogst van vandaag. Ook land-onafhankelijk, en voor België de enige
+        # gratis ketendetectie die er is (zie ketens.py - de KBO ondersteunt
+        # geen landelijke naamzoekopdracht zoals de KVK die wel heeft).
+        if ketens_mod.is_landelijke_spreiding_in_oogst(oogst_index, bedrijf.naam):
+            afgevallen_keten_oogst += 1
             beoordeling = score_mod.beoordeel(bedrijf, site, None, terrein.branche)
             belbaarheid = belbaar_mod.keten_beoordeling()
             kandidaten.append((bedrijf, site, None, beoordeling, belbaarheid))
@@ -280,8 +299,9 @@ def draai(datum: _dt.date, aantal: int, gebruik_kvk: bool,
     log(f"[kvk] {kvk_zoek_gedaan} gratis zoekopdrachten, {kvk_basis_gedaan} betaalde "
         f"basisprofielen, {afgevallen_filiaal} filialen/dubbele kvk-nummers gratis "
         f"afgevangen, {afgevallen_keten} bekende ketens op naam herkend, "
-        f"{afgevallen_keten_spreiding} ketens herkend op landelijke spreiding "
-        f"(geen van alle een KVK-bevraging), {belbaar_gevonden} belbare bedrijven "
+        f"{afgevallen_keten_spreiding} ketens herkend op landelijke spreiding (NL), "
+        f"{afgevallen_keten_oogst} ketens herkend binnen de oogst van vandaag (NL+BE) "
+        f"(geen van alle een KVK/KBO-bevraging), {belbaar_gevonden} belbare bedrijven "
         f"({kvk_bericht})")
     if dncm_gedaan:
         log(f"[dncm] {dncm_gedaan} nummers automatisch tegen de DNCM-lijst "
@@ -308,6 +328,7 @@ def draai(datum: _dt.date, aantal: int, gebruik_kvk: bool,
         "afgevallen_filiaal": afgevallen_filiaal,
         "afgevallen_keten": afgevallen_keten,
         "afgevallen_keten_spreiding": afgevallen_keten_spreiding,
+        "afgevallen_keten_oogst": afgevallen_keten_oogst,
         "quota": quota,
     }
 
@@ -430,6 +451,7 @@ def schrijf(uitslag: dict, map_pad: Path) -> dict:
         "afgevallen_filiaal_of_dubbel_kvk": uitslag["afgevallen_filiaal"],
         "afgevallen_bekende_keten": uitslag.get("afgevallen_keten", 0),
         "afgevallen_keten_spreiding": uitslag.get("afgevallen_keten_spreiding", 0),
+        "afgevallen_keten_oogst": uitslag.get("afgevallen_keten_oogst", 0),
         "redenen_afgevallen": samen.redenen_afgevallen,
         "kvk_werkt": uitslag["kvk_werkt"],
         "kvk_bericht": uitslag["kvk_bericht"],
