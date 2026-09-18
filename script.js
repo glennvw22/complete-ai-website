@@ -189,6 +189,71 @@
     });
   }
 
+  /* ── formulier gratis AI-scan ──
+     Zelfde patroon als het contactformulier hierboven: twee
+     onafhankelijke verzendroutes, niet met de hand samengevoegd om
+     die logica niet twee keer anders te laten lopen. ── */
+  var sf = document.getElementById('scanformulier');
+  if (sf) {
+    var sknop = document.getElementById('scanverstuurknop');
+    var sstand = document.getElementById('scanformstand');
+    var sknoptekst = sknop ? sknop.textContent : '';
+
+    var smeld = function(tekst, soort){
+      sstand.hidden = false;
+      sstand.className = 'formstand ' + soort;
+      sstand.textContent = tekst;
+    };
+
+    sf.addEventListener('submit', function(e){
+      e.preventDefault();
+      if (!sf.reportValidity()) return;
+
+      sknop.disabled = true;
+      sknop.textContent = 'Bezig met versturen…';
+      sstand.hidden = true;
+
+      var fd = new FormData(sf);
+      var v = function(k){ return (fd.get(k) || '').toString().trim(); };
+
+      var sterugval = function(){
+        var body = ['Naam: ' + v('naam'), 'Bedrijf: ' + v('bedrijf'),
+                    'E-mail: ' + v('email'), 'Website: ' + v('bericht')].join('\n');
+        sstand.hidden = false;
+        sstand.className = 'formstand mis';
+        sstand.innerHTML = 'Het versturen lukte niet. Stuur uw gegevens rechtstreeks naar ' +
+          '<a href="mailto:glenn@complete-ai.nl?subject=' +
+          encodeURIComponent('Gratis AI-scan — ' + (v('bedrijf') || v('naam'))) +
+          '&body=' + encodeURIComponent(body) + '">glenn@complete-ai.nl</a> — ' +
+          'uw gegevens staan er dan al in.';
+      };
+
+      var sgeslaagd = function(r){
+        if (!r.ok) return false;
+        return r.json().then(function(d){ return String(d && d.success) === 'true'; })
+                       .catch(function(){ return false; });
+      };
+      var smislukking = function(){ return false; };
+
+      Promise.all([
+        fetch('https://hook.eu1.make.com/686j1boi7lr9263noxidmof61g1umle6',
+              {method:'POST', body: fd}).then(sgeslaagd).catch(smislukking),
+        fetch('https://formsubmit.co/ajax/glenn@complete-ai.nl',
+              {method:'POST', headers:{'Accept':'application/json'}, body: fd})
+              .then(sgeslaagd).catch(smislukking)
+      ]).then(function(uitkomsten){
+        sknop.disabled = false;
+        sknop.textContent = sknoptekst;
+        if (uitkomsten.indexOf(true) > -1) {
+          sf.reset();
+          smeld('Uw aanvraag is verstuurd. U hoort binnen één werkdag van ons.', 'goed');
+        } else {
+          sterugval();
+        }
+      });
+    });
+  }
+
   /* ══ pakketsamensteller ══════════════════════════
      De drie kaarten zijn vertrekpunten; de bezoeker past ze daarna aan.
      Zo is meteen zichtbaar dat een pakket wordt samengesteld en niet

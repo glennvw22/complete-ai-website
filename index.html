@@ -304,6 +304,7 @@
           <span>Website live in 1–2 weken</span>
           <span>Alles meetbaar</span>
         </div>
+        <p class="klein op" style="animation-delay:.5s;margin-top:14px"><a href="#scan">Nog niet toe aan een gesprek? Vraag eerst een gratis AI-scan aan.</a></p>
       </div>
 
       <div class="paneel op" style="animation-delay:.32s" role="group" aria-label="Voorbeeld van een werkdag die automatisch verloopt">
@@ -673,6 +674,51 @@
         <details><summary>Hoe is de gegevensbeveiliging geregeld, en hoe zit het met de AVG?</summary><p>Uw gegevens blijven van u. Waar wij persoonsgegevens verwerken — bijvoorbeeld bij telefoongesprekken of het klantenbestand — leggen we dat vast in een verwerkersovereenkomst, zoals de AVG voorschrijft. Dat regelen we vóór de start, niet achteraf.</p></details>
         <details><summary>Werkt Complete AI ook in mijn regio?</summary><p>Ja. Complete AI werkt in heel Nederland en België. Kennismaking en overleg verlopen telefonisch of via videobellen; in de praktijk werkt dat uitstekend en het kost u geen halve dag.</p></details>
         <details><summary>Ik weet nog niet wat ik nodig heb. Kan ik dan toch contact opnemen?</summary><p>Juist dan. De intake is daar precies voor bedoeld: in kaart brengen waar tijd en omzet verloren gaan. Daar volgt een advies uit; wat u daarmee doet, bepaalt u zelf.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <hr class="streep">
+
+  <!-- ══ GRATIS SCAN ══ -->
+  <section id="scan">
+    <div class="wrap">
+      <div class="sectiekop reveal">
+        <p class="label"><i></i>Gratis</p>
+        <h2>Eerst zien waar de winst zit, dan pas praten.</h2>
+        <p>Vul uw bedrijfsnaam en website in. Wij bekijken 'm en sturen u een korte, onderbouwde terugkoppeling — kosteloos en vrijblijvend, zonder verkooppraatje.</p>
+      </div>
+
+      <div class="contact-grid reveal">
+        <div>
+          <div class="gegevens">
+            <div class="gegeven"><i>Kosten</i><span class="vast">Kosteloos en vrijblijvend</span></div>
+            <div class="gegeven"><i>Reactietijd</i><span class="vast">Binnen één werkdag</span></div>
+            <div class="gegeven"><i>Wat u ontvangt</i><span class="vast">Een korte terugkoppeling per e-mail</span></div>
+          </div>
+
+          <div class="gerust"><b>Geen verkooppraatje.</b> Blijkt er weinig winst te halen, dan hoort u dat ook gewoon.</div>
+        </div>
+
+        <form id="scanformulier" method="POST" novalidate
+              action="https://formsubmit.co/glenn@complete-ai.nl">
+          <input type="hidden" name="_subject" value="Gratis AI-scan aanvraag via complete-ai.nl">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="onderwerp" value="Gratis AI-scan aanvraag">
+          <input type="text" name="_honey" class="honing" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="rij">
+            <label>Naam<input type="text" name="naam" autocomplete="name" required></label>
+            <label>Bedrijf<input type="text" name="bedrijf" autocomplete="organization" required></label>
+          </div>
+          <div class="rij">
+            <label>E-mail<input type="email" name="email" autocomplete="email" required></label>
+            <label>Website<input type="url" name="bericht" autocomplete="url" placeholder="https://uwbedrijf.nl" required></label>
+          </div>
+          <button class="knop knop-vol" type="submit" id="scanverstuurknop">Vraag de gratis scan aan</button>
+          <p class="formstand" id="scanformstand" role="status" hidden></p>
+          <p class="klein">Uw gegevens worden uitsluitend gebruikt om de scan uit te voeren en terug te koppelen. Nooit doorverkocht, en nooit voor nieuwsbrieven zonder uw uitdrukkelijke toestemming.</p>
+        </form>
       </div>
     </div>
   </section>
