@@ -150,6 +150,10 @@ def draai(datum: _dt.date, aantal: int, gebruik_kvk: bool,
     # Vóór het telefoonnummer-filter gebouwd, want de spreiding van een keten
     # staat los van welke vestigingen toevallig een nummer hebben.
     oogst_index = ketens_mod.bouw_oogst_index(bedrijven)
+    # Tweede, onafhankelijk signaal (19-9-2026, aanleiding BRAX/Tommy Hilfiger
+    # vs. "Marc"): delen twee vestigingen van dezelfde naam ook hetzelfde
+    # websitedomein? Zie ketens.OOGST_SPREIDING_DREMPEL_MET_DOMEIN.
+    oogst_domein_index = ketens_mod.bouw_oogst_domein_index(bedrijven)
 
     # 2. Zonder telefoonnummer wordt het nooit een belbare lead.
     met_nummer = [b for b in bedrijven if b.telefoon]
@@ -226,7 +230,9 @@ def draai(datum: _dt.date, aantal: int, gebruik_kvk: bool,
         # oogst van vandaag. Ook land-onafhankelijk, en voor België de enige
         # gratis ketendetectie die er is (zie ketens.py - de KBO ondersteunt
         # geen landelijke naamzoekopdracht zoals de KVK die wel heeft).
-        if ketens_mod.is_landelijke_spreiding_in_oogst(oogst_index, bedrijf.naam):
+        if ketens_mod.is_landelijke_spreiding_in_oogst(
+            oogst_index, bedrijf.naam, oogst_domein_index
+        ):
             afgevallen_keten_oogst += 1
             beoordeling = score_mod.beoordeel(bedrijf, site, None, terrein.branche)
             belbaarheid = belbaar_mod.keten_beoordeling()

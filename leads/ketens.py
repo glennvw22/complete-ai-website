@@ -348,6 +348,34 @@ def is_landelijke_spreiding(kvk_client: "KvkClient", naam: str, eigen_plaats: st
 
 # ── laag 3: dezelfde-dag-oogst, land-onafhankelijk (NL én BE) ───────────────
 
+# Vastgesteld 19-9-2026 bij de Belgische controle: de oogst van één dag is
+# maar een STEEKPROEF van de gemeenten die vandaag toevallig aan de beurt
+# waren (catalogus.jachtvolgorde), niet heel het land zoals bij laag 2 (KVK).
+# Dezelfde drempel van 4 gebruiken is daardoor te hoog: "BRAX" en "Tommy
+# Hilfiger" kwamen allebei maar 2x voor in de oogst, en zijn overduidelijk
+# internationale ketens (bevestigd via hetzelfde website-domein op beide
+# vestigingen: brax.com, tommy.com). Bij 2 is een exacte naam alleen niet
+# genoeg bewijs - "Marc" kwam ook 2x voor, maar bleek een kapsalon in
+# Mechelen (marcpatrick.be) en een compleet andere, ongerelateerde zaak
+# in Gent (geen website) - toevallige naamgenoten, geen keten. Vandaar de
+# lagere drempel hieronder, MAAR alleen als een tweede, onafhankelijk
+# signaal het bevestigt: hetzelfde geregistreerde websitedomein op minstens
+# twee van de vestigingen.
+OOGST_SPREIDING_DREMPEL_MET_DOMEIN = 2
+
+
+def _domein(website: str) -> str:
+    """Het registreerbare domein uit een URL, zodat "https://eurotuin.be/"
+    en "https://www.eurotuin.be/winkel" als dezelfde zaak herkend worden."""
+    if not website:
+        return ""
+    zonder_schema = re.sub(r"^[a-z]+://", "", website.strip().lower())
+    domein = zonder_schema.split("/")[0]
+    if domein.startswith("www."):
+        domein = domein[4:]
+    return domein
+
+
 def bouw_oogst_index(bedrijven) -> dict[str, set[str]]:
     """Groepeert de dagelijkse OpenStreetMap-oogst op genormaliseerde naam ->
     de gemeenten waarin die naam voorkomt. Eén keer bouwen per run (run.py),
@@ -367,6 +395,24 @@ def bouw_oogst_index(bedrijven) -> dict[str, set[str]]:
     return index
 
 
+def bouw_oogst_domein_index(bedrijven) -> dict[str, dict[str, set[str]]]:
+    """Per genormaliseerde naam: welk websitedomein hoort bij welke
+    gemeenten? Zie OOGST_SPREIDING_DREMPEL_MET_DOMEIN hierboven voor
+    waarom dit nodig is - een tweede, onafhankelijk signaal naast de
+    naam+plaats-telling."""
+    index: dict[str, dict[str, set[str]]] = {}
+    for bedrijf in bedrijven:
+        sleutel = " ".join(_tokens(bedrijf.naam))
+        domein = _domein(getattr(bedrijf, "website", "") or "")
+        if not sleutel or not domein:
+            continue
+        gemeente = (bedrijf.gemeente or bedrijf.plaats or "").strip().lower()
+        if not gemeente:
+            continue
+        index.setdefault(sleutel, {}).setdefault(domein, set()).add(gemeente)
+    return index
+
+
 def landelijke_spreiding_in_oogst(oogst_index: dict[str, set[str]], naam: str) -> int:
     """Hoeveel DISTINCTE gemeenten heeft deze naam vandaag al opgeleverd,
     binnen dezelfde oogst? Zie bouw_oogst_index()."""
@@ -376,7 +422,32 @@ def landelijke_spreiding_in_oogst(oogst_index: dict[str, set[str]], naam: str) -
     return len(oogst_index.get(sleutel, set()))
 
 
-def is_landelijke_spreiding_in_oogst(oogst_index: dict[str, set[str]], naam: str) -> bool:
-    """Is deze naam vandaag al in genoeg andere gemeenten opgedoken om als
-    keten te gelden? Zelfde drempel als laag 2, voor consistentie."""
-    return landelijke_spreiding_in_oogst(oogst_index, naam) >= LANDELIJKE_SPREIDING_DREMPEL
+def _zelfde_domein_op_meerdere_plekken(
+    domein_index: dict[str, dict[str, set[str]]], naam: str
+) -> bool:
+    """Delen minstens twee vestigingen van deze naam hetzelfde websitedomein,
+    op verschillende plaatsen? Zie OOGST_SPREIDING_DREMPEL_MET_DOMEIN."""
+    sleutel = " ".join(_tokens(naam))
+    domeinen = domein_index.get(sleutel)
+    if not domeinen:
+        return False
+    return any(len(gemeenten) >= 2 for gemeenten in domeinen.values())
+
+
+def is_landelijke_spreiding_in_oogst(
+    oogst_index: dict[str, set[str]], naam: str,
+    domein_index: dict[str, dict[str, set[str]]] | None = None,
+) -> bool:
+    """Is deze naam vandaag al genoeg keer opgedoken om als keten te gelden?
+    Twee routes: de gewone drempel (LANDELIJKE_SPREIDING_DREMPEL, zoals
+    laag 2), of - als er een domein_index is meegegeven - een lagere drempel
+    (OOGST_SPREIDING_DREMPEL_MET_DOMEIN) mits minstens twee vestigingen
+    hetzelfde websitedomein delen. domein_index is optioneel zodat oude
+    aanroepen (en de tests van 18-9-2026) blijven werken."""
+    aantal = landelijke_spreiding_in_oogst(oogst_index, naam)
+    if aantal >= LANDELIJKE_SPREIDING_DREMPEL:
+        return True
+    if domein_index is None:
+        return False
+    return (aantal >= OOGST_SPREIDING_DREMPEL_MET_DOMEIN
+            and _zelfde_domein_op_meerdere_plekken(domein_index, naam))

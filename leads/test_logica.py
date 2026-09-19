@@ -593,6 +593,35 @@ def test_landelijke_spreiding_in_oogst():
     bevestig(ketens_mod.landelijke_spreiding_in_oogst(index_met_gat, "Geen Plaats B.V.") == 0,
              "een kandidaat zonder gemeente wordt overgeslagen, niet gecrasht")
 
+    # Regressietest voor de vondst van 19-9-2026 bij de Belgische controle:
+    # de oogst van één dag is maar een steekproef, dus dezelfde drempel van 4
+    # als laag 2 is te hoog - "BRAX" en "Tommy Hilfiger" kwamen allebei maar
+    # 2x voor. Het websitedomein als tweede, onafhankelijk signaal maakt het
+    # verschil: BRAX deelt hetzelfde domein op beide vestigingen (echte
+    # keten), "Marc" deelt dat niet (kapsalon in Mechelen vs. een compleet
+    # andere zaak in Gent - toeval, geen keten).
+    be_oogst = [
+        _bedrijf(naam="BRAX", gemeente="Gent", land="BE",
+                 website="https://www.brax.com/nl_BE/shop/store/119151-brax-store-gent"),
+        _bedrijf(naam="BRAX", gemeente="Oostende", land="BE", website="https://www.brax.com/"),
+        _bedrijf(naam="Marc", gemeente="Mechelen", land="BE", website="https://www.marcpatrick.be/"),
+        _bedrijf(naam="Marc", gemeente="Gent", land="BE", website=""),
+    ]
+    be_index = ketens_mod.bouw_oogst_index(be_oogst)
+    be_domein_index = ketens_mod.bouw_oogst_domein_index(be_oogst)
+
+    bevestig(ketens_mod.landelijke_spreiding_in_oogst(be_index, "BRAX") == 2,
+             "BRAX: maar 2 gemeenten in de steekproef van vandaag")
+    bevestig(not ketens_mod.is_landelijke_spreiding_in_oogst(be_index, "BRAX"),
+             "zonder domein-index blijft 2 onder de gewone drempel")
+    bevestig(ketens_mod.is_landelijke_spreiding_in_oogst(be_index, "BRAX", be_domein_index),
+             "mét domein-index: beide BRAX-vestigingen delen brax.com, dus wél een keten")
+    bevestig(not ketens_mod.is_landelijke_spreiding_in_oogst(be_index, "Marc", be_domein_index),
+             "Marc deelt geen domein tussen de twee vestigingen - geen keten, toevallige naamgenoten")
+    bevestig(ketens_mod._domein("https://www.brax.com/nl_BE/shop/store/119151") == "brax.com",
+             "www. en het pad worden genegeerd bij het vergelijken van domeinen")
+    bevestig(ketens_mod._domein("") == "", "geen website geeft een leeg domein, geen crash")
+
 
 # --------------------------------------------------------------- scoring
 def _bedrijf(**kw):
