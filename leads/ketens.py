@@ -259,6 +259,12 @@ _GENERIEKE_WOORDEN_UITGEBREID_19_9 = frozenset({
     "huisartsenpost", "tandheelkundig", "mondzorg", "tandzorg",
     "implantologie", "autoschade", "klimcentrum", "discus", "troubadour",
     "lindenhof", "poort",
+    # Bijgevonden bij de handmatige controle van alle 517 open NL-leads
+    # (19-9-2026, drempel voor een blik verlaagd naar 2): "Pannenkoekenboerderij"
+    # is dezelfde soort generieke categorienaam als "Dierenkliniek" -
+    # tientallen onafhankelijke pannenkoekenrestaurants heten zo, elk met
+    # een eigen specifieke naam erbij (De Hooiberg, Kernhem, De Kabouter, ...).
+    "pannenkoekenboerderij",
 })
 _GENERIEKE_WOORDEN = _GENERIEKE_WOORDEN | _GENERIEKE_WOORDEN_UITGEBREID_19_9
 
