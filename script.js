@@ -171,7 +171,7 @@
       var mislukking = function(){ return false; };
 
       Promise.all([
-        fetch('https://hook.eu1.make.com/686j1boi7lr9263noxidmof61g1umle6',
+        fetch('https://complete-ai-production.up.railway.app/api/koppeling/website-formulier',
               {method:'POST', body: fd}).then(geslaagd).catch(mislukking),
         fetch('https://formsubmit.co/ajax/glenn@complete-ai.nl',
               {method:'POST', headers:{'Accept':'application/json'}, body: fd})
@@ -236,7 +236,7 @@
       var smislukking = function(){ return false; };
 
       Promise.all([
-        fetch('https://hook.eu1.make.com/686j1boi7lr9263noxidmof61g1umle6',
+        fetch('https://complete-ai-production.up.railway.app/api/koppeling/website-formulier',
               {method:'POST', body: fd}).then(sgeslaagd).catch(smislukking),
         fetch('https://formsubmit.co/ajax/glenn@complete-ai.nl',
               {method:'POST', headers:{'Accept':'application/json'}, body: fd})
