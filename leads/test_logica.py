@@ -444,6 +444,47 @@ def test_landelijke_spreiding():
         NepClient(kapsalon_jansen_treffers, "kapsalon jansen"), "Kapsalon Jansen", "Lichtenvoorde"),
         "Kapsalon Jansen mag niet ten onrechte wegvallen")
 
+    # Regressietest voor de vondst van 19-9-2026: Glenn vond zelf "Olie&Zo"
+    # (Boxtel/'s-Hertogenbosch) nog in de wachtrij. De eerdere, strengere
+    # subset-eis (rest moest EXACT de plaats zijn) miste vestigingen als
+    # "Olie&zo Garage Zaltbommel B.V." - de branche staat ERBIJ, niet IN
+    # PLAATS VAN de plaatsnaam. Fixtures zijn de echte KVK-treffers van
+    # diezelfde dag.
+    olie_en_zo_treffers = [
+        {"naam": "Olie&zo Schadeherstel", "adres": {"binnenlandsAdres": {"plaats": "Schijndel"}}},
+        {"naam": "Olie&zo Boxtel", "adres": {"binnenlandsAdres": {"plaats": "Boxtel"}}},
+        {"naam": "Olie&zo Groep B.V.", "adres": {"binnenlandsAdres": {"plaats": "Boxtel"}}},
+        {"naam": "Olie&zo Van der Doelen Schijndel", "adres": {"binnenlandsAdres": {"plaats": "Schijndel"}}},
+        {"naam": "Olie&zo Garage Zaltbommel B.V.", "adres": {"binnenlandsAdres": {"plaats": "Zaltbommel"}}},
+        {"naam": "Olie & Zo", "adres": {"binnenlandsAdres": {"plaats": "Amsterdam"}}},
+        {"naam": "Olie & Zo, eten & drinken", "adres": {"binnenlandsAdres": {"plaats": "Amsterdam"}}},
+        {"naam": "Olie&zo Den Bosch", "adres": {"binnenlandsAdres": {"plaats": "'s-Hertogenbosch"}}},
+    ]
+    olie_client = NepClient(olie_en_zo_treffers, "olie zo")
+    olie_aantal = ketens_mod.landelijke_spreiding(olie_client, "Olie&Zo", "Boxtel")
+    bevestig(olie_aantal >= ketens_mod.LANDELIJKE_SPREIDING_DREMPEL,
+             f"Olie&Zo: {olie_aantal} andere plaatsen (Schijndel/Zaltbommel/Amsterdam meegerekend "
+             "dankzij het extra branche-/franchisenemerwoord), dat is een keten")
+    bevestig(ketens_mod.is_landelijke_spreiding(olie_client, "Olie&Zo", "Boxtel"),
+             "Olie&Zo wordt nu herkend - was eerder gemist door de te strenge rest-eis")
+    # "Olie&zo Den Bosch" telt bewust NIET mee: "Den Bosch" is de informele
+    # naam voor 's-Hertogenbosch, en dat woord-voor-woord herkennen is een
+    # apart probleem dat deze functie niet oplost - vandaar dat de telling
+    # hierboven op basis van de OVERIGE treffers al ruim boven de drempel zit.
+
+    # Van Eijck (Roosendaal, gewone garage) mag door de versoepeling niet
+    # alsnog fout gaan: "Van Eijck Fiscaal" en "Osteopathie van Eijck" noemen
+    # geen plaatsnaam in de rest, dus blijven ze terecht buiten de telling.
+    van_eijck_treffers = [
+        {"naam": "Van Eijck Fiscaal", "adres": {"binnenlandsAdres": {"plaats": "Rotterdam"}}},
+        {"naam": "Osteopathie van Eijck", "adres": {"binnenlandsAdres": {"plaats": "Berkel-Enschot"}}},
+        {"naam": "Van Eijck Oss", "adres": {"binnenlandsAdres": {"plaats": "Oss"}}},
+    ]
+    van_eijck_client = NepClient(van_eijck_treffers, "van eijck")
+    bevestig(ketens_mod.landelijke_spreiding(van_eijck_client, "Van Eijck Roosendaal", "Roosendaal") == 1,
+             "Van Eijck Fiscaal en Osteopathie van Eijck tellen niet mee (geen plaatsnaam in de rest), "
+             "alleen Van Eijck Oss")
+
     # Merk-tokens: een plaatsnaam op het eind wordt gestript, een naam zonder
     # overlap met de plaats blijft heel. Is de naam GELIJK aan de plaats (dus
     # niets zou overblijven), dan wordt er bewust NIET gestript - een lege

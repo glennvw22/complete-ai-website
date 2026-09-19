@@ -253,18 +253,26 @@ def landelijke_spreiding(kvk_client: "KvkClient", naam: str, eigen_plaats: str) 
 
     Een treffer telt alleen mee als het merk aaneengesloten voorkomt (net als
     is_landelijke_keten hierboven) ÉN de rest van de treffernaam - alles
-    ERVOOR en ERNA samen - leeg is of exact de eigen plaats van DIE treffer
-    is (dus "<merk> <stad>", "<stad> <merk>" of kaal "<merk>"). Zonder die
-    tweede eis leek "Van Eijck Roosendaal" (een gewone garage) live op een
-    keten met 16 vestigingen: de KVK Zoeken API vond ook "Van Eijck Fiscaal",
-    "Osteopathie van Eijck" en "Van Eijck Loonbedrijf" - andere bedrijven die
-    toevallig dezelfde (veelvoorkomende) achternaam in de naam hebben, geen
-    filialen. Met deze eis blijven alleen treffers over die het patroon
-    "<merk> <eigen plaats>" volgen, wat een keten wél en toevallige
-    naamgenoten meestal NIET doen. Dit is een heuristiek, geen garantie: een
-    veelvoorkomende achternaam kan in zeldzame gevallen alsnog een paar keer
-    toevallig als "<achternaam> <stad>" voorkomen. Vandaar de vrij hoge
-    drempel (LANDELIJKE_SPREIDING_DREMPEL).
+    ERVOOR en ERNA samen - leeg is, of de woorden van de eigen plaats van DIE
+    treffer er allemaal IN VOORKOMEN (niet per se de hele rest hoeven te
+    zijn). Zonder enige eis hier leek "Van Eijck Roosendaal" (een gewone
+    garage) live op een keten met 16 vestigingen: de KVK Zoeken API vond ook
+    "Van Eijck Fiscaal", "Osteopathie van Eijck" en "Van Eijck Loonbedrijf" -
+    andere bedrijven die toevallig dezelfde (veelvoorkomende) achternaam in
+    de naam hebben, geen filialen - geen van die drie noemt een plaatsnaam,
+    dus die blijven met de subset-eis terecht buiten de telling.
+
+    Vastgesteld 19-9-2026, ná "Olie&zo" (Boxtel/'s-Hertogenbosch, een
+    regionale garageketen): de eerdere, strengere versie van deze eis - de
+    rest moest EXACT de plaats zijn - miste vestigingen als "Olie&zo Garage
+    Zaltbommel B.V." en "Olie&zo Van der Doelen Schijndel", waar de
+    branche/franchisenemer een extra woord toevoegt NAAST de plaatsnaam.
+    Vandaar nu een subset-eis in plaats van gelijkheid. Dit blijft een
+    heuristiek, geen garantie: een veelvoorkomende achternaam kan in
+    zeldzame gevallen alsnog een paar keer toevallig als "<achternaam>
+    <stad>" voorkomen, en een informele plaatsnaam ("Den Bosch" voor
+    's-Hertogenbosch) wordt niet herkend. Vandaar de vrij hoge drempel
+    (LANDELIJKE_SPREIDING_DREMPEL).
 
     Vastgesteld 18-9-2026, ná een controlerun tegen de eigen database: is het
     HELE merk een generieke categorie-omschrijving (_te_generiek_voor_
@@ -289,7 +297,19 @@ def landelijke_spreiding(kvk_client: "KvkClient", naam: str, eigen_plaats: str) 
         if rest is None:
             continue
         treffer_plaats = _plaats_van_treffer(treffer)
-        if rest and tuple(rest) != tuple(_tokens(treffer_plaats)):
+        plaats_tokens = set(_tokens(treffer_plaats))
+        # De rest mag leeg zijn, of de eigen plaats moet er ALS WOORDEN in
+        # voorkomen (niet per se de HELE rest zijn) - vastgesteld 19-9-2026
+        # met "Olie&zo": vestigingsnamen als "Olie&zo Garage Zaltbommel B.V."
+        # of "Olie&zo Van der Doelen Schijndel" voegen een extra woord toe
+        # (de branche, de naam van de franchisenemer) NAAST de plaatsnaam.
+        # Eisen dat de rest EXACT de plaats is (de vorige, te strenge versie)
+        # miste die twee en hield Olie&zo (Boxtel/'s-Hertogenbosch) daardoor
+        # onder de drempel, terwijl "Olie&zo Groep B.V." - de moedernaam -
+        # letterlijk in de resultaten stond. Blijft wél strikt genoeg om
+        # "Van Eijck Fiscaal" en "Osteopathie van Eijck" (geen plaatsnaam
+        # erbij, dus geen subset-match) buiten te houden.
+        if rest and not (plaats_tokens and plaats_tokens.issubset(set(rest))):
             continue
         sleutel = treffer_plaats or str(treffer.get("kvkNummer", ""))
         if sleutel:
