@@ -354,6 +354,14 @@ def test_ketens():
                  "Bruna Boekhandel", "Etos Drogist", "Kruidvat"):
         bevestig(ketens_mod.is_landelijke_keten(naam), f"{naam} wordt herkend als keten")
 
+    # JBC en Eye Wish: gevonden 19-9-2026 via dubbele naam+plaats-rijen in de
+    # wachtrij, bevestigd via het gedeelde websitedomein (jbc.be/eyewish.nl).
+    # "Mango" is bewust NIET toegevoegd - zie de lijst zelf voor waarom.
+    for naam in ("JBC Mechelen", "Eye Wish Hoorn"):
+        bevestig(ketens_mod.is_landelijke_keten(naam), f"{naam} wordt herkend als keten")
+    bevestig(not ketens_mod.is_landelijke_keten("Wish"),
+             "een los, generiek woord matcht niet toevallig mee")
+
     # Geen enkele lokale zelfstandige mag hierdoor ten onrechte wegvallen -
     # vooral belangrijk rond de korte/ambigue namen (C&A, Action).
     for naam in ("Kapsalon Jansen", "Loodgietersbedrijf De Vries",

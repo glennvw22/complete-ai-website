@@ -95,6 +95,18 @@ LANDELIJKE_KETENS: tuple[str, ...] = (
     "Bruna",
     "Etos",
     "Kruidvat",
+    # Gevonden 19-9-2026 bij het opsporen van dubbele naam+plaats-rijen in de
+    # hele wachtrij (niet ketendetectie zelf, maar het bracht deze twee wel
+    # aan het licht): "JBC" (Mechelen, bevestigd via jbc.be) en "Eye Wish"
+    # (Hoorn/IJsselstein/Voorburg, bevestigd via eyewish.nl - een landelijke
+    # opticienketen). "Mango" (bevestigd via shop.mango.com, Utrecht/Gent) is
+    # bewust NIET toegevoegd: dat is een te gewoon woord (fruit, veel losse
+    # horeca/kleine bedrijven heten toevallig ook zo - "Spicy Mango", "The
+    # Mango Dream", "Mango Mobility" stonden allemaal tussen de KVK-treffers)
+    # en zou hier valse treffers geven. Die twee Mango-leads zijn met de hand
+    # verwijderd, niet via deze lijst.
+    "JBC",
+    "Eye Wish",
 )
 
 
