@@ -228,6 +228,28 @@ _GENERIEKE_WOORDEN = frozenset({
     "mixed", "dames", "heren", "jeugd", "junioren", "senioren",
 })
 
+# Vastgesteld 19-9-2026: Glenn vond zelf nog "Olie&Zo" (zie hieronder, apart
+# opgelost) en bij het herscannen van de HELE wachtrij (niet meer alleen de
+# eerder verwijderde 162) bleken er meteen weer nieuwe generieke-categorie-
+# fout-positieven bij te zitten die 18-9 nog niet was tegengekomen:
+# "Huisartsenpost Hengelo" (elke regio heeft zijn EIGEN, onafhankelijke
+# huisartsenpost), "Tandheelkundig Centrum X"/"Mondzorg X"/"Tandzorg X"/
+# "Implantologie X" (allemaal generieke tandheelkunde-categorieën, losse
+# praktijken), "Autoschade X" (generieke branche, net als "Autoschade de
+# Jong" - een persoonsnaam erachter), "Klimcentrum X" (elk klimcentrum heeft
+# een eigen naam: Bjoeks, Arque, Neoliet - "klimcentrum" zelf is de
+# categorie), "Discus" (een siervis, veel losse dierenwinkels/aquariumzaken
+# heten zo), "De Troubadour"/"De Lindenhof"/"De Poort" (veelgebruikte,
+# generieke Nederlandse namen voor horeca/instellingen - bleken bij controle
+# elk aan compleet ongerelateerde bedrijven te horen, tot een logopediepraktijk
+# en een huisartsenpraktijk aan toe).
+_GENERIEKE_WOORDEN_UITGEBREID_19_9 = frozenset({
+    "huisartsenpost", "tandheelkundig", "mondzorg", "tandzorg",
+    "implantologie", "autoschade", "klimcentrum", "discus", "troubadour",
+    "lindenhof", "poort",
+})
+_GENERIEKE_WOORDEN = _GENERIEKE_WOORDEN | _GENERIEKE_WOORDEN_UITGEBREID_19_9
+
 
 def _te_generiek_voor_spreiding(merk: tuple[str, ...]) -> bool:
     """Bestaat dit merk volledig uit generieke categorie-woorden? Dan is

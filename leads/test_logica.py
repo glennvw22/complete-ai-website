@@ -519,6 +519,15 @@ def test_landelijke_spreiding():
              "'De Kroeg' is volledig generiek (lidwoord + generiek horeca-woord)")
     bevestig(not ketens_mod._te_generiek_voor_spreiding(("tuinland",)),
              "een echt merk is niet generiek")
+    # Vondsten van 19-9-2026 bij het herscannen van de HELE wachtrij (niet
+    # meer alleen de eerder verwijderde 162): meer generieke-categorie
+    # fout-positieven dan de eerste ronde ving.
+    for generiek in (("huisartsenpost",), ("tandheelkundig", "centrum"),
+                      ("mondzorg",), ("tandzorg",), ("implantologie",),
+                      ("autoschade",), ("klimcentrum",), ("discus",),
+                      ("de", "troubadour"), ("de", "lindenhof"), ("de", "poort")):
+        bevestig(ketens_mod._te_generiek_voor_spreiding(generiek),
+                 f"{' '.join(generiek)!r} is een generieke categorie, geen merk")
     bevestig(not ketens_mod._te_generiek_voor_spreiding(("mixed", "hockey", "club", "purmerend")),
              "zodra er een niet-generiek woord bij zit (een plaatsnaam die niet gestript is), "
              "telt het niet meer als volledig generiek")
