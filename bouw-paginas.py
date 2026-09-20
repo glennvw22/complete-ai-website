@@ -116,6 +116,8 @@ VOET = f"""<footer>
           <li><a href="index.html#contact">Plan een intake</a></li>
           <li><a href="index.html#vragen">Veelgestelde vragen</a></li>
           <li><a href="privacy.html">Privacyverklaring</a></li>
+          <li><a href="voorwaarden.html">Algemene voorwaarden</a></li>
+          <li><a href="gegevens-verwijderen.html">Gegevens verwijderen</a></li>
         </ul>
       </div>
     </div>
@@ -125,6 +127,8 @@ VOET = f"""<footer>
       <span>KvK 98445235</span>
       <span>Nederland &amp; België</span>
       <span><a href="privacy.html">Privacyverklaring</a></span>
+      <span><a href="voorwaarden.html">Algemene voorwaarden</a></span>
+      <span><a href="gegevens-verwijderen.html">Gegevens verwijderen</a></span>
     </div>
   </div>
 </footer>"""

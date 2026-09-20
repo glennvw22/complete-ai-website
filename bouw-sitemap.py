@@ -24,6 +24,8 @@ PAGINAS = [
     ("case-aronza.html", "0.7"),
     ("ai-voor-uw-bedrijf.html", "0.8"),
     ("privacy.html", "0.3"),
+    ("voorwaarden.html", "0.3"),
+    ("gegevens-verwijderen.html", "0.3"),
 ]
 
 
