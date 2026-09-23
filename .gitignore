@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+
+# Leaddata blijft buiten deze repository: hij is openbaar.
+leads/uitvoer/
