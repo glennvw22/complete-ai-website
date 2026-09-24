@@ -1,0 +1,109 @@
+{
+ "index.html": {
+  "zoekterm": "automatisering",
+  "varianten": [
+   "ai-telefonist",
+   "automatisering",
+   "website laten maken",
+   "vindbaarheid"
+  ],
+  "min_woorden": 1800,
+  "min_vragen": 5,
+  "min_intern": 8,
+  "min_extern": 0
+ },
+ "websites.html": {
+  "zoekterm": "website laten maken",
+  "varianten": [
+   "website laten maken",
+   "website voor uw bedrijf",
+   "mkb-website"
+  ],
+  "min_woorden": 1700,
+  "min_vragen": 7,
+  "min_intern": 6,
+  "min_extern": 1
+ },
+ "automatisering.html": {
+  "zoekterm": "bedrijfsprocessen automatiseren",
+  "varianten": [
+   "bedrijfsprocessen automatiseren",
+   "processen automatiseren"
+  ],
+  "min_woorden": 1700,
+  "min_vragen": 7,
+  "min_intern": 6,
+  "min_extern": 1
+ },
+ "ai-telefonist.html": {
+  "zoekterm": "ai-telefonist",
+  "varianten": [
+   "ai-telefonist",
+   "ai telefonist",
+   "ai-receptionist",
+   "telefoonassistent"
+  ],
+  "min_woorden": 1700,
+  "min_vragen": 7,
+  "min_intern": 6,
+  "min_extern": 2
+ },
+ "social-media.html": {
+  "zoekterm": "social media uitbesteden",
+  "varianten": [
+   "social media uitbesteden",
+   "social media beheer"
+  ],
+  "min_woorden": 1700,
+  "min_vragen": 7,
+  "min_intern": 6,
+  "min_extern": 1
+ },
+ "vindbaarheid-seo.html": {
+  "zoekterm": "seo voor het mkb",
+  "varianten": [
+   "seo voor het mkb",
+   "seo voor mkb",
+   "zoekmachine-optimalisatie"
+  ],
+  "min_woorden": 1700,
+  "min_vragen": 7,
+  "min_intern": 6,
+  "min_extern": 2
+ },
+ "adverteren.html": {
+  "zoekterm": "google ads laten beheren",
+  "varianten": [
+   "google ads laten beheren",
+   "google ads beheer",
+   "google ads"
+  ],
+  "min_woorden": 1500,
+  "min_vragen": 6,
+  "min_intern": 6,
+  "min_extern": 1
+ },
+ "ai-voor-uw-bedrijf.html": {
+  "zoekterm": "ai in uw bedrijf",
+  "varianten": [
+   "ai in uw bedrijf",
+   "ai voor uw bedrijf",
+   "wat kan ai"
+  ],
+  "min_woorden": 1500,
+  "min_vragen": 6,
+  "min_intern": 6,
+  "min_extern": 1
+ },
+ "bedrijfsprocessen-automatiseren-voorbeelden.html": {
+  "zoekterm": "processen automatiseren",
+  "varianten": [
+   "processen automatiseren",
+   "bedrijfsprocessen automatiseren"
+  ],
+  "min_woorden": 1800,
+  "min_vragen": 6,
+  "min_intern": 6,
+  "min_extern": 1
+ }
+}

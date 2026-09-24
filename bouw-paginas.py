@@ -70,8 +70,8 @@ def kop_html(actief):
     <p class="mm-kop">Diensten</p>
     <ul class="mm-lijst">
       <li><a href="websites.html">Websites<span>Live in 1 tot 2 weken</span></a></li>
-      <li><a href="index.html#diensten">Vindbaarheid — SEO<span>Lokale SEO en het Google-bedrijfsprofiel</span></a></li>
-      <li><a href="index.html#diensten">Adverteren — SEA<span>Google Ads en Meta, op aanvraag</span></a></li>
+      <li><a href="vindbaarheid-seo.html">Vindbaarheid — SEO<span>Lokale SEO en het Google-bedrijfsprofiel</span></a></li>
+      <li><a href="adverteren.html">Adverteren — SEA<span>Google Ads en Meta, op aanvraag</span></a></li>
       <li><a href="automatisering.html">Automatisering<span>Live binnen enkele werkdagen</span></a></li>
       <li><a href="ai-telefonist.html">AI-telefonist<span>Operationeel binnen 2 weken</span></a></li>
       <li><a href="social-media.html">Social media<span>Eerste bericht binnen een week</span></a></li>
@@ -100,13 +100,14 @@ VOET = f"""<footer>
         <p class="voetkop">Diensten</p>
         <ul>
           <li><a href="websites.html">Websites</a></li>
-          <li><a href="index.html#diensten">Vindbaarheid — SEO</a></li>
-          <li><a href="index.html#diensten">Adverteren — SEA</a></li>
+          <li><a href="vindbaarheid-seo.html">Vindbaarheid — SEO</a></li>
+          <li><a href="adverteren.html">Adverteren — SEA</a></li>
           <li><a href="automatisering.html">Automatisering</a></li>
           <li><a href="ai-telefonist.html">AI-telefonist</a></li>
           <li><a href="social-media.html">Social media</a></li>
           <li><a href="case-aronza.html">Klantcase: Aronza</a></li>
           <li><a href="ai-voor-uw-bedrijf.html">Gids: AI voor uw bedrijf</a></li>
+          <li><a href="bedrijfsprocessen-automatiseren-voorbeelden.html">Gids: processen automatiseren</a></li>
         </ul>
       </div>
       <div>
@@ -139,14 +140,18 @@ def schema(p):
               "@id": f"{DOMEIN}/{p['bestand']}#case",
               "headline": p["dienst"],
               "description": p["omschrijving"],
-              "author": {"@type": "Organization", "@id": f"{DOMEIN}/#organisatie", "name": "Complete AI"},
+              "author": ({"@type": "Person", "name": "Glenn van Wijngaarden",
+                          "jobTitle": "Oprichter",
+                          "worksFor": {"@id": f"{DOMEIN}/#organisatie"}}
+                         if p.get("soort") == "gids" else
+                         {"@type": "Organization", "@id": f"{DOMEIN}/#organisatie", "name": "Complete AI"}),
               "publisher": {"@type": "Organization", "@id": f"{DOMEIN}/#organisatie", "name": "Complete AI"},
               "inLanguage": "nl-NL",
-              "datePublished": "2026-08-27",
-              "dateModified": "2026-08-27",
+              "datePublished": p.get("gepubliceerd", "2026-08-27"),
+              "dateModified": p.get("gewijzigd", p.get("gepubliceerd", "2026-08-27")),
               "image": f"{DOMEIN}/og-complete-ai.jpg",
               "url": f"{DOMEIN}/{p['bestand']}"}
-             if p.get("soort") == "case" else
+             if p.get("soort") in ("case", "gids") else
              {"@type": "Service",
               "@id": f"{DOMEIN}/{p['bestand']}#dienst",
               "name": p["dienst"],
@@ -157,7 +162,14 @@ def schema(p):
               "areaServed": [{"@type": "Country", "name": "Nederland"},
                              {"@type": "Country", "name": "België"}],
               "url": f"{DOMEIN}/{p['bestand']}"})
+    gep = p.get("gepubliceerd", "2026-08-27")
+    pagina = {"@type": "WebPage", "@id": f"{DOMEIN}/{p['bestand']}#pagina",
+              "url": f"{DOMEIN}/{p['bestand']}", "name": p["titel"],
+              "description": p["beschrijving"], "inLanguage": "nl-NL",
+              "datePublished": gep, "dateModified": p.get("gewijzigd", gep),
+              "isPartOf": {"@id": f"{DOMEIN}/#website"}}
     graaf = [
+        pagina,
         hoofd,
         {"@type": "BreadcrumbList",
          "itemListElement": [
@@ -172,6 +184,24 @@ def schema(p):
     return ('<script type="application/ld+json">\n'
             + json.dumps({"@context": "https://schema.org", "@graph": graaf},
                          ensure_ascii=False, indent=2) + '\n</script>')
+
+
+MAANDEN = ["januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus",
+           "september", "oktober", "november", "december"]
+
+
+def datum_nl(iso):
+    j, m, d = iso.split("-")
+    return f"{int(d)} {MAANDEN[int(m) - 1]} {j}"
+
+
+def byline_html(p):
+    """Auteur en datums zichtbaar op de pagina, zoals de structuurdata ze ook noemt."""
+    gep = p.get("gepubliceerd", "2026-08-27")
+    gew = p.get("gewijzigd", gep)
+    bijgewerkt = f" · Bijgewerkt op <b>{datum_nl(gew)}</b>" if gew != gep else ""
+    return (f'<p class="byline">Door <b>Glenn van Wijngaarden</b>, oprichter van Complete AI · '
+            f'Gepubliceerd op <b>{datum_nl(gep)}</b>{bijgewerkt}</p>')
 
 
 def vragen_html(vragen):
@@ -226,12 +256,16 @@ VERDER = [
      "Neemt op wanneer u dat niet kunt: 's avonds, weekend, drukte."),
     ("social-media.html", "Dienst", "Social media",
      "Elke week zichtbaar, zonder dat het u tijd kost."),
+    ("vindbaarheid-seo.html", "Dienst", "Vindbaarheid — SEO",
+     "Gevonden worden door klanten die al zoeken naar wat u levert."),
+    ("adverteren.html", "Dienst", "Adverteren — SEA",
+     "Google Ads en Meta, gemeten tot op de euro. Op aanvraag."),
     ("case-aronza.html", "Klantcase", "Aronza",
      "Vier tot zes uur administratie per week teruggebracht tot nul."),
     ("ai-voor-uw-bedrijf.html", "Gids", "AI voor uw bedrijf",
      "Welke taken AI vandaag echt kan overnemen — en waar de grens ligt."),
-    ("index.html#diensten", "Homepage", "Alle diensten",
-     "Ook vindbaarheid in Google en advertenties die renderen."),
+    ("bedrijfsprocessen-automatiseren-voorbeelden.html", "Gids", "Processen automatiseren",
+     "Voorbeelden per afdeling: van klantcontact tot voorraad en rapportage."),
 ]
 
 # Branchepagina's wijzen naar elkaar en naar de twee diensten die daar
@@ -302,6 +336,7 @@ def bouw(p):
       <p class="label" style="margin-top:1.6rem"><i></i>{p['ogen']}</p>
       <h1>{p['h1']}</h1>
       <p class="lead">{p['lead']}</p>
+      {byline_html(p)}
       <div class="kop-acties">
         <a class="knop knop-vol" href="index.html#contact">Plan een gratis intake {PIJL}</a>
         <span class="kop-tijd">{KLOK}{p['levertijd']}</span>
@@ -339,6 +374,51 @@ def bouw(p):
 """
 
 
+def bouw_404():
+    """Vriendelijke 404 (GitHub Pages toont 404.html bij een onbekend adres): verwijst naar de
+    diensten, niet geïndexeerd."""
+    kaarten = "\n        ".join(
+        f'<a href="{h}"><em>{e}</em><b>{t}</b><span>{o}</span></a>' for h, e, t, o in VERDER)
+    return f"""<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pagina niet gevonden | Complete AI</title>
+<meta name="description" content="Deze pagina bestaat niet (meer). Kies hieronder een dienst of ga terug naar de homepage van Complete AI.">
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#06070C">
+<link rel="preload" href="/archivo.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/stijl.css?v={CSS_V}">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+</head>
+<body>
+{kop_html("")}
+<main>
+  <div class="paginakop">
+    <div class="wrap">
+      <p class="label"><i></i>Fout 404</p>
+      <h1>Deze pagina <span class="glans">bestaat niet</span> (meer).</h1>
+      <p class="lead">Het adres klopt niet of de pagina is verplaatst. Hieronder staat wat er wel is, of ga naar de <a href="/">homepage</a>.</p>
+    </div>
+  </div>
+  <hr class="streep">
+  <section id="verder">
+    <div class="wrap">
+      <div class="verder reveal">
+        {kaarten}
+      </div>
+    </div>
+  </section>
+</main>
+{VOET}
+<script src="/script.js?v={JS_V}" defer></script>
+</body>
+</html>
+"""
+
+
 if __name__ == "__main__":
     from inhoud_paginas import PAGINAS
     hier = os.path.dirname(os.path.abspath(__file__))
@@ -347,6 +427,10 @@ if __name__ == "__main__":
         with open(pad, "w", encoding="utf-8") as f:
             f.write(bouw(p))
         print(f"  {p['bestand']:24} {os.path.getsize(pad)//1024} kB")
+
+    with open(os.path.join(hier, "404.html"), "w", encoding="utf-8") as f:
+        f.write(bouw_404())
+    print("  404.html                 geschreven")
 
     # index.html en privacy.html worden met de hand onderhouden; hun
     # verwijzingen naar stijl en script krijgen hier hetzelfde stempel.
