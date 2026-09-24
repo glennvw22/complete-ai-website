@@ -296,6 +296,10 @@ def main(argv: list[str] | None = None) -> int:
     ontleder.add_argument("--branche", help="zelf zoeken in OSM: branchesleutel, bv. kapsalon")
     ontleder.add_argument("--gemeenten", help="bij --branche: komma-gescheiden gemeenten")
     ontleder.add_argument("--land", default="NL", choices=("NL", "BE"))
+    ontleder.add_argument("--territorium", type=Path,
+                          help="samenvatting.json van een leads/run.py-run: haalt daar "
+                               "branche, gemeenten en land uit, zodat de agent hetzelfde "
+                               "gebied afzoekt als de dagelijkse leadsmachine vandaag deed")
     ontleder.add_argument("--bedrijf", default="", help="bedrijfsnaam bij --site")
     ontleder.add_argument("--uit", type=Path, help="map om de uitvoer in te schrijven")
     ontleder.add_argument("--max", type=int, default=25, dest="maximum")
@@ -310,11 +314,18 @@ def main(argv: list[str] | None = None) -> int:
         leads = [{"bedrijf": argumenten.bedrijf or argumenten.site, "website": argumenten.site}]
     elif argumenten.leads:
         leads = _lees_leads(argumenten.leads)
+    elif argumenten.territorium:
+        gegevens = json.loads(argumenten.territorium.read_text(encoding="utf-8"))
+        branche_naam = gegevens["branche"]
+        # samenvatting.json bewaart het label ("Kapsalons, ..."), niet de sleutel.
+        sleutel = next((b.sleutel for b in BRANCHE_OP_SLEUTEL.values()
+                        if b.naam == branche_naam), None) or branche_naam
+        leads = zoek_kandidaten(sleutel, gegevens["gemeenten"], gegevens.get("land", "NL"))
     elif argumenten.branche and argumenten.gemeenten:
         gemeenten = [g.strip() for g in argumenten.gemeenten.split(",") if g.strip()]
         leads = zoek_kandidaten(argumenten.branche, gemeenten, argumenten.land)
     else:
-        ontleder.error("geef --leads, --site, of --branche met --gemeenten")
+        ontleder.error("geef --leads, --site, --branche met --gemeenten, of --territorium")
         return 2
 
     uitgesloten: set[str] = set()

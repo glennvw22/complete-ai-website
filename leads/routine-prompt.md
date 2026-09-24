@@ -44,6 +44,30 @@ Gaat de run stuk of levert OpenStreetMap niets op, dan probeer je één keer
 `--gemeenten 8`. Werkt het dan nog niet, meld dat bovenaan met de foutmelding en
 ga door met wat je wél hebt. Lever nooit een leeg rapport zonder reden.
 
+## Stap 1b — Onderbouwingsagent: extra bewezen mailleads, gratis
+
+Los van stap 1 (die KVK nodig heeft om te bellen): draai voor hetzelfde
+gebied als vandaag de onderbouwingsagent, die e-mailleads zonder KVK bewijst
+op de eigen website van het bedrijf. Dit werkt ook als KVK die dag stuk is.
+
+```bash
+cd complete-ai-website/leads
+python3 -m onderbouwing.agent --territorium "uitvoer/<datum>/samenvatting.json" \
+  --max 80 --uit "uitvoer/<datum>/onderbouwing" --echt
+```
+
+`--echt` verstuurt de doorgelaten prospects naar `/api/leads/import`, met
+`waarom_lead` gevuld met een bewezen zin en `website_status` op
+`bewezen via eigen site op <datum> (...)`. Dit gebruikt dezelfde
+`DASHBOARD_URL`/`LEADS_IMPORT_SLEUTEL` als stap 6 — die staan al in deze
+omgeving. Elke rij die hierdoorheen komt is al geverifieerd (citaat op de
+site, rechtspersoon, onpersoonlijk adres): geen extra controle nodig, wél
+noemen in het rapport hoeveel er doorkwamen.
+
+Faalt dit onderdeel (geen `DASHBOARD_URL`, netwerkfout, of 0 door de poort),
+meld dat in één regel bij de kop en ga gewoon door met de rest — dit is een
+bonus bovenop stap 1, nooit een reden om te stoppen.
+
 ## Stap 2 — Ontdubbelen tegen wat al geleverd is
 
 Lees in Google Drive het bestand `Complete AI/leads/geleverd.csv` (kolommen:
@@ -96,7 +120,7 @@ Blijf niet hangen op een bron die blokkeert: één poging, dan door.
 
 ## Stap 5 — Rapport
 
-Begin met een kop van vijf regels:
+Begin met een kop van zes regels:
 
 1. Datum, land, branche en gemeenten van vandaag
 2. Bronstatus: OpenStreetMap / KVK / websitecheck — werkt het, en zo niet: de
@@ -105,6 +129,8 @@ Begin met een kop van vijf regels:
 4. Verdeling over de diensten (hoeveel website, SEO, telefonist,
    automatisering, social, advertenties)
 5. Verdeling BEL versus MAIL
+6. Onderbouwingsagent (stap 1b): aantal getoetst, aantal door de poort,
+   aantal echt verstuurd naar het dashboard
 
 **Deel 1 — belllijst van vandaag.** De leads met baan BEL, aflopend op score:
 
