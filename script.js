@@ -146,6 +146,8 @@
       stand.hidden = true;
 
       var fd = new FormData(f);
+      var bron1 = (fd.get('bron') || '').toString().trim();
+      if (bron1) fd.set('onderwerp', (fd.get('onderwerp') || '').toString() + ' \u00b7 Gevonden via: ' + bron1);
       var v = function(k){ return (fd.get(k) || '').toString().trim(); };
 
       var terugval = function(){
@@ -214,6 +216,8 @@
       sstand.hidden = true;
 
       var fd = new FormData(sf);
+      var bron2 = (fd.get('bron') || '').toString().trim();
+      if (bron2) fd.set('onderwerp', (fd.get('onderwerp') || '').toString() + ' \u00b7 Gevonden via: ' + bron2);
       var v = function(k){ return (fd.get(k) || '').toString().trim(); };
 
       var sterugval = function(){
