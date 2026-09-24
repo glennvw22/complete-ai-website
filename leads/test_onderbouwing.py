@@ -37,6 +37,16 @@ EENMANSZAAK_SITE = """
 </body></html>
 """
 
+VREEMD_SJABLOON_SITE = """
+<html><body><h1>Vastgoed Groep</h1>
+<p>Bel gerust voor een afspraak.</p>
+<footer>info@vastgoedgroep-voorbeeld.nl</footer>
+<p>Artikel 2 – Identiteit van de ondernemer. Oudbedrijf Vastgoed B.V.
+Loolaan 83, 7314AH Apeldoorn. Telefoonnummer: 055-3121112.
+E-mailadres: info@oudbedrijf-voorbeeld.nl. KvK-nummer: 08068880.</p>
+</body></html>
+"""
+
 PERSOONLIJK_ADRES_SITE = """
 <html><body><h1>Garage Jansen</h1><p>Bel gerust voor een afspraak.</p>
 <footer>Garage Jansen B.V., KvK 11112222, henk@garagejansen-voorbeeld.nl</footer>
@@ -232,6 +242,31 @@ class TestAdrescontrole(unittest.TestCase):
         uitslag = beoordeel_bedrijf("Kwaadaardig", "http://169.254.169.254/",
                                     vandaag=VANDAAG)
         self.assertFalse(uitslag.doorgelaten)
+
+    def test_rechtsvorm_uit_vreemd_sjabloon_wordt_niet_toegeschreven(self):
+        """24-9-2026: bouwhuisgroep.nl had een algemene-voorwaardenpagina met
+        een KvK-nummer en 'B.V.' naast elkaar, maar het e-mailadres ernaast
+        hoorde bij een heel ander bedrijf (kennelijk nooit bijgewerkte
+        sjabloontekst). We schreven die rechtsvorm ten onrechte toe aan het
+        bedrijf dat we aan het beoordelen waren."""
+        uitkomst = sig.rechtsvorm_uit_tekst(
+            bewijs.naar_tekst(VREEMD_SJABLOON_SITE), "Vastgoed Groep",
+            eigen_domein="vastgoedgroep-voorbeeld.nl")
+        self.assertIsNone(uitkomst)
+
+    def test_rechtsvorm_zonder_eigen_domein_werkt_als_voorheen(self):
+        """Zonder eigen_domein (bv. oudere aanroepen) blokkeert deze toets niets."""
+        uitkomst = sig.rechtsvorm_uit_tekst(
+            bewijs.naar_tekst(VREEMD_SJABLOON_SITE), "Vastgoed Groep")
+        self.assertIsNotNone(uitkomst)
+
+    def test_vreemd_sjabloon_bedrijf_wordt_geweigerd_door_de_agent(self):
+        dossier = _dossier(VREEMD_SJABLOON_SITE, "https://vastgoedgroep-voorbeeld.nl/")
+        uitslag = beoordeel_bedrijf("Vastgoed Groep", "https://vastgoedgroep-voorbeeld.nl/",
+                                    vandaag=VANDAAG, dossier=dossier)
+        self.assertFalse(uitslag.doorgelaten)
+        self.assertIn("rechtsvorm staat niet op de eigen site",
+                      " ".join(uitslag.redenen_afgewezen))
 
 
 class TestLiveBevindingen(unittest.TestCase):

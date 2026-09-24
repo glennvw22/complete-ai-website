@@ -159,8 +159,9 @@ def beoordeel_bedrijf(bedrijf: str, website: str,
     uitslag.bron_datum = vandaag.isoformat() if adres else ""
 
     rechtsvorm, rechtsvorm_citaat = "", ""
+    eigen_domein = sig.domein_van_url(dossier.start_url)
     for pagina in dossier.bereikbare:
-        uitkomst = sig.rechtsvorm_uit_tekst(pagina.tekst, bedrijf)
+        uitkomst = sig.rechtsvorm_uit_tekst(pagina.tekst, bedrijf, eigen_domein)
         if uitkomst:
             rechtsvorm, rechtsvorm_citaat = uitkomst
             break

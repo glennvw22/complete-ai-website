@@ -100,12 +100,42 @@ def _vorm_in(omgeving: str, vormen) -> str | None:
     return None
 
 
-def rechtsvorm_uit_tekst(tekst: str, bedrijfsnaam: str = "") -> tuple[str, str] | None:
+_EMAIL_IN_TEKST = re.compile(r"[a-z0-9._%+-]+@([a-z0-9.-]+\.[a-z]{2,})", re.I)
+
+
+def domein_van_url(url: str) -> str:
+    kaal = re.sub(r"^https?://", "", (url or "").strip().lower()).split("/")[0]
+    return kaal[4:] if kaal.startswith("www.") else kaal
+
+
+def _blok_hoort_bij_site(omgeving: str, eigen_domein: str) -> bool:
+    """False als dit tekstblok zelf een ander bedrijf identificeert.
+
+    Op 24-9-2026 bleek dit nodig: bouwhuisgroep.nl had een algemene-
+    voorwaardenpagina met een KvK-nummer en "B.V." naast elkaar, maar het
+    e-mailadres ernaast (info@technobenelux.nl) hoorde bij een compleet
+    ander bedrijf — kennelijk een nooit bijgewerkte sjabloontekst. Zonder
+    deze toets schreven we de rechtsvorm van dát bedrijf toe aan Bouwhuis
+    Groep. Geen eigen_domein om tegen te toetsen: dan blokkeert dit niets.
+    """
+    if not eigen_domein:
+        return True
+    for treffer in _EMAIL_IN_TEKST.finditer(omgeving):
+        domein = treffer.group(1).lower()
+        if domein != eigen_domein and not domein.endswith("." + eigen_domein):
+            return False
+    return True
+
+
+def rechtsvorm_uit_tekst(tekst: str, bedrijfsnaam: str = "",
+                         eigen_domein: str = "") -> tuple[str, str] | None:
     """(rechtsvorm, citaat) — alleen als de vorm hard op de pagina staat.
 
     Zoekt eerst naast de bedrijfsnaam (het sterkste bewijs), dan naast een
     KvK-nummer. Een losse "bv" ergens in een lopende zin telt niet: dat is
-    te vaak een afkorting of de rechtsvorm van een leverancier.
+    te vaak een afkorting of de rechtsvorm van een leverancier. `eigen_domein`
+    (optioneel) wijst een blok af zodra er een e-mailadres van een ander
+    domein in staat — zie `_blok_hoort_bij_site`.
     """
     laag = tekst.lower()
     naam = (bedrijfsnaam or "").strip().lower()
@@ -115,7 +145,7 @@ def rechtsvorm_uit_tekst(tekst: str, bedrijfsnaam: str = "") -> tuple[str, str] 
             omgeving = laag[positie:positie + len(naam) + 30]
             gevonden = (_vorm_in(omgeving, NIET_RECHTSPERSOON_VORMEN)
                         or _vorm_in(omgeving, RECHTSPERSOON_VORMEN))
-            if gevonden:
+            if gevonden and _blok_hoort_bij_site(omgeving, eigen_domein):
                 return gevonden, _knip(tekst, positie, 70)
 
     kvk = _KVK.search(tekst)
@@ -123,7 +153,7 @@ def rechtsvorm_uit_tekst(tekst: str, bedrijfsnaam: str = "") -> tuple[str, str] 
         omgeving = laag[max(0, kvk.start() - 120):kvk.end() + 120]
         gevonden = (_vorm_in(omgeving, NIET_RECHTSPERSOON_VORMEN)
                     or _vorm_in(omgeving, RECHTSPERSOON_VORMEN))
-        if gevonden:
+        if gevonden and _blok_hoort_bij_site(omgeving, eigen_domein):
             return gevonden, _knip(tekst, kvk, 110)
     return None
 
