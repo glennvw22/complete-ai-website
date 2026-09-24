@@ -112,6 +112,15 @@ class KvkClient:
                  via_proxy: bool | None = None):
         """Waar de sleutel vandaan komt, in deze volgorde:
 
+        0. `sleutel=""` (lege string, niet None) betekent hard uit: run.py's
+           `--geen-kvk` gebruikt dit om GEEN ENKELE aanvraag te doen, ook niet
+           via de proxy. Dit is bewust een apart geval van "niet meegegeven"
+           (`None`, punt 1 hieronder) — anders bleef in een omgeving met
+           `KVK_VIA_PROXY=1` een "--geen-kvk"-run gewoon echte, betaalde
+           basisprofielen ophalen omdat de proxy de sleutel toch opplakte.
+           Precies dat gebeurde op 24-9-2026: de zelftest meldde "SLEUTEL
+           AFGEWEZEN (401)" terwijl het verzoek zonder controle op
+           `via_proxy` gewoon was uitgegaan.
         1. Meegegeven aan de constructor (voor tests).
         2. `KVK_API_KEY` als omgevingsvariabele.
         3. `KVK_API_KEY` uit de sleutelkluis ~/.config/complete-ai/.env.
@@ -122,18 +131,23 @@ class KvkClient:
            daadwerkelijk IN die cloud-omgeving draaien; de dagelijkse routine
            draait dat niet.
         """
+        hard_uit = sleutel == ""
         if sleutel is not None:
             self.sleutel = sleutel
         else:
             self.sleutel = os.environ.get("KVK_API_KEY", "") or _uit_kluis("KVK_API_KEY")
-        if via_proxy is not None:
+        if hard_uit:
+            self.via_proxy = False        # zie punt 0 hierboven: geen stille proxy-call
+        elif via_proxy is not None:
             self.via_proxy = via_proxy
         else:
             vlag = (os.environ.get("KVK_VIA_PROXY", "") or _uit_kluis("KVK_VIA_PROXY")).strip()
             self.via_proxy = vlag in ("1", "ja", "true")
         self.pauze_s = pauze_s
         self.beschikbaar = bool(self.sleutel) or self.via_proxy
-        if self.beschikbaar:
+        if hard_uit:
+            self.laatste_fout = "--geen-kvk: bewust uitgezet, geen aanvraag gedaan"
+        elif self.beschikbaar:
             self.laatste_fout = ""
         else:
             self.laatste_fout = "KVK_API_KEY niet gezet en KVK_VIA_PROXY staat uit"
@@ -170,6 +184,8 @@ class KvkClient:
     # -- zelftest ---------------------------------------------------------
     def zelftest(self) -> tuple[bool, str]:
         """Een echte call, zodat een run keihard kan melden of KVK werkt."""
+        if self.laatste_fout == "--geen-kvk: bewust uitgezet, geen aanvraag gedaan":
+            return False, self.laatste_fout   # geen advies om een sleutel te zetten: dit is gewild
         if not self.beschikbaar:
             return False, (
                 "Geen KVK-sleutel gevonden. Zet hem op de vaste plek en hij blijft staan:\n"
