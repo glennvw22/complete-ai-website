@@ -21,6 +21,7 @@ gerespecteerd.
 from __future__ import annotations
 
 import gzip
+import html as html_mod
 import ipaddress
 import re
 import socket
@@ -106,9 +107,9 @@ def naar_tekst(html: str) -> str:
     zonder = _SCRIPT_STIJL.sub(" ", html)
     zonder = re.sub(r"<br\s*/?>|</p>|</div>|</li>|</h[1-6]>", "\n", zonder, flags=re.I)
     plat = _TAG.sub(" ", zonder)
-    plat = (plat.replace("&nbsp;", " ").replace("&amp;", "&").replace("&quot;", '"')
-                .replace("&#39;", "'").replace("&lt;", "<").replace("&gt;", ">")
-                .replace("&copy;", "©"))
+    # Alle entiteiten, ook &#64; voor een apenstaartje: wat de bezoeker ziet,
+    # is wat er op de pagina staat.
+    plat = html_mod.unescape(plat)
     plat = _WITRUIMTE.sub(" ", plat)
     return _LEGE_REGELS.sub("\n\n", plat).strip()
 
@@ -128,8 +129,8 @@ def _adres_is_openbaar(host: str) -> bool:
     """
     try:
         adressen = socket.getaddrinfo(host, None)
-    except OSError:
-        return False
+    except OSError as fout:
+        raise OnveiligAdres(f"'{host}' is niet op te zoeken (domein bestaat niet of DNS faalt)") from fout
     if not adressen:
         return False
     for gegevens in adressen:

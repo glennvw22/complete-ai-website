@@ -234,6 +234,26 @@ class TestAdrescontrole(unittest.TestCase):
         self.assertFalse(uitslag.doorgelaten)
 
 
+class TestLiveBevindingen(unittest.TestCase):
+    """Uit de live run van 24-9 op kapsalons in Houten, Huizen, IJsselstein, Kampen."""
+
+    def test_html_gecodeerd_adres_wordt_leesbaar(self):
+        tekst = bewijs.naar_tekst("<p>info&#64;voorbeeld.nl</p>")
+        self.assertIn("info@voorbeeld.nl", tekst)
+
+    def test_plaatsnaam_als_adres_telt_als_onpersoonlijk(self):
+        from onderbouwing.agent import maak_adrestoets
+        toets = maak_adrestoets("Kampen")
+        self.assertTrue(toets("kampen@demannenkapper-voorbeeld.nl"))
+        self.assertFalse(toets("henk@demannenkapper-voorbeeld.nl"))
+        self.assertFalse(maak_adrestoets("")("kampen@x.nl"))
+
+    def test_onvindbaar_domein_krijgt_eerlijke_melding(self):
+        with self.assertRaises(bewijs.OnveiligAdres) as ctx:
+            bewijs.controleer_adres("https://dit-domein-bestaat-echt-niet-7f3a9.invalid/")
+        self.assertIn("niet op te zoeken", str(ctx.exception))
+
+
 class TestNaReview(unittest.TestCase):
     """Gevallen die uit de code-review kwamen."""
 
@@ -300,6 +320,8 @@ class TestVerstuur(unittest.TestCase):
         self.assertEqual(rij["verkoop_primair"], "AI-telefonist")  # label, zoals run.py
         self.assertEqual(rij["baan"], "MAIL")
         self.assertEqual(rij["bellen_mag"], "NEE")
+        # Moet exact aansluiten op BEWEZEN_VOORVOEGSEL in lib/koude-categorie.ts
+        self.assertTrue(rij["website_status"].startswith("bewezen via eigen site op 2026-09-23"))
 
     def test_droogloop_verstuurt_niets(self):
         uitslag = verstuur.verstuur({"rijen": [{"bedrijf": "X"}]}, logger=lambda *_: None)

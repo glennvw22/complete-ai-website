@@ -36,6 +36,7 @@ from catalogus import DIENSTEN                      # noqa: E402
 BASIS_ENV = "DASHBOARD_URL"
 SLEUTEL_ENV = "LEADS_IMPORT_SLEUTEL"
 PAD = "/api/leads/import"
+BEWEZEN_VOORVOEGSEL = "bewezen via eigen site"
 
 
 def naar_leadrij(uitslag, lead: dict) -> dict:
@@ -57,7 +58,11 @@ def naar_leadrij(uitslag, lead: dict) -> dict:
         "verkoop_primair": DIENSTEN.get(uitslag.categorie, uitslag.categorie),
         "waarom_lead": uitslag.onderbouwing,
         "rechtsvorm": uitslag.rechtsvorm,
-        "website_status": f"gelezen op {uitslag.bron_datum} ({len(uitslag.gelezen_paginas)} pagina's)",
+        # Het dashboard herkent bewezen leads aan dit voorvoegsel
+        # (lib/koude-categorie.ts, BEWEZEN_VOORVOEGSEL). Alleen die mogen naar
+        # een campagne voor een aanbodonderdeel.
+        "website_status": (f"{BEWEZEN_VOORVOEGSEL} op {uitslag.bron_datum} "
+                           f"({len(uitslag.gelezen_paginas)} pagina's)"),
         "zekerheid": "hoog",
         "baan": "MAIL",
         "bellen_mag": "NEE",

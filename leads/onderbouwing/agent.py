@@ -29,6 +29,9 @@ if str(_HIER.parent) not in sys.path:      # zodat `leads/`-modules vindbaar zij
     sys.path.insert(0, str(_HIER.parent))
 
 from belbaar import onpersoonlijk_adres            # noqa: E402  (bestaande regel hergebruiken)
+import bron_osm                                    # noqa: E402
+from catalogus import BRANCHE_OP_SLEUTEL           # noqa: E402
+from ketens import is_landelijke_keten             # noqa: E402
 
 from . import bewijs as bewijs_mod                 # noqa: E402
 from . import poort as poort_mod                   # noqa: E402
@@ -62,7 +65,24 @@ class Uitslag:
     redenen_afgewezen: list[str] = field(default_factory=list)
 
 
-def zoek_adres(dossier) -> tuple[str, str]:
+def maak_adrestoets(plaats: str = ""):
+    """De bestaande regel uit belbaar.py, plus één uitbreiding.
+
+    Een adres als kampen@bedrijf.nl is een vestigingsadres, geen persoon. We
+    accepteren het alleen als het lokale deel exact de plaats van deze lead
+    is; verder niets, zodat henk@ of j.jansen@ er nooit doorheen komen.
+    """
+    plaatsnaam = re.sub(r"[^a-z]", "", (plaats or "").lower())
+
+    def toets(adres: str) -> bool:
+        if onpersoonlijk_adres(adres):
+            return True
+        lokaal = re.sub(r"[^a-z]", "", adres.split("@", 1)[0].lower())
+        return bool(plaatsnaam) and lokaal == plaatsnaam
+    return toets
+
+
+def zoek_adres(dossier, adrestoets=onpersoonlijk_adres) -> tuple[str, str]:
     """(adres, bron_url) — alleen adressen die zichtbaar op de site staan.
 
     Een adres dat uitsluitend in een `mailto:`-link zit en nergens leesbaar
@@ -76,7 +96,7 @@ def zoek_adres(dossier) -> tuple[str, str]:
             adres = treffer.group(0).lower()
             if any(rommel in adres for rommel in _ONZIN):
                 continue
-            if not onpersoonlijk_adres(adres):
+            if not adrestoets(adres):
                 continue
             lokaal = adres.split("@", 1)[0]
             rang = voorkeur.index(lokaal) if lokaal in voorkeur else len(voorkeur)
@@ -114,7 +134,8 @@ def schrijf_onderbouwing(gevonden: list[sig.Signaal]) -> str:
 
 def beoordeel_bedrijf(bedrijf: str, website: str,
                       uitgesloten: set[str] | None = None,
-                      vandaag: _dt.date | None = None, dossier=None) -> Uitslag:
+                      vandaag: _dt.date | None = None, dossier=None,
+                      plaats: str = "") -> Uitslag:
     """De hele keten voor één bedrijf. `dossier` meegeven scheelt netwerk in tests."""
     vandaag = vandaag or _dt.date.today()
     uitslag = Uitslag(bedrijf=bedrijf, website=website, doorgelaten=False)
@@ -131,7 +152,8 @@ def beoordeel_bedrijf(bedrijf: str, website: str,
     gevonden = sig.verzamel(dossier, bedrijfsnaam=bedrijf, vandaag=vandaag)
     uitslag.signalen = [asdict(s) for s in gevonden]
 
-    adres, bron_url = zoek_adres(dossier)
+    adrestoets = maak_adrestoets(plaats)
+    adres, bron_url = zoek_adres(dossier, adrestoets)
     uitslag.email, uitslag.bron_url = adres, bron_url
     uitslag.bron_datum = vandaag.isoformat() if adres else ""
 
@@ -149,7 +171,7 @@ def beoordeel_bedrijf(bedrijf: str, website: str,
     oordeel = poort_mod.beoordeel(
         poort_mod.controleer_bewijs(gevonden, dossier),
         poort_mod.controleer_wet(adres, rechtsvorm or None, rechtsvorm_citaat,
-                                 bron_url, dossier, onpersoonlijk_adres),
+                                 bron_url, dossier, adrestoets),
         poort_mod.controleer_toon(onderbouwing),
         poort_mod.controleer_uitsluiting(adres, uitgesloten or set()),
     )
@@ -182,6 +204,33 @@ def naar_contactrij(uitslag: Uitslag, branche: str, plaats: str, land: str,
     }
 
 
+def zoek_kandidaten(branche_sleutel: str, gemeenten: list[str], land: str = "NL",
+                    logger=print) -> list[dict]:
+    """Zelf bedrijven zoeken in OpenStreetMap (gratis), met eigen website.
+
+    Hergebruikt bron_osm.haal_bedrijven, dezelfde bron als de leadsmachine.
+    Landelijke ketens vallen af: die mailen we niet koud.
+    """
+    branche = BRANCHE_OP_SLEUTEL.get(branche_sleutel)
+    if branche is None:
+        raise ValueError(f"onbekende branche '{branche_sleutel}'; "
+                         f"kies uit {', '.join(sorted(BRANCHE_OP_SLEUTEL))}")
+    bedrijven, fouten = bron_osm.haal_bedrijven(gemeenten, branche, land, logger=logger)
+    for fout in fouten:
+        logger(f"  OSM: {fout}")
+    kandidaten = []
+    for bedrijf in bedrijven:
+        if not bedrijf.website or is_landelijke_keten(bedrijf.naam):
+            continue
+        kandidaten.append({"bedrijf": bedrijf.naam, "website": bedrijf.website,
+                           "branche": branche_sleutel, "plaats": bedrijf.gemeente,
+                           "land": land, "osm_id": bedrijf.osm_id,
+                           "telefoon": bedrijf.telefoon})
+    logger(f"OSM: {len(bedrijven)} bedrijven, {len(kandidaten)} met eigen website "
+           f"en geen landelijke keten")
+    return kandidaten
+
+
 def _lees_leads(pad: Path) -> list[dict]:
     if pad.suffix.lower() == ".json":
         data = json.loads(pad.read_text(encoding="utf-8"))
@@ -206,7 +255,8 @@ def draai(leads: list[dict], uitgesloten: set[str] | None = None,
         behandeld += 1
         logger(f"  [{behandeld}] {bedrijf} — {website}")
         uitslag = beoordeel_bedrijf(bedrijf=bedrijf, website=website,
-                                    uitgesloten=uitgesloten, vandaag=vandaag)
+                                    uitgesloten=uitgesloten, vandaag=vandaag,
+                                    plaats=lead.get("plaats", ""))
         rapport.append(asdict(uitslag))
         if uitslag.doorgelaten:
             contacten.append(naar_contactrij(uitslag, lead.get("branche", ""),
@@ -228,6 +278,9 @@ def main(argv: list[str] | None = None) -> int:
                     "onderbouwde prospects klaar. Verstuurt nooit iets.")
     ontleder.add_argument("--leads", type=Path, help="leads.json of leads.csv")
     ontleder.add_argument("--site", help="losse website om te toetsen")
+    ontleder.add_argument("--branche", help="zelf zoeken in OSM: branchesleutel, bv. kapsalon")
+    ontleder.add_argument("--gemeenten", help="bij --branche: komma-gescheiden gemeenten")
+    ontleder.add_argument("--land", default="NL", choices=("NL", "BE"))
     ontleder.add_argument("--bedrijf", default="", help="bedrijfsnaam bij --site")
     ontleder.add_argument("--uit", type=Path, help="map om de uitvoer in te schrijven")
     ontleder.add_argument("--max", type=int, default=25, dest="maximum")
@@ -242,8 +295,11 @@ def main(argv: list[str] | None = None) -> int:
         leads = [{"bedrijf": argumenten.bedrijf or argumenten.site, "website": argumenten.site}]
     elif argumenten.leads:
         leads = _lees_leads(argumenten.leads)
+    elif argumenten.branche and argumenten.gemeenten:
+        gemeenten = [g.strip() for g in argumenten.gemeenten.split(",") if g.strip()]
+        leads = zoek_kandidaten(argumenten.branche, gemeenten, argumenten.land)
     else:
-        ontleder.error("geef --leads of --site")
+        ontleder.error("geef --leads, --site, of --branche met --gemeenten")
         return 2
 
     uitgesloten: set[str] = set()
