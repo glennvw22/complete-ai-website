@@ -60,6 +60,7 @@ class Uitslag:
     bron_url: str = ""
     bron_datum: str = ""
     rechtsvorm: str = ""
+    rechtsvorm_citaat: str = ""
     signalen: list[dict] = field(default_factory=list)
     gelezen_paginas: list[str] = field(default_factory=list)
     redenen_afgewezen: list[str] = field(default_factory=list)
@@ -164,6 +165,7 @@ def beoordeel_bedrijf(bedrijf: str, website: str,
             rechtsvorm, rechtsvorm_citaat = uitkomst
             break
     uitslag.rechtsvorm = rechtsvorm
+    uitslag.rechtsvorm_citaat = rechtsvorm_citaat
 
     categorie = kies_categorie(gevonden)
     onderbouwing = schrijf_onderbouwing(gevonden)
@@ -218,9 +220,22 @@ def zoek_kandidaten(branche_sleutel: str, gemeenten: list[str], land: str = "NL"
     bedrijven, fouten = bron_osm.haal_bedrijven(gemeenten, branche, land, logger=logger)
     for fout in fouten:
         logger(f"  OSM: {fout}")
+    # Meerdere vestigingen op één domein (bmn.nl/vestigingen/...) is een keten:
+    # die mailen we niet koud, en per filiaal zou hetzelfde bedrijf vaker
+    # benaderd worden.
+    def _domein(url: str) -> str:
+        kaal = re.sub(r"^https?://", "", url.strip().lower()).split("/")[0]
+        return kaal[4:] if kaal.startswith("www.") else kaal
+    per_domein: dict[str, int] = {}
+    for bedrijf in bedrijven:
+        if bedrijf.website:
+            per_domein[_domein(bedrijf.website)] = per_domein.get(_domein(bedrijf.website), 0) + 1
+
     kandidaten = []
     for bedrijf in bedrijven:
         if not bedrijf.website or is_landelijke_keten(bedrijf.naam):
+            continue
+        if per_domein.get(_domein(bedrijf.website), 0) > 1:
             continue
         kandidaten.append({"bedrijf": bedrijf.naam, "website": bedrijf.website,
                            "branche": branche_sleutel, "plaats": bedrijf.gemeente,

@@ -78,6 +78,7 @@ mist.
 ```bash
 cd leads
 python3 -m onderbouwing.agent --site https://voorbeeld.nl --bedrijf "Voorbeeld BV"
+python3 -m onderbouwing.agent --branche installatie --gemeenten "Houten,Kampen" --max 40 --uit uitvoer/<datum>/onderbouwing
 python3 -m onderbouwing.agent --leads uitvoer/2026-09-23/leads.json --uit uitvoer/2026-09-23 --max 25
 ```
 
@@ -116,6 +117,28 @@ de complexiteit.
 
 De sleutel `LEADS_IMPORT_SLEUTEL` gaat alleen mee als header en komt in
 geen enkele logregel of uitvoerbestand terecht.
+
+## Eerste live run (24 september 2026)
+
+Kapsalons in Houten, Huizen, IJsselstein en Kampen: 55 bedrijven uit
+OpenStreetMap, 30 met een eigen website, 25 getoetst, **0 door de poort**.
+De redenen, per stuk in `rapport.json`: vooral gmail-adressen en geen
+rechtsvorm op de site. Kapsalons zijn meestal eenmanszaken, en die mogen we
+zonder opt-in niet mailen. Voor koude mail is dit dus een zwakke branche.
+
+Dezelfde run liet zien dat de leadsmachine zonder KVK in Nederland niets
+levert (272 kandidaten, 0 leads): zonder KVK is geen enkel bedrijf als
+rechtspersoon bevestigd. De agent haalt die bevestiging gratis van de eigen
+site, waar de rechtsvorm er staat.
+
+Installatiebedrijven in Houten, Huizen, IJsselstein, Kampen, Katwijk en
+Leiden: 20 bedrijven, 18 met eigen website, **1 door de poort**: STB B.V.,
+`info@stb.eu`. Bewijs: "STB© 2023" in de voettekst van stb.eu, en
+"Bedrijfsnaam: STB B.V. KVK-nummer: 17074021" op hun privacypagina. Filialen
+op één domein (BMN, Warmteservice, Jongeneel) vallen sindsdien af als keten.
+
+Overpass bereiken: in een cloudcontainer lukte alleen de spiegel
+`maps.mail.ru`; `bron_osm.SPIEGELS` probeert die al als eerste.
 
 ## Wat nog open staat
 
