@@ -23,6 +23,8 @@ PAGINAS = [
     "index.html", "websites.html", "automatisering.html", "ai-telefonist.html",
     "social-media.html", "vindbaarheid-seo.html", "adverteren.html",
     "bedrijfsprocessen-automatiseren-voorbeelden.html",
+    "wat-is-workflow-automatisering.html", "ai-agent-voor-uw-bedrijf.html", "wat-kost-automatisering.html",
+    "gemiste-oproepen-berekenen.html", "gidsen.html",
     "ai-voor-kapsalons.html", "ai-voor-garagebedrijven.html", "ai-voor-de-horeca.html",
     "ai-voor-bouw-en-installatie.html", "case-aronza.html", "ai-voor-uw-bedrijf.html",
     "privacy.html", "voorwaarden.html", "gegevens-verwijderen.html",

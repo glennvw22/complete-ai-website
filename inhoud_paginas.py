@@ -418,13 +418,13 @@ PAGINAS = [
    proza("Het korte antwoord", "Wat houdt bedrijfsprocessen automatiseren in?",
          """        <p>Een bedrijfsproces is een ordening van activiteiten waarmee een bedrijf een product of dienst levert die voor de klant waarde heeft (zie <a href="https://nl.wikipedia.org/wiki/Bedrijfsproces" rel="noopener" target="_blank">Wikipedia</a>). Een order verwerken, een offerte opvolgen en een factuur versturen zijn drie voorbeelden. Elk heeft een begin, een vaste volgorde en een uitkomst.</p>
         <p>Bedrijfsprocessen automatiseren is het laten uitvoeren van die stappen door software, zodat niemand ze nog met de hand doet. Niet elk proces en niet elke stap komt daarvoor in aanmerking. Drie kenmerken wijzen het aan: het proces komt terug, de volgorde staat vast en u kunt de uitkomst controleren. Welke processen dat in een mkb-bedrijf zijn, staat per afdeling in de gids <a href="bedrijfsprocessen-automatiseren-voorbeelden.html">Processen automatiseren: voorbeelden</a>.</p>
-        <p>Deze pagina gaat over de andere kant: wat Complete AI voor u inricht, hoe een traject verloopt, waaraan het koppelt en wat u zelf in de hand houdt.</p>""",
+        <p>Deze pagina gaat over de andere kant: wat Complete AI voor u inricht, hoe een traject verloopt, waaraan het koppelt en wat u zelf in de hand houdt. Wat een workflow is en hoe u er zelf een op papier zet, leest u in <a href="wat-is-workflow-automatisering.html">Wat is workflow automatisering?</a></p>""",
          "korte-antwoord"),
 
    proza("Techniek", "Bedrijfsprocessen automatiseren met AI: wanneer is AI nodig?",
          """        <p>AI is niet voor elke stap nodig, en dat is een voordeel. Waar de uitkomst elke keer hetzelfde hoort te zijn, is een vaste regel betrouwbaarder en beter te controleren dan een model dat een inschatting maakt. Een factuur die volgt op een afgeronde order is zo&#8217;n stap.</p>
         <p>AI komt in beeld waar taal en variatie een rol spelen: een telefoongesprek dat een bestelling wordt, een vraag die via WhatsApp binnenkomt. De <a href="ai-telefonist.html">AI-telefonist</a> is daar het voorbeeld van. Hij verstaat wat de beller vraagt en zet de bestelling daarna gestructureerd in de orderlijst.</p>
-        <p>Het verschil tussen een vaste regel, RPA en AI, met bronnen en voorbeelden, staat in de gids <a href="bedrijfsprocessen-automatiseren-voorbeelden.html#regels-rpa-ai">Processen automatiseren: voorbeelden</a>. Wat AI in een klein bedrijf verder concreet doet, leest u in <a href="ai-voor-uw-bedrijf.html">AI in uw bedrijf</a>.</p>""",
+        <p>Het verschil tussen een vaste regel, RPA en AI, met bronnen en voorbeelden, staat in de gids <a href="bedrijfsprocessen-automatiseren-voorbeelden.html#regels-rpa-ai">Processen automatiseren: voorbeelden</a>. Wat AI in een klein bedrijf verder concreet doet, leest u in <a href="ai-voor-uw-bedrijf.html">AI in uw bedrijf</a>. Wat een AI-agent is en waarin die verschilt van een chatbot of een vaste automatisering, staat in <a href="ai-agent-voor-uw-bedrijf.html">AI-agent voor uw bedrijf</a>.</p>""",
          "ai-of-regels"),
 
    sectie("De situatie", "Werk dat moet gebeuren maar geen omzet oplevert.",
@@ -487,7 +487,7 @@ PAGINAS = [
           <li><strong>Waar gaat het mis?</strong> Dubbel invoeren, vergeten op te volgen, betalingen die te laat binnenkomen.</li>
           <li><strong>Wat mag nooit zonder uw akkoord de deur uit?</strong> Daar komt een goedkeuringsstap.</li>
         </ol>
-        <p>U ontvangt daarna binnen één werkdag een voorstel met één vaste prijs. Blijkt dat er weinig te winnen valt, dan hoort u dat ook. Wilt u zelf alvast nagaan waar uw tijd heen gaat, dan staat in de gids <a href="bedrijfsprocessen-automatiseren-voorbeelden.html#tijd-opnemen">hoe u vooraf een week opneemt</a>.</p>
+        <p>U ontvangt daarna binnen één werkdag een voorstel met één vaste prijs. Waar die prijs van afhangt, staat in <a href="wat-kost-automatisering.html">Wat kost automatisering?</a> Blijkt dat er weinig te winnen valt, dan hoort u dat ook. Wilt u zelf alvast nagaan waar uw tijd heen gaat, dan staat in de gids <a href="bedrijfsprocessen-automatiseren-voorbeelden.html#tijd-opnemen">hoe u vooraf een week opneemt</a>.</p>
         <h3>Wat vraagt het van u?</h3>
         <p>Een half uur voor de intake, uw akkoord op het voorstel en in de eerste weken uw goedkeuring op wat naar klanten gaat. Het inrichten doen wij. Na de oplevering blijft het onderhoud onze verantwoordelijkheid: één bericht volstaat, zonder ticketsysteem.</p>""",
          "intake"),
@@ -597,12 +597,12 @@ PAGINAS = [
      ("100%", "van de gesprekken vastgelegd met een transcript"),
  ],
  "slot_kop": "Hoeveel telefoontjes blijven er nu liggen?",
- "slot_tekst": "Een gemist telefoontje laat geen spoor achter, dus wat er nu blijft liggen is onbekend. In een half uur rekenen wij het door: hoe vaak gaat de telefoon op momenten dat er niemand kan opnemen, en wat vertegenwoordigt zo'n gesprek gemiddeld aan omzet. Daarna weet u ook wat hij voor u zou afhandelen en wat naar u doorgaat.",
+ "slot_tekst": "Een gemist telefoontje laat geen spoor achter, dus wat er nu blijft liggen is onbekend. Wilt u het eerst zelf nagaan, gebruik dan de <a href=\"gemiste-oproepen-berekenen.html\">rekentool voor gemiste oproepen</a>. In een half uur rekenen wij het door: hoe vaak gaat de telefoon op momenten dat er niemand kan opnemen, en wat vertegenwoordigt zo'n gesprek gemiddeld aan omzet. Daarna weet u ook wat hij voor u zou afhandelen en wat naar u doorgaat.",
  "vragen": [
    ("Wat is een AI-telefoonassistent?",
     "Een AI-telefoonassistent is software die een inkomend telefoongesprek aanneemt en zelf voert. Hij verstaat de beller, antwoordt in gewone taal en legt vast wat er nodig is: een bestelling, een afspraak of een terugbelnotitie. Andere namen zijn AI-telefonist en AI-receptionist. Bij voicemail blijft de beller met zijn vraag zitten, hier krijgt hij direct een antwoord."),
    ("Hoeveel kost een AI-telefonist of AI-agent?",
-    "Dat hangt af van wat de telefonist afhandelt: alleen opnemen en noteren, of ook bestellingen, afspraken en koppelingen. Een bedrag vooraf zou voor het ene bedrijf te hoog zijn en voor het andere te laag. Bij Complete AI ligt er na de intake één vaste prijs op papier: eenmalig voor de bouw en een vast maandbedrag, zonder nacalculatie."),
+    "Dat hangt af van wat de telefonist afhandelt: alleen opnemen en noteren, of ook bestellingen, afspraken en koppelingen. Een bedrag vooraf zou voor het ene bedrijf te hoog zijn en voor het andere te laag. Bij Complete AI ligt er na de intake één vaste prijs op papier: eenmalig voor de bouw en een vast maandbedrag, zonder nacalculatie. Waar de kosten van afhangen, staat in <a href=\"wat-kost-automatisering.html\">Wat kost automatisering?</a> Wat een AI-agent is, leest u in <a href=\"ai-agent-voor-uw-bedrijf.html\">AI-agent voor uw bedrijf</a>."),
    ("Is er een AI-receptionist in Nederland?",
     """Ja. De <a href="https://nos.nl/artikel/2625224-geen-twijfel-ai-telefonist-moet-zich-voortaan-direct-prijsgeven" rel="noopener" target="_blank">NOS</a> meldde op 2 augustus 2026 dat AI-receptionisten steeds vaker telefoons aannemen, onder meer bij een tandartspraktijk. Complete AI levert in Nederland en België een Nederlandstalige AI-telefonist voor het mkb, ook in het Vlaams, Frans en Engels waar dat nodig is."""),
    ("Moet een AI-telefonist zeggen dat hij een AI is?",
@@ -954,7 +954,7 @@ PAGINAS = [
    ("Hoe kan ik AI in mijn bedrijf implementeren?",
     "In fasen, te beginnen bij één taak. Leg eerst een week vast waar uw tijd naartoe gaat en automatiseer daarna één taak. Laat die enkele weken draaien en controleer of het klopt. Pas dan volgt de volgende. Zo ziet u bij elke stap wat het oplevert en kunt u tussentijds bijsturen."),
    ("Welke AI is het beste voor bedrijven?",
-    """Er is geen AI die voor elk bedrijf het beste is; het hangt af van de taak. Voor eenmalig schrijf- en zoekwerk past een algemene AI-assistent. Voor werk dat elke week terugkomt past een automatisering die aan uw eigen systemen is gekoppeld. Voor de telefoon past een <a href="ai-telefonist.html">AI-telefonist</a>. <a href="#kiezen">De tabel</a> zet het naast elkaar."""),
+    """Er is geen AI die voor elk bedrijf het beste is; het hangt af van de taak. Voor eenmalig schrijf- en zoekwerk past een algemene AI-assistent. Voor werk dat elke week terugkomt past een automatisering die aan uw eigen systemen is gekoppeld. Voor de telefoon past een <a href="ai-telefonist.html">AI-telefonist</a>, en de gids <a href="ai-agent-voor-uw-bedrijf.html">AI-agent voor uw bedrijf</a> legt uit wanneer software zelf stappen kiest. <a href="#kiezen">De tabel</a> zet het naast elkaar."""),
    ("Wat zijn drie voorbeelden van AI?",
     """Volgens het <a href="https://www.cbs.nl/nl-nl/nieuws/2025/50/bedrijven-gebruiken-ai-vaakst-voor-marketing-of-verkoop" rel="noopener" target="_blank">CBS</a> gebruiken bedrijven het vaakst AI die geschreven tekst analyseert, AI die tekst of spraak genereert en spraakherkenning. In de praktijk is dat een e-mail of factuur lezen, een antwoord schrijven of een telefoongesprek voeren en verstaan. In 2025 gebruikte respectievelijk 12, 8 en 6 procent van de bedrijven deze technieken."""),
    ("Is AI ook iets voor een klein bedrijf?",
@@ -2425,7 +2425,7 @@ PAGINAS = [
    ("Welk proces automatiseer ik als eerste?",
     """Het proces dat wekelijks terugkomt, elke keer dezelfde stappen volgt en de meeste uren kost. Bij Aronza was dat de facturatie, samen met de kosten. Een factuur of bericht dat naar een klant gaat, krijgt eerst een goedkeuringsstap. Lukt het niet om te kiezen, dan doet de <a href="index.html#contact">intake</a> dat samen met u."""),
    ("Moet ik mijn huidige systemen vervangen?",
-    """Nee. Automatisering sluit aan op wat u al gebruikt: de boekhouding, de agenda, de telefonie. Wij adviseren alleen iets te vervangen wanneer het kosten veroorzaakt zonder rendement, en dan met de onderbouwing erbij. Hoe dat in een traject verloopt, staat bij <a href="automatisering.html">bedrijfsprocessen automatiseren</a>."""),
+    """Nee. Automatisering sluit aan op wat u al gebruikt: de boekhouding, de agenda, de telefonie. Hoe dat in een traject verloopt, staat bij <a href="automatisering.html">bedrijfsprocessen automatiseren</a>."""),
  ],
  "inhoud": "\n\n  <hr class=\"streep\">\n\n".join([
    inhoudsopgave([
@@ -2681,6 +2681,1088 @@ PAGINAS = [
         "https://www.cbs.nl/nl-nl/nieuws/2025/50/bedrijven-gebruiken-ai-vaakst-voor-marketing-of-verkoop",
         "Voorlopige cijfers over het gebruik van AI door Nederlandse bedrijven in 2025, naar bedrijfsgrootte en doel."),
    ]),
+ ]),
+},
+
+# ───────────────────────────── NIEUW: WAT IS WORKFLOW AUTOMATISERING? ─────────────────────────────
+{
+ "bestand": "wat-is-workflow-automatisering.html",
+ "soort": "gids",
+ "dienst": "Wat is workflow automatisering?",
+ "titel": "Wat is workflow automatisering? Voorbeelden | Complete AI",
+ "beschrijving": "Wat workflow automatisering is, uit welke onderdelen een workflow bestaat en hoe u er een op papier zet, met tien voorbeelden uit een klein bedrijf.",
+ "omschrijving": "Uitleg over workflow automatisering voor het mkb: wat een workflow is, het verschil met een losse taak, RPA en AI, de bouwstenen, tien voorbeelden per afdeling en hoe u een workflow op papier zet.",
+ "ogen": "Gids",
+ "h1": 'Wat is <span class="glans">workflow automatisering</span>? Uitleg met voorbeelden voor het mkb',
+ "lead": "Workflow automatisering is het laten uitvoeren van een vaste reeks stappen door software, zodat werk vanzelf van de ene stap naar de volgende gaat. Een workflow is die reeks zelf: een aanleiding, stappen, voorwaarden en een uitkomst, zoals een order die voorraad, factuur en klantdossier bijwerkt. Complete AI richt dit in voor mkb-bedrijven in Nederland en België.",
+ "levertijd": "Leestijd ongeveer 15 minuten",
+ "gepubliceerd": "2026-09-25",
+ "uitkomsten": [
+     ("5", "onderdelen: aanleiding, stappen, voorwaarden, goedkeuring en uitkomst"),
+     ("10", "voorbeelden uit een klein bedrijf, met aanleiding, route en wat bij u blijft"),
+     ("1", "workflow tegelijk beginnen: zo blijft zichtbaar wat elke stap oplevert"),
+ ],
+ "slot_kop": "Welke workflow kost u de meeste tijd?",
+ "slot_tekst": "In een half uur brengen wij in kaart welke workflows bij u het meest terugkomen en welke daarvan zich lenen voor automatisering. Binnen één werkdag volgt een voorstel met één vaste prijs. U ontvangt een onderbouwd advies, ook wanneer de conclusie is dat er weinig te winnen valt.",
+ "vragen": [
+   ("Wat wordt bedoeld met workflow?",
+    """Een workflow is de vaste route die werk aflegt, van een aanleiding via een reeks stappen naar een uitkomst. Een order die binnenkomt en daarna de voorraad, de factuur en het klantdossier bijwerkt, is een workflow. De Workflow Management Coalition omschrijft het als het geheel of gedeeltelijk automatiseren van een bedrijfsproces. Zie <a href="#korte-antwoord">het korte antwoord</a>."""),
+   ("Hoe maak ik een workflow?",
+    """Beschrijf eerst op papier hoe het werk nu verloopt: de aanleiding, de stappen, de uitzonderingen en de uitkomst. Bepaal daarna welke stappen software overneemt en waar u zelf goedkeurt. Richt pas dan de software in. Het voorbeeld van een order staat bij <a href="#op-papier">zo zet u een workflow op papier</a>."""),
+   ("Wat is workflow automatisering?",
+    """Workflow automatisering is het laten uitvoeren van een vaste reeks stappen door software. Een gebeurtenis start de workflow, de software voert de stappen in de afgesproken volgorde uit en er ligt een uitkomst die u kunt controleren. Wat u zelf wilt beslissen, zoals een akkoord op een factuur, blijft bij u."""),
+   ("Wat is het verschil tussen een workflow en een bedrijfsproces?",
+    """Een workflow is een reeks stappen in een vaste volgorde, een bedrijfsproces is groter en kan uit meerdere workflows bestaan. Een order verwerken is een workflow, van aanvraag tot betaalde factuur is een proces. IBM onderscheidt taak-, workflow- en procesautomatisering. Zie <a href="#taak-workflow-proces">losse taak, workflow of proces</a>."""),
+   ("Wat is het verschil tussen workflow automatisering en RPA?",
+    """Workflow automatisering regelt de route die het werk aflegt. RPA is een manier om een stap uit te voeren, door handelingen op een scherm na te bootsen. Een workflow kan dus een RPA-stap bevatten. Volgens IBM volgt RPA vastgelegde stappen en herkent AI patronen in gegevens. Zie <a href="#rpa-ai">workflow, RPA of AI</a>."""),
+   ("Heb ik AI nodig voor workflow automatisering?",
+    """Nee. Voor een workflow met vaste regels is AI niet nodig, en volgens IBM zijn regelgebaseerde programma’s even effectief tegen inefficiëntie. AI komt in beeld bij stappen met taal, zoals een telefoongesprek dat een bestelling wordt. Zie de <a href="ai-telefonist.html">AI-telefonist</a> en de gids <a href="ai-agent-voor-uw-bedrijf.html">AI-agent voor uw bedrijf</a>."""),
+   ("Welke workflow automatiseer ik als eerste?",
+    """De workflow die wekelijks terugkomt, elke keer dezelfde stappen volgt en de meeste uren kost. Bij Aronza was dat facturatie, samen met de kosten. Neem een week lang op wat elke handeling kost en kies dan. Hoe dat werkt, staat bij <a href="bedrijfsprocessen-automatiseren-voorbeelden.html#tijd-opnemen">vooraf de tijd opnemen</a>."""),
+   ("Wat is een goedkeuringsstap in een workflow?",
+    """Een goedkeuringsstap is een moment waarop de workflow wacht tot iemand akkoord geeft. Complete AI plaatst die stap voor alles wat naar een klant gaat, zoals een factuur of een bericht. Klopt alles en geeft u telkens zonder aanpassing akkoord, dan kan de stap vervallen. Dat kiest u per handeling."""),
+   ("Wat gebeurt er als een stap in de workflow mislukt?",
+    """Een goed ingerichte workflow meldt de fout en gaat niet stilzwijgend door. Microsoft noemt een alternatieve route bij een fout, opnieuw proberen bij een tijdelijke storing en een melding aan de beheerder. Bij Complete AI is elke automatische handeling terug te zien en terug te draaien. Zie <a href="#mislukt">wat als een stap mislukt</a>."""),
+   ("Wat kost workflow automatisering?",
+    """Dat hangt af van het aantal workflows, de koppelingen, het aantal uitzonderingen, de goedkeuringsstappen en het onderhoud. Een bedrag zonder gesprek zegt weinig. Na een intake van een half uur ligt er binnen één werkdag één vaste prijs op papier. Zie <a href="wat-kost-automatisering.html">wat kost automatisering</a>."""),
+   ("Wat is een voorbeeld van een geautomatiseerde workflow?",
+    """Een order die binnenkomt en zonder overtypen de voorraad, de factuur en het klantdossier bijwerkt. Zo draait het bij Aronza, het e-commercebedrijf van de oprichter, sinds begin mei 2026. Tien voorbeelden per afdeling staan bij <a href="#voorbeelden">workflows in een klein bedrijf</a>."""),
+ ],
+ "inhoud": "\n\n  <hr class=\"streep\">\n\n".join([
+   inhoudsopgave([
+       ("korte-antwoord", "Wat is workflow automatisering?"),
+       ("taak-workflow-proces", "Losse taak, workflow of proces?"),
+       ("rpa-ai", "Workflow, RPA of AI?"),
+       ("bouwstenen", "Uit welke onderdelen bestaat een workflow?"),
+       ("voorbeelden", "Tien voorbeelden per afdeling"),
+       ("opbrengst", "Wat levert het op, en wat niet?"),
+       ("op-papier", "Zo zet u een workflow op papier"),
+       ("beginnen-meten", "Hoe begint u en hoe meet u?"),
+       ("fouten", "Veelgemaakte fouten"),
+       ("mislukt", "Wat als een stap mislukt?"),
+       ("eigen-praktijk", "Uit eigen praktijk"),
+       ("bronnen", "Bronnen"),
+   ]),
+
+   proza("Het korte antwoord", "Wat is een workflow, en wat is workflow automatisering?",
+         """        <h3>Wat wordt bedoeld met workflow?</h3>
+        <p>Een workflow is de vaste route die werk aflegt: van een aanleiding, via een aantal stappen, naar een uitkomst. Een order die binnenkomt en daarna de voorraad, de factuur en het klantdossier bijwerkt, is een workflow. Ook een verlofaanvraag is een workflow: de aanvraag komt bij u, waarna uw beslissing terugkeert naar de medewerker.</p>
+        <p>De Workflow Management Coalition, een samenwerkingsverband van softwarebedrijven dat werkte aan standaarden voor dit vakgebied, omschrijft workflow in haar <a href="http://www.workflowpatterns.com/documentation/documents/tc003v11.pdf" rel="noopener" target="_blank">referentiemodel</a> als het geheel of gedeeltelijk automatiseren van een bedrijfsproces. Volgens <a href="https://nl.wikipedia.org/wiki/Workflow_management" rel="noopener" target="_blank">Wikipedia</a> beoogt workflow management te regelen dat de juiste informatie volgens de regels van het bedrijf van de ene afdeling naar de andere komt, en zijn bij een workflowsysteem de status en het traject van een taak op te vragen. Dat laatste is voor een klein bedrijf het merkbaarste verschil: u ziet waar een order staat zonder ernaar te hoeven vragen.</p>
+        <h3>Wat is workflow automatisering?</h3>
+        <p>Workflow automatisering is het laten uitvoeren van een workflow door software. Een gebeurtenis start de workflow, de software voert de stappen in de afgesproken volgorde uit en aan het eind ligt een uitkomst die u kunt controleren. <a href="https://www.ibm.com/think/topics/workflow-automation" rel="noopener" target="_blank">IBM</a> omschrijft het als het vervangen van handmatige taken door software die een proces geheel of gedeeltelijk uitvoert.</p>
+        <p>Geheel of gedeeltelijk is geen detail. Niet elke stap hoeft automatisch te verlopen. Het referentiemodel van de Workflow Management Coalition noemt als kern van workflow de automatisering van processen waarin mensen en machines samen activiteiten uitvoeren. In een klein bedrijf is dat de praktische vorm: de software doet het herhaalbare werk en u beslist waar dat nodig is.</p>
+        <h3>Handmatig, half automatisch of geheel automatisch</h3>
+        <div class="tabelwrap"><table>
+          <thead><tr><th>Vorm</th><th>Wie voert de stappen uit</th><th>Voorbeeld: een order verwerken</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Handmatig</strong></td><td>Een persoon doet elke stap en houdt zelf bij waar het werk staat.</td><td>De order noteren, de voorraadlijst aanpassen, een factuur typen en het klantdossier bijwerken.</td></tr>
+            <tr><td><strong>Half automatisch</strong></td><td>Software voert de vaste stappen uit. Een persoon beoordeelt de uitzonderingen en geeft akkoord op wat naar buiten gaat.</td><td>Voorraad, factuur en klantdossier worden bijgewerkt. De factuur gaat pas uit nadat u akkoord heeft gegeven.</td></tr>
+            <tr><td><strong>Geheel automatisch</strong></td><td>Software voert alle stappen uit, ook de laatste.</td><td>De klant krijgt na elke order een bevestiging, zonder dat iemand ernaar kijkt.</td></tr>
+          </tbody>
+        </table></div>
+        <div class="noot"><p>Bij Complete AI begint elke workflow die naar een klant gaat als half automatisch: de software zet de factuur of het bericht klaar en u geeft akkoord. Die stap kan later vervallen, dat kiest u per handeling. Hoe dat werkt, staat bij <a href="automatisering.html#controle">wat vanzelf verloopt en waar u de controle houdt</a>.</p></div>""",
+         "korte-antwoord",
+         "Een definitie in gewone woorden, met wat de bronnen erover zeggen."),
+
+   proza("Begrippen", "Wat is het verschil tussen een losse taak, een workflow en een proces?",
+         """        <p>Drie woorden die door elkaar worden gebruikt. <a href="https://www.ibm.com/think/topics/business-process-automation" rel="noopener" target="_blank">IBM</a> onderscheidt in zijn uitleg over procesautomatisering vier niveaus. Taakautomatisering neemt één handeling over, zoals een automatische e-mail, een document of het bijwerken van een status. Workflowautomatisering past automatisering toe op een vastgelegde reeks taken, zodat ze in de juiste volgorde worden voltooid en het werk van de ene fase naar de volgende gaat. Procesautomatisering neemt een proces van begin tot eind over. Intelligente automatisering voegt AI toe.</p>
+        <div class="tabelwrap"><table>
+          <thead><tr><th>Niveau</th><th>Wat het automatiseert</th><th>Voorbeeld</th><th>Wat bij u blijft</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Losse taak</strong></td><td>Eén handeling.</td><td>Een bevestigingsmail na een order.</td><td>De tekst en het moment.</td></tr>
+            <tr><td><strong>Workflow</strong></td><td>Een reeks handelingen in vaste volgorde, met een aanleiding en een uitkomst.</td><td>Order binnen, voorraad bij, factuur op, klantdossier bij, bevestiging uit.</td><td>De uitzonderingen en het akkoord op wat naar buiten gaat.</td></tr>
+            <tr><td><strong>Proces</strong></td><td>Alle workflows van aanvraag tot betaling, over afdelingen heen.</td><td>Van aanvraag en offerte via levering en factuur tot betaling.</td><td>Welke workflows u koppelt en in welke volgorde.</td></tr>
+          </tbody>
+        </table></div>
+        <h3>Waarom dit verschil ertoe doet</h3>
+        <p>Een losse taak vraagt weinig voorbereiding: u bepaalt de tekst en het moment. Een workflow vraagt dat u de volgorde, de gegevens en de uitzonderingen kent, want de software voert precies uit wat u vastlegt. Een proces vraagt bovendien dat de workflows op elkaar aansluiten.</p>
+        <p>Daarom loopt de route voor een klein bedrijf in deze volgorde: eerst een taak, dan de keten eromheen, dan het hele proces. Welke processen zich lenen, staat per afdeling in de gids <a href="bedrijfsprocessen-automatiseren-voorbeelden.html">Processen automatiseren: voorbeelden</a>. Hoe Complete AI dat inricht, leest u bij <a href="automatisering.html">bedrijfsprocessen automatiseren</a>.</p>""",
+         "taak-workflow-proces",
+         "Het verschil bepaalt hoeveel voorbereiding u nodig heeft."),
+
+   proza("Techniek", "Workflow automatisering, RPA of AI: wat is het verschil?",
+         """        <p>De drie begrippen sluiten elkaar niet uit. Een workflow kan stappen bevatten die met RPA of met AI worden uitgevoerd, en stappen die een vaste regel volgt.</p>
+        <div class="tabelwrap"><table>
+          <thead><tr><th>Begrip</th><th>Wat het is</th><th>Past bij</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Workflow met vaste regels</strong></td><td>Software die een afgesproken route volgt. Dezelfde invoer geeft dezelfde uitkomst.</td><td>Werk waarvan de regels vaststaan: een factuur na een afgeronde order, een herinnering bij een openstaande betaling.</td></tr>
+            <tr><td><strong>RPA</strong></td><td>Een software-robot die handelingen op een scherm nabootst, zoals klikken en invullen.</td><td>Gegevens overnemen tussen programma’s die niet met elkaar kunnen koppelen.</td></tr>
+            <tr><td><strong>AI</strong></td><td>Software die patronen in gegevens herkent, ook in tekst en spraak.</td><td>Werk met taal: een telefoongesprek dat een bestelling wordt, een vraag die een antwoord nodig heeft.</td></tr>
+          </tbody>
+        </table></div>
+        <p>Volgens <a href="https://nl.wikipedia.org/wiki/Robotic_process_automation" rel="noopener" target="_blank">Wikipedia</a> is RPA gericht op automatiseren via de gebruikersinterface, door het handmatige proces na te bootsen. <a href="https://www.ibm.com/think/topics/rpa" rel="noopener" target="_blank">IBM</a> vat het verschil met AI kort samen: RPA is procesgestuurd en AI is datagestuurd. Een RPA-robot volgt alleen de stappen die een gebruiker heeft vastgelegd. AI herkent patronen in gegevens, vooral in ongestructureerde gegevens zoals tekst.</p>
+        <h3>Heeft workflow automatisering AI nodig?</h3>
+        <p>Nee. IBM schrijft in zijn uitleg over <a href="https://www.ibm.com/think/topics/workflow-automation" rel="noopener" target="_blank">workflow automatisering</a> dat veel hulpmiddelen AI bevatten, maar dat AI niet nodig is om workflows succesvol te automatiseren: software met vaste regels is even effectief tegen inefficiëntie. Een factuur die volgt op een afgeronde order is zo’n stap. Een vaste regel is bovendien beter te controleren dan een model dat een inschatting maakt.</p>
+        <p>AI komt in beeld bij stappen met taal. Een beller die zijn bestelling doorgeeft, formuleert die elke keer anders. De <a href="ai-telefonist.html">AI-telefonist</a> verstaat het gesprek en de bestelling gaat daarna gestructureerd de workflow in. Werkt software niet met een vaste route, maar kiest zij zelf welke stappen nodig zijn, dan spreekt men van een AI-agent. Wat dat is en wanneer het past, leest u in de gids <a href="ai-agent-voor-uw-bedrijf.html">AI-agent voor uw bedrijf</a>. De keuze tussen vaste regels, RPA en AI staat met bronnen uitgewerkt bij <a href="bedrijfsprocessen-automatiseren-voorbeelden.html#regels-rpa-ai">processen automatiseren met AI, RPA of vaste regels</a>.</p>""",
+         "rpa-ai",
+         "Een workflow is de route. RPA en AI zijn manieren om een stap uit te voeren."),
+
+   proza("Opbouw", "Uit welke onderdelen bestaat een workflow?",
+         """        <p>Wie de vijf onderdelen kan benoemen, kan een workflow beschrijven. In de tabel is steeds dezelfde workflow als voorbeeld genomen: een order verwerken.</p>
+        <div class="tabelwrap"><table>
+          <thead><tr><th>Onderdeel</th><th>Wat het is</th><th>Voorbeeld</th><th>Vraag die u beantwoordt</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Aanleiding</strong></td><td>De gebeurtenis of het tijdstip waarmee de workflow start. Ook wel trigger genoemd.</td><td>Een order komt binnen.</td><td>Wat zet dit in gang?</td></tr>
+            <tr><td><strong>Stappen</strong></td><td>De handelingen in vaste volgorde, uitgevoerd door software of door een persoon.</td><td>Order vastleggen, voorraad verlagen, factuur opstellen, klantdossier bijwerken, bevestiging sturen.</td><td>Wat gebeurt er, en in welke volgorde?</td></tr>
+            <tr><td><strong>Voorwaarden</strong></td><td>Controles die bepalen welke route de workflow neemt.</td><td>Is het artikel op voorraad? Is de klant al bekend?</td><td>Wanneer gaat het anders?</td></tr>
+            <tr><td><strong>Goedkeuring</strong></td><td>Een moment waarop de workflow wacht tot een persoon beslist.</td><td>De factuur gaat uit nadat u akkoord heeft gegeven.</td><td>Wat mag nooit zonder mij gebeuren?</td></tr>
+            <tr><td><strong>Uitkomst</strong></td><td>Wat er aan het eind ligt, en hoe u ziet dat het klopt.</td><td>De voorraad klopt, de factuur is verstuurd, het klantdossier is bijgewerkt.</td><td>Wanneer is het klaar, en hoe controleer ik dat?</td></tr>
+          </tbody>
+        </table></div>
+        <h3>De aanleiding: drie manieren om een workflow te starten</h3>
+        <p>Microsoft omschrijft in de <a href="https://learn.microsoft.com/nl-nl/power-automate/triggers-introduction" rel="noopener" target="_blank">documentatie van Power Automate</a> een trigger als een gebeurtenis waarmee een stroom wordt gestart, en onderscheidt drie soorten: handmatig gestart, volgens een planning, of automatisch wanneer een externe gebeurtenis plaatsvindt, zoals een binnenkomende e-mail. In een klein bedrijf ziet dat er zo uit:</p>
+        <ul>
+          <li><strong>Handmatig.</strong> U drukt op een knop om een offerte te laten opvolgen.</li>
+          <li><strong>Volgens een planning.</strong> Elke maandagochtend staat het weekoverzicht klaar.</li>
+          <li><strong>Bij een gebeurtenis.</strong> Een order, een aanvraag via het formulier, een betaling die uitblijft.</li>
+        </ul>
+        <p>Hoe scherper de aanleiding, hoe minder de workflow op het verkeerde moment start. &#8220;Een klant is tevreden&#8221; is geen aanleiding, want niemand kan zeggen wanneer dat gebeurt. &#8220;De levering is afgerond&#8221; wel.</p>
+        <h3>Voorwaarden en uitzonderingen</h3>
+        <p>Een voorwaarde is een controle waarna de workflow een andere route neemt. Zonder voorwaarden werkt een workflow alleen in het ideale geval. De praktijk kent meer gevallen: een artikel dat niet op voorraad is, een klant zonder e-mailadres, een order die wordt gewijzigd nadat de factuur al is opgesteld. Elk daarvan is een voorwaarde met een eigen route, bijvoorbeeld een melding aan u of een taak om het adres na te vragen.</p>
+        <h3>Goedkeuring: waar een mens beslist</h3>
+        <p>Een goedkeuringsstap laat de workflow wachten tot iemand akkoord geeft. Microsoft noemt in zijn uitleg over <a href="https://learn.microsoft.com/nl-nl/power-automate/modern-approvals" rel="noopener" target="_blank">goedkeuringswerkstromen</a> als voorbeelden het goedkeuren van facturen, werkorders, verkoopoffertes en vakantieaanvragen, en beschrijft dat degene die goedkeurt kan reageren via e-mail of via een app.</p>
+        <p>Voor een klein bedrijf is de vuistregel eenvoudig. Alles wat naar buiten gaat en niet terug te halen is, zoals een factuur of een bericht aan een klant, krijgt eerst een goedkeuring. Wat binnen uw eigen administratie blijft, verloopt zonder tussenkomst. Klopt alles en geeft u telkens zonder aanpassing akkoord, dan kan de goedkeuring vervallen.</p>
+        <h3>Dezelfde onderdelen onder andere namen</h3>
+        <p>In software en in offertes komt u de onderdelen onder andere namen tegen. Wie de vertaling kent, ziet sneller wat een aanbieder bedoelt.</p>
+        <div class="tabelwrap"><table>
+          <thead><tr><th>In dit artikel</th><th>Wat u tegenkomt</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Workflow</strong></td><td>Werkstroom, stroom of flow. In de Nederlandse documentatie van Microsoft heet een workflow een stroom.</td></tr>
+            <tr><td><strong>Aanleiding</strong></td><td>Trigger of gebeurtenis.</td></tr>
+            <tr><td><strong>Stappen</strong></td><td>Acties of taken.</td></tr>
+            <tr><td><strong>Voorwaarden</strong></td><td>Condities of vertakkingen.</td></tr>
+            <tr><td><strong>Goedkeuring</strong></td><td>Akkoordstap of approval. Degene die goedkeurt heet in de documentatie van Microsoft een fiatteur.</td></tr>
+            <tr><td><strong>Koppeling</strong></td><td>Connector of integratie: de verbinding met een ander programma, zoals uw boekhouding.</td></tr>
+          </tbody>
+        </table></div>
+        <h3>Een workflow in vier zinnen</h3>
+        <div class="noot"><p>Wanneer een order binnenkomt, verlaagt de software de voorraad, stelt een factuur op en vult het klantdossier aan. Is een artikel niet op voorraad, dan krijgt u een melding. De factuur gaat pas uit na uw akkoord. Het resultaat is een order die volledig is verwerkt, zonder dat iemand iets heeft overgetypt.</p></div>
+        <p>Kunt u uw eigen workflow in zulke zinnen vatten, dan kan hij worden ingericht. Lukt dat niet, dan ontbreekt er een onderdeel. Het volgende deel laat zien hoe u dat op papier oplost.</p>""",
+         "bouwstenen",
+         "Elke workflow, groot of klein, is opgebouwd uit dezelfde vijf onderdelen: aanleiding, stappen, voorwaarden, goedkeuring en uitkomst."),
+
+   sectie("Voorbeelden", "Tien voorbeelden van workflows in een klein bedrijf",
+          "Per afdeling een workflow met aanleiding, route en uitkomst. Elk voorbeeld beantwoordt dezelfde twee vragen: wat is de aanleiding, en wanneer is het werk klaar? Waar u zelf beslist, staat het onder Bij u.",
+          voorbeeldblok([(t, f"<strong>Aanleiding:</strong> {a}<br><strong>Route:</strong> {r}<br><strong>Uitkomst:</strong> {u}<br><strong>Bij u:</strong> {b}") for t, a, r, u, b in [
+            ("Verkoop: een aanvraag opvolgen", "Een aanvraag komt binnen via het formulier, de telefoon of e-mail.", "De aanvraag komt in één lijst met een status. U ziet wie opvolging nodig heeft. Blijft een reactie uit, dan volgt een herinnering.", "Elke aanvraag heeft een status en een eigenaar.", "Het gesprek en de prijs."),
+            ("Verkoop: een offerte opvolgen", "Een offerte is verstuurd.", "Na de termijn die u instelt, ziet u wie nog niet heeft gereageerd.", "U ziet per offerte waar hij staat.", "Of u opvolgt en met welk aanbod."),
+            ("Orders: een order verwerken", "Een order komt binnen.", "Order vastleggen, voorraad verlagen, factuur opstellen, klantdossier bijwerken, bevestiging sturen.", "Eén order, drie bijwerkingen, zonder overtypen.", "De uitzonderingen en het akkoord op de factuur."),
+            ("Financiën: een betaalherinnering", "Een factuur is na de vervaldatum niet betaald.", "Een herinnering gaat uit. Blijft de betaling uit, dan volgt een strengere.", "Trage betalers worden consequent opgevolgd.", "Deelbetalingen, kortingen en afspraken met een klant."),
+            ("Financiën: een uitgave vastleggen", "Een bon of rekening komt binnen.", "Een foto van de bon wordt een uitgave in de juiste categorie, in de administratie.", "De btw per kwartaal staat klaar voor de aangifte.", "Beoordelen wat afwijkt."),
+            ("Planning: een afspraak boeken", "Een klant kiest een moment via een link.", "De afspraak komt in uw agenda. De klant krijgt een bevestiging en vóór de afspraak een herinnering. Bij een afzegging wordt de plek aan de wachtlijst aangeboden.", "Minder heen-en-weer, minder vergeten afspraken.", "Welke klus voorgaat wanneer de planning krap is."),
+            ("Bereikbaarheid: een gemist gesprek", "Iemand belt buiten openingstijden of tijdens drukte.", "De <a href=\"ai-telefonist.html\">AI-telefonist</a> neemt op, noteert de vraag of de bestelling en zet een terugbelnotitie met het volledige transcript klaar. Een urgent gesprek schakelt hij door.", "Wat de beller vroeg, staat vast.", "Terugbellen, en gesprekken die persoonlijk contact vragen."),
+            ("Voorraad: bijna op", "De voorraad van een artikel raakt bijna op.", "U krijgt een melding.", "U ziet het tekort voordat een klant erom vraagt.", "Wat u bestelt, bij wie en hoeveel."),
+            ("Personeel: een verlofaanvraag", "Een medewerker vraagt verlof aan.", "De aanvraag komt bij u, uw beslissing gaat terug naar de medewerker en het saldo wordt bijgewerkt.", "Geen mailwisseling.", "De beslissing zelf."),
+            ("Marketing: een beoordeling vragen", "Een levering is afgerond.", "De klant krijgt een verzoek om een beoordeling, en de beoordeling wordt op uw site getoond.", "Beoordelingen komen binnen zonder dat u eraan hoeft te denken.", "Het antwoord op een kritische beoordeling."),
+          ]]) + """
+      <div class="proza reveal">
+        <p>Elk voorbeeld past het model uit de vorige sectie: één aanleiding, een vaste route, een uitkomst die te controleren is en een moment waarop u beslist. Een langere lijst, met per proces wat er nu met de hand gebeurt, staat in <a href="bedrijfsprocessen-automatiseren-voorbeelden.html">Processen automatiseren: voorbeelden</a>. Welke onderdelen Complete AI daarvoor al heeft draaien, ziet u bij <a href="automatisering.html#wat-er-kan">wat vandaag al draait</a>.</p>
+      </div>""", "voorbeelden"),
+
+   proza("Opbrengst", "Wat levert workflow automatisering op, en wat niet?",
+         """        <p>IBM noemt in zijn uitleg over <a href="https://www.ibm.com/think/topics/workflow-automation" rel="noopener" target="_blank">workflow automatisering</a> als opbrengst dat automatisering menselijke fouten en tijdrovend, herhalend werk zoals handmatige gegevensinvoer terugbrengt, de tijd in een proces verkort en goedkeurings- en documentstromen automatiseert. Organisaties met verouderde, handmatige processen kunnen volgens IBM niet betrouwbaar opschalen. Voor een klein bedrijf is de vraag concreter: waar ziet u het?</p>
+        <div class="tabelwrap"><table>
+          <thead><tr><th>Opbrengst</th><th>Waar u het ziet</th><th>Uit eigen praktijk bij Aronza</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Minder handwerk</strong></td><td>Uren per week.</td><td>De administratie ging van vier tot zes uur per week naar nul.</td></tr>
+            <tr><td><strong>Minder fouten</strong></td><td>Correcties per week.</td><td>Overtypen tussen order, factuur en voorraad was de plek waar fouten ontstonden. Eén keten haalt die overdracht weg.</td></tr>
+            <tr><td><strong>Kortere doorlooptijd</strong></td><td>Dagen tussen aanleiding en uitkomst.</td><td>Openstaande facturen worden consequent opgevolgd, ook wanneer dat ongemakkelijk voelt. Het geld komt eerder binnen.</td></tr>
+            <tr><td><strong>Overzicht</strong></td><td>De status per order of aanvraag.</td><td>Kosten en omzet worden bij binnenkomst vastgelegd, zodat het beeld actueel is en niet pas na de kwartaalafsluiting.</td></tr>
+            <tr><td><strong>Groei zonder extra uren</strong></td><td>Uren per order bij meer orders.</td><td>Meer orders betekenden voorheen meer administratie. Die koppeling is doorbroken.</td></tr>
+          </tbody>
+        </table></div>
+        <h3>Wat een workflow niet doet</h3>
+        <ul>
+          <li><strong>Hij verbetert een slecht proces niet.</strong> De software voert uit wat u vastlegt, zonder vermoeidheid. Een omweg blijft een omweg. Beschrijf daarom eerst, en schrap wat niemand nodig heeft.</li>
+          <li><strong>Hij neemt geen beslissingen die u niet heeft vastgelegd.</strong> Een prijs, een uitzondering of een klacht blijft een afweging van u.</li>
+          <li><strong>Hij vervangt geen persoonlijk contact.</strong> Wat een klant van u persoonlijk wil horen, blijft bij u. Automatiseer de stappen eromheen.</li>
+        </ul>""",
+         "opbrengst",
+         "Vijf opbrengsten die u kunt meten, en drie dingen die een workflow niet doet."),
+
+   proza("Aan de slag", "Hoe maakt u een workflow? Zo zet u hem eerst op papier",
+         """        <p>U maakt een workflow in drie delen. Eerst beschrijft u hoe het werk nu verloopt. Dan bepaalt u welke stappen software overneemt en waar u zelf beslist. Pas daarna wordt de software ingericht. Wie met de software begint, automatiseert een route die niemand heeft beschreven, en legt daarmee de gewoonte van één persoon vast, omwegen inbegrepen.</p>
+        <h3>Zeven stappen op papier</h3>
+        <ol>
+          <li><strong>Kies één workflow.</strong> Neem de workflow die elke week terugkomt en de meeste uren kost. Hoe u dat vaststelt, staat bij <a href="bedrijfsprocessen-automatiseren-voorbeelden.html#tijd-opnemen">vooraf de tijd opnemen</a>.</li>
+          <li><strong>Loop hem één keer na.</strong> Doe de workflow zelf, of kijk mee bij degene die hem doet, en noteer elke handeling, ook het zoeken naar gegevens. Beschrijf wat er gebeurt, niet wat er volgens u zou moeten gebeuren. Wie het werk doet, kent de uitzonderingen die op geen tekening staan.</li>
+          <li><strong>Leg de aanleiding en de uitkomst vast.</strong> Wat start de workflow, en wanneer is hij klaar? Kunt u de uitkomst niet in één zin beschrijven, dan is dit nog geen workflow maar een verzameling taken.</li>
+          <li><strong>Beschrijf de standaardroute.</strong> Het gewone verloop, zonder uitzonderingen, in de volgorde waarin het gebeurt.</li>
+          <li><strong>Voeg de uitzonderingen toe.</strong> Schrijf ze als: als dit, dan dat. Als het artikel niet op voorraad is, dan een melding aan mij. Als de klant geen e-mailadres heeft, dan een taak om het na te vragen.</li>
+          <li><strong>Noteer per stap wie of wat hem uitvoert en welke gegevens erin en eruit gaan.</strong> Noteer ook waar die gegevens nu staan. Zo ziet u waar er wordt overgetypt.</li>
+          <li><strong>Bepaal de goedkeuringen en de meting.</strong> Wat mag nooit zonder uw akkoord de deur uit? En welke twee of drie cijfers legt u vooraf vast, zodat u achteraf het verschil ziet?</li>
+        </ol>
+        <h3>Een uitwerking: een order verwerken</h3>
+        <div class="tabelwrap"><table>
+          <thead><tr><th>Onderdeel</th><th>Invulling</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Aanleiding</strong></td><td>Een order komt binnen via de webshop, de telefoon of e-mail.</td></tr>
+            <tr><td><strong>Uitkomst</strong></td><td>De voorraad klopt, de factuur staat klaar of is verstuurd, het klantdossier is bijgewerkt en de klant heeft een bevestiging.</td></tr>
+            <tr><td><strong>Standaardroute</strong></td><td>1. De order in de orderlijst zetten.<br>2. De voorraad van de bestelde artikelen verlagen.<br>3. Een factuur opstellen op basis van de order.<br>4. Het klantdossier bijwerken met de order.<br>5. Een bevestiging sturen aan de klant.</td></tr>
+            <tr><td><strong>Gegevens</strong></td><td>Klantgegevens, artikelen, aantallen en prijzen. Eén plek is de bron, namelijk de orderlijst. De andere stappen lezen daaruit en typen niets over.</td></tr>
+            <tr><td><strong>Uitzonderingen</strong></td><td>Als het artikel niet op voorraad is, dan een melding aan de eigenaar.<br>Als de klant geen e-mailadres heeft, dan een taak om het na te vragen.<br>Als de order wordt gewijzigd of geannuleerd nadat de factuur is opgesteld, dan een taak om de factuur te corrigeren.</td></tr>
+            <tr><td><strong>Goedkeuring</strong></td><td>De factuur en de bevestiging gaan de eerste weken pas uit nadat de eigenaar akkoord heeft gegeven.</td></tr>
+            <tr><td><strong>Meting</strong></td><td>Minuten per order vóór en na. Aantal correcties per week. Aantal dagen tussen order en verstuurde factuur.</td></tr>
+          </tbody>
+        </table></div>
+        <div class="noot"><p>Dit is een voorbeeld en geen beschrijving van een bepaalde klant. De workflow die hierbij hoort, draait bij Aronza. Zie <a href="#eigen-praktijk">uit eigen praktijk</a>.</p></div>
+        <h3>Welke notatie gebruikt u?</h3>
+        <p>Voor een klein bedrijf volstaat een tabel zoals hierboven of een blokkenschema met pijlen. Wilt u een standaardnotatie, dan is er BPMN. De Object Management Group, die de standaard beheert, noemt <a href="https://www.omg.org/spec/BPMN/2.0.2/About-BPMN" rel="noopener" target="_blank">BPMN</a> de feitelijke standaard voor procesdiagrammen, bedoeld om rechtstreeks te worden gebruikt door wie processen ontwerpt, beheert en uitvoert. <a href="https://nl.wikipedia.org/wiki/Workflow_management" rel="noopener" target="_blank">Wikipedia</a> noemt daarnaast onder meer UML-activiteitendiagrammen en Petrinetten als diagramtechnieken voor workflows. De notatie is geen doel. Een beschrijving die de persoon die het werk doet zonder uitleg begrijpt, is goed genoeg.</p>
+        <h3>Hoe controleert u de beschrijving?</h3>
+        <p>Leg de beschrijving voor aan degene die het werk nu doet en vraag: klopt dit? Neem daarna vijf recente gevallen, waaronder een lastige, en loop ze op papier langs de route. Past er één niet, dan ontbreekt er een voorwaarde. Doe dit voordat er software aan te pas komt. Een fout op papier verbetert u zonder gevolgen. Een fout in een draaiende workflow bereikt uw klant.</p>""",
+         "op-papier",
+         "Een workflow begint niet in de software. Hij begint met een beschrijving die u aan een ander kunt geven."),
+
+   proza("Beginnen en meten", "Hoe begint u, en hoe meet u of een workflow werkt?",
+         """        <h3>Begin met één workflow</h3>
+        <p><a href="https://www.ibm.com/think/topics/business-process-automation" rel="noopener" target="_blank">IBM</a> adviseert organisaties met weinig automatisering klein te beginnen, bij processen die vaart geven, en per proces meetbare doelen te stellen: een kortere doorlooptijd, minder fouten en tevredener klanten. Voor een klein bedrijf komt dat neer op vier stappen.</p>
+        <ol>
+          <li>Kies de ene workflow uit uw meting van een normale week.</li>
+          <li>Beschrijf hem zoals in de vorige sectie.</li>
+          <li>Laat hem de eerste weken draaien met een goedkeuringsstap en kijk mee. Wat naar een klant gaat, ziet u eerst.</li>
+          <li>Meet na enkele weken hetzelfde, op dezelfde manier. Kies pas dan de volgende.</li>
+        </ol>
+        <h3>Wat u meet</h3>
+        <div class="tabelwrap"><table>
+          <thead><tr><th>Maat</th><th>Wat u vastlegt</th><th>Waarom</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Uren per week</strong></td><td>Aantal keer per week maal minuten per keer, gedeeld door zestig, vóór en na.</td><td>Het laat zien wat het werk kostte en wat ervan over is.</td></tr>
+            <tr><td><strong>Doorlooptijd</strong></td><td>De tijd tussen de aanleiding en de uitkomst, bijvoorbeeld van order tot verstuurde factuur.</td><td>Een factuur die later uitgaat, wordt later betaald.</td></tr>
+            <tr><td><strong>Fouten</strong></td><td>Het aantal correcties per week: een verkeerd bedrag, een vergeten opvolging, dubbele invoer.</td><td>Overtypen is waar fouten ontstaan.</td></tr>
+            <tr><td><strong>Wachttijd</strong></td><td>Hoe lang werk blijft liggen tot één persoon eraan toekomt.</td><td>Wachttijd kost geen uren, maar kan wel een opdracht kosten.</td></tr>
+            <tr><td><strong>Uitzonderingen</strong></td><td>Het aandeel gevallen dat niet door de standaardroute gaat.</td><td>Zijn het er veel, dan past de standaardroute niet bij het werk.</td></tr>
+          </tbody>
+        </table></div>
+        <p>Bij Aronza was het vertrekpunt de administratie: vier tot zes uur per week, grotendeels buiten werktijd. Doordat dat getal bekend was, is het verschil aan te tonen: sinds begin mei 2026 is het nul. Hoe u zelf zo&#8217;n vertrekpunt vaststelt, staat in de <a href="case-aronza.html">klantcase</a> en bij <a href="bedrijfsprocessen-automatiseren-voorbeelden.html#tijd-opnemen">vooraf de tijd opnemen</a>.</p>
+        <h3>Zelf doen, standaardsoftware of laten inrichten?</h3>
+        <p>Er zijn drie routes. U bouwt zelf met losse hulpmiddelen, wat past bij één afgebakende workflow maar u tot de schakel tussen de systemen maakt. U gebruikt de automatisering die in uw boekhoud- of agendapakket zit, wat werkt voor wat dat pakket zelf doet. Of u laat onderdelen inrichten die al draaien en aan uw pakketten worden gekoppeld. Het laatste is wat Complete AI doet.</p>
+        <p>Wat het inrichten kost, hangt af van het aantal workflows, de koppelingen, het aantal uitzonderingen, de goedkeuringsstappen en het onderhoud. Dat staat uitgewerkt in <a href="wat-kost-automatisering.html">wat kost automatisering</a>.</p>""",
+         "beginnen-meten",
+         "Zonder meting is achteraf niet te zeggen wat de workflow heeft opgeleverd."),
+
+   proza("Valkuilen", "Welke fouten worden gemaakt bij het automatiseren van een workflow?",
+         """        <ol>
+          <li><strong>Automatiseren wat niemand heeft beschreven.</strong> De software voert uit wat u vastlegt. Ligt er geen beschrijving, dan wordt de gewoonte van één persoon vastgelegd. IBM noemt onvoldoende procesdocumentatie een obstakel bij procesautomatisering.</li>
+          <li><strong>Alleen de standaardroute bouwen.</strong> In de test werkt alles. De eerste order zonder voorraad loopt vast. Beschrijf de uitzonderingen vóór de bouw, niet erna.</li>
+          <li><strong>Geen eigenaar aanwijzen.</strong> Een workflow die niemand bekijkt, wordt niet bijgesteld wanneer een koppeling of een werkwijze verandert. Spreek af wie meekijkt en wie bijstelt.</li>
+          <li><strong>Geen goedkeuring bij wat naar buiten gaat.</strong> Een factuur of bericht dat is verstuurd, haalt u niet terug. Laat in de eerste weken alles langs u gaan.</li>
+          <li><strong>Twee lijsten die het oneens zijn.</strong> Een workflow die uit twee klantenbestanden leest, geeft het verschil sneller door dan een mens het opmerkt. Ruim de gegevens op voordat u koppelt.</li>
+          <li><strong>Een afweging automatiseren.</strong> De prijs van een offerte of de omgang met een klacht vraagt elke keer een oordeel. Automatiseer de stappen eromheen en laat de afweging bij uzelf.</li>
+          <li><strong>Alles tegelijk beginnen.</strong> Bij meerdere nieuwe workflows tegelijk ziet u niet welke werkt en welke niet. Laat één workflow enkele weken draaien voordat de volgende volgt.</li>
+          <li><strong>Niet bedenken wat er gebeurt bij een storing.</strong> Een workflow die stilvalt zonder melding, laat werk liggen waarvan u denkt dat het gedaan is. Het volgende deel gaat daarover.</li>
+        </ol>
+        <p>Werken er persoonsgegevens van klanten door de workflow, dan hoort er een verwerkersovereenkomst bij die vóór de start is vastgelegd. Wat daarin staat, leest u bij <a href="automatisering.html#gegevens">veiligheid en gegevens</a>.</p>""",
+         "fouten",
+         "Acht fouten die u vooraf kunt vermijden."),
+
+   proza("Betrouwbaarheid", "Wat gebeurt er als een stap in de workflow mislukt?",
+         """        <p>Een stap kan mislukken om redenen buiten uw bedrijf: een koppeling die tijdelijk niet bereikbaar is, een gegeven dat ontbreekt, een leverancier die iets wijzigt. Dat gebeurt, en het is niet het probleem. Het probleem is een workflow die dan stilvalt zonder dat iemand het ziet en werk laat liggen waarvan u denkt dat het gedaan is. De documentatie van Microsoft over <a href="https://learn.microsoft.com/nl-nl/power-automate/guidance/coding-guidelines/error-handling" rel="noopener" target="_blank">foutverwerking</a> noemt daarom vier maatregelen. Ze zijn ook voor een klein bedrijf te begrijpen.</p>
+        <div class="tabelwrap"><table>
+          <thead><tr><th>Maatregel</th><th>Wat het doet</th><th>Voorbeeld</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Een alternatieve route bij een fout</strong></td><td>Per stap staat vast wat er gebeurt als hij mislukt of wordt overgeslagen. Daarmee kan een melding worden verstuurd of de fout worden vastgelegd.</td><td>Mislukt het opstellen van de factuur, dan gaat de bevestiging niet uit en krijgt u een melding.</td></tr>
+            <tr><td><strong>Opnieuw proberen</strong></td><td>Bij een tijdelijke storing probeert de workflow het na een korte wachttijd opnieuw, met steeds meer tijd tussen de pogingen. De documentatie noemt als voorbeeld een nieuwe poging na een minuut, dan na twee minuten, dan na vier.</td><td>De koppeling met de boekhouding is even niet bereikbaar.</td></tr>
+            <tr><td><strong>Een melding</strong></td><td>Degene die de workflow beheert, krijgt bericht dat er iets mislukte en wat.</td><td>Een e-mail met de stap en de foutmelding.</td></tr>
+            <tr><td><strong>Vastleggen</strong></td><td>De gegevens van de fout worden bewaard, zodat achteraf te zien is wat er gebeurde.</td><td>Een lijst van mislukte uitvoeringen.</td></tr>
+          </tbody>
+        </table></div>
+        <p>Bij Complete AI is elke automatische handeling terug te zien en terug te draaien. De eerste weken kijken wij mee, en wat naar een klant gaat, ziet u eerst. Zo blijft een fout klein. Bij Aronza is er sinds de ingebruikname begin mei 2026 geen storing geweest. Dat is een aanwijzing en geen garantie. Hoe het onderhoud daarna is geregeld en wat dat voor de kosten betekent, leest u bij <a href="wat-kost-automatisering.html#onderhoud">onderhoud en het maandbedrag</a>.</p>""",
+         "mislukt",
+         "Een workflow die mislukt zonder dat iemand het ziet, is het risico. Niet de fout zelf."),
+
+   sectie("Uit eigen praktijk", "Eén order, vijf processen, dezelfde gegevens.",
+          """Bij Aronza, het e-commercebedrijf van de oprichter van Complete AI, is de workflow die hierboven als voorbeeld staat dagelijkse praktijk. Orderverwerking, voorraadbeheer, facturatie, klantcontact en kostenregistratie werken op dezelfde gegevens en draaien sinds begin mei 2026. <a href="case-aronza.html">De volledige klantcase leest u hier</a>.""",
+          voorbeeldblok([
+            ("Eén order, drie bijwerkingen", "Een order die binnenkomt, werkt de voorraad, de factuur en het klantdossier bij. Niemand typt iets over. Dat is de workflow uit dit artikel, in bedrijf."),
+            ("De koppeling is de winst", "De vijf processen staan niet los naast elkaar: ze lezen en schrijven dezelfde gegevens. Daardoor verdwijnt de overdracht waar bij overtypen de fouten ontstaan."),
+            ("Begonnen bij één workflow", "Facturatie en kosten kwamen eerst. De rest volgde stap voor stap, zodat na elke stap te controleren was of het klopte."),
+            ("Goedkeuring bij wat naar buiten gaat", "Voor handelingen die naar buiten gaan, zoals een factuur of een bericht aan een klant, kan een goedkeuringsstap worden ingesteld."),
+            ("Van vier tot zes uur naar nul", "Vóór de automatisering ging er per week vier tot zes uur aan administratie op, buiten werktijd. Sinds begin mei 2026 is dat nul."),
+            ("Terug te zien en terug te draaien", "Elke automatische handeling is na te lopen en terug te draaien. Sinds de ingebruikname is er geen storing geweest. Dat garandeert de toekomst niet."),
+          ]) + """
+      <div class="proza reveal">
+        <h3>Waarom dit voor uw workflow telt</h3>
+        <p>Dat 17 automatiseringen vandaag al draaien en getest zijn, verklaart waarom een workflow bij een klant binnen enkele werkdagen kan staan. Wij beginnen niet bij nul: we kiezen de onderdelen, richten ze in met uw gegevens en koppelen ze aan de boekhouding, agenda of telefonie die u al gebruikt. Welke workflow bij u als eerste aan de beurt is, bepalen we in de <a href="index.html#contact">intake</a>. Wat u van de kosten kunt verwachten, staat in <a href="wat-kost-automatisering.html">wat kost automatisering</a>.</p>
+      </div>""", "eigen-praktijk"),
+
+   bronnen([
+     ("Workflow Management Coalition: The Workflow Reference Model (Engelstalig, 1995)",
+      "http://www.workflowpatterns.com/documentation/documents/tc003v11.pdf",
+      "De omschrijving van workflow als het geheel of gedeeltelijk automatiseren van een bedrijfsproces, en van workflow als combinatie van menselijke en machinale activiteiten."),
+     ("Wikipedia: Workflow management",
+      "https://nl.wikipedia.org/wiki/Workflow_management",
+      "Workflow management als het beheersen van de beweging van informatie, het verloop van een order of klacht in deeltaken, en de gangbare diagramtechnieken."),
+     ("IBM: What is workflow automation? (Engelstalig)",
+      "https://www.ibm.com/think/topics/workflow-automation",
+      "Workflow automatisering als het vervangen van handmatige taken door software die een proces geheel of gedeeltelijk uitvoert, en dat AI daarvoor niet vereist is."),
+     ("IBM: What is business process automation? (Engelstalig)",
+      "https://www.ibm.com/think/topics/business-process-automation",
+      "De niveaus taak-, workflow-, proces- en intelligente automatisering, het belang van procesdocumentatie en het advies klein te beginnen met meetbare doelen."),
+     ("IBM: What is robotic process automation? (Engelstalig)",
+      "https://www.ibm.com/think/topics/rpa",
+      "Het verschil tussen RPA, dat procesgestuurd is, en AI, dat datagestuurd is."),
+     ("Wikipedia: Robotgestuurde procesautomatisering",
+      "https://nl.wikipedia.org/wiki/Robotic_process_automation",
+      "RPA als automatiseren via de gebruikersinterface, door het handmatige proces na te bootsen."),
+     ("Microsoft Learn: Aan de slag met triggers",
+      "https://learn.microsoft.com/nl-nl/power-automate/triggers-introduction",
+      "Wat een trigger is en de drie manieren waarop een stroom start: handmatig, volgens een planning of automatisch bij een gebeurtenis."),
+     ("Microsoft Learn: Een goedkeuringswerkstroom maken en testen",
+      "https://learn.microsoft.com/nl-nl/power-automate/modern-approvals",
+      "Goedkeuringsstromen voor facturen, werkorders, offertes en vakantieaanvragen, en de manieren waarop een fiatteur kan reageren."),
+     ("Microsoft Learn: Robuuste foutverwerking",
+      "https://learn.microsoft.com/nl-nl/power-automate/guidance/coding-guidelines/error-handling",
+      "Alternatieve routes bij een fout, opnieuw proberen bij tijdelijke storingen en meldingen aan de beheerder."),
+     ("Object Management Group: BPMN 2.0.2 (Engelstalig)",
+      "https://www.omg.org/spec/BPMN/2.0.2/About-BPMN",
+      "BPMN als de feitelijke standaard voor procesdiagrammen, met een notatie die op een stroomschema lijkt."),
+   ]),
+ ]),
+},
+
+# ───────────────────────────── NIEUW: AI-AGENT VOOR UW BEDRIJF ─────────────────────────────
+{
+ "bestand": "ai-agent-voor-uw-bedrijf.html",
+ "soort": "gids",
+ "dienst": "AI-agent voor uw bedrijf",
+ "titel": "Wat is een AI-agent? Uitleg voor uw bedrijf | Complete AI",
+ "beschrijving": "Wat een AI-agent is, hoe hij verschilt van een chatbot en een vaste automatisering en welke taken hij in een mkb-bedrijf overneemt, met de wet erbij.",
+ "omschrijving": "Uitleg voor het mkb: wat een AI-agent is, het verschil met een chatbot, een vaste automatisering en een AI-assistent, welke taken hij overneemt, waar u zelf beslist, wat er misgaat en welke wet geldt.",
+ "ogen": "Gids",
+ "h1": 'Wat is een <span class="glans">AI-agent voor uw bedrijf</span>?',
+ "lead": "Een AI-agent is software waarin een taalmodel zelf bepaalt welke stappen een taak vraagt en welke koppelingen het daarvoor gebruikt, zoals uw agenda of boekhouding. Voor een mkb-bedrijf betekent dat software die één afgebakende taak van u overneemt, zoals de telefoon opnemen en een afspraak inplannen, terwijl u bepaalt wat zonder uw akkoord de deur uitgaat. Complete AI richt dat in voor bedrijven in Nederland en België.",
+ "levertijd": "Leestijd ongeveer 20 minuten",
+ "gepubliceerd": "2026-09-25",
+ "uitkomsten": [
+     ("4", "soorten software naast elkaar gezet: vaste automatisering, AI-assistent, chatbot en AI-agent"),
+     ("3", "standen voor uw akkoord: voorbereiden, uitvoeren na akkoord, zelfstandig binnen grenzen"),
+     ("2 aug. 2026", "sinds die datum geldt artikel 50 van de AI-verordening voor AI die met mensen praat"),
+ ],
+ "slot_kop": "Welke taak zou een AI-agent bij u kunnen overnemen?",
+ "slot_tekst": "In een half uur brengen wij in kaart welke taken bij u elke week terugkomen, bij welke een vaste regel volstaat en waar een AI-agent iets toevoegt. Blijkt dat u er geen nodig hebt, dan hoort u dat ook.",
+ "vragen": [
+   ("Wat is een AI-agent voor het mkb?",
+    """Een AI-agent voor het mkb is software die een afgebakende taak zelfstandig uitvoert, zoals de telefoon opnemen en een afspraak inplannen. Een taalmodel bepaalt daarbij zelf de stappen en gebruikt koppelingen met uw agenda, orderlijst of boekhouding. Wat naar buiten gaat, kan langs uw akkoord. <a href="#wat-is-het">De definitie met bronnen</a> staat hierboven."""),
+   ("Hoe kan ik AI-agents gebruiken?",
+    """Begin met één terugkerende taak waarvan het gevolg te overzien is als het misgaat, en laat de agent die eerst voorbereiden of uitvoeren na uw akkoord. Geschikt zijn de telefoon buiten openingstijden, het opvolgen van orders en facturen en het aanvragen van reviews. Meet vooraf een week wat de taak kost. Zie <a href="#beginnen">zo begint u</a>."""),
+   ("Wat is het verschil tussen een AI-agent en een chatbot?",
+    """Een chatbot beantwoordt vragen in een gesprek, een AI-agent voert daarnaast handelingen uit in uw systemen. Een chatbot vertelt dat u tot vijf uur open bent. Een agent zet na hetzelfde gesprek de afspraak in uw agenda. De grens is dus wat de software zelf mag doen. <a href="#verschil">De vergelijking</a> zet vier soorten software naast elkaar."""),
+   ("Hoe maak ik zelf AI-agents?",
+    """Zelf een AI-agent maken begint met één afgebakende taak, een taalmodel en koppelingen naar precies de systemen die de taak nodig heeft. Volgens <a href="https://www.anthropic.com/engineering/building-effective-agents" rel="noopener" target="_blank">Anthropic</a> is een agent in de kern een taalmodel dat gereedschap gebruikt in een lus. Het werk zit in testen, toegang beperken en de AVG. Zie <a href="#beginnen">zelf bouwen of laten inrichten</a>."""),
+   ("Wat zijn de beste AI-agents?",
+    """Er is geen beste AI-agent: welke past, hangt af van de taak, de systemen waaraan hij moet koppelen en wat u zelf wilt blijven beslissen. Vergelijk aanbieders op vier vragen: welke gegevens ziet de agent, welke handelingen mag hij uitvoeren, waar zit uw akkoord en wat gebeurt er met de gegevens als u stopt."""),
+   ("Welke AI is het beste voor bedrijven?",
+    """Geen enkele AI is voor elk bedrijf het beste; kies op taak, niet op merk. Voor eenmalig schrijf- en zoekwerk volstaat een algemene AI-assistent. Voor werk dat elke week terugkomt past een automatisering, met een AI-agent waar taal een rol speelt. De vergelijking per taak staat in <a href="ai-voor-uw-bedrijf.html#kiezen">AI voor uw bedrijf</a>."""),
+   ("Wat zijn de kosten van AI-agents?",
+    """De kosten hangen af van het aantal taken, het aantal koppelingen, het aantal uitzonderingen dat de agent moet kennen, de goedkeuringsstappen en het onderhoud. Een bedrag zonder gesprek zegt daarom weinig. Bij Complete AI ligt na de intake één vaste prijs op papier: eenmalig voor de bouw en een vast maandbedrag. Zie <a href="wat-kost-automatisering.html">wat kost automatisering</a>."""),
+   ("Wat zijn de 7 soorten AI-agenten?",
+    """Het aantal soorten verschilt per indeling. <a href="https://www.ibm.com/think/topics/ai-agents" rel="noopener" target="_blank">IBM</a> onderscheidt er vijf: eenvoudige reflexagents, modelgebaseerde reflexagents, doelgerichte agents, nutsgerichte agents en lerende agents. Voor een ondernemer is een ander onderscheid bruikbaarder: hoeveel de agent zelf mag doen. Dat geeft drie standen, uitgewerkt bij <a href="#beslissen">waar u zelf beslist</a>."""),
+   ("Moet een AI-agent zeggen dat hij een AI is?",
+    """Ja, sinds 2 augustus 2026, wanneer hij rechtstreeks met mensen communiceert en dat niet al duidelijk is. Artikel 50 van de AI-verordening eist dat zo'n systeem is ontworpen zodat mensen weten dat zij met AI communiceren, uiterlijk bij de eerste interactie. Een agent die alleen op de achtergrond werkt, valt daar niet onder. Zie <a href="#de-wet">de sectie over de wet</a>."""),
+   ("Wat gebeurt er als een AI-agent een fout maakt?",
+    """Een fout van een agent komt in de praktijk bij uw bedrijf terecht: een Canadees tribunaal oordeelde in 2024 dat een luchtvaartmaatschappij verantwoordelijk was voor wat haar chatbot zei. Beperk daarom wat een agent mag toezeggen, laat wat naar buiten gaat eerst langs uw akkoord en lees de eerste weken transcripten mee. Zie <a href="#misgaan">wat er misgaat</a>."""),
+   ("Zijn mijn klantgegevens veilig bij een AI-agent?",
+    """Dat hangt af van wat de agent te zien krijgt en van de afspraken met uw leverancier. Geef hem alleen toegang tot wat de taak vraagt en leg vóór de start een verwerkersovereenkomst vast, zoals de AVG voorschrijft. De Autoriteit Persoonsgegevens waarschuwde in februari 2026 voor autonome agents met volledige toegang tot computer en programma's. Zie <a href="#gegevens">veiligheid en gegevens</a>."""),
+ ],
+ "inhoud": "\n\n  <hr class=\"streep\">\n\n".join([
+   inhoudsopgave([
+     ("wat-is-het", "Wat is een AI-agent voor het mkb?"),
+     ("verschil", "Het verschil met een chatbot, een vaste automatisering en een AI-assistent"),
+     ("taken", "Wat neemt een AI-agent in een klein bedrijf over?"),
+     ("beslissen", "Waar u zelf blijft beslissen"),
+     ("misgaan", "Wat er misgaat en hoe u het opvangt"),
+     ("gegevens", "Veiligheid en gegevens"),
+     ("de-wet", "De AI-verordening en artikel 50"),
+     ("eigen-praktijk", "Uit eigen praktijk: de Aronza-keten en de AI-telefonist"),
+     ("beginnen", "Zelf bouwen of laten inrichten, en hoe begint u"),
+     ("bronnen", "Bronnen"),
+   ]),
+
+   proza("Uitleg", "Wat is een AI-agent voor het mkb?",
+         """        <h3>De definitie, met de bronnen erbij</h3>
+        <p>Een AI-agent voor het mkb is software die een afgebakende taak van begin tot eind uitvoert. Hij leest of hoort wat er gevraagd wordt, kiest zelf de stappen, gebruikt daarvoor koppelingen met uw systemen en levert een uitkomst op, zoals een order in de lijst of een afspraak in de agenda.</p>
+        <p>De bronnen die wij lazen, beschrijven die kern in verschillende woorden. <a href="https://www.anthropic.com/engineering/building-effective-agents" rel="noopener" target="_blank">Anthropic</a>, een ontwikkelaar van taalmodellen, onderscheidt in zijn richtlijn voor bouwers twee soorten systemen. Bij een workflow lopen taalmodel en gereedschap langs paden die vooraf zijn vastgelegd. Bij een agent stuurt het taalmodel zelf zijn proces en zijn gebruik van gereedschap aan. <a href="https://www.ibm.com/think/topics/ai-agents" rel="noopener" target="_blank">IBM</a> omschrijft een AI-agent als een systeem dat zelfstandig taken uitvoert door met de beschikbare gereedschappen een werkwijze op te zetten. <a href="https://cloud.google.com/discover/what-are-ai-agents" rel="noopener" target="_blank">Google Cloud</a> noemt redeneren, plannen en geheugen, en een zekere mate van zelfstandigheid bij het nemen van beslissingen.</p>
+
+        <h3>Wat u in elke AI-agent terugvindt</h3>
+        <ul>
+          <li><strong>Een taak met een einde.</strong> Een telefoongesprek afhandelen, een openstaande factuur opvolgen, een verzoek om een beoordeling versturen. Zonder afgebakende taak is niet te controleren of de agent het goed doet.</li>
+          <li><strong>Keuzevrijheid.</strong> Het taalmodel bepaalt welke stap volgt. Dat onderscheidt een agent van een vaste regel, waarin elke stap vooraf ligt vastgelegd.</li>
+          <li><strong>Gereedschap.</strong> Koppelingen met de agenda, de orderlijst of de boekhouding. Zonder gereedschap kan een taalmodel alleen praten. Met gereedschap kan het iets doen, en daar zit ook het risico.</li>
+          <li><strong>Grenzen.</strong> Wat de agent mag doen en wanneer hij een mens erbij haalt. Anthropic noemt goedkeuringsmomenten en stopcondities, zoals een maximum aantal pogingen, als middel om de controle te houden.</li>
+        </ul>
+
+        <h3>Waarom het woord agent op verschillende manieren wordt gebruikt</h3>
+        <p>Het woord is ouder dan de huidige golf van taalmodellen. In de indeling van IBM geldt een thermostaat die elke avond op een vast tijdstip de verwarming aanzet als voorbeeld van de eenvoudigste soort agent. Leveranciers gebruiken het woord ruimer of smaller, al naar gelang wat zij verkopen. Voor uw beslissing telt daarom één vraag, ongeacht wat er op de verpakking staat: wat beslist deze software zelf, en wat ligt vooraf vast? Het antwoord bepaalt hoeveel toezicht nodig is.</p>
+        <p>In de rest van deze pagina betekent AI-agent een systeem met een taalmodel dat tussen uw systemen handelt.</p>""",
+         "wat-is-het",
+         "Software die zelf bepaalt welke stappen een taak vraagt en daarvoor uw systemen aanstuurt."),
+
+   proza("Vergelijking", "AI-agent, chatbot, vaste automatisering en AI-assistent: het verschil",
+         """        <p>De tabel zet de vier naast elkaar op wat in de praktijk verschil maakt. Er staan geen bedragen in: wat elke soort kost, hangt af van wat u laat inrichten.</p>
+        <div class="tabelwrap"><table>
+          <thead><tr><th>Onderdeel</th><th>Vaste automatisering</th><th>AI-assistent</th><th>Chatbot</th><th>AI-agent</th></tr></thead>
+          <tbody>
+            <tr><td>Wie bepaalt de volgende stap?</td><td>Wie het heeft ingericht, vooraf</td><td>U, bij elke vraag</td><td>Een script of een kennisbank</td><td>Het taalmodel, binnen grenzen die u vastlegt</td></tr>
+            <tr><td>Wat zet het in gang?</td><td>Een gebeurtenis, zoals een afgeronde order</td><td>Uw vraag</td><td>De vraag van een bezoeker</td><td>Een gesprek, een bericht of een gebeurtenis</td></tr>
+            <tr><td>Wat komt eruit?</td><td>Dezelfde uitkomst bij dezelfde invoer</td><td>Een tekst of advies dat u zelf gebruikt</td><td>Een antwoord in het gesprek</td><td>Een afgeronde handeling: order, afspraak of notitie</td></tr>
+            <tr><td>Raakt het uw systemen?</td><td>Ja, via vaste koppelingen</td><td>Nee, tenzij u zelf iets overneemt</td><td>Nee, het beantwoordt alleen</td><td>Ja, via koppelingen die u toekent</td></tr>
+            <tr><td>Invoer die elke keer anders is</td><td>Past niet</td><td>Past, u leest mee</td><td>Beperkt tot wat het script kent</td><td>Past, binnen de taak</td></tr>
+            <tr><td>Wie controleert?</td><td>Logboek en steekproef</td><td>U, vóór gebruik</td><td>Wie de gesprekken terugleest</td><td>Goedkeuringsstap, transcript en logboek</td></tr>
+            <tr><td>Past bij</td><td>Stappen die vaststaan: een factuur na een order</td><td>Eenmalig schrijf- en zoekwerk</td><td>Veelgestelde vragen op een website</td><td>Werk met taal én een vervolgstap: telefoon naar afspraak</td></tr>
+          </tbody>
+        </table></div>
+        <div class="noot"><p>De grenzen lopen in de bronnen niet overal gelijk. Google Cloud rekent de assistent tot de agents, Anthropic scheidt workflows en agents op de vraag wie de stappen bepaalt. Deze tabel volgt het onderscheid dat voor een ondernemer telt: wie beslist, en wat raakt de software aan.</p></div>
+
+        <h3>Het verschil met een chatbot</h3>
+        <p>Een chatbot beantwoordt vragen in een gesprek. Een AI-agent doet daarnaast iets buiten het gesprek. Een chatbot op uw website vertelt dat u tot vijf uur open bent en voert daarna geen handeling uit. Een systeem dat na hetzelfde gesprek een afspraak in uw agenda zet, handelt wel en valt daarmee onder de definitie van een agent. Google Cloud beschrijft bots als software die vooraf vastgelegde regels volgt en reageert op opdrachten of aanleidingen. De grens ligt dus niet bij de techniek, maar bij wat de software zelf mag doen.</p>
+
+        <h3>Het verschil met een vaste automatisering</h3>
+        <p>Een vaste automatisering voert dezelfde stappen uit bij dezelfde invoer. Is de order afgerond, dan volgt de factuur. Dat is betrouwbaar, goed te controleren en voor veel taken de beste keuze. Hoe zo'n keten is opgebouwd, staat in <a href="wat-is-workflow-automatisering.html">wat workflowautomatisering is</a>. Een agent is nuttig waar de invoer elke keer anders is, zoals een gesproken vraag of een e-mail in eigen woorden.</p>
+        <p>Anthropic adviseert daarom de eenvoudigste oplossing te kiezen en complexiteit alleen toe te voegen als dat aantoonbaar iets oplevert. Dat kan betekenen dat u geen agent nodig hebt. Wanneer AI en wanneer een vaste regel past, staat uitgewerkt bij <a href="automatisering.html#ai-of-regels">automatisering</a> en in <a href="bedrijfsprocessen-automatiseren-voorbeelden.html#regels-rpa-ai">de gids over processen automatiseren</a>.</p>
+
+        <h3>Het verschil met een AI-assistent</h3>
+        <p>Met een assistent praat u zelf: u stelt de vraag, leest het antwoord en beslist wat u ermee doet. Google Cloud noemt dat reactief: de assistent kan acties aanbevelen, maar de gebruiker beslist. Een agent wacht niet op uw volgende vraag. Hij voert de taak uit zodra de aanleiding er is, binnen wat u hebt toegestaan. Voor eenmalig schrijf- en zoekwerk is een algemene assistent zoals ChatGPT genoeg. De vergelijking per taak staat in <a href="ai-voor-uw-bedrijf.html#kiezen">AI voor uw bedrijf</a>.</p>
+
+        <h3>Wat &lsquo;de agent leert&rsquo; betekent</h3>
+        <p>Aanbieders zeggen dat een agent leert en beter wordt. Vraag wat dat inhoudt: past het systeem zichzelf aan, of stelt een mens het bij op grond van wat er misging? Het tweede is voor een mkb-bedrijf beter te controleren, want dan ziet u wat er is veranderd en waarom. Bij Complete AI kijken wij de eerste weken mee en sturen we bij.</p>""",
+         "verschil",
+         "Vier soorten software die in gesprekken door elkaar lopen, naast elkaar gezet op wat ze zelf beslissen."),
+
+   proza("In de praktijk", "Wat neemt een AI-agent in een klein bedrijf over?",
+         """        <h3>1. De telefoon opnemen en een afspraak inplannen</h3>
+        <p>Een gesprek is elke keer anders, en daarom is dit de taak waar een agent het duidelijkst iets toevoegt. De <a href="ai-telefonist.html">AI-telefonist</a> neemt op buiten openingstijden en tijdens drukte, verstaat wat de beller vraagt, noteert bestellingen en vragen, filtert verkopers eruit en schakelt urgente gesprekken door. Vraagt een beller om een afspraak, dan plant hij die in via de agenda-koppeling. Van elk gesprek is een transcript beschikbaar.</p>
+        <p><strong>Wat bij u blijft:</strong> wat als dringend geldt, welke onderwerpen hij zelfstandig afhandelt en het terugbellen na een vraag die hij niet kon beantwoorden. Bij een installatiebedrijf is een lekkage of een storing zonder warmte een voorbeeld van spoed. Weet hij iets niet, dan verzint hij niets: hij zet een terugbelnotitie klaar met de vraag erin.</p>
+
+        <h3>2. Orders en facturen opvolgen</h3>
+        <p>Dit is werk dat elke week terugkomt en geen omzet oplevert. Orders uit alle kanalen komen in één lijst. Uit een afgeronde order volgt een factuur, en een trage betaler krijgt een herinnering die oploopt. Een offerte wordt opgesteld, verstuurd en gevolgd, zodat u ziet wie nog niet heeft gereageerd. Het grootste deel daarvan volgt vaste regels. AI komt in beeld waar de invoer een gesprek of bericht is, zoals een bestelling per telefoon of WhatsApp.</p>
+        <p><strong>Wat bij u blijft:</strong> de prijs van een offerte en het akkoord op een factuur die afwijkt van het gebruikelijke, zoals een korting of een deelbetaling. Een factuur of herinnering die naar een klant gaat, loopt in de beginperiode langs een goedkeuringsstap.</p>
+
+        <h3>3. Reviews aanvragen</h3>
+        <p>Na een geslaagde levering vraagt de software automatisch om een beoordeling en toont die op de site. In een drukke week blijft dit liggen, terwijl beoordelingen nieuwe klanten helpen kiezen. Voor het verzoek zelf is geen agent nodig: een vast moment na de levering volstaat. Het beantwoorden van reviews, ook de kritische, is werk waar formuleren en toon bij horen. Dat valt onder <a href="social-media.html">social media</a>, met een reactie binnen één werkdag. Hoe beoordelingen meetellen voor lokale zoekresultaten, staat bij <a href="vindbaarheid-seo.html">vindbaarheid</a>.</p>
+        <p><strong>Wat bij u blijft:</strong> welke klanten een verzoek krijgen. Bij een lopende klacht past dat niet, dus leg zulke uitzonderingen vooraf vast. Het verzoek gaat naar echte klanten na een echte levering; verzonnen reviews zijn uitgesloten.</p>""",
+         "taken",
+         "Drie taken die bij Complete AI al draaien, met per taak wat de software doet en wat bij u blijft."),
+
+   proza("De grens", "Waar blijft de ondernemer zelf beslissen? Drie standen.",
+         """        <p>Een agent hoeft niet alles of niets zelf te doen. Wij onderscheiden drie standen, en u kiest per handeling welke geldt.</p>
+        <div class="tabelwrap"><table>
+          <thead><tr><th>Stand</th><th>Wat de agent doet</th><th>Wat u doet</th><th>Past bij</th></tr></thead>
+          <tbody>
+            <tr><td>1. Voorbereiden</td><td>Zet een concept of een notitie klaar</td><td>U kijkt na, past aan en verstuurt</td><td>Prijzen, offertes en alles wat afwijkt</td></tr>
+            <tr><td>2. Uitvoeren na akkoord</td><td>Voert de handeling uit nadat u akkoord hebt gegeven</td><td>U ziet wat de deur uitgaat en geeft akkoord</td><td>Alles wat naar een klant gaat: factuur, herinnering, bericht</td></tr>
+            <tr><td>3. Zelfstandig binnen grenzen</td><td>Handelt zelf af wat u vooraf hebt vastgelegd</td><td>U leest achteraf mee in logboek of transcript en kunt terugdraaien</td><td>Wat binnen uw administratie blijft, en de telefoon binnen de grenzen die u stelt</td></tr>
+          </tbody>
+        </table></div>
+
+        <h3>Waarom het akkoord vooraan staat</h3>
+        <p>Een factuur of bericht dat is verstuurd, haalt u niet terug. Daarom ziet u in de eerste weken eerst wat er de deur uitgaat, en kijken wij mee. Klopt alles en geeft u telkens ongewijzigd akkoord, dan kan die stap vervallen. Dat kiest u zelf, per handeling.</p>
+        <p>De bronnen noemen dezelfde volgorde. <a href="https://www.ibm.com/think/topics/ai-agents" rel="noopener" target="_blank">IBM</a> noemt het een goede werkwijze om menselijke goedkeuring te eisen voor handelingen met grote gevolgen, zoals een massamailing. Het <a href="https://genai.owasp.org/llmrisk/llm01-prompt-injection/" rel="noopener" target="_blank">OWASP Gen AI Security Project</a> adviseert in zijn risicolijst voor taalmodellen menselijke goedkeuring voor risicovolle handelingen.</p>
+
+        <h3>Besluiten met gevolgen voor mensen</h3>
+        <p>Neemt een agent een besluit over een klant, dan gelden andere regels. Volgens de <a href="https://www.autoriteitpersoonsgegevens.nl/themas/algoritmes-ai/algoritmes-uitgelegd/automatisch-besluit" rel="noopener" target="_blank">Autoriteit Persoonsgegevens</a> mag een bedrijf niet zomaar een automatisch besluit nemen met rechtsgevolgen of andere serieuze gevolgen, zoals iemand geen lening, verzekering of woning geven. De AVG noemt drie situaties waarin het mag en vraagt passende maatregelen, waaronder de mogelijkheid dat een medewerker het besluit beoordeelt. Voor een mkb-bedrijf is de praktische regel eenvoudig: laat de agent voorbereiden en laat de beslissing over een klant bij een mens, zoals het beëindigen van een contract of het weigeren van een klant.</p>
+
+        <h3>Wat altijd bij u blijft</h3>
+        <ul>
+          <li>De prijs van een offerte en elke afwijking op de gewone factuur.</li>
+          <li>De uitzonderingen: een klacht, een twijfelgeval, een klant die iets anders vraagt dan de standaard.</li>
+          <li>Wat als dringend geldt, en wat de agent zelfstandig mag afhandelen.</li>
+          <li>De keuze om te stoppen. Alles wat automatisch gebeurt, is terug te zien en terug te draaien, en de gegevens blijven van u. Bij stoppen ontvangt u alles in een gangbaar bestandsformaat.</li>
+        </ul>
+        <p>Hoe dit bij Complete AI is ingericht, staat bij <a href="automatisering.html#controle">wat vanzelf verloopt en waar u de controle houdt</a>. Per afdeling staat wat bij u blijft in de gids <a href="bedrijfsprocessen-automatiseren-voorbeelden.html">Processen automatiseren: voorbeelden</a>.</p>""",
+         "beslissen",
+         "Hoeveel een agent zelf mag doen, stelt u per handeling in."),
+
+   proza("Risico's", "Wat gaat er mis bij AI-agents, en hoe vangt u dat op?",
+         """        <p>Anthropic waarschuwt dat de zelfstandigheid van agents hogere kosten met zich meebrengt en de kans dat fouten zich opstapelen. Het advies is uitgebreid testen in een afgeschermde omgeving en grenzen instellen. Voor een mkb-bedrijf betekent dat: weten welke fouten zich kunnen voordoen, en bij elke fout weten waar hij wordt onderschept.</p>
+        <div class="tabelwrap"><table>
+          <thead><tr><th>Wat er misgaat</th><th>Herkenbaar voorbeeld</th><th>Wat het opvangt</th></tr></thead>
+          <tbody>
+            <tr><td>Een vraag wordt anders begrepen dan bedoeld</td><td>Een beller vraagt naar &lsquo;de afspraak van donderdag&rsquo; en de agent zoekt de verkeerde afspraak</td><td>Afspraken en bestellingen laten terugzeggen vóór het vastleggen, en een steekproef op transcripten</td></tr>
+            <tr><td>Een uitzondering die niemand had voorzien</td><td>Een herinnering gaat uit terwijl de klant net heeft betaald</td><td>Een goedkeuringsstap bij alles wat naar buiten gaat; wat de agent niet kan plaatsen, legt hij vast als vraag in plaats van te gokken</td></tr>
+            <tr><td>De agent zegt iets dat niet klopt</td><td>Een chatbot noemt een korting die niet bestaat</td><td>Alleen antwoorden uit gegevens die u zelf hebt aangeleverd, en vooraf vastleggen wat hij mag toezeggen</td></tr>
+            <tr><td>Verborgen opdrachten in binnenkomende tekst</td><td>Een e-mail bevat een zin die de agent als opdracht leest, zodat hij gegevens opzoekt of doorstuurt</td><td>Minimale toegang, menselijk akkoord voor risicovolle handelingen en tekst van buiten gescheiden houden van opdrachten</td></tr>
+            <tr><td>De agent herhaalt dezelfde stap</td><td>Hij roept steeds hetzelfde gereedschap aan zonder tot een uitkomst te komen</td><td>Een maximum aan pogingen, een logboek en de mogelijkheid hem te onderbreken</td></tr>
+            <tr><td>De gegevens kloppen niet</td><td>In een dubbel klantenbestand krijgt een klant twee keer dezelfde herinnering</td><td>De gegevens opruimen vóór het koppelen</td></tr>
+          </tbody>
+        </table></div>
+        <p>De laatste rij komt uit de praktijk van elke automatisering: een dubbel klantenbestand blijft dubbel, en een agent geeft de fout sneller door. De vierde rij heet bij de <a href="https://www.autoriteitpersoonsgegevens.nl/actueel/ap-waarschuwt-voor-grote-beveiligingsrisicos-bij-ai-agents-zoals-openclaw" rel="noopener" target="_blank">Autoriteit Persoonsgegevens</a> indirecte promptinjectie: verborgen opdrachten in ogenschijnlijk normale websites, e-mails of chatberichten. Het <a href="https://genai.owasp.org/llmrisk/llm01-prompt-injection/" rel="noopener" target="_blank">OWASP Gen AI Security Project</a> beschrijft hetzelfde als eerste punt (LLM01) van zijn risicolijst voor toepassingen met taalmodellen. Hoe u zulke fouten in een proces voorkomt, staat ook in de gids over <a href="bedrijfsprocessen-automatiseren-voorbeelden.html#fouten">veelgemaakte fouten bij de start</a>.</p>
+
+        <h3>Wat de uitspraak over de chatbot van een luchtvaartmaatschappij betekent voor uw bedrijf</h3>
+        <p>In 2022 gaf de chatbot van Air Canada een reiziger onjuiste informatie over een korting voor een reis naar een uitvaart. De luchtvaartmaatschappij voerde aan dat de chatbot een aparte rechtspersoon was die voor zijn eigen handelen verantwoordelijk is. Het Civil Resolution Tribunal van British Columbia verwierp dat, meldde de <a href="https://www.bbc.com/travel/article/20240222-air-canada-chatbot-misinformation-what-travellers-should-know" rel="noopener" target="_blank">BBC</a> in februari 2024. Het bedrijf is verantwoordelijk voor alle informatie op zijn website, ongeacht of die van een vaste pagina of van een chatbot komt.</p>
+        <p>Dat is een Canadese uitspraak en geen Nederlands recht. De les voor uw bedrijf blijft staan: een klant hoort de agent als uw bedrijf. Leg daarom vast wat hij mag toezeggen en wat niet.</p>
+
+        <h3>Vijf afspraken die fouten opvangen</h3>
+        <ol>
+          <li><strong>Begin met één taak</strong> waarvan het gevolg te overzien is. Een terugbelnotitie of een herinnering, geen offerteprijs.</li>
+          <li><strong>Laat alles wat naar buiten gaat eerst langs u.</strong> Die stap kan later vervallen.</li>
+          <li><strong>Laat de agent niet gokken.</strong> Wat hij niet weet, legt hij vast als vraag.</li>
+          <li><strong>Lees mee.</strong> Neem in de eerste weken steekproeven uit transcripten en logboek, daarna periodiek. IBM noemt een logboek van de handelingen van een agent een manier om fouten te ontdekken en vertrouwen op te bouwen.</li>
+          <li><strong>Houd een stopknop.</strong> U kunt de agent onderbreken en wat hij deed terugdraaien. IBM noemt onderbreekbaarheid een aanbevolen waarborg.</li>
+        </ol>""",
+         "misgaan",
+         "Een agent maakt fouten op andere plekken dan een vaste automatisering. Zes situaties, en wat ze opvangt."),
+
+   proza("Veiligheid en AVG", "Veiligheid en gegevens: wat de AVG vraagt bij een AI-agent",
+         """        <h3>Wat de AVG bij een agent betekent</h3>
+        <p>De <a href="https://www.autoriteitpersoonsgegevens.nl/themas/algoritmes-ai/algoritmes-ai-en-de-avg/regels-bij-gebruik-van-ai-algoritmes" rel="noopener" target="_blank">Autoriteit Persoonsgegevens</a> (AP) noemt als belangrijke regels bij AI en algoritmes: een grondslag voor de verwerking, transparantie richting uw klanten, een vooraf vastgesteld doel, zo min mogelijk gegevens met vooraf vastgestelde bewaartermijnen, juiste gegevens en goede beveiliging. Voor een agent vertaalt dat zich naar een praktische regel: geef hem toegang tot wat de taak vraagt en niet meer. Een agent die afspraken plant, heeft de agenda nodig en niet de boekhouding.</p>
+
+        <h3>Waarom te ruime toegang een risico is</h3>
+        <p>De AP waarschuwde op 12 februari 2026 voor autonome AI-agents die volledige toegang krijgen tot een computer en de programma's daarop, waaronder e-mail, bestanden en online diensten. Zulke systemen zijn volgens de AP kwetsbaar voor verborgen opdrachten in websites, e-mails en chatberichten, en daardoor een aantrekkelijk doelwit voor misbruik. De toezichthouder riep op zulke agents niet te gebruiken op systemen met toegangscodes, boekhouding, klantbestanden, personeelsgegevens, privédocumenten of identiteitsbewijzen. Ook adviseerde de AP terughoudendheid met externe plug-ins en strikte toegangscontroles.</p>
+        <p>Die waarschuwing ging over experimentele open-sourcesystemen. Het principe eronder geldt breder: hoe meer een agent kan bereiken, hoe meer schade misbruik aanricht. Het OWASP Gen AI Security Project noemt als maatregel dat de toegang van het model beperkt blijft tot het minimum dat de taak vraagt.</p>
+
+        <h3>Een verwerkersovereenkomst vóór de start</h3>
+        <p>Schakelt u een partij in die persoonsgegevens voor u verwerkt, dan eist de AVG een schriftelijke verwerkersovereenkomst (artikel 28, derde lid). Ontbreekt die, dan zijn volgens de <a href="https://www.autoriteitpersoonsgegevens.nl/themas/basis-avg/avg-algemeen/verwerkersovereenkomst" rel="noopener" target="_blank">Autoriteit Persoonsgegevens</a> beide partijen aansprakelijk, en blijft u als verwerkingsverantwoordelijke altijd verantwoordelijk voor de verwerking. Complete AI legt dit vóór de start vast. Wat er in zo'n overeenkomst hoort te staan, leest u bij <a href="automatisering.html#gegevens">veiligheid en gegevens</a> en bij <a href="ai-telefonist.html#veiligheid-avg">de AI-telefonist</a>.</p>
+
+        <h3>Een DPIA bij hoog risico</h3>
+        <p>Verwerkt een agent persoonsgegevens met een hoog privacyrisico, dan moet volgens de AP vooraf een gegevensbeschermingseffectbeoordeling (DPIA) worden uitgevoerd. Dat is het geval als twee of meer van de negen criteria uit de lijst van de AP van toepassing zijn, en het geldt ook voor pilots en proefprojecten. Vraag uw leverancier of dat voor uw taak speelt.</p>
+
+        <h3>Vragen om aan elke leverancier van een agent te stellen</h3>
+        <ul>
+          <li>Welke gegevens ziet de agent, en waarom heeft hij die nodig?</li>
+          <li>Welke handelingen mag hij uitvoeren, en welke nooit zonder akkoord?</li>
+          <li>Waar worden de gegevens bewaard, en hoe lang?</li>
+          <li>Is er een logboek van wat hij deed, en kan hij worden onderbroken?</li>
+          <li>Wie is de verwerker, welke subverwerkers zijn er en staat dat in een verwerkersovereenkomst?</li>
+          <li>Wat gebeurt er met de gegevens als u stopt?</li>
+        </ul>""",
+         "gegevens",
+         "Een agent verwerkt namen, nummers, adressen en bestellingen. Dan geldt de AVG, en de Autoriteit Persoonsgegevens waarschuwt voor agents met te ruime toegang."),
+
+   proza("De wet", "De AI-verordening: wat artikel 50 vraagt van een AI-systeem dat met mensen praat",
+         """        <h3>Wat bepaalt artikel 50, eerste lid?</h3>
+        <p>Aanbieders van AI-systemen die bedoeld zijn om rechtstreeks met mensen te communiceren, moeten die systemen zo ontwerpen en ontwikkelen dat de betrokken personen worden geïnformeerd dat zij met een AI-systeem communiceren. Dat hoeft niet als het voor een redelijk geïnformeerd, oplettend en omzichtig persoon al duidelijk is uit de omstandigheden en de context van het gebruik. De volledige tekst staat op <a href="https://artificialintelligenceact.eu/article/50/" rel="noopener" target="_blank">artificialintelligenceact.eu</a>, de Nederlandse tekst bij <a href="https://rijksictgilde.github.io/ai-verordening/hoofdstukken/hoofdstuk-4/a50/" rel="noopener" target="_blank">Rijks ICT Gilde</a>.</p>
+
+        <h3>Op welk moment en hoe moet de melding komen?</h3>
+        <p>Volgens het vijfde lid moet de informatie uiterlijk bij de eerste interactie worden gegeven, op een duidelijke en te onderscheiden manier. Zij moet voldoen aan de toepasselijke toegankelijkheidseisen.</p>
+
+        <h3>Wanneer valt een AI-agent onder de plicht?</h3>
+        <p>De Europese Commissie noemt in haar <a href="https://digital-strategy.ec.europa.eu/en/faqs/transparency-obligations-under-article-50-ai-act" rel="noopener" target="_blank">veelgestelde vragen over artikel 50</a> (laatst bijgewerkt op 24 juli 2026) uitdrukkelijk chatbots, AI-agents en avatars. Vier voorwaarden gelden tegelijk:</p>
+        <ul>
+          <li>het systeem is een AI-systeem;</li>
+          <li>het is bedoeld voor een echte tweerichtingsuitwisseling met mensen, en niet alleen om gegevens te verzamelen of geautomatiseerde antwoorden te geven;</li>
+          <li>de interactie is direct: het systeem zelf communiceert met de persoon, niet via een menselijke tussenpersoon;</li>
+          <li>de interactie is met natuurlijke personen, consumenten of professionals.</li>
+        </ul>
+        <p>Systemen die alleen op de achtergrond werken, via communicatie van machine naar machine of zonder direct contact met mensen, vallen buiten de plicht. Een agent die 's nachts facturen verwerkt zonder met iemand te praten, valt daar dus niet onder. Een agent die de telefoon opneemt en met de beller praat, wel. De Commissie vraagt om een beperkte uitleg van de uitzondering voor wat duidelijk is, omdat die mensen transparantie ontneemt.</p>
+
+        <h3>Wie moet het regelen: de aanbieder of de gebruiker?</h3>
+        <p>Het eerste lid richt zich tot de aanbieder van het systeem: wie het ontwikkelt of laat ontwikkelen en onder eigen naam op de markt brengt of in gebruik stelt. De onderneming die het systeem onder haar verantwoordelijkheid inzet, is volgens de Commissie de gebruiksverantwoordelijke (in het Engels deployer). Vraag uw leverancier hoe de melding is ingericht, op welk moment in het gesprek zij klinkt en wie volgens de overeenkomst de aanbieder is.</p>
+        <div class="noot"><p>Dit is een weergave van openbare bronnen en geen juridisch advies. Of een bepaalde formulering in uw situatie voldoet, beoordeelt u bij voorkeur samen met een jurist. Voor telefoongesprekken staat dezelfde regel uitgewerkt bij <a href="ai-telefonist.html#de-wet">de AI-verordening en artikel 50 op de pagina over de AI-telefonist</a>. Een overzicht van alle regels voor AI in uw bedrijf staat in <a href="ai-voor-uw-bedrijf.html#regels">AI voor uw bedrijf</a>.</p></div>""",
+         "de-wet",
+         "Sinds 2 augustus 2026 geldt artikel 50. Deze sectie geeft de verplichting weer zoals de tekst en de Europese Commissie haar beschrijven."),
+
+   proza("Uit eigen praktijk", "Twee systemen die dagelijks draaien: de Aronza-keten en de AI-telefonist",
+         """        <h3>De Aronza-keten: vijf processen op dezelfde gegevens</h3>
+        <p>Aronza is het e-commercebedrijf van de oprichter van Complete AI. Facturatie, kostenregistratie, orderverwerking, voorraadbeheer en klantcontact draaien sinds begin mei 2026 als één keten. Een binnenkomende order raakt de voorraad, de factuur en het klantdossier zonder dat iemand iets overtypt. De administratie kostte vier tot zes uur per week, buiten werktijd. Dat is nu nul. Sinds de ingebruikname is er geen storing geweest. Dat is geen garantie voor de toekomst.</p>
+        <p>Voor een gesprek over agents zijn drie dingen uit die keten van belang:</p>
+        <ol>
+          <li><strong>De winst zat in de koppeling, niet in de slimste stap.</strong> Een taalmodel zonder toegang tot de orderlijst kan praten, maar niets doen. Doordat de vijf processen op dezelfde gegevens werken, raakt een handeling op één plek automatisch de andere.</li>
+          <li><strong>Vaste regels waar de uitkomst vaststaat, AI waar taal binnenkomt.</strong> Een factuur na een afgeronde order is een vaste regel. Een gesproken bestelling of een vraag via WhatsApp vraagt om een taalmodel. Zo is het ook beschreven bij <a href="automatisering.html#ai-of-regels">automatisering</a>.</li>
+          <li><strong>Bij wat naar buiten gaat is een goedkeuringsstap instelbaar.</strong> Elke automatische handeling is terug te zien en terug te draaien. De onderdelen zijn gefaseerd in gebruik genomen, met facturatie en kosten als eerste, zodat bij elke stap zichtbaar bleef wat er gebeurde.</li>
+        </ol>
+        <p>De volledige uitwerking leest u in <a href="case-aronza.html">de klantcase Aronza</a>. Dat 17 automatiseringen vandaag al draaien en getest zijn, verklaart waarom ze bij klanten binnen enkele werkdagen kunnen staan.</p>
+
+        <h3>De AI-telefonist: de taak met de meeste variatie</h3>
+        <p>De telefoon is het onderdeel dat het meest op een agent lijkt. Geen gesprek verloopt hetzelfde, en aan het eind gebeurt er iets: een bestelling in de lijst, een afspraak in de agenda, een terugbelnotitie of een doorgeschakeld gesprek. De AI-telefonist is Nederlandstalig, en waar nodig ook Vlaams, Frans en Engels. Hij neemt op buiten openingstijden en tijdens drukte, noteert bestellingen en vragen, filtert verkopers eruit en schakelt urgente gesprekken door. Wat hij niet kan beantwoorden, komt bij u als terugbelnotitie met volledig transcript. Hij meldt zich als de digitale assistent van het bedrijf.</p>
+        <p>De AI-telefonist is operationeel binnen 2 weken: intake, inrichten, proefdraaien en live gaan. Het proefdraaien gebeurt eerst naast de bestaande lijn, zodat u hoort hoe hij functioneert zonder risico. Dat is de tegenhanger van de goedkeuringsstap bij een factuur. Na de start luisteren wij de eerste weken mee en scherpen we aan.</p>
+        <p>Wat dit traject laat zien, is dat een agent niet los staat van de rest. Wat de telefonist vastlegt, moet ergens heen: de orderlijst, de agenda, uw telefoon. Meer over het gesprek stap voor stap en over de koppelingen staat op de pagina over <a href="ai-telefonist.html">de AI-telefonist</a>.</p>""",
+         "eigen-praktijk",
+         "Wat Complete AI zelf heeft gebouwd, en wat dat laat zien over agents in een klein bedrijf."),
+
+   proza("Aan de slag", "Zelf bouwen of laten inrichten, en hoe begint u?",
+         """        <h3>Hoe maakt u zelf een AI-agent?</h3>
+        <p>Een agent bestaat uit een taalmodel, gereedschap in de vorm van koppelingen en instructies over doel en grenzen. Anthropic omschrijft agents als taalmodellen die in een lus gereedschap gebruiken op grond van wat de omgeving terugmeldt, en merkt op dat de implementatie eenvoudig kan zijn. Het bouwen is dus te doen. De tijd zit in wat eromheen hoort: testen op uitzonderingen, de toegang beperken, de AVG regelen, een logboek bijhouden en onderhoud wanneer een koppeling of het model verandert. Wie dat zelf wil dragen, begint met één taak zonder gevolgen voor klanten. Wie dat niet wil, laat het inrichten.</p>
+
+        <h3>Zo begint u: vier stappen</h3>
+        <ol>
+          <li><strong>Meet een week.</strong> Noteer welk terugkerend werk u doet, hoe lang het duurt en hoeveel uitzonderingen erin zitten. <a href="bedrijfsprocessen-automatiseren-voorbeelden.html#tijd-opnemen">Zo neemt u de tijd op</a>.</li>
+          <li><strong>Kies één taak met een gevolg dat te overzien is.</strong> Een terugbelnotitie, een afspraakherinnering of een verzoek om een beoordeling. Geen offerteprijs.</li>
+          <li><strong>Begin in stand 1 of 2.</strong> Laat de agent voorbereiden of uitvoeren na uw akkoord, en kijk de eerste weken mee.</li>
+          <li><strong>Laat het akkoord vervallen waar het kan.</strong> Geeft u telkens ongewijzigd akkoord, dan kan die stap weg. Pas dan volgt de volgende taak.</li>
+        </ol>
+        <p>Na vier weken controleert u drie dingen: klopt wat er is verwerkt met wat u zelf had gedaan, hoeveel tijd kost de taak nu nog en welke uitzonderingen zijn er langsgekomen. De vragen voor die controle staan bij <a href="ai-voor-uw-bedrijf.html#beginnen">AI voor uw bedrijf</a>.</p>
+
+        <h3>Wat kost een AI-agent?</h3>
+        <p>Een bedrag zonder gesprek zegt weinig, omdat de kosten afhangen van vijf dingen: het aantal taken dat de agent overneemt, het aantal koppelingen met uw systemen, het aantal uitzonderingen dat hij moet kennen, het aantal goedkeuringsstappen en het onderhoud daarna. Bij Complete AI ligt na de intake van een half uur binnen één werkdag een voorstel met één vaste prijs: eenmalig voor de bouw en een vast maandbedrag voor onderhoud, zonder nacalculatie. Hoe een voorstel tot stand komt, staat op <a href="wat-kost-automatisering.html">Wat kost automatisering?</a>. Wilt u eerst weten wat een taak nu kost, dan is <a href="index.html#contact">een intake van een half uur</a> kosteloos en vrijblijvend.</p>""",
+         "beginnen",
+         "Een agent bouwen is het kleinste deel van het werk. Het werk zit eromheen."),
+
+   bronnen([
+     ("Artikel 50 van de AI-verordening (artificialintelligenceact.eu)", "https://artificialintelligenceact.eu/article/50/",
+      "De tekst van artikel 50: de informatieplicht bij AI-systemen die rechtstreeks met mensen communiceren (eerste lid), en het moment en de wijze van informeren (vijfde lid)."),
+     ("Rijks ICT Gilde: artikel 50 van de AI-verordening in het Nederlands", "https://rijksictgilde.github.io/ai-verordening/hoofdstukken/hoofdstuk-4/a50/",
+      "De Nederlandse tekst van artikel 50, met de begrippen aanbieder en gebruiksverantwoordelijke."),
+     ("Europese Commissie: veelgestelde vragen over artikel 50", "https://digital-strategy.ec.europa.eu/en/faqs/transparency-obligations-under-article-50-ai-act",
+      "De vier voorwaarden voor directe interactie met mensen, de uitzondering voor wat duidelijk is, chatbots en AI-agents als voorbeeld, en de begrippen aanbieder en gebruiker. Laatst bijgewerkt op 24 juli 2026."),
+     ("Anthropic: Building effective agents (Engelstalig)", "https://www.anthropic.com/engineering/building-effective-agents",
+      "Het onderscheid tussen workflows en agents, het advies de eenvoudigste oplossing te kiezen, en de kanttekening dat de zelfstandigheid van agents hogere kosten en opstapelende fouten kan geven. Gepubliceerd op 19 december 2024."),
+     ("IBM: What are AI agents? (Engelstalig)", "https://www.ibm.com/think/topics/ai-agents",
+      "Definitie, de vijf soorten agents, en de waarborgen: logboek, onderbreekbaarheid en menselijke goedkeuring bij handelingen met grote gevolgen."),
+     ("Google Cloud: What are AI agents? (Engelstalig)", "https://cloud.google.com/discover/what-are-ai-agents",
+      "Definitie van een AI-agent en het onderscheid tussen agents, assistenten en bots naar zelfstandigheid en complexiteit."),
+     ("Autoriteit Persoonsgegevens: AP waarschuwt voor grote beveiligingsrisico's bij AI-agents", "https://www.autoriteitpersoonsgegevens.nl/actueel/ap-waarschuwt-voor-grote-beveiligingsrisicos-bij-ai-agents-zoals-openclaw",
+      "Bericht van 12 februari 2026 over autonome AI-agents met volledige toegang, verborgen opdrachten in e-mails en websites, en het advies om strikte toegangscontroles toe te passen."),
+     ("Autoriteit Persoonsgegevens: regels bij gebruik van AI en algoritmes", "https://www.autoriteitpersoonsgegevens.nl/themas/algoritmes-ai/algoritmes-ai-en-de-avg/regels-bij-gebruik-van-ai-algoritmes",
+      "De AVG-regels bij AI met persoonsgegevens: grondslag, transparantie, doelbinding, dataminimalisatie, juistheid, beveiliging en de DPIA."),
+     ("Autoriteit Persoonsgegevens: automatisch besluit", "https://www.autoriteitpersoonsgegevens.nl/themas/algoritmes-ai/algoritmes-uitgelegd/automatisch-besluit",
+      "Wanneer een bedrijf een automatisch besluit met rechtsgevolgen of andere serieuze gevolgen mag nemen, en welke maatregelen daarbij horen."),
+     ("Autoriteit Persoonsgegevens: verwerkersovereenkomst", "https://www.autoriteitpersoonsgegevens.nl/themas/basis-avg/avg-algemeen/verwerkersovereenkomst",
+      "Wanneer een verwerkersovereenkomst verplicht is en welke onderwerpen daarin worden vastgelegd."),
+     ("OWASP Gen AI Security Project: LLM01 Prompt Injection (Engelstalig)", "https://genai.owasp.org/llmrisk/llm01-prompt-injection/",
+      "Wat indirecte promptinjectie is en welke maatregelen de impact beperken: minimale toegang en menselijke goedkeuring voor risicovolle handelingen."),
+     ("BBC: Airline held liable for its chatbot giving passenger bad advice (Engelstalig)", "https://www.bbc.com/travel/article/20240222-air-canada-chatbot-misinformation-what-travellers-should-know",
+      "Verslag van 23 februari 2024 over de uitspraak van het Civil Resolution Tribunal van British Columbia over de chatbot van een luchtvaartmaatschappij."),
+   ]),
+ ]),
+},
+
+# ───────────────────────────── NIEUW: WAT KOST AUTOMATISERING? ─────────────────────────────
+{
+ "bestand": "wat-kost-automatisering.html",
+ "soort": "gids",
+ "dienst": "Wat kost automatisering?",
+ "titel": "Wat kost automatisering voor het mkb? | Complete AI",
+ "beschrijving": "Waar de kosten van automatisering in een mkb-bedrijf van afhangen: vijf factoren, een eenmalig en een vast deel, en hoe een voorstel tot stand komt.",
+ "omschrijving": "Waar de kosten van automatisering van afhangen: het aantal processen, de koppelingen, de uitzonderingen, de goedkeuringsstappen en het onderhoud. Zonder standaardbedrag, met uitleg over hoe een voorstel tot stand komt.",
+ "ogen": "Gids",
+ "h1": 'Wat kost <span class="glans">automatisering</span> voor het mkb? Waar de prijs van afhangt',
+ "lead": "De kosten van automatisering hangen af van vijf dingen: het aantal processen, de koppelingen, het aantal uitzonderingen, de goedkeuringsstappen en het onderhoud daarna. Wat automatisering kost, staat daarom pas vast na een gesprek over uw bedrijf. Bij Complete AI bestaat de prijs uit een eenmalig deel en een vast maandbedrag, samen één vaste prijs zonder nacalculatie.",
+ "levertijd": "Leestijd ongeveer 15 minuten",
+ "gepubliceerd": "2026-09-25",
+ "uitkomsten": [
+     ("5", "factoren bepalen het voorstel: processen, koppelingen, uitzonderingen, goedkeuringen en onderhoud"),
+     ("2", "delen in de prijs: eenmalig voor het inrichten, vast per maand voor onderhoud en bijsturing"),
+     ("1", "vaste prijs, zonder nacalculatie, binnen één werkdag na de intake"),
+ ],
+ "slot_kop": "Wat kost automatisering in uw situatie?",
+ "slot_tekst": "In een half uur brengen wij in kaart welke processen u wilt automatiseren, welke systemen u gebruikt en wat nooit zonder uw akkoord de deur uit mag. Binnen één werkdag ligt er één vaste prijs op papier, zonder nacalculatie. U ontvangt een onderbouwd advies, ook wanneer de conclusie is dat er weinig te winnen valt.",
+ "vragen": [
+   ("Wat kost automatisering?",
+    """Dat hangt af van vijf dingen: het aantal processen, de koppelingen, het aantal uitzonderingen, de goedkeuringsstappen en het onderhoud. Een bedrag zonder gesprek zou voor het ene bedrijf te hoog zijn en voor het andere te laag. Na een intake van een half uur ligt er binnen één werkdag één vaste prijs op papier."""),
+   ("Wat zijn de kosten van automatisering voor het mkb?",
+    """De kosten bestaan uit een eenmalig deel voor het inrichten en een terugkerend deel voor onderhoud en, bij AI, voor gebruik. Bij Complete AI staan beide in één voorstel: een eenmalig bedrag en een vast maandbedrag, zonder nacalculatie. Welke posten erin zitten, staat bij <a href="#kostenposten">waaruit de kosten bestaan</a>."""),
+   ("Wat kost een AI-agent?",
+    """Een AI-agent heeft dezelfde posten als andere automatisering, plus het gebruik van het AI-model, dat per hoeveelheid verwerkte tekst wordt berekend. Wat u betaalt, hangt dus mede af van het aantal gesprekken of berichten. Na de intake ligt er één vaste prijs op papier. Zie <a href="#ai-agent">wat kost een AI-agent</a>."""),
+   ("Wat kost procesautomatisering?",
+    """Procesautomatisering kost wat het werk kost om een proces in te richten, te koppelen, te testen en bij te houden. Eén proces is minder werk dan een keten van processen die op elkaar aansluiten. Zonder gesprek noemen wij daarom geen bedrag. Binnen één werkdag na de <a href="index.html#contact">intake</a> ligt er een voorstel."""),
+   ("Waarom noemt Complete AI geen bedrag?",
+    """Omdat een bedrag zonder aannames weinig zegt. Twee bedrijven met hetzelfde proces krijgen een verschillend voorstel wanneer hun koppelingen, uitzonderingen en goedkeuringsstappen verschillen. Wij leggen liever na een intake één vaste prijs op tafel die klopt dan een bandbreedte die dat niet doet. Zie <a href="#voorbeeld">het voorbeeld met twee bedrijven</a>."""),
+   ("Zijn er kosten bovenop het voorstel?",
+    """Nee, er is geen nacalculatie: het voorstel bevat één vaste prijs. Wat u al gebruikt, zoals uw boekhoudpakket, blijft uw eigen abonnement. Wat u zelf bijdraagt, is tijd: een half uur intake, uw akkoord en in de eerste weken uw goedkeuring op wat naar klanten gaat. Een extra onderdeel is de volgende fase, die u zelf kiest."""),
+   ("Wat zit er in het maandbedrag?",
+    """Het maandbedrag dekt het onderhoud en de bijsturing van wat wij voor u hebben ingericht. Eén bericht volstaat, zonder ticketsysteem, en u krijgt binnen één werkdag reactie. Kleine wijzigingen horen erbij. Het abonnement is maandelijks opzegbaar en uw gegevens blijven van u. Zie <a href="#onderhoud">onderhoud en het maandbedrag</a>."""),
+   ("Hoe lang duurt het voordat automatisering is terugverdiend?",
+    """Dat is te berekenen zodra u weet wat het handwerk nu kost. Neem een week lang op hoeveel uur terugkerend werk kost, waardeer die uren met uw eigen uurwaarde en leg dat naast het eenmalige deel en het maandbedrag. Een getal zonder die meting zou geraden zijn. Zie <a href="#terugverdienen">hoe u het narekent</a>."""),
+   ("Is zelf automatiseren goedkoper dan laten inrichten?",
+    """Zelf automatiseren verschuift de kosten van een factuur naar eigen tijd: u bouwt, test en repareert zelf, en bent de schakel tussen de systemen. Laten inrichten verschuift dat werk naar de aanbieder. Wat voor u goedkoper is, hangt af van hoeveel uren u er zelf aan kwijt bent. Zie <a href="#routes">de vier routes</a>."""),
+   ("Is automatisering aftrekbaar?",
+    """Dat hangt af van hoe uw boekhouder het eenmalige deel behandelt. Voor investeringen in bedrijfsmiddelen bestaat de kleinschaligheidsinvesteringsaftrek; of uw uitgave daarvoor in aanmerking komt, staat bij de Belastingdienst en bespreekt u met uw boekhouder. Wij geven geen fiscaal advies. Zie <a href="#laag-houden">kosten beheersbaar houden</a>."""),
+   ("Kan ik klein beginnen?",
+    """Ja. Wij beginnen met het proces dat de meeste uren kost en breiden uit wanneer u dat wilt. Elke fase levert op zichzelf resultaat op, en u bepaalt wanneer de volgende volgt. Het abonnement is maandelijks opzegbaar. Hoe u kiest waar u begint, staat bij <a href="wat-is-workflow-automatisering.html#beginnen-meten">hoe begint u en hoe meet u</a>."""),
+ ],
+ "inhoud": "\n\n  <hr class=\"streep\">\n\n".join([
+   inhoudsopgave([
+       ("korte-antwoord", "Wat kost automatisering?"),
+       ("kostenposten", "Waaruit bestaan de kosten?"),
+       ("factoren", "De vijf factoren die de prijs bepalen"),
+       ("voorbeeld", "Twee bedrijven, hetzelfde proces, twee voorstellen"),
+       ("bedrag-zonder-gesprek", "Waarom een bedrag zonder gesprek weinig zegt"),
+       ("routes", "Zelf doen, standaardsoftware of laten inrichten"),
+       ("voorstel", "Hoe komt een voorstel tot stand?"),
+       ("onderhoud", "Onderhoud en het maandbedrag"),
+       ("terugverdienen", "Hoe rekent u na wat het oplevert?"),
+       ("ai-agent", "Wat kost een AI-agent?"),
+       ("laag-houden", "Kosten beheersbaar houden"),
+       ("eigen-praktijk", "Uit eigen praktijk"),
+       ("bronnen", "Bronnen"),
+   ]),
+
+   proza("Het korte antwoord", "Wat kost automatisering voor een mkb-bedrijf?",
+         """        <p>Automatisering kost het werk dat nodig is om haar voor uw bedrijf in te richten, te koppelen, te testen en bij te houden. Dat werk verschilt per bedrijf, ook wanneer het proces dezelfde naam heeft. Daarom staat op deze pagina geen bedrag. Wel staat er waaruit de kosten bestaan, wat ze bepaalt en hoe u voorstellen vergelijkt.</p>
+        <h3>Wat zijn de kosten van automatisering?</h3>
+        <p>De kosten bestaan uit twee delen: een eenmalig deel voor het inrichten en een terugkerend deel voor het draaiend houden. Het eenmalige deel volgt uit het aantal processen, de koppelingen, de uitzonderingen en de goedkeuringsstappen. Het terugkerende deel volgt uit het onderhoud en, bij AI, uit het gebruik. Bij Complete AI staan beide in één voorstel met één vaste prijs, zonder nacalculatie.</p>
+        <h3>Wat kost een AI-agent?</h3>
+        <p>Voor een AI-agent gelden dezelfde twee delen, met één toevoeging: het gebruik van het AI-model wordt per hoeveelheid verwerkte tekst berekend. Het hangt dus mede af van hoeveel gesprekken of berichten de agent afhandelt. Zie <a href="#ai-agent">wat kost een AI-agent</a> en de gids <a href="ai-agent-voor-uw-bedrijf.html">AI-agent voor uw bedrijf</a>.</p>
+        <h3>Waarom geen bedrag op deze pagina?</h3>
+        <p>Een bandbreedte noemt een gemiddeld bedrijf. Uw bedrijf is dat niet. Een bedrag dat u zonder gesprek ziet, zou voor het ene bedrijf te hoog zijn en voor het andere te laag. Daarom volgt na een intake van een half uur, binnen één werkdag, één vaste prijs op papier. Wat die prijs bepaalt, leest u hieronder.</p>""",
+         "korte-antwoord",
+         "Twee delen, vijf factoren en een voorstel dat u kunt narekenen."),
+
+   proza("Kostenposten", "Waaruit bestaan de kosten van automatisering?",
+         """        <p>Zet bij elk voorstel de posten naast elkaar in plaats van de totalen. Twee bedragen zijn pas te vergelijken wanneer duidelijk is welke posten erin zitten.</p>
+        <div class="tabelwrap"><table>
+          <thead><tr><th>Post</th><th>Wat het is</th><th>Eenmalig of terugkerend</th><th>Waar het van afhangt</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Inrichten</strong></td><td>Onderdelen kiezen en instellen met uw gegevens en uw werkwijze.</td><td>Eenmalig</td><td>Het aantal processen, de uitzonderingen en de goedkeuringsstappen.</td></tr>
+            <tr><td><strong>Koppelen</strong></td><td>Verbinden met de boekhouding, de agenda, de telefonie, het betalen en WhatsApp.</td><td>Eenmalig, met onderhoud</td><td>Het aantal en het soort systemen, en hoe goed een systeem zich laat koppelen.</td></tr>
+            <tr><td><strong>Gegevens op orde brengen</strong></td><td>Het klantenbestand opschonen, artikelen en prijzen overnemen.</td><td>Eenmalig</td><td>Hoe schoon en hoe verspreid uw gegevens nu zijn.</td></tr>
+            <tr><td><strong>Testen en meekijken</strong></td><td>Controleren of de uitkomst klopt en de eerste weken meekijken.</td><td>Eenmalig</td><td>Het aantal uitzonderingen en het aantal stappen dat naar buiten gaat.</td></tr>
+            <tr><td><strong>Licenties</strong></td><td>Wat de gebruikte software zelf kost.</td><td>Terugkerend</td><td>Hoe de leverancier rekent: per gebruiker, per automatisering of per gebruik.</td></tr>
+            <tr><td><strong>Gebruik van AI</strong></td><td>Het AI-model rekent per hoeveelheid verwerkte tekst.</td><td>Terugkerend</td><td>Het aantal gesprekken of berichten.</td></tr>
+            <tr><td><strong>Onderhoud en bijsturing</strong></td><td>Aanpassen wanneer een koppeling of een werkwijze verandert, en kleine wijzigingen.</td><td>Terugkerend</td><td>Het aantal koppelingen en hoe snel uw werkwijze verandert.</td></tr>
+            <tr><td><strong>Uw eigen tijd</strong></td><td>Uitleggen hoe het werk verloopt, testen en akkoord geven.</td><td>Eenmalig, en de eerste weken</td><td>Uw beschikbaarheid.</td></tr>
+          </tbody>
+        </table></div>
+        <h3>Licenties: per gebruiker, per automatisering of per gebruik</h3>
+        <p>Zelfs voor het gereedschap bestaat geen vaste prijs. Microsoft beschrijft in de uitleg over de <a href="https://learn.microsoft.com/en-us/power-platform/admin/power-automate-licensing/types" rel="noopener" target="_blank">licenties van Power Automate</a> twee modellen: een gebruikerslicentie, die aan een persoon wordt toegewezen, en een capaciteitslicentie, die aan een automatisering wordt toegewezen. Voor een capaciteitslicentie raadt Microsoft aan het dagelijkse gebruik te schatten als het aantal acties per uitvoering maal het aantal uitvoeringen per dag. Hoeveel het gereedschap kost, hangt dus af van hoeveel mensen het gebruiken, hoeveel automatiseringen draaien en hoeveel uitvoeringen er zijn.</p>
+        <h3>Gebruik van AI: per hoeveelheid tekst</h3>
+        <p>Aanbieders van AI-modellen rekenen per hoeveelheid tekst die het model leest en schrijft. De <a href="https://platform.claude.com/docs/en/about-claude/pricing" rel="noopener" target="_blank">prijslijst van Anthropic</a>, een aanbieder van AI-modellen, toont dat als een tarief per miljoen tokens, met een apart tarief voor invoer en voor uitvoer en een verschillend tarief per model. Een token is een stukje tekst. Hoe meer gesprekken of berichten een automatisering verwerkt, hoe groter het gebruik.</p>
+        <h3>Meer dan de aanschafprijs</h3>
+        <p>Wie alleen de aanschafprijs vergelijkt, mist posten die later komen. Volgens <a href="https://en.wikipedia.org/wiki/Total_cost_of_ownership" rel="noopener" target="_blank">Wikipedia</a> rekent een berekening van de totale eigendomskosten bij software onder meer mee: licenties, installatie en koppeling, migratie, testen, opleiding, beveiliging, back-ups en de kosten van storingen. Dezelfde bron noemt een vergelijking van bestaand en voorgesteld werk: reken ook de kosten van het handwerk mee dat alleen bestaat doordat automatisering ontbreekt. Wikipedia merkt daarbij op dat zo&#8217;n berekening niet aangeeft of een oplossing zijn geld waard is. Dat volgt pas uit wat het oplevert. Zie <a href="#terugverdienen">hoe u narekent wat het oplevert</a>.</p>""",
+         "kostenposten",
+         "Elke aanbieder rekent met dezelfde posten. Wat verschilt, is welke posten in het bedrag zitten."),
+
+   proza("Factoren", "De vijf factoren die een voorstel bepalen",
+         """        <p>Vijf onderdelen bepalen hoeveel werk er in automatisering zit. Wie ze vooraf heeft bekeken, voert een korter gesprek en krijgt een scherper voorstel.</p>
+        <div class="tabelwrap"><table>
+          <thead><tr><th>Factor</th><th>Wat het bepaalt, en wat u kunt doen</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Aantal processen</strong></td><td>Elk proces heeft een eigen aanleiding, eigen stappen en een eigen uitkomst die worden ingericht, getest en bijgehouden. Vijf processen die op elkaar aansluiten vragen ook werk aan de overgangen ertussen.<br><strong>Voorbereiding:</strong> Neem een week lang op welke taken terugkomen en kies het proces dat de meeste uren kost. Zie <a href="bedrijfsprocessen-automatiseren-voorbeelden.html#tijd-opnemen">vooraf de tijd opnemen</a>.</td></tr>
+            <tr><td><strong>Koppelingen</strong></td><td>De systemen waarmee de automatisering gegevens uitwisselt: de boekhouding, de agenda, de telefonie, het betalen, WhatsApp. Elke koppeling wordt ingericht en getest, en verandert mee wanneer de leverancier iets wijzigt.<br><strong>Voorbereiding:</strong> Maak een lijst van de programma&#8217;s die u gebruikt en waar de gegevens nu staan, met de naam van het pakket.</td></tr>
+            <tr><td><strong>Aantal uitzonderingen</strong></td><td>De standaardroute is snel beschreven. De uitzonderingen kosten tijd: een klant zonder e-mailadres, een order zonder voorraad, een deelbetaling, een klant met eigen afspraken. Elke uitzondering is een voorwaarde met een eigen route die ook getest moet worden.<br><strong>Voorbereiding:</strong> Schrijf op welke gevallen afwijken en wie dan beslist. Hoe dat op papier gaat, staat bij <a href="wat-is-workflow-automatisering.html#op-papier">zo zet u een workflow op papier</a>.</td></tr>
+            <tr><td><strong>Goedkeuringsstappen</strong></td><td>Elke stap waarin een mens akkoord geeft, is een onderdeel op zich: wie geeft akkoord, hoe krijgt die persoon de aanvraag, en wat gebeurt er bij een weigering of wanneer een reactie uitblijft. Meer goedkeuringen betekent meer om in te richten en te testen. Ze verkleinen wel de kans dat een fout naar een klant gaat.<br><strong>Voorbereiding:</strong> Bepaal wat nooit zonder uw akkoord de deur uit mag. Dat is ook de vierde vraag in onze intake.</td></tr>
+            <tr><td><strong>Onderhoud</strong></td><td>Een automatisering is nooit af. Koppelingen veranderen, werkwijzen veranderen en er komt een uitzondering bij. Onderhoud is terugkerend werk en zit bij Complete AI in het vaste maandbedrag.<br><strong>Voorbereiding:</strong> Vraag bij elk voorstel wie het onderhoudt en wat een kleine wijziging is. Zie <a href="#onderhoud">onderhoud en het maandbedrag</a>.</td></tr>
+          </tbody>
+        </table></div>""",
+         "factoren",
+         "Bij elke factor staat wat u vooraf kunt doen."),
+
+   proza("Een voorbeeld", "Twee bedrijven, hetzelfde proces, twee voorstellen",
+         """        <p>Twee bedrijven willen dat een order automatisch een factuur wordt. Beide noemen het &#8220;orders automatisch factureren&#8221;.</p>
+        <div class="tabelwrap"><table>
+          <thead><tr><th>Factor</th><th>Bedrijf A</th><th>Bedrijf B</th><th>Gevolg voor het voorstel</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Processen</strong></td><td>Alleen van order naar factuur.</td><td>Van order naar factuur, met betaalherinneringen en voorraad erbij.</td><td>Drie processen die op elkaar moeten aansluiten in plaats van één.</td></tr>
+            <tr><td><strong>Koppelingen</strong></td><td>Eén webshop en één boekhoudpakket.</td><td>Orders via de webshop, de telefoon en e-mail, en twee boekhoudpakketten.</td><td>Meer bronnen en meer koppelingen om in te richten en te testen.</td></tr>
+            <tr><td><strong>Uitzonderingen</strong></td><td>Elke order volgt dezelfde route.</td><td>Deelleveringen, retouren en afspraken per klant.</td><td>Elke uitzondering is een voorwaarde met een eigen route.</td></tr>
+            <tr><td><strong>Goedkeuring</strong></td><td>De eigenaar keurt de eerste weken elke factuur goed.</td><td>Twee personen: verkoop keurt de order goed, financiën de factuur.</td><td>Een tweede goedkeuringsstap met eigen regels.</td></tr>
+            <tr><td><strong>Onderhoud</strong></td><td>Eén koppeling om bij te houden.</td><td>Meer koppelingen, dus meer momenten waarop iets kan veranderen.</td><td>Een ander maandbedrag.</td></tr>
+          </tbody>
+        </table></div>
+        <p>Bedrijf A vraagt om één workflow met twee koppelingen. Bedrijf B vraagt om een keten. Dat komt in de intake van een half uur naar boven, en binnen één werkdag ligt er voor elk een eigen voorstel met één vaste prijs. Het verschil is geen opslag. Het is werk dat bij bedrijf B extra is. Een bedrag dat u zag voordat deze vragen waren gesteld, zou voor het ene bedrijf te hoog zijn en voor het andere te laag.</p>
+        <div class="noot"><p>Dit is een voorbeeld en geen beschrijving van een bepaalde klant.</p></div>""",
+         "voorbeeld",
+         "Het proces heeft dezelfde naam. Het voorstel niet."),
+
+   proza("Vergelijken", "Waarom een bedrag zonder gesprek weinig zegt, en hoe u voorstellen vergelijkt",
+         """        <p>Wie zoekt op wat automatisering kost, vindt bandbreedtes en instapbedragen. Ze zeggen weinig, om drie redenen.</p>
+        <ul>
+          <li><strong>De aannames ontbreken.</strong> Een bandbreedte gaat uit van een gemiddeld proces met gemiddelde koppelingen. Uw proces is dat niet.</li>
+          <li><strong>De posten verschillen.</strong> De ene aanbieder noemt alleen de bouw, de andere bouw en onderhoud. Twee bedragen zijn dan niet te vergelijken.</li>
+          <li><strong>Het bedrag hangt aan een keuze die u nog niet heeft gemaakt.</strong> Zelf doen, standaardsoftware of laten inrichten zijn drie verschillende kostenstructuren, zie <a href="#routes">de vier routes</a>.</li>
+        </ul>
+        <h3>Zeven vragen die u aan elke aanbieder stelt</h3>
+        <div class="tabelwrap"><table>
+          <thead><tr><th>Vraag</th><th>Waarom</th><th>Bij Complete AI</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Welke aannames liggen onder het bedrag?</strong></td><td>Een bedrag zonder aannames is een gok.</td><td>De aannames staan in het voorstel: welke onderdelen, welke koppelingen en welke goedkeuringsstappen.</td></tr>
+            <tr><td><strong>Wat zit in het eenmalige deel en wat in het maandbedrag?</strong></td><td>Vergelijk posten, niet totalen.</td><td>Eenmalig voor het inrichten, vast per maand voor onderhoud en bijsturing.</td></tr>
+            <tr><td><strong>Is er nacalculatie?</strong></td><td>Achteraf afgerekend werk maakt de eindsom onvoorspelbaar.</td><td>Eén vaste prijs, zonder nacalculatie.</td></tr>
+            <tr><td><strong>Wat is een kleine wijziging, en wat kost die?</strong></td><td>Leg de grens vast met voorbeelden.</td><td>Kleine wijzigingen horen bij het maandbedrag. U krijgt binnen één werkdag reactie.</td></tr>
+            <tr><td><strong>Wie onderhoudt de koppelingen als een leverancier iets wijzigt?</strong></td><td>Koppelingen veranderen buiten uw bedrijf om.</td><td>Het onderhoud blijft onze verantwoordelijkheid.</td></tr>
+            <tr><td><strong>Van wie zijn de gegevens, en wat krijgt u mee als u stopt?</strong></td><td>Wie kan stoppen, zit niet vast.</td><td>Uw gegevens blijven van u. Bij stoppen ontvangt u alles in een gangbaar bestandsformaat. Het abonnement is maandelijks opzegbaar.</td></tr>
+            <tr><td><strong>Wat vraagt het van mij aan tijd?</strong></td><td>Uw tijd is ook een kostenpost.</td><td>Een half uur intake, uw akkoord en in de eerste weken uw goedkeuring op wat naar klanten gaat.</td></tr>
+          </tbody>
+        </table></div>
+        <h3>Leg dezelfde order voor</h3>
+        <p>De eenvoudigste manier om voorstellen te vergelijken: leg bij elke aanbieder dezelfde order voor, inclusief de lastigste uitzondering die u kent, en vergelijk wat elk voorstel daarmee doet. Een voorstel dat de uitzondering niet noemt, heeft haar niet meegeprijsd.</p>""",
+         "bedrag-zonder-gesprek",
+         "Bandbreedtes zeggen weinig zonder de aannames erbij."),
+
+   proza("Routes", "Zelf doen, standaardsoftware, laten inrichten of maatwerk: waar zitten de kosten?",
+         """        <p>Vier routes leiden naar een geautomatiseerd proces. Per route staat hieronder waar de kosten zitten en wat erbij past.</p>
+        <div class="tabelwrap"><table>
+          <thead><tr><th>Route</th><th>Waar de kosten zitten</th><th>Past bij</th><th>Let op</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Zelf bouwen met losse hulpmiddelen</strong></td><td>Uw eigen tijd om het op te zetten, te testen en te repareren, en de licenties van de hulpmiddelen.</td><td>Eén afgebakende workflow waarvan u zelf alle regels kent.</td><td>U bent de schakel tussen de systemen en degene die het bijhoudt.</td></tr>
+            <tr><td><strong>De automatisering in uw eigen pakket</strong></td><td>Het pakket dat u al betaalt, soms met een hoger abonnement.</td><td>Wat dat pakket zelf doet, zoals uw boekhouding of uw agenda.</td><td>Het werkt tot de grens van het pakket.</td></tr>
+            <tr><td><strong>Onderdelen laten inrichten die al draaien</strong></td><td>Inrichten en koppelen, plus een vast maandbedrag voor onderhoud.</td><td>Meerdere processen die op elkaar aan moeten sluiten.</td><td>Vraag wat onder het maandbedrag valt. Dit is de route van Complete AI.</td></tr>
+            <tr><td><strong>Maatwerksoftware laten bouwen</strong></td><td>Ontwerp, bouw, testen, migratie, hosting en beheer, vanaf nul.</td><td>Een werkwijze die geen bestaand onderdeel dekt.</td><td>Het beheer loopt door na de oplevering.</td></tr>
+          </tbody>
+        </table></div>
+        <p><a href="https://www.ibm.com/think/topics/business-process-automation" rel="noopener" target="_blank">IBM</a> adviseert waar het kan bestaande, kant-en-klare oplossingen te gebruiken, omdat die de invoering versnellen en de kosten drukken. Dat geldt ook voor een klein bedrijf: begin bij de goedkoopste route die betrouwbaar werkt. Voldoet uw eigen boekhoud- of agendapakket, dan hoort u dat in de intake.</p>
+        <p>Hoe u een workflow beschrijft voordat u een route kiest, staat bij <a href="wat-is-workflow-automatisering.html#op-papier">zo zet u een workflow op papier</a>. Hoe Complete AI de derde route inricht, leest u bij <a href="automatisering.html">bedrijfsprocessen automatiseren</a>.</p>""",
+         "routes",
+         "Ze verschillen niet alleen in prijs, maar vooral in waar de kosten zitten."),
+
+   sectie("Werkwijze", "Hoe komt een voorstel bij Complete AI tot stand?",
+          "Vijf stappen, van intake tot uitbreiden. Vooraf hoeft u niets voor te bereiden.",
+          routeblok([
+            ("Intake", "Een half uur, kosteloos en vrijblijvend. Vier vragen: welke taken komen elke week terug en wie doet ze, welke systemen gebruikt u, waar gaat het mis en wat mag nooit zonder uw akkoord de deur uit."),
+            ("Voorstel", "Binnen één werkdag op papier: welke onderdelen wij inzetten, wat er automatisch verloopt, wat u zelf goedkeurt en wanneer het staat. Eén vaste prijs, zonder nacalculatie."),
+            ("Eenmalig en per maand", "De prijs bestaat uit een eenmalig deel voor het inrichten en een vast maandbedrag voor onderhoud en bijsturing."),
+            ("Uw keuze", "U beslist of u het voorstel accepteert, en hoe ver u gaat. Blijkt dat er weinig te winnen valt, dan hoort u dat."),
+            ("Fase voor fase", "Draait het eerste onderdeel, dan kiest u het volgende. Elke fase levert op zichzelf resultaat op en u bepaalt wanneer de volgende volgt."),
+          ]) + """
+      <div class="proza reveal">
+        <h3>Waarom er geen nacalculatie is</h3>
+        <p>Nacalculatie ontstaat wanneer de omvang na de start groter blijkt dan aangenomen. Een vaste prijs is mogelijk omdat de vijf factoren vooraf worden doorgelopen: wat vaststaat, kan worden geprijsd. Wilt u er later een onderdeel bij, dan is dat de volgende fase, en die kiest u zelf.</p>
+        <h3>Waarom een intake en geen prijslijst</h3>
+        <p>De intake stelt de vragen waarvan het antwoord de prijs bepaalt. Een prijslijst slaat die vragen over, en daarmee de kern van het voorstel. Wilt u zich voorbereiden, dan is de nuttigste voorbereiding een week lang opnemen welke taken terugkomen. Het antwoord op de vierde vraag, wat nooit zonder uw akkoord de deur uit mag, bepaalt het aantal goedkeuringsstappen.</p>
+        <h3>Wat vraagt het van u?</h3>
+        <p>Een half uur voor de intake, uw akkoord op het voorstel en, in de eerste weken, uw goedkeuring op wat naar klanten gaat. Het inrichten doen wij. Plan een <a href="index.html#contact">intake</a> om het voor uw situatie te laten doorrekenen.</p>
+      </div>""", "voorstel"),
+
+   proza("Onderhoud", "Wat zit er in het maandbedrag, en waarom bestaat het?",
+         """        <p>Een automatisering is nooit af, omdat de systemen eromheen veranderen. Een concreet voorbeeld: Microsoft heeft in Exchange Online de basisverificatie, waarbij een toepassing bij elk verzoek een gebruikersnaam en wachtwoord meestuurt, in alle tenants uitgeschakeld. Toepassingen die e-mail versturen of lezen moesten overstappen op moderne authenticatie. Dat staat in de <a href="https://learn.microsoft.com/nl-nl/exchange/clients-and-mobile-in-exchange-online/deprecation-of-basic-authentication-exchange-online" rel="noopener" target="_blank">uitleg van Microsoft</a> (Engelstalig). Een koppeling die jaren werkte, kon dus stoppen zonder dat uw eigen bedrijf iets had veranderd.</p>
+        <p>Wanneer zo&#8217;n wijziging komt en wat ze vraagt, is vooraf niet te zeggen. Daarom is onderhoud een terugkerende post en geen eenmalige.</p>
+        <h3>Wat bij Complete AI onder het maandbedrag valt</h3>
+        <ul>
+          <li><strong>Onderhoud.</strong> Het onderhoud blijft onze verantwoordelijkheid, ook wanneer een koppeling verandert.</li>
+          <li><strong>Eén aanspreekpunt.</strong> Eén bericht volstaat, zonder ticketsysteem, en u krijgt binnen één werkdag reactie.</li>
+          <li><strong>Kleine wijzigingen.</strong> Die horen bij het maandbedrag.</li>
+          <li><strong>Bijsturing.</strong> We beoordelen maandelijks samen de cijfers en u kiest wanneer het volgende onderdeel aan de beurt is.</li>
+          <li><strong>Maandelijks opzegbaar.</strong> Zonder langlopende verplichting. Uw gegevens blijven van u.</li>
+        </ul>
+        <h3>Wat u zelf blijft doen</h3>
+        <p>In de eerste weken ziet u wat naar een klant gaat en geeft u akkoord. Klopt alles en geeft u telkens zonder aanpassing akkoord, dan kan die stap vervallen. En u kiest wanneer het volgende onderdeel volgt. Hoe een workflow wordt bewaakt wanneer een stap mislukt, staat bij <a href="wat-is-workflow-automatisering.html#mislukt">wat als een stap mislukt</a>.</p>""",
+         "onderhoud",
+         "Een vast maandbedrag voor wat niet eenmalig is: onderhoud en bijsturing."),
+
+   proza("Rendement", "Hoe rekent u na wat automatisering oplevert?",
+         """        <p>Een bedrag zegt pas iets naast wat het werk nu kost. Reken dat vóór u een voorstel vraagt, met uw eigen cijfers. Zo ziet u of het voorstel past, en het maakt het gesprek concreet.</p>
+        <div class="tabelwrap"><table>
+          <thead><tr><th>Stap</th><th>Wat u doet</th><th>Waarom</th></tr></thead>
+          <tbody>
+            <tr><td><strong>1. Uren opnemen</strong></td><td>Neem in een gewone week op welke handelingen terugkomen. Aantal keer per week maal minuten per keer, gedeeld door zestig, geeft uren per week.</td><td>Zonder meting weet u niet wat het werk kost.</td></tr>
+            <tr><td><strong>2. Uren waarderen</strong></td><td>Vermenigvuldig met wat een uur van u of van uw medewerker uw bedrijf kost.</td><td>Het is uw eigen uurwaarde, niet die van een aanbieder.</td></tr>
+            <tr><td><strong>3. Fouten en wachttijd optellen</strong></td><td>Wat kost een verkeerd overgetypt bedrag, een factuur die later uitgaat, een offerte die blijft liggen?</td><td>Een factuur die later uitgaat, wordt later betaald. Dat is geld dat later binnenkomt.</td></tr>
+            <tr><td><strong>4. Naast de kosten leggen</strong></td><td>Het eenmalige deel plus twaalf maal het maandbedrag voor het eerste jaar. Daarna alleen het maandbedrag.</td><td>Zo ziet u ook wanneer het eenmalige deel is terugverdiend.</td></tr>
+            <tr><td><strong>5. Achteraf hetzelfde meten</strong></td><td>Na enkele weken dezelfde meting, op dezelfde manier.</td><td>Alleen dan weet u wat het opleverde.</td></tr>
+          </tbody>
+        </table></div>
+        <h3>Tijd die vrijkomt is pas geld wanneer u hem anders besteedt</h3>
+        <p>Vier uur minder administratie levert iets op wanneer die uren naar werk gaan dat omzet oplevert, of wanneer het avondwerk verdwijnt. Wat de vrijgekomen tijd waard is, bepaalt u zelf. Reken daarom met wat u van de vrijgekomen tijd gaat doen, niet met de uren alleen.</p>
+        <p>Bij Aronza kostte de administratie vier tot zes uur per week, grotendeels buiten werktijd. Sinds begin mei 2026 is dat nul. De <a href="case-aronza.html">klantcase</a> beschrijft dat de verschuiving van het werk naar de dag in de praktijk meer scheelt dan de uren zelf. Hoe u zelf zo&#8217;n meting opzet, staat bij <a href="bedrijfsprocessen-automatiseren-voorbeelden.html#tijd-opnemen">vooraf de tijd opnemen</a>.</p>""",
+         "terugverdienen",
+         "Reken met uw eigen cijfers, niet met die van een aanbieder."),
+
+   proza("AI-agent", "Wat kost een AI-agent?",
+         """        <p>Een AI-agent heeft dezelfde kostenposten als andere automatisering: inrichten, koppelen, testen en onderhouden. Er komt één post bij die bij vaste regels ontbreekt, namelijk het gebruik van het AI-model. Zoals bij <a href="#kostenposten">de kostenposten</a> beschreven, rekent een aanbieder van AI-modellen per hoeveelheid tekst die het model leest en schrijft. Hoe meer gesprekken of berichten de agent afhandelt, hoe groter het gebruik.</p>
+        <p>Voor het voorstel betekent dat: de vraag &#8220;hoeveel gesprekken of berichten per maand?&#8221; krijgt een plek. Bij de AI-telefonist zijn dat het aantal gesprekken en de uren waarop hij opneemt. Daarnaast tellen de koppelingen, zoals de agenda, en de talen waarin hij spreekt. Wat de AI-telefonist kost, staat bij <a href="ai-telefonist.html#kosten">wat kost een AI-telefonist</a>.</p>
+        <p>Wat een AI-agent is, waarin hij verschilt van een vaste workflow en wanneer hij past, leest u in de gids <a href="ai-agent-voor-uw-bedrijf.html">AI-agent voor uw bedrijf</a>. Voor een vaste route, zoals een factuur na een afgeronde order, is geen AI nodig. Zie <a href="wat-is-workflow-automatisering.html#rpa-ai">workflow, RPA of AI</a>.</p>""",
+         "ai-agent",
+         "Dezelfde posten als andere automatisering, plus het gebruik van het AI-model."),
+
+   proza("Beheersen", "Hoe houdt u de kosten van automatisering beheersbaar?",
+         """        <ol>
+          <li><strong>Begin met één proces.</strong> <a href="https://www.ibm.com/think/topics/business-process-automation" rel="noopener" target="_blank">IBM</a> adviseert organisaties met weinig automatisering klein te beginnen. Bij Aronza zijn de onderdelen gefaseerd in gebruik genomen, te beginnen bij facturatie en kosten.</li>
+          <li><strong>Leg de aannames vast.</strong> Laat in het voorstel opschrijven welke koppelingen, uitzonderingen en goedkeuringsstappen erin zitten.</li>
+          <li><strong>Kies de goedkoopste route die betrouwbaar werkt.</strong> Kan uw eigen pakket het, dan is dat het antwoord.</li>
+          <li><strong>Ruim de gegevens op voordat u koppelt.</strong> Een dubbel klantenbestand blijft dubbel en de automatisering geeft de fout sneller door. Opruimen is werk dat u zelf kunt doen.</li>
+          <li><strong>Beperk goedkeuringen tot wat naar buiten gaat.</strong> Wat binnen uw eigen administratie blijft, verloopt zonder tussenkomst. Voor een factuur of een bericht aan een klant komt eerst een goedkeuring.</li>
+          <li><strong>Zet wat u pas later nodig heeft in de volgende fase.</strong> Een onderdeel dat u over een half jaar nodig heeft, hoort niet in de eerste opdracht.</li>
+        </ol>
+        <h3>Is automatisering aftrekbaar?</h3>
+        <p>Voor investeringen in bedrijfsmiddelen bestaat de kleinschaligheidsinvesteringsaftrek. Volgens de <a href="https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/zakelijk/winst/inkomstenbelasting/inkomstenbelasting_voor_ondernemers/investeringsaftrek_en_desinvesteringsbijtelling/kleinschaligheidsinvesteringsaftrek_kia" rel="noopener" target="_blank">Belastingdienst</a> is dat een aftrekpost op de winst, voor bedrijfsmiddelen die in aanmerking komen voor investeringsaftrek. Of uw uitgave daaronder valt, bepaalt uw boekhouder. Wij geven geen fiscaal advies. In België gelden andere regels; ook daarvoor is uw boekhouder of accountant het aanspreekpunt.</p>""",
+         "laag-houden",
+         "Zes keuzes die het voorstel kleiner of scherper maken."),
+
+   sectie("Uit eigen praktijk", "Wat de opbouw bij Aronza laat zien over kosten.",
+          """Bij Aronza, het e-commercebedrijf van de oprichter van Complete AI, zijn facturatie, kostenregistratie, orderverwerking, voorraadbeheer en klantcontact geautomatiseerd. Ze draaien sinds begin mei 2026. Er staan hier geen bedragen bij, maar wel de dingen die de kosten bepalen. <a href="case-aronza.html">De volledige klantcase leest u hier</a>.""",
+          voorbeeldblok([
+            ("Begonnen bij facturatie en kosten", "Die twee kwamen eerst. De rest volgde stap voor stap, zodat na elke stap te controleren was of het klopte voordat de volgende begon."),
+            ("Eén keten op dezelfde gegevens", "Een order die binnenkomt, werkt de voorraad, de factuur en het klantdossier bij, en niemand typt iets over. Het werk zat in het laten aansluiten van die onderdelen op elkaar."),
+            ("De uren zijn meetbaar", "Vóór de automatisering ging er vier tot zes uur per week aan administratie op, buiten werktijd. Sinds begin mei 2026 is dat nul."),
+            ("Onderdelen die al bestaan", "17 automatiseringen draaien vandaag al en zijn getest. Daarom kan een onderdeel bij een klant binnen enkele werkdagen staan."),
+            ("Geen storing sinds de ingebruikname", "Dat garandeert de toekomst niet, en daarom bestaat onderhoud. Elke automatische handeling is terug te zien en terug te draaien."),
+          ]) + """
+      <div class="proza reveal">
+        <h3>Wat dit betekent voor uw kosten</h3>
+        <p>Omdat de onderdelen bestaan, hoeft niet elke functie opnieuw te worden ontworpen. Het werk bij uw bedrijf zit in het kiezen van de onderdelen, het inrichten met uw gegevens en het koppelen aan de boekhouding, agenda of telefonie die u al gebruikt. Daarom staat een onderdeel binnen enkele werkdagen. Wat dat in uw situatie is, bepaalt de <a href="index.html#contact">intake</a>. Wat een workflow is en hoe u hem op papier zet, leest u in <a href="wat-is-workflow-automatisering.html">wat is workflow automatisering</a>.</p>
+      </div>""", "eigen-praktijk"),
+
+   bronnen([
+     ("Microsoft Learn: Types of Power Automate licenses (Engelstalig)",
+      "https://learn.microsoft.com/en-us/power-platform/admin/power-automate-licensing/types",
+      "Gebruikerslicenties, die aan een persoon worden toegewezen, en capaciteitslicenties, die aan een automatisering worden toegewezen, en de raming van het gebruik als acties per uitvoering maal uitvoeringen per dag."),
+     ("Anthropic: Pricing (Engelstalig)",
+      "https://platform.claude.com/docs/en/about-claude/pricing",
+      "Een voorbeeld van hoe een aanbieder van AI-modellen rekent: per miljoen tokens, met een apart tarief voor invoer en uitvoer en een verschillend tarief per model."),
+     ("Microsoft Learn: Deprecation of Basic authentication in Exchange Online (Engelstalig)",
+      "https://learn.microsoft.com/nl-nl/exchange/clients-and-mobile-in-exchange-online/deprecation-of-basic-authentication-exchange-online",
+      "Een voorbeeld van een leverancier die een verbindingsmethode uitschakelde, waardoor toepassingen moesten overstappen op moderne authenticatie."),
+     ("Wikipedia: Total cost of ownership (Engelstalig)",
+      "https://en.wikipedia.org/wiki/Total_cost_of_ownership",
+      "Welke kosten naast de aanschaf horen bij een IT-investering, zoals migratie, testen, opleiding en beveiliging, en dat de kosten van handwerk dat vervalt meetellen in de vergelijking."),
+     ("IBM: What is business process automation? (Engelstalig)",
+      "https://www.ibm.com/think/topics/business-process-automation",
+      "Het advies klein te beginnen, waar het kan bestaande oplossingen te gebruiken en per proces meetbare doelen te stellen."),
+     ("Belastingdienst: Kleinschaligheidsinvesteringsaftrek (KIA)",
+      "https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/zakelijk/winst/inkomstenbelasting/inkomstenbelasting_voor_ondernemers/investeringsaftrek_en_desinvesteringsbijtelling/kleinschaligheidsinvesteringsaftrek_kia",
+      "Wat de aftrek is: een aftrekpost op de winst bij investeringen in bedrijfsmiddelen die in aanmerking komen voor investeringsaftrek."),
+   ]),
+ ]),
+},
+
+# ───────────────────────────── TOOL: GEMISTE OPROEPEN BEREKENEN ─────────────────────────────
+{
+ "bestand": "gemiste-oproepen-berekenen.html",
+ "soort": "gids",
+ "dienst": "Gemiste oproepen berekenen",
+ "titel": "Gemiste oproepen berekenen: wat kost het u? | Complete AI",
+ "beschrijving": "Bereken met uw eigen cijfers wat gemiste telefoontjes uw bedrijf per jaar kosten. Zonder standaardwaarden en zonder e-mailadres.",
+ "omschrijving": "Rekentool waarmee een ondernemer met eigen cijfers berekent wat gemiste oproepen per jaar aan omzet kosten.",
+ "ogen": "Rekentool",
+ "h1": 'Wat kost een <span class="glans">gemiste oproep</span> u? Bereken het met uw eigen cijfers.',
+ "lead": "Een gemiste oproep is een klant die een ander belt. Met vijf getallen uit uw eigen bedrijf berekent u hieronder wat gemiste telefoontjes u per jaar aan omzet kosten. De rekentool gebruikt geen standaardwaarden, vraagt geen e-mailadres en verstuurt niets.",
+ "levertijd": "Rekent in uw browser, niets wordt verstuurd",
+ "gepubliceerd": "2026-09-25",
+ "uitkomsten": [
+     ("5", "getallen, allemaal uit uw eigen bedrijf"),
+     ("Zichtbaar", "de formule en elke tussenstap van de berekening"),
+     ("Niets", "wordt verstuurd of opgeslagen: de pagina rekent in uw browser"),
+ ],
+ "slot_kop": "Wilt u weten wat u eraan kunt doen?",
+ "slot_tekst": "In een half uur bekijken wij samen met u hoeveel oproepen er nu onbeantwoord blijven en wanneer dat gebeurt. U ontvangt een onderbouwd advies, ook wanneer de conclusie is dat de winst elders ligt.",
+ "vragen": [
+   ("Hoe weet ik hoeveel telefoontjes mijn bedrijf mist?",
+    "Kijk in het gespreksoverzicht van uw telefoon of telefooncentrale: daar staan de gemiste oproepen per dag. Noteer een week lang hoeveel oproepen er binnenkwamen en hoeveel u niet kon opnemen. Een week is een schatting, twee weken is beter. Meer over het invullen leest u onder &#8220;Zo vult u de getallen in&#8221;."),
+   ("Welk percentage van de gemiste oproepen is een nieuwe klant?",
+    "Dat verschilt per bedrijf en per branche, en een percentage van een ander bedrijf zegt niets over het uwe. Meet het zelf: bel een week lang elk onbekend nummer terug en tel hoeveel een aanvraag bleken te zijn. Deze tool geeft daarom geen standaardpercentage."),
+   ("Is de uitkomst een bedrag dat ik werkelijk misloop?",
+    "Nee. De uitkomst is een rekensom met uw eigen inschatting. Een deel van de bellers belt later terug of mailt, en een deel had nooit een opdracht opgeleverd. Wilt u voorzichtig rekenen, vul dan bij het aandeel nieuwe klanten een lager getal in."),
+   ("Wat doet een AI-telefonist met een oproep die anders gemist zou worden?",
+    "Hij neemt op buiten openingstijden en tijdens drukte, noteert de vraag of de bestelling, plant een afspraak en schakelt urgente gesprekken door naar u. Van elk gesprek is een transcript beschikbaar. Hoe dat werkt leest u bij <a href=\"ai-telefonist.html\">de AI-telefonist</a>."),
+   ("Waarom vraagt de tool geen e-mailadres?",
+    "Omdat u de uitkomst voor uzelf nodig heeft. Er wordt niets verstuurd of opgeslagen; de berekening gebeurt in uw browser. Wilt u de uitkomst met ons bespreken, dan kan dat via de gratis AI-scan of een intake."),
+   ("Kan ik ook andere gemiste contactmomenten meerekenen?",
+    "Ja, met dezelfde formule. Neem in plaats van telefoontjes het aantal WhatsApp-berichten of e-mails dat te laat wordt beantwoord en vul het aandeel en de waarde in zoals hierboven. Voor berichten buiten kantooruren is een <a href=\"automatisering.html\">automatisering</a> een aparte mogelijkheid."),
+ ],
+ "script": """<script>
+(function(){
+  var f=document.getElementById('rekenformulier'), uit=document.getElementById('rekenuitkomst');
+  if(!f||!uit) return;
+  var nl=new Intl.NumberFormat('nl-NL',{maximumFractionDigits:2});
+  var eur=new Intl.NumberFormat('nl-NL',{style:'currency',currency:'EUR',maximumFractionDigits:0});
+  function n(k){var v=(f.elements[k].value||'').toString().trim().replace(',', '.');return v===''?NaN:Number(v);}
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var a=n('a'),d=n('d'),b=n('b'),c=n('c'),w=n('e');
+    var fout='';
+    if([a,d,b,c,w].some(function(x){return isNaN(x)})) fout='Vul alle vijf de getallen in.';
+    else if([a,d,b,c,w].some(function(x){return x<0})) fout='Een getal kan niet negatief zijn.';
+    else if(b>100||c>100) fout='Een percentage kan niet hoger zijn dan 100.';
+    uit.hidden=false;
+    uit.className='rekenuitkomst'+(fout?' mis':'');
+    if(fout){uit.innerHTML='';var p=document.createElement('p');p.textContent=fout;uit.appendChild(p);return;}
+    var gemist=a*d*(b/100), nieuw=gemist*(c/100), omzet=nieuw*w;
+    uit.innerHTML='<p style="margin-top:0">Volgens uw eigen getallen blijft er per jaar ongeveer dit liggen:</p>'
+      +'<div class="groot" id="rk-omzet"></div>'
+      +'<ul class="rekenstappen">'
+      +'<li><b>Gemiste oproepen per jaar</b><br><span id="rk-1"></span></li>'
+      +'<li><b>Daarvan een nieuwe klant of opdracht</b><br><span id="rk-2"></span></li>'
+      +'<li><b>Omzet die is blijven liggen</b><br><span id="rk-3"></span></li></ul>'
+      +'<p>Dit is een rekensom met uw eigen inschatting, geen meting en geen belofte. Klopt een getal niet, pas het dan aan en bereken opnieuw.</p>'
+      +'<div class="rekenacties"><a class="knop knop-vol" href="index.html#scan">Vraag de gratis AI-scan aan</a><a class="knop knop-lijn" href="index.html#contact">Plan een intake</a></div>';
+    document.getElementById('rk-omzet').textContent=eur.format(omzet);
+    document.getElementById('rk-1').textContent=nl.format(a)+' per dag \\u00d7 '+nl.format(d)+' werkdagen \\u00d7 '+nl.format(b)+'% = '+nl.format(gemist);
+    document.getElementById('rk-2').textContent=nl.format(gemist)+' \\u00d7 '+nl.format(c)+'% = '+nl.format(nieuw);
+    document.getElementById('rk-3').textContent=nl.format(nieuw)+' \\u00d7 '+eur.format(w)+' = '+eur.format(omzet);
+  });
+})();
+</script>""",
+ "inhoud": "\n\n  <hr class=\"streep\">\n\n".join([
+   sectie("Rekentool", "Vul vijf getallen in.",
+          "Alles wat u invult blijft in uw browser. Er staan bewust geen standaardwaarden in: elk getal is van u.",
+          """      <form id="rekenformulier" class="reken reveal" novalidate>
+        <div class="rij">
+          <label>Telefoontjes per werkdag<input type="number" inputmode="decimal" min="0" step="any" name="a" autocomplete="off"></label>
+          <label>Werkdagen per jaar<input type="number" inputmode="decimal" min="0" step="any" name="d" autocomplete="off"></label>
+        </div>
+        <div class="rij">
+          <label>Onbeantwoord, in procenten<input type="number" inputmode="decimal" min="0" max="100" step="any" name="b" autocomplete="off"></label>
+          <label>Nieuwe klant of opdracht, in procenten<input type="number" inputmode="decimal" min="0" max="100" step="any" name="c" autocomplete="off"></label>
+        </div>
+        <label>Gemiddelde waarde van een nieuwe klant of opdracht, in euro<input type="number" inputmode="decimal" min="0" step="any" name="e" autocomplete="off"></label>
+        <button class="knop knop-vol" type="submit">Bereken</button>
+        <p class="klein">Onbeantwoord is het deel van de telefoontjes dat u niet opneemt. Nieuwe klant of opdracht is het deel van de gemiste oproepen dat een nieuwe aanvraag was geweest.</p>
+      </form>
+      <div id="rekenuitkomst" class="rekenuitkomst" role="status" aria-live="polite" hidden></div>""",
+          "rekentool"),
+
+   proza("Invullen", "Zo vult u de getallen in.",
+"""        <h3>Telefoontjes per werkdag en werkdagen per jaar</h3>
+        <p>Neem het gemiddelde van een gewone week. Het aantal werkdagen is het aantal dagen dat uw bedrijf per jaar open is, zonder vakanties en feestdagen.</p>
+        <h3>Het deel dat onbeantwoord blijft</h3>
+        <p>Bel- of telefooncentraleoverzichten tonen gemiste oproepen per dag. Deel het aantal gemiste oproepen door het totaal. Wie geen overzicht heeft, kan een week lang een streepjeslijst bijhouden.</p>
+        <h3>Het deel dat een nieuwe klant of opdracht was</h3>
+        <p>Dit is het getal met de meeste onzekerheid. Geef daarom geen standaardpercentage op, maar meet het: bel een week lang elk onbekend nummer terug en tel hoeveel een echte aanvraag bleken te zijn. Twijfelt u, vul dan een voorzichtig getal in.</p>
+        <h3>De waarde van een nieuwe klant of opdracht</h3>
+        <p>Neem het gemiddelde van uw laatste tien nieuwe klanten of opdrachten. Rekent u met een terugkerende klant, tel dan ook wat die in een jaar oplevert.</p>""",
+          "invullen"),
+
+   proza("Uitleg", "Wat de uitkomst wel en niet zegt.",
+"""        <p>De formule is de vermenigvuldiging die u hierboven ziet: gemiste oproepen per jaar, het deel daarvan dat een nieuwe klant was, en de waarde van een klant. Er komt geen enkel getal van buiten in te staan.</p>
+        <p>De uitkomst laat zien hoe groot de post is als uw eigen schattingen kloppen. Ze bewijst niet dat u dat bedrag misloopt. Een deel van de bellers belt later terug of stuurt een bericht, en een deel had nooit een opdracht opgeleverd. Wilt u voorzichtig rekenen, dan neemt u bij elk getal de lagere schatting.</p>
+        <p>Blijft er ook bij voorzichtige getallen een bedrag over dat u zou willen terugzien, dan is dat een reden om te onderzoeken hoe de telefoon buiten openingstijden en tijdens drukte wordt opgenomen.</p>""",
+          "uitleg"),
+
+   sectie("Wat eraan te doen is", "Een telefoon die altijd wordt opgenomen.",
+          "Wat een AI-telefonist met een gemiste oproep doet, staat hieronder. De volledige uitleg leest u bij <a href=\"ai-telefonist.html\">de AI-telefonist</a>.",
+          voorbeeldblok([
+            ("Opnemen wanneer u dat niet kunt", "Buiten openingstijden, in het weekend en tijdens drukte."),
+            ("Vragen en bestellingen vastleggen", "De AI-telefonist noteert wat de beller nodig heeft en filtert verkopers eruit."),
+            ("Doorschakelen wat urgent is", "Bij een spoedgeval gaat het gesprek naar u door."),
+            ("Terugbelnotities", "Van elk gesprek is een transcript beschikbaar, zodat u weet wie u terug moet bellen."),
+          ]), "eraan-doen"),
+ ]),
+},
+
+# ───────────────────────────── HUB: GIDSEN EN TOOLS ─────────────────────────────
+{
+ "bestand": "gidsen.html",
+ "dienst": "Gidsen en tools",
+ "titel": "Gidsen over AI en automatisering voor het mkb | Complete AI",
+ "beschrijving": "Gidsen en een rekentool voor mkb-ondernemers: AI, automatisering, vindbaarheid in Google en gemiste oproepen. Met bronnen en zonder bedragen.",
+ "omschrijving": "Overzicht van de gidsen en de rekentool van Complete AI over AI, automatisering en vindbaarheid voor het mkb.",
+ "ogen": "Gidsen",
+ "h1": 'Gidsen over <span class="glans">AI en automatisering</span> voor het mkb.',
+ "lead": "Hier staan de gidsen en de rekentool van Complete AI: uitleg over AI, automatisering en vindbaarheid voor mkb-ondernemers in Nederland en België. Elke gids noemt zijn bronnen en geeft geen bedragen.",
+ "levertijd": "Gratis te lezen, zonder aanmelding",
+ "gepubliceerd": "2026-09-25",
+ "uitkomsten": [
+     ("6", "gidsen over AI, automatisering en vindbaarheid"),
+     ("1", "rekentool voor gemiste oproepen"),
+     ("Bronnen", "onder elke gids, van officiële en neutrale bronnen"),
+ ],
+ "slot_kop": "Welke vraag is voor uw bedrijf het belangrijkst?",
+ "slot_tekst": "In een half uur bespreken wij welke uitleg voor uw situatie het meest oplevert. U ontvangt een onderbouwd advies, ook wanneer de conclusie is dat u nog niets hoeft te doen.",
+ "vragen": [
+   ("Waar begin ik met AI in mijn bedrijf?",
+    "Begin bij het werk dat elke week terugkomt en geen omzet oplevert, zoals facturen, orders en de telefoon. De gids <a href=\"ai-voor-uw-bedrijf.html\">AI in uw bedrijf</a> laat zien hoe u kiest en in welke volgorde u begint."),
+   ("Welke processen kan ik automatiseren?",
+    "Processen die terugkomen, een vaste volgorde hebben en niet bij elke stap een afweging vragen. De gids <a href=\"bedrijfsprocessen-automatiseren-voorbeelden.html\">processen automatiseren</a> geeft voorbeelden per afdeling."),
+   ("Hoe kom ik hoger in Google?",
+    "Door te zorgen dat Google uw pagina's kan opnemen, dat elke pagina een vraag beantwoordt en dat andere sites naar u verwijzen. De pagina <a href=\"vindbaarheid-seo.html\">SEO voor het mkb</a> legt het per laag uit, met de bronnen van Google zelf."),
+   ("Wat kost een gemiste oproep mij?",
+    "Dat berekent u met uw eigen cijfers in de <a href=\"gemiste-oproepen-berekenen.html\">rekentool voor gemiste oproepen</a>. De tool gebruikt geen standaardwaarden en vraagt geen e-mailadres."),
+   ("Zijn de gidsen gratis en vrijblijvend?",
+    "Ja. Ze zijn bedoeld om zelf mee verder te komen. Wilt u dat wij het werk doen, dan begint dat met een gratis en vrijblijvende intake."),
+ ],
+ "inhoud": "\n\n  <hr class=\"streep\">\n\n".join([
+   sectie("Gidsen", "Uitleg per onderwerp.",
+          "Elke gids beantwoordt de vragen die ondernemers over het onderwerp stellen, met bronnen erbij.",
+          voorbeeldblok([
+            ("AI in uw bedrijf", "Wat AI vandaag concreet kan overnemen en hoe u begint. <a href=\"ai-voor-uw-bedrijf.html\">Lees de gids</a>."),
+            ("Processen automatiseren", "Voorbeelden per afdeling en een manier om te kiezen waar u begint. <a href=\"bedrijfsprocessen-automatiseren-voorbeelden.html\">Lees de gids</a>."),
+            ("Wat is workflow automatisering?", "Wat het is, uit welke stappen een workflow bestaat en hoe u er een op papier zet. <a href=\"wat-is-workflow-automatisering.html\">Lees de gids</a>."),
+            ("AI-agent voor uw bedrijf", "Wat een AI-agent is, waarin hij verschilt van een chatbot en welke taken hij overneemt. <a href=\"ai-agent-voor-uw-bedrijf.html\">Lees de gids</a>."),
+            ("Wat kost automatisering?", "Waar de kosten van afhangen en hoe een voorstel tot stand komt, zonder standaardbedrag. <a href=\"wat-kost-automatisering.html\">Lees de gids</a>."),
+            ("SEO voor het mkb", "Hoe Google een pagina kiest en wat u eraan doet. <a href=\"vindbaarheid-seo.html\">Lees de pagina</a>."),
+          ]), "gidsen"),
+
+   sectie("Tool", "Berekenen met uw eigen cijfers.",
+          "Een rekentool die niets van buiten meeneemt.",
+          voorbeeldblok([
+            ("Gemiste oproepen berekenen", "Wat kosten gemiste telefoontjes uw bedrijf per jaar? Vijf getallen, allemaal van u, geen e-mailadres nodig. <a href=\"gemiste-oproepen-berekenen.html\">Naar de rekentool</a>."),
+            ("De klantcase", "Hoe facturatie, kosten, orderverwerking, voorraad en klantcontact bij Aronza zijn geautomatiseerd. <a href=\"case-aronza.html\">Lees de case</a>."),
+          ]), "tool"),
+
+   proza("Hoe wij schrijven", "Zo zijn de gidsen gemaakt.",
+"""        <p>Elke gids is geschreven door Glenn van Wijngaarden, oprichter van Complete AI, en noemt zijn auteur en datum. Feiten over de wereld komen uit bronnen die we hebben gelezen en die onderaan de gids staan: wetteksten, officiële documentatie, overheidsinstellingen en onderzoek met een beschreven methode. Feiten over Complete AI komen uit wat wij zelf bouwen en gebruiken, en zijn te controleren in <a href=\\"case-aronza.html\\">de klantcase</a>.</p>
+        <p>In de gidsen staan geen bedragen. Wat iets kost hangt af van uw situatie en staat in het voorstel na de <a href=\\"index.html#contact\\">intake</a>.</p>""",
+          "werkwijze"),
  ]),
 },
 ]

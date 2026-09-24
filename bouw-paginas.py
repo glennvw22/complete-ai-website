@@ -106,8 +106,10 @@ VOET = f"""<footer>
           <li><a href="ai-telefonist.html">AI-telefonist</a></li>
           <li><a href="social-media.html">Social media</a></li>
           <li><a href="case-aronza.html">Klantcase: Aronza</a></li>
+          <li><a href="gidsen.html">Gidsen en tools</a></li>
           <li><a href="ai-voor-uw-bedrijf.html">Gids: AI voor uw bedrijf</a></li>
           <li><a href="bedrijfsprocessen-automatiseren-voorbeelden.html">Gids: processen automatiseren</a></li>
+          <li><a href="gemiste-oproepen-berekenen.html">Rekentool: gemiste oproepen</a></li>
         </ul>
       </div>
       <div>
@@ -262,10 +264,10 @@ VERDER = [
      "Google Ads en Meta, gemeten tot op de euro. Op aanvraag."),
     ("case-aronza.html", "Klantcase", "Aronza",
      "Vier tot zes uur administratie per week teruggebracht tot nul."),
-    ("ai-voor-uw-bedrijf.html", "Gids", "AI voor uw bedrijf",
-     "Welke taken AI vandaag echt kan overnemen — en waar de grens ligt."),
-    ("bedrijfsprocessen-automatiseren-voorbeelden.html", "Gids", "Processen automatiseren",
-     "Voorbeelden per afdeling: van klantcontact tot voorraad en rapportage."),
+    ("gidsen.html", "Gidsen", "Gidsen en tools",
+     "Uitleg over AI, automatisering en vindbaarheid, met bronnen."),
+    ("gemiste-oproepen-berekenen.html", "Rekentool", "Gemiste oproepen berekenen",
+     "Wat kost een gemiste oproep u? Bereken het met uw eigen cijfers."),
 ]
 
 # Branchepagina's wijzen naar elkaar en naar de twee diensten die daar
@@ -369,6 +371,7 @@ def bouw(p):
 {VOET}
 
 <script src="script.js?v={JS_V}" defer></script>
+{p.get('script', '')}
 </body>
 </html>
 """

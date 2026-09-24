@@ -710,3 +710,14 @@ body.menu-open{overflow:hidden}
 
 .hero .lead a{color:var(--inkt);text-decoration:underline;text-decoration-color:var(--lijn-op);text-underline-offset:4px;text-decoration-thickness:1px}
 .hero .lead a:hover{text-decoration-color:var(--aqua)}
+
+/* ── rekentool ─────────────────────────────────── */
+.reken{max-width:640px;display:flex;flex-direction:column;gap:1.1rem;margin-top:2rem}
+.rekenuitkomst{max-width:640px;margin-top:1.6rem;border:1px solid var(--lijn-op);border-left:2px solid var(--aqua);border-radius:2px;padding:1.3rem 1.5rem}
+.rekenuitkomst[hidden]{display:none}
+.rekenuitkomst.mis{border-left-color:#E0975B}
+.rekenuitkomst .groot{font-family:var(--f-kop);font-size:clamp(1.6rem,1.2rem + 1.6vw,2.3rem);font-weight:700;letter-spacing:-.04em;color:var(--inkt);line-height:1.1}
+.rekenuitkomst p{color:var(--inkt-zacht);margin:.6rem 0 0;font-size:.97rem}
+.rekenstappen{list-style:none;padding:0;margin:1rem 0 0;display:flex;flex-direction:column;gap:.55rem;color:var(--inkt-zacht);font-size:.95rem}
+.rekenstappen b{color:var(--inkt);font-weight:600}
+.rekenacties{display:flex;flex-wrap:wrap;gap:.85rem;margin-top:1.2rem}

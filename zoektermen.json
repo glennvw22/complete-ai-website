@@ -105,5 +105,66 @@
   "min_vragen": 6,
   "min_intern": 6,
   "min_extern": 1
+ },
+ "wat-is-workflow-automatisering.html": {
+  "zoekterm": "workflow automatisering",
+  "varianten": [
+   "workflow automatisering",
+   "workflowautomatisering",
+   "workflows automatiseren"
+  ],
+  "min_woorden": 1800,
+  "min_vragen": 7,
+  "min_intern": 6,
+  "min_extern": 2
+ },
+ "ai-agent-voor-uw-bedrijf.html": {
+  "zoekterm": "ai-agent",
+  "varianten": [
+   "ai-agent",
+   "ai agent",
+   "ai-agents"
+  ],
+  "min_woorden": 1800,
+  "min_vragen": 7,
+  "min_intern": 6,
+  "min_extern": 2
+ },
+ "wat-kost-automatisering.html": {
+  "zoekterm": "wat kost automatisering",
+  "varianten": [
+   "wat kost automatisering",
+   "kosten van automatisering",
+   "kosten automatisering",
+   "automatisering kost"
+  ],
+  "min_woorden": 1800,
+  "min_vragen": 7,
+  "min_intern": 6,
+  "min_extern": 1
+ },
+ "gemiste-oproepen-berekenen.html": {
+  "zoekterm": "gemiste oproepen",
+  "varianten": [
+   "gemiste oproepen",
+   "gemiste oproep",
+   "gemiste telefoontjes"
+  ],
+  "min_woorden": 800,
+  "min_vragen": 6,
+  "min_intern": 5,
+  "min_extern": 0
+ },
+ "gidsen.html": {
+  "zoekterm": "gidsen ai automatisering",
+  "varianten": [
+   "gidsen over ai",
+   "gidsen",
+   "ai en automatisering"
+  ],
+  "min_woorden": 600,
+  "min_vragen": 5,
+  "min_intern": 10,
+  "min_extern": 0
  }
 }
