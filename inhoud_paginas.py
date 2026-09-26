@@ -1110,6 +1110,7 @@ PAGINAS = [
           <li>Welke uitzonderingen kwamen langs, en zijn ze goed opgevangen?</li>
           <li>Wat merken klanten of leveranciers ervan?</li>
         </ul>
+        <p>Hoe u een workflow op papier zet, leest u in <a href="wat-is-workflow-automatisering.html">Wat is workflow automatisering?</a>. Waar de kosten van afhangen, staat in <a href="wat-kost-automatisering.html">Wat kost automatisering?</a>. Wat gemiste telefoontjes u kosten, berekent u met de <a href="gemiste-oproepen-berekenen.html">rekentool voor gemiste oproepen</a>.</p>
         <p>Wilt u dit niet alleen doen? Een <a href="index.html#contact">intake van een half uur</a> is kosteloos en vrijblijvend. Daarin bepalen we welke taak bij u het meeste oplevert.</p>
       </div>""", "beginnen"),
 
