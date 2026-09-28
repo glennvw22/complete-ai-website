@@ -616,6 +616,51 @@
     wacht = setTimeout(function(){ meet(); bouw(); gloedCache = null; lijnCache = null; lijnX = -1; if (rust) teken(); }, 180);
   }, {passive:true});
 
+  /* ── tabbladen bij het contact: intake plannen of gratis AI-scan ──
+     Eén kaart, twee formulieren. Een link naar #scan opent de scan,
+     een link naar #contact de intake. */
+  (function(){
+    var tabI = document.getElementById('tab-intake'), tabS = document.getElementById('scan');
+    var pI = document.getElementById('paneel-intake'), pS = document.getElementById('paneel-scan');
+    if (!tabI || !tabS || !pI || !pS) return;
+    function toon(welke){
+      var scan = welke === 'scan';
+      tabI.setAttribute('aria-selected', scan ? 'false' : 'true');
+      tabS.setAttribute('aria-selected', scan ? 'true' : 'false');
+      tabI.tabIndex = scan ? -1 : 0;
+      tabS.tabIndex = scan ? 0 : -1;
+      pI.hidden = scan;
+      pS.hidden = !scan;
+    }
+    tabI.addEventListener('click', function(){ toon('intake'); });
+    tabS.addEventListener('click', function(){ toon('scan'); });
+    [tabI, tabS].forEach(function(t){
+      t.addEventListener('keydown', function(e){
+        if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+        var naarScan = (t === tabI);
+        toon(naarScan ? 'scan' : 'intake');
+        (naarScan ? tabS : tabI).focus();
+      });
+    });
+    document.addEventListener('click', function(e){
+      var a = e.target.closest ? e.target.closest('a[href]') : null;
+      if (!a) return;
+      var href = a.getAttribute('href') || '';
+      if (href === '#scan') toon('scan');
+      else if (href === '#contact') toon('intake');
+    });
+    if (location.hash === '#scan') toon('scan');
+  })();
 
+  /* ── een link naar een ingeklapt onderdeel klapt het open ── */
+  function openVanHash(){
+    if (!location.hash || location.hash.length < 2) return;
+    var el = document.getElementById(location.hash.slice(1));
+    if (!el) return;
+    var d = el.closest('details') || el.querySelector('details.verdiep');
+    if (d){ d.open = true; }
+  }
+  addEventListener('hashchange', openVanHash);
+  openVanHash();
 
 })();

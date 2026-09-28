@@ -106,12 +106,17 @@ VOET = f"""<footer>
           <li><a href="ai-telefonist.html">AI-telefonist</a></li>
           <li><a href="social-media.html">Social media</a></li>
           <li><a href="case-aronza.html">Klantcase: Aronza</a></li>
-          <li><a href="gidsen.html">Gidsen en tools</a></li>
-          <li><a href="ai-voor-uw-bedrijf.html">Gids: AI voor uw bedrijf</a></li>
-          <li><a href="bedrijfsprocessen-automatiseren-voorbeelden.html">Gids: processen automatiseren</a></li>
-          <li><a href="wat-is-workflow-automatisering.html">Gids: workflow automatisering</a></li>
-          <li><a href="ai-agent-voor-uw-bedrijf.html">Gids: AI-agent</a></li>
-          <li><a href="wat-kost-automatisering.html">Gids: wat kost automatisering</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="voetkop">Kennis</p>
+        <ul>
+          <li><a href="gidsen.html">Alle gidsen en tools</a></li>
+          <li><a href="ai-voor-uw-bedrijf.html">AI voor uw bedrijf</a></li>
+          <li><a href="bedrijfsprocessen-automatiseren-voorbeelden.html">Processen automatiseren</a></li>
+          <li><a href="wat-is-workflow-automatisering.html">Workflow automatisering</a></li>
+          <li><a href="ai-agent-voor-uw-bedrijf.html">AI-agent</a></li>
+          <li><a href="wat-kost-automatisering.html">Wat kost automatisering</a></li>
           <li><a href="gemiste-oproepen-berekenen.html">Rekentool: gemiste oproepen</a></li>
         </ul>
       </div>
@@ -291,6 +296,47 @@ BRANCHE_VERDER = [
 ]
 
 
+# Dienstpagina's bestaan uit lange tekstsecties. Bezoekers willen eerst het
+# overzicht; wie meer wil weten klapt een onderdeel open. De tekst blijft in
+# de pagina staan (Google leest ook ingeklapte tekst), alleen de lap verdwijnt.
+KLAP = {"websites.html", "automatisering.html", "ai-telefonist.html",
+        "social-media.html", "vindbaarheid-seo.html", "adverteren.html"}
+SECTIE_RE = re.compile(
+    r'(<section[^>]*?)>\s*<div class="wrap">\s*<div class="sectiekop reveal">(.*?)</div>(.*?)</div>\s*</section>', re.S)
+
+
+def klap(p):
+    inhoud = p["inhoud"]
+    if p["bestand"] not in KLAP:
+        return inhoud
+    eerste = [True]
+
+    def om(m):
+        kop, rest = m.group(2), m.group(3)
+        if 'class="proza' not in rest:
+            return m.group(0)
+        label = re.search(r'<p class="label"><i></i>(.*?)</p>', kop, re.S)
+        titel = re.search(r'<h2>(.*?)</h2>', kop, re.S)
+        if not titel:
+            return m.group(0)
+        intro = re.sub(r'<p class="label">.*?</p>|<h2>.*?</h2>', "", kop, flags=re.S).strip()
+        rest = rest.replace('class="proza reveal"', 'class="proza"')
+        tag = m.group(1)
+        tag = tag[:-1] if tag.endswith(">") else tag
+        tag = re.sub(r'\sclass="[^"]*"', "", tag)
+        voorop = ""
+        if eerste[0]:
+            eerste[0] = False
+            voorop = ('<div class="wrap verdiepintro reveal"><p class="label"><i></i>Verdieping</p>'
+                      '<p>Kies het onderwerp dat u wilt weten. Elk onderdeel klapt uit.</p></div>\n  ')
+        lab = f'<span class="verdiep-label">{label.group(1)}</span>' if label else ""
+        return (f'{voorop}{tag} class="verdiepsectie">\n    <div class="wrap">\n'
+                f'      <details class="verdiep"><summary>{lab}<h2>{titel.group(1)}</h2></summary>'
+                f'{intro}{rest}</details>\n    </div>\n  </section>')
+
+    return SECTIE_RE.sub(om, inhoud)
+
+
 def bouw(p):
     return f"""<!doctype html>
 <html lang="nl">
@@ -354,7 +400,7 @@ def bouw(p):
 
   <hr class="streep">
 
-{p['inhoud']}
+{klap(p)}
 {vragen_html(p.get('vragen'))}
 
   <hr class="streep">

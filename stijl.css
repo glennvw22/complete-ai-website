@@ -80,7 +80,7 @@ img{max-width:100%;display:block}
 /* ── knoppen ───────────────────────────────────── */
 .knop{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
   font-family:var(--f-tekst);font-size:1rem;font-weight:600;letter-spacing:-.01em;
-  padding:1rem 1.8rem;border-radius:2px;text-decoration:none;cursor:pointer;
+  padding:1rem 1.8rem;border-radius:var(--r);text-decoration:none;cursor:pointer;
   border:1px solid transparent;overflow:hidden;
   transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s ease,border-color .25s ease,color .25s ease}
 .knop svg{width:15px;height:15px;flex:none;transition:transform .25s ease}
@@ -95,7 +95,7 @@ img{max-width:100%;display:block}
 .knop-lijn{border-color:var(--lijn-op);color:var(--inkt);background:rgba(255,255,255,.02)}
 .knop-lijn:hover{border-color:var(--blauw-hel);color:#fff;transform:translateY(-2px);
   box-shadow:0 10px 28px -14px var(--gloed)}
-:focus-visible{outline:2px solid var(--aqua);outline-offset:3px;border-radius:2px}
+:focus-visible{outline:2px solid var(--aqua);outline-offset:3px;border-radius:var(--r)}
 
 /* ── kopbalk ───────────────────────────────────── */
 .balk{position:sticky;top:0;z-index:90;background:rgba(6,7,12,.86);border-bottom:1px solid transparent;
@@ -149,7 +149,7 @@ img{max-width:100%;display:block}
 @keyframes opkomst{to{opacity:1;transform:none}}
 
 /* ── het paneel ────────────────────────────────── */
-.paneel{position:relative;border-radius:2px;overflow:hidden;
+.paneel{position:relative;border-radius:var(--r);overflow:hidden;
   background:var(--vlak);
   border:1px solid var(--lijn-op);
   box-shadow:0 40px 90px -50px #000,0 0 60px -30px var(--gloed),
@@ -189,7 +189,7 @@ img{max-width:100%;display:block}
 @media(max-width:420px){.levertijden{grid-template-columns:1fr}}
 .levertijden div{display:flex;flex-direction:column;gap:.25rem;position:relative;padding-left:1rem}
 .levertijden div::before{content:"";position:absolute;left:0;top:.35rem;bottom:.35rem;width:2px;
-  border-radius:2px;background:var(--verloop);opacity:.55}
+  border-radius:var(--r);background:var(--verloop);opacity:.55}
 .levertijden em{font-style:normal;font-family:var(--f-mono);font-size:.68rem;letter-spacing:.14em;
   text-transform:uppercase;color:var(--inkt-dim)}
 .levertijden b{font-family:var(--f-kop);font-size:clamp(.98rem,.9rem + .35vw,1.14rem);
@@ -207,7 +207,7 @@ main [id]{scroll-margin-top:78px}
 /* ── herkenning ────────────────────────────────── */
 .pijn{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:1rem;margin-top:3.4rem}
 .pijn article{background:var(--vlak);border:1px solid var(--lijn);
-  border-radius:2px;padding:clamp(1.5rem,3vw,2rem);display:flex;flex-direction:column;gap:.65rem;
+  border-radius:var(--r);padding:clamp(1.5rem,3vw,2rem);display:flex;flex-direction:column;gap:.65rem;
   transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .35s ease,background .35s ease}
 .pijn article:hover{transform:translateY(-4px);border-color:var(--lijn-op)}
 .pijn .nr{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.14em;color:var(--blauw-hel)}
@@ -215,7 +215,7 @@ main [id]{scroll-margin-top:78px}
 .pijn small{color:var(--inkt-zacht);font-size:.93rem;line-height:1.55}
 
 .antwoord{position:relative;margin-top:2.8rem;padding:clamp(1.8rem,4vw,2.8rem);
-  border-radius:2px;overflow:hidden;background:transparent;
+  border-radius:var(--r);overflow:hidden;background:transparent;
   border:1px solid var(--lijn-op)}
 .antwoord::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--verloop)}
 .antwoord p{font-family:var(--f-kop);font-size:clamp(1.15rem,.98rem + .75vw,1.55rem);
@@ -226,7 +226,7 @@ main [id]{scroll-margin-top:78px}
 /* ── diensten ──────────────────────────────────── */
 .diensten{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));
   gap:1.1rem;margin-top:3.6rem}
-.dienst{position:relative;background:var(--vlak);border:1px solid var(--lijn);border-radius:2px;
+.dienst{position:relative;background:var(--vlak);border:1px solid var(--lijn);border-radius:var(--r);
   padding:clamp(1.7rem,3vw,2.2rem);display:flex;flex-direction:column;gap:1rem;overflow:hidden;
   transition:transform .4s cubic-bezier(.2,.8,.2,1),border-color .4s ease}
 .dienst::before{content:"";position:absolute;inset:0;opacity:0;transition:opacity .4s ease;
@@ -235,7 +235,7 @@ main [id]{scroll-margin-top:78px}
 .dienst:hover{transform:translateY(-5px);border-color:var(--lijn-op)}
 .dienst:hover::before{opacity:1}
 .dienst > *{position:relative}
-.ico{width:46px;height:46px;border-radius:2px;display:grid;place-items:center;flex:none;
+.ico{width:46px;height:46px;border-radius:var(--r);display:grid;place-items:center;flex:none;
   background:linear-gradient(140deg,rgba(61,109,255,.18),rgba(37,216,196,.10));
   border:1px solid var(--lijn-op)}
 .ico svg{width:23px;height:23px;stroke:var(--blauw-hel);stroke-width:1.5;fill:none;
@@ -275,7 +275,7 @@ main [id]{scroll-margin-top:78px}
 
 .kunde{display:grid;grid-template-columns:repeat(2,1fr);gap:.9rem}
 @media(max-width:430px){.kunde{grid-template-columns:1fr}}
-.kunde div{background:var(--vlak);border:1px solid var(--lijn);border-radius:2px;
+.kunde div{background:var(--vlak);border:1px solid var(--lijn);border-radius:var(--r);
   padding:1.25rem 1.3rem;display:flex;flex-direction:column;gap:.35rem;
   transition:border-color .35s ease,transform .35s cubic-bezier(.2,.8,.2,1)}
 .kunde div:hover{border-color:var(--lijn-op);transform:translateY(-3px)}
@@ -286,9 +286,9 @@ main [id]{scroll-margin-top:78px}
 .route{margin-top:3.6rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));
   gap:clamp(1.5rem,3vw,2.4rem)}
 .fase{display:flex;flex-direction:column;gap:.75rem;padding-top:1.4rem;position:relative}
-.fase::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;border-radius:2px;
+.fase::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;border-radius:var(--r);
   background:var(--lijn)}
-.fase::after{content:"";position:absolute;top:0;left:0;height:2px;width:0;border-radius:2px;
+.fase::after{content:"";position:absolute;top:0;left:0;height:2px;width:0;border-radius:var(--r);
   background:var(--verloop);transition:width .9s cubic-bezier(.2,.8,.2,1)}
 .route.in .fase::after{width:100%}
 .route.in .fase:nth-child(2)::after{transition-delay:.13s}
@@ -303,7 +303,7 @@ main [id]{scroll-margin-top:78px}
 .over{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);
   gap:clamp(2.2rem,5vw,4.5rem);align-items:start;margin-top:3.2rem}
 @media(max-width:900px){.over{grid-template-columns:1fr}}
-.portret{position:relative;aspect-ratio:4/5;max-width:440px;margin:0;border-radius:2px;
+.portret{position:relative;aspect-ratio:4/5;max-width:440px;margin:0;border-radius:var(--r);
   overflow:hidden;background:var(--vlak);border:1px solid var(--lijn)}
 .portret img{width:100%;height:100%;object-fit:cover;object-position:50% 14%;display:block}
 /* zachte verdonkering onderaan, zodat de lichte foto in de donkere pagina zakt */
@@ -321,14 +321,14 @@ main [id]{scroll-margin-top:78px}
 /* ── pakketten ─────────────────────────────────── */
 .pakketten{display:grid;grid-template-columns:repeat(auto-fit,minmax(295px,1fr));
   gap:1.2rem;margin-top:3.6rem;align-items:stretch}
-.pak{position:relative;background:var(--vlak);border:1px solid var(--lijn);border-radius:2px;
+.pak{position:relative;background:var(--vlak);border:1px solid var(--lijn);border-radius:var(--r);
   padding:clamp(1.8rem,3vw,2.2rem);display:flex;flex-direction:column;gap:1.15rem;
   transition:transform .4s cubic-bezier(.2,.8,.2,1),border-color .4s ease}
 .pak:hover{transform:translateY(-5px);border-color:var(--lijn-op)}
 .pak.top{border-color:var(--blauw);box-shadow:0 30px 70px -45px var(--gloed)}
 .vlag{position:absolute;top:-11px;left:clamp(1.8rem,3vw,2.2rem);
   background:var(--verloop);color:#04060E;font-family:var(--f-mono);font-size:.63rem;
-  font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:.3rem .7rem;border-radius:2px}
+  font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:.3rem .7rem;border-radius:var(--r)}
 .pak h3{font-size:1.38rem;font-weight:600}
 .pak .voor{color:var(--inkt-zacht);font-size:.95rem;min-height:3em}
 .niveau{display:flex;align-items:center;justify-content:space-between;gap:1rem;
@@ -336,9 +336,9 @@ main [id]{scroll-margin-top:78px}
 .niveau em{font-style:normal;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.13em;
   text-transform:uppercase;color:var(--inkt-zacht)}
 .staaf{display:flex;gap:5px;flex:none}
-.staaf i{width:22px;height:4px;border-radius:2px;background:var(--lijn-op)}
+.staaf i{width:22px;height:4px;border-radius:var(--r);background:var(--lijn-op)}
 .staaf i.vol{background:var(--verloop)}
-.prijsuitleg{margin-top:2.6rem;padding:clamp(1.7rem,3.5vw,2.4rem);border-radius:2px;
+.prijsuitleg{margin-top:2.6rem;padding:clamp(1.7rem,3.5vw,2.4rem);border-radius:var(--r);
   background:transparent;border:1px solid var(--lijn-op);max-width:72ch}
 .prijsuitleg h3{font-size:1.28rem;font-weight:600;margin-bottom:.9rem}
 .prijsuitleg p{color:var(--inkt-zacht);font-size:.99rem}
@@ -352,7 +352,7 @@ main [id]{scroll-margin-top:78px}
 
 /* ── vragen ────────────────────────────────────── */
 .vragen{margin-top:3.2rem;max-width:80ch}
-details{border:1px solid var(--lijn);border-radius:2px;background:transparent;
+details{border:1px solid var(--lijn);border-radius:var(--r);background:transparent;
   margin-bottom:.7rem;overflow:hidden;transition:border-color .3s ease}
 details[open],details:hover{border-color:var(--lijn-op)}
 summary{cursor:pointer;padding:1.25rem 3.2rem 1.25rem 1.4rem;position:relative;list-style:none;
@@ -376,11 +376,11 @@ details p{padding:0 3.2rem 1.4rem 1.4rem;color:var(--inkt-zacht);font-size:.97re
 .gegeven a,.gegeven .vast{font-family:var(--f-kop);font-size:1.3rem;font-weight:500;
   text-decoration:none;letter-spacing:-.03em;display:inline-block;transition:color .25s ease}
 .gegeven a:hover{color:var(--blauw-hel)}
-.gerust{margin-top:2.4rem;padding:1.2rem 1.4rem;border-radius:2px;font-size:.93rem;
+.gerust{margin-top:2.4rem;padding:1.2rem 1.4rem;border-radius:var(--r);font-size:.93rem;
   color:var(--inkt-zacht);background:var(--vlak);border:1px solid var(--lijn)}
 .gerust b{color:var(--inkt);font-weight:600}
 
-form{background:var(--vlak);border:1px solid var(--lijn);border-radius:2px;
+form{background:var(--vlak);border:1px solid var(--lijn);border-radius:var(--r);
   padding:clamp(1.6rem,3vw,2.2rem);display:flex;flex-direction:column;gap:1.1rem}
 .rij{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
 @media(max-width:540px){.rij{grid-template-columns:1fr}}
@@ -388,7 +388,7 @@ label{display:flex;flex-direction:column;gap:.45rem;font-family:var(--f-mono);fo
   letter-spacing:.13em;text-transform:uppercase;color:var(--inkt-dim)}
 input,textarea,select{font:inherit;font-family:var(--f-tekst);font-size:1rem;text-transform:none;
   letter-spacing:normal;color:var(--inkt);background:var(--void);border:1px solid var(--lijn);
-  border-radius:2px;padding:.85rem .95rem;width:100%;
+  border-radius:var(--r);padding:.85rem .95rem;width:100%;
   transition:border-color .25s ease,box-shadow .25s ease}
 input::placeholder,textarea::placeholder{color:var(--inkt-dim)}
 input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--aqua);
@@ -461,7 +461,7 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
 
 /* ── uitkomsten-strook ── */
 .uitkomsten{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  border:1px solid var(--lijn);border-radius:2px;overflow:hidden;margin-top:2.6rem}
+  border:1px solid var(--lijn);border-radius:var(--r);overflow:hidden;margin-top:2.6rem}
 .uitkomsten div{background:transparent;border-right:1px solid var(--lijn);padding:1.3rem 1.4rem;display:flex;flex-direction:column;gap:.3rem}
 .uitkomsten div:last-child{border-right:0}
 .uitkomsten b{font-family:var(--f-kop);font-size:clamp(1.4rem,1.15rem + .8vw,1.75rem);font-weight:700;
@@ -471,7 +471,7 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
 
 /* ── lijst met wat je krijgt ── */
 .krijgt{display:grid;grid-template-columns:repeat(auto-fit,minmax(275px,1fr));gap:1rem;margin-top:3rem}
-.krijgt article{background:var(--vlak);border:1px solid var(--lijn);border-radius:2px;
+.krijgt article{background:var(--vlak);border:1px solid var(--lijn);border-radius:var(--r);
   padding:1.5rem 1.55rem;display:flex;flex-direction:column;gap:.55rem;
   transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .35s ease}
 .krijgt article:hover{transform:translateY(-3px);border-color:var(--lijn-op)}
@@ -481,14 +481,14 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
 /* ── voorbeelden in twee kolommen ── */
 .voorbeelden{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:.65rem;
   margin-top:2.6rem}
-.voorbeeld{background:var(--vlak);border:1px solid var(--lijn);border-radius:2px;
+.voorbeeld{background:var(--vlak);border:1px solid var(--lijn);border-radius:var(--r);
   padding:1.05rem 1.2rem;display:flex;flex-direction:column;gap:.3rem}
 .voorbeeld b{font-family:var(--f-kop);font-size:.99rem;font-weight:600;letter-spacing:-.02em}
 .voorbeeld span{font-size:.88rem;color:var(--inkt-zacht);line-height:1.5}
 
 /* ── wat het niet doet ── */
 .eerlijk{background:transparent;
-  border:1px solid var(--lijn);border-left:3px solid #E0975B;border-radius:2px;
+  border:1px solid var(--lijn);border-left:3px solid #E0975B;border-radius:var(--r);
   padding:1.5rem 1.6rem;margin-top:2.4rem}
 .eerlijk h3{font-size:1.12rem;font-weight:600;margin-bottom:.7rem}
 .eerlijk p{color:var(--inkt-zacht);font-size:.96rem}
@@ -498,7 +498,7 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
 
 /* ── afsluitend blok ── */
 .slotblok{background:transparent;
-  border:1px solid var(--lijn-op);border-radius:2px;padding:clamp(1.9rem,4vw,3rem);
+  border:1px solid var(--lijn-op);border-radius:var(--r);padding:clamp(1.9rem,4vw,3rem);
   margin-top:1rem;text-align:left}
 .slotblok h2{font-size:clamp(1.45rem,1.15rem + 1.05vw,2rem);font-weight:600;max-width:24ch}
 .slotblok p{color:var(--inkt-zacht);margin-top:1rem;max-width:52ch;font-size:1.02rem}
@@ -507,7 +507,7 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
 /* ── verder lezen ── */
 .verder{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.85rem;
   margin-top:2.4rem}
-.verder a{background:var(--vlak);border:1px solid var(--lijn);border-radius:2px;
+.verder a{background:var(--vlak);border:1px solid var(--lijn);border-radius:var(--r);
   padding:1.2rem 1.35rem;text-decoration:none;display:flex;flex-direction:column;gap:.3rem;
   transition:transform .3s cubic-bezier(.2,.8,.2,1),border-color .3s ease}
 .verder a:hover{transform:translateY(-3px);border-color:var(--blauw-hel)}
@@ -518,7 +518,7 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
 
 /* ── de case ── */
 .casekop{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-  border:1px solid var(--lijn);border-radius:2px;overflow:hidden;margin-top:2.4rem}
+  border:1px solid var(--lijn);border-radius:var(--r);overflow:hidden;margin-top:2.4rem}
 .casekop div{background:transparent;border-right:1px solid var(--lijn);padding:1.15rem 1.3rem;
   display:flex;flex-direction:column;gap:.25rem}
 .casekop div:last-child{border-right:0}
@@ -527,7 +527,7 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
 .casekop b{font-family:var(--f-kop);font-size:1.02rem;font-weight:600;letter-spacing:-.02em}
 .voor-na{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2.4rem}
 @media(max-width:700px){.voor-na{grid-template-columns:1fr}}
-.voor-na > div{background:var(--vlak);border:1px solid var(--lijn);border-radius:2px;padding:1.5rem 1.6rem}
+.voor-na > div{background:var(--vlak);border:1px solid var(--lijn);border-radius:var(--r);padding:1.5rem 1.6rem}
 .voor-na h3{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
   margin-bottom:.9rem;font-weight:500}
 .voor-na .was h3{color:#E0975B}
@@ -550,7 +550,7 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
   color:var(--inkt-dim);display:block}
 .pakknop{appearance:none;font:inherit;cursor:pointer;background:transparent;
   margin-top:auto;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
-  padding:.72rem 1rem;border-radius:2px;border:1px solid var(--lijn-op);
+  padding:.72rem 1rem;border-radius:var(--r);border:1px solid var(--lijn-op);
   font-size:.9rem;font-weight:600;color:var(--inkt);
   transition:background .25s ease,border-color .25s ease,gap .25s ease}
 .pakknop svg{width:14px;height:14px;flex:none;stroke:currentColor}
@@ -566,7 +566,7 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
 /* ── de samensteller ───────────────────────────── */
 .bouwer{margin-top:1.2rem;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.92fr);
   gap:1.2rem;align-items:start}
-.bouwer-paneel{border:1px solid var(--lijn);border-radius:2px;
+.bouwer-paneel{border:1px solid var(--lijn);border-radius:var(--r);
   padding:clamp(1.6rem,3vw,2.1rem);display:flex;flex-direction:column;gap:2rem}
 .staplabel{display:flex;align-items:center;gap:.7rem;font-family:var(--f-kop);font-size:1.02rem;
   font-weight:600;letter-spacing:-.02em;margin-bottom:1.1rem}
@@ -575,7 +575,7 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
   font-size:.7rem;font-weight:500;color:var(--blauw-hel)}
 .keuzes{display:flex;flex-wrap:wrap;gap:.5rem}
 .keuze{appearance:none;font:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:.5rem;
-  padding:.5rem .85rem;border-radius:2px;background:transparent;border:1px solid var(--lijn);
+  padding:.5rem .85rem;border-radius:var(--r);background:transparent;border:1px solid var(--lijn);
   color:var(--inkt-zacht);font-size:.88rem;line-height:1.2;
   transition:border-color .22s ease,color .22s ease,background .22s ease}
 .keuze i{width:7px;height:7px;border-radius:50%;flex:none;background:var(--lijn-op);
@@ -587,7 +587,7 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
 .bouwerhint{margin-top:1rem;font-size:.85rem;color:var(--inkt-dim);line-height:1.5}
 
 /* ── het levende pakket ────────────────────────── */
-.blad{border:1px solid var(--blauw);border-radius:2px;background:var(--vlak);
+.blad{border:1px solid var(--blauw);border-radius:var(--r);background:var(--vlak);
   padding:clamp(1.6rem,3vw,2.1rem);display:flex;flex-direction:column;gap:1.15rem;
   box-shadow:0 30px 70px -45px var(--gloed);position:sticky;top:96px}
 .bladlabel{display:flex;align-items:center;gap:.55rem;font-family:var(--f-mono);font-size:.66rem;
@@ -624,10 +624,10 @@ footer{border-top:1px solid var(--lijn);padding:3.5rem 0;font-size:.9rem;
    daar één lange pagina en zijn de losse pagina's onbereikbaar.
    Op de computer verandert er niets: de knop staat op display:none. */
 .menuknop{display:none;appearance:none;padding:0;cursor:pointer;flex:none;order:-1;
-  width:42px;height:42px;border-radius:2px;background:transparent;border:1px solid var(--lijn);
+  width:42px;height:42px;border-radius:var(--r);background:transparent;border:1px solid var(--lijn);
   flex-direction:column;align-items:center;justify-content:center;gap:5px;
   transition:border-color .22s ease}
-.menuknop span{display:block;width:17px;height:1.6px;border-radius:2px;background:var(--inkt);
+.menuknop span{display:block;width:17px;height:1.6px;border-radius:var(--r);background:var(--inkt);
   transition:transform .28s cubic-bezier(.2,.8,.2,1),opacity .18s ease}
 .menuknop[aria-expanded="true"]{border-color:var(--blauw)}
 .menuknop[aria-expanded="true"] span:nth-child(1){transform:translateY(6.6px) rotate(45deg)}
@@ -675,7 +675,7 @@ body.menu-open{overflow:hidden}
    .honing is een veld dat mensen niet zien maar robots wel invullen;
    de endpoint gooit die inzendingen weg. */
 .honing{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
-.formstand{margin-top:.9rem;padding:.85rem 1rem;border-radius:2px;font-size:.92rem;line-height:1.55;
+.formstand{margin-top:.9rem;padding:.85rem 1rem;border-radius:var(--r);font-size:.92rem;line-height:1.55;
   border:1px solid var(--lijn-op);background:transparent;color:var(--inkt-zacht)}
 .formstand.goed{border-color:var(--aqua);color:var(--inkt)}
 .formstand.mis{border-color:#E0975B;color:var(--inkt)}
@@ -692,12 +692,12 @@ body.menu-open{overflow:hidden}
 .proza strong{color:var(--inkt);font-weight:600}
 .proza a,.bronnen a,.byline a,.inhoud a{color:var(--blauw-hel);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
 .proza a:hover,.bronnen a:hover,.inhoud a:hover{color:var(--aqua)}
-.tabelwrap{overflow-x:auto;margin:0 0 1.4rem;border:1px solid var(--lijn);border-radius:2px}
+.tabelwrap{overflow-x:auto;margin:0 0 1.4rem;border:1px solid var(--lijn);border-radius:var(--r)}
 .proza table{width:100%;border-collapse:collapse;font-size:.94rem;line-height:1.5}
 .proza th{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--inkt-zacht);text-align:left;padding:.75rem 1rem;border-bottom:1px solid var(--lijn-op);font-weight:500}
 .proza td{padding:.75rem 1rem;border-bottom:1px solid var(--lijn);vertical-align:top}
 .proza tr:last-child td{border-bottom:0}
-.proza .noot{border:1px solid var(--lijn-op);border-left:2px solid var(--aqua);border-radius:2px;padding:1rem 1.2rem;margin:0 0 1.3rem;color:var(--inkt-zacht)}
+.proza .noot{border:1px solid var(--lijn-op);border-left:2px solid var(--aqua);border-radius:var(--r);padding:1rem 1.2rem;margin:0 0 1.3rem;color:var(--inkt-zacht)}
 .byline{margin-top:1.3rem;font-size:.8rem;color:var(--inkt-dim);font-family:var(--f-mono);letter-spacing:.03em;line-height:1.7}
 .byline b{color:var(--inkt-zacht);font-weight:500}
 .inhoud{max-width:58ch}
@@ -713,7 +713,7 @@ body.menu-open{overflow:hidden}
 
 /* ── rekentool ─────────────────────────────────── */
 .reken{max-width:640px;display:flex;flex-direction:column;gap:1.1rem;margin-top:2rem}
-.rekenuitkomst{max-width:640px;margin-top:1.6rem;border:1px solid var(--lijn-op);border-left:2px solid var(--aqua);border-radius:2px;padding:1.3rem 1.5rem}
+.rekenuitkomst{max-width:640px;margin-top:1.6rem;border:1px solid var(--lijn-op);border-left:2px solid var(--aqua);border-radius:var(--r);padding:1.3rem 1.5rem}
 .rekenuitkomst[hidden]{display:none}
 .rekenuitkomst.mis{border-left-color:#E0975B}
 .rekenuitkomst .groot{font-family:var(--f-kop);font-size:clamp(1.6rem,1.2rem + 1.6vw,2.3rem);font-weight:700;letter-spacing:-.04em;color:var(--inkt);line-height:1.1}
@@ -721,3 +721,199 @@ body.menu-open{overflow:hidden}
 .rekenstappen{list-style:none;padding:0;margin:1rem 0 0;display:flex;flex-direction:column;gap:.55rem;color:var(--inkt-zacht);font-size:.95rem}
 .rekenstappen b{color:var(--inkt);font-weight:600}
 .rekenacties{display:flex;flex-wrap:wrap;gap:.85rem;margin-top:1.2rem}
+
+
+/* ══════════════════════════════════════════════════════════
+   VERNIEUWING 28-9-2026
+   Glenn: te veel tekst, te rechte koppen, te hoekige vlakken,
+   een rommelige indeling. Sindsdien: korte secties, ronde
+   vlakken, koppen met een accent, zachte overgangen. Deze
+   regels staan bewust onderaan en winnen van de oudere.
+   ══════════════════════════════════════════════════════════ */
+:root{--r:24px;--r-m:18px;--r-s:14px;--v:clamp(2.8rem,6vw,4.6rem)}
+
+/* koppen met karakter */
+.glans{background:var(--verloop);-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent}
+.hero h1{font-size:clamp(2.1rem,1.1rem + 3vw,3.5rem);line-height:1.02;letter-spacing:-.04em}
+.sectiekop{max-width:62ch}
+.sectiekop h2,.over-tekst h2,.contact-tekst h2{font-size:clamp(1.9rem,1.2rem + 2.5vw,3.1rem);font-weight:700;
+  letter-spacing:-.04em;line-height:1.03;margin-top:1.1rem}
+.sectiekop.midden{margin-inline:auto;text-align:center;max-width:66ch}
+.sectiekop.midden .label{justify-content:center}
+.sectiekop p{font-size:1.1rem;margin-top:1.1rem}
+
+/* vaste hoeken: kleine dingen pillen, velden rond, kaarten ruim rond */
+.knop,.pakknop,.keuze,.vlag,.tab,.menu a::after{border-radius:999px}
+.knop::after{border-radius:999px}
+.menuknop{border-radius:var(--r-s)}
+input,textarea,select{border-radius:var(--r-s)}
+.formstand,.gerust,.eerlijk,.proza .noot,.rekenuitkomst,.tabelwrap{border-radius:var(--r-s)}
+.paneel,.portret{border-radius:var(--r)}
+.portret{border-radius:28px}
+.ico{border-radius:16px}
+:focus-visible{border-radius:8px}
+
+/* geen harde strepen: secties gaan in elkaar over */
+.streep{display:none}
+.band{border:0;padding:0;margin-top:-.4rem}
+.levertijden{background:var(--vlak);border:1px solid var(--lijn);border-radius:var(--r);
+  padding:1.5rem clamp(1.3rem,3vw,2.2rem)}
+footer{border-top:0;background:linear-gradient(to bottom,transparent,rgba(14,17,25,.9) 40%);padding-top:4.5rem}
+
+/* herkenning */
+.pijn{margin-top:2.6rem;gap:.9rem}
+.pijn article{border-radius:var(--r);padding:1.6rem}
+.pijn p{font-size:1.12rem}
+.antwoord{margin-top:1.4rem;border:0;text-align:center;border-radius:var(--r);
+  padding:clamp(1.5rem,3.4vw,2.3rem);
+  background:linear-gradient(120deg,rgba(61,109,255,.16),rgba(37,216,196,.09))}
+.antwoord::before{display:none}
+.antwoord p{margin-inline:auto;font-size:clamp(1.15rem,1rem + .9vw,1.6rem);text-wrap:balance}
+
+/* diensten: zes gelijke, klikbare kaarten */
+.diensten{margin-top:2.8rem;grid-template-columns:repeat(3,1fr);gap:1rem}
+@media(max-width:940px){.diensten{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.diensten{grid-template-columns:1fr}}
+a.dienst{color:inherit;text-decoration:none}
+.dienst{border-radius:var(--r);padding:clamp(1.5rem,2.6vw,2rem);gap:.85rem;min-height:255px}
+.dienst .ico{width:54px;height:54px}
+.dienst h3{font-size:1.4rem;margin-top:.5rem}
+.dienst > p{font-size:1rem;max-width:36ch}
+.dienst:hover{border-color:var(--blauw)}
+.dienst-voet{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:.8rem;padding-top:1.1rem}
+.dienst-voet .levertijd{margin:0;padding:.45rem .85rem;border:1px solid var(--lijn-op);
+  border-radius:999px;font-size:.7rem;letter-spacing:.02em;line-height:1.2}
+.dienst-pijl{width:40px;height:40px;border-radius:50%;flex:none;display:grid;place-items:center;
+  background:var(--verloop);color:#04060E;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.dienst-pijl svg{width:16px;height:16px}
+.dienst:hover .dienst-pijl{transform:translateX(4px)}
+.onderhoud{margin-top:1rem;display:flex;align-items:center;gap:1.1rem;padding:1.15rem 1.5rem;
+  border:1px solid var(--lijn);border-radius:var(--r);background:var(--vlak)}
+.onderhoud .ico{width:44px;height:44px;flex:none}
+.onderhoud p{color:var(--inkt-zacht);font-size:.98rem}
+.onderhoud b{color:var(--inkt);font-weight:600}
+@media(max-width:560px){.onderhoud{align-items:flex-start}}
+
+/* telefoon */
+.uitgelicht{margin-top:2.4rem;padding:clamp(1.5rem,3.5vw,2.6rem);border:1px solid var(--lijn);
+  border-radius:var(--r);background:var(--vlak);align-items:center}
+.kunde div{border-radius:var(--r-m);background:var(--void)}
+.beurt::before{background:var(--vlak)}
+section#telefoon .knop{margin-top:1.4rem}
+
+/* werkwijze: vier kaarten met grote cijfers */
+.route{margin-top:2.6rem;gap:1rem}
+.fase{background:var(--vlak);border:1px solid var(--lijn);border-radius:var(--r);padding:1.6rem;gap:.55rem}
+.fase::before,.fase::after{display:none}
+.fase i{font-size:2.5rem;font-weight:700;letter-spacing:-.05em;line-height:1;font-family:var(--f-kop);
+  background:var(--verloop);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.fase b{font-size:1.25rem;margin-top:.3rem}
+
+/* over */
+.over{margin-top:0;align-items:center}
+.over-tekst .groot{font-size:clamp(1.1rem,1rem + .55vw,1.35rem);font-weight:500;letter-spacing:-.02em;
+  line-height:1.4;color:var(--inkt-zacht);margin-top:1.3rem}
+.over-punten{list-style:none;margin:1.6rem 0 0;padding:0;display:grid;gap:.7rem}
+.over-punten li{display:flex;gap:.95rem;align-items:flex-start;padding:1rem 1.2rem;border:1px solid var(--lijn);
+  border-radius:var(--r-m);background:var(--vlak)}
+.over-punten svg{width:16px;height:16px;flex:none;margin-top:.3rem;stroke:var(--aqua);stroke-width:2.6;fill:none}
+.over-punten b{display:block;font-family:var(--f-kop);font-weight:600;letter-spacing:-.02em}
+.over-punten span{display:block;color:var(--inkt-zacht);font-size:.94rem;margin-top:.15rem}
+.handtekening{margin-top:1.6rem;border-top:0;padding-top:0}
+
+/* pakketten */
+.pakketten{margin-top:2.8rem}
+.pak{border-radius:var(--r)}
+.pak .voor{min-height:0}
+.bouwer-paneel,.blad{border-radius:var(--r)}
+.bouwer-paneel{position:sticky;top:96px}
+.blad{position:static}
+@media(max-width:900px){.bouwer-paneel{position:static}}
+.keuzes{gap:.5rem}
+.bouwerhint{margin-top:.9rem}
+
+/* gidsen, vragen */
+.verder{margin-top:2.2rem}
+.verder a{border-radius:var(--r-m);padding:1.4rem 1.5rem}
+section#gidsen .knop{margin-top:1.6rem}
+.vragen{margin:2.6rem auto 0}
+details{border-radius:var(--r-m);background:var(--vlak)}
+summary{padding:1.3rem 3.2rem 1.3rem 1.5rem}
+
+/* contact: één grote kaart met twee formulieren achter tabs */
+.contact-kaart{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(1.8rem,4vw,3.6rem);
+  align-items:start;padding:clamp(1.6rem,4vw,3.2rem);border:1px solid var(--lijn-op);border-radius:32px;
+  background:linear-gradient(140deg,rgba(61,109,255,.12),rgba(14,17,25,.96) 42%,rgba(37,216,196,.07))}
+@media(max-width:900px){.contact-kaart{grid-template-columns:1fr}}
+.contact-lead{color:var(--inkt-zacht);margin-top:1.1rem;font-size:1.08rem;max-width:40ch}
+.contact-tekst .gegevens{margin-top:1.8rem;gap:1.2rem}
+.contact-tekst .gerust{margin-top:1.8rem}
+.formkolom{min-width:0}
+.tabs{display:inline-flex;gap:.25rem;padding:.3rem;border:1px solid var(--lijn);border-radius:999px;
+  background:var(--void);margin-bottom:1rem}
+.tab{appearance:none;font:inherit;font-size:.92rem;font-weight:600;cursor:pointer;padding:.65rem 1.25rem;
+  border:0;background:transparent;color:var(--inkt-zacht);transition:background .25s ease,color .25s ease}
+.tab:hover{color:var(--inkt)}
+.tab[aria-selected="true"]{background:var(--verloop);color:#04060E}
+.formuitleg{color:var(--inkt-zacht);font-size:.97rem;margin:0 0 1rem;max-width:52ch}
+.formkolom form{background:rgba(6,7,12,.55)}
+
+/* voet: vier kolommen */
+.voet ul{gap:.5rem}
+@media(max-width:1000px){.voet{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.voet{grid-template-columns:1fr}}
+
+/* iets minder lucht op telefoon */
+@media(max-width:620px){
+  .sectiekop h2,.over-tekst h2,.contact-tekst h2{font-size:clamp(1.75rem,1.2rem + 2.8vw,2.2rem)}
+  .levertijden{padding:1.2rem}
+}
+
+/* ── telefoon: korter en strakker ─────────────────────────── */
+@media(max-width:700px){
+  .hero .paneel{display:none}
+  .hero{padding-bottom:2rem}
+}
+@media(max-width:620px){
+  .levertijden{grid-template-columns:repeat(2,1fr);gap:1rem 1.2rem}
+  .pijn{gap:.7rem}
+  .pijn article{padding:1.15rem 1.3rem}
+  .dienst{min-height:0;padding:1.4rem}
+  .dienst h3{margin-top:.3rem}
+  .route{grid-template-columns:1fr;gap:.7rem}
+  #route{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .fase{min-width:0;overflow-wrap:break-word}
+  .fase{padding:1.2rem}
+  .fase i{font-size:2rem}
+  .fase p{font-size:.88rem}
+  .pakketten{display:grid;grid-auto-flow:column;grid-template-columns:none;grid-auto-columns:84%;
+    overflow-x:auto;scroll-snap-type:x mandatory;gap:.8rem;padding:.6rem 0 1rem;margin-top:2rem;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .pakketten::-webkit-scrollbar{display:none}
+  .pak{scroll-snap-align:start}
+  .over-punten li{padding:.9rem 1rem}
+}
+
+/* ── dienstpagina's: diepgang als uitklapkaarten ─────────── */
+.verdiepintro{padding-top:var(--v)}
+.verdiepintro p:not(.label){color:var(--inkt-zacht);margin-top:.9rem;font-size:1.05rem}
+.verdiepsectie{padding:.35rem 0}
+.verdiepsectie:last-of-type{padding-bottom:var(--v)}
+.verdiep{border:1px solid var(--lijn);border-radius:var(--r);background:var(--vlak);overflow:hidden;
+  transition:border-color .3s ease}
+.verdiep:hover,.verdiep[open]{border-color:var(--lijn-op)}
+.verdiep > summary{display:block;padding:1.35rem 3.4rem 1.35rem 1.7rem;font:inherit;letter-spacing:0}
+.verdiep > summary:hover{color:inherit}
+.verdiep > summary h2{font-size:clamp(1.15rem,1rem + .75vw,1.55rem);font-weight:650;letter-spacing:-.03em;
+  line-height:1.2;margin:0;text-wrap:balance}
+.verdiep .verdiep-label{display:block;font-family:var(--f-mono);font-size:.68rem;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--aqua);margin-bottom:.45rem}
+.verdiep > summary::after{right:1.7rem}
+.verdiep > :not(summary){padding-left:1.7rem;padding-right:1.7rem}
+.verdiep > .proza{margin-top:0;padding-bottom:1.8rem;max-width:78ch}
+@media(max-width:620px){
+  .verdiep > summary{padding:1.15rem 3rem 1.15rem 1.2rem}
+  .verdiep > summary::after{right:1.2rem}
+  .verdiep > :not(summary){padding-left:1.2rem;padding-right:1.2rem}
+}
