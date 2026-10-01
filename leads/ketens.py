@@ -107,6 +107,9 @@ LANDELIJKE_KETENS: tuple[str, ...] = (
     # verwijderd, niet via deze lijst.
     "JBC",
     "Eye Wish",
+    # Gevonden 1-10-2026 bij de steekproef van de betrouwbare leads (stap 3): een autodealergroep
+    # met vestigingen in Nederland en Belgie (hedinautomotive.be).
+    "Hedin Automotive",
 )
 
 
