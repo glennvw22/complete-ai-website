@@ -70,38 +70,6 @@ def proza(kop_label, kop, body, ident="", intro=""):
   </section>"""
 
 
-def inhoudsopgave(items):
-    """items: [(sectie-id, tekst)]. Sprongmarkeringen naar de secties op deze pagina."""
-    lijst = "".join(f'\n          <li><a href="#{i}">{t}</a></li>' for i, t in items)
-    return f"""  <section id="inhoud">
-    <div class="wrap">
-      <nav class="inhoud reveal" aria-label="Inhoud van deze pagina">
-        <p class="label"><i></i>In deze pagina</p>
-        <ol>{lijst}
-        </ol>
-      </nav>
-    </div>
-  </section>"""
-
-
-def bronnen(items, intro="Waar de feiten op deze pagina vandaan komen."):
-    """items: [(tekst, url, toelichting)]. Externe verwijzingen naar gezaghebbende bronnen."""
-    lijst = "".join(
-        f'\n          <li><a href="{u}" rel="noopener" target="_blank">{t}</a><span>{o}</span></li>'
-        for t, u, o in items)
-    return f"""  <section id="bronnen" class="bronnen">
-    <div class="wrap">
-      <div class="sectiekop reveal">
-        <p class="label"><i></i>Bronnen</p>
-        <h2>Bronnen en verder lezen.</h2>
-        <p>{intro}</p>
-      </div>
-      <ul class="reveal">{lijst}
-      </ul>
-    </div>
-  </section>"""
-
-
 # ══════════════════════════════════════════════════════════════════
 PAGINAS = [
 
@@ -116,7 +84,7 @@ PAGINAS = [
  "h1": 'Website laten maken voor het mkb: <span class="glans">all-in en live in 1 tot 2 weken</span>.',
  "lead": "Een website laten maken voor het mkb kan all-in: ontwerp, teksten en bouw eenmalig, en hosting, back-ups, updates en kleine wijzigingen in een vast maandbedrag. Complete AI zet uw site binnen één tot twee weken live, snel op mobiel en vindbaar vanaf de eerste dag. U spreekt tot het einde de persoon die hem bouwt.",
  "levertijd": "Live in 1 tot 2 weken",
- "gewijzigd": "2026-09-24",
+ "gewijzigd": "2026-10-01",
  "uitkomsten": [
      ("0,7 s", "laadtijd van deze pagina; dezelfde norm geldt voor uw site"),
      ("0", "cookiebanners: er staat geen tracking op die er een vereist"),
@@ -149,20 +117,6 @@ PAGINAS = [
     "Een cookiebanner is nodig zodra een site tracking-cookies plaatst, want daarvoor is toestemming vereist. Onze websites bevatten geen tracking die dat vraagt, dus deze site heeft geen banner. Komt er later tracking bij, bijvoorbeeld voor advertenties, dan bespreken wij vooraf wat dat betekent."),
  ],
  "inhoud": "\n\n  <hr class=\"streep\">\n\n".join([
-   inhoudsopgave([
-     ("herkenbaar", "Wat er bij bestaande sites misloopt"),
-     ("wat-u-krijgt", "Wat u krijgt"),
-     ("kosten", "Wat bepaalt wat een website kost?"),
-     ("all-in", "Wat hoort er bij een all-in maandbedrag?"),
-     ("twee-weken", "Hoe verloopt een traject van twee weken?"),
-     ("snelheid", "Snelheid en mobiel"),
-     ("vindbaar", "Vindbaar vanaf dag één"),
-     ("ai", "Website laten maken door AI"),
-     ("maatwerk", "Maatwerk of sjabloon"),
-     ("eigen-praktijk", "Uit eigen praktijk"),
-     ("bronnen", "Bronnen"),
-   ]),
-
    sectie("De situatie", "Representatief zijn en resultaat opleveren zijn twee verschillende zaken.",
           "Vier bevindingen die wij bij een bestaande site terugzien.",
           pijnblok([
@@ -256,7 +210,7 @@ PAGINAS = [
       </div>""", "twee-weken"),
 
    proza("Snelheid en mobiel", "Wat is een snelle website, en waarom telt mobiel zwaarder?", """        <h3>Wat Google meet</h3>
-        <p>Google beoordeelt paginabeleving met drie waarden, de Core Web Vitals. Ze beschrijven wat een bezoeker ervaart, niet wat de bouwer verwacht. De grenzen hieronder noemt Google zelf.</p>
+        <p>Google beoordeelt paginabeleving met drie waarden, de <a href="https://developers.google.com/search/docs/appearance/core-web-vitals" rel="noopener" target="_blank">Core Web Vitals</a>. Ze beschrijven wat een bezoeker ervaart, niet wat de bouwer verwacht. De grenzen hieronder noemt Google zelf.</p>
         <div class="tabelwrap"><table>
           <thead><tr><th>Waarde</th><th>Wat het meet</th><th>Grens voor een goede beleving</th></tr></thead>
           <tbody>
@@ -336,19 +290,6 @@ PAGINAS = [
         <p>Open deze pagina op uw telefoon, of verklein het venster op een laptop. Laat PageSpeed Insights de pagina meten, en bekijk in de bron van de pagina de structuurdata. Het certificaat in de adresbalk is geldig, zonder browserwaarschuwing. Dezelfde punten controleert u bij elke andere aanbieder.</p>
         <p>Wat wij voor Aronza, het e-commercebedrijf van de oprichter, hebben gebouwd, staat in de <a href="case-aronza.html">klantcase</a>.</p>""", "eigen-praktijk"),
 
-   bronnen([
-     ("Understanding Core Web Vitals and Google search results", "https://developers.google.com/search/docs/appearance/core-web-vitals", "Google Search Central. De drie meetwaarden en hun grenzen: LCP binnen 2,5 seconden, INP onder 200 milliseconden, CLS onder 0,1."),
-     ("Web Vitals", "https://web.dev/articles/vitals", "Google, web.dev. Meting op het 75e percentiel van bezoeken, mobiel en desktop apart, en de tools waarin de waarden staan (PageSpeed Insights, Search Console)."),
-     ("Understanding page experience in Google Search results", "https://developers.google.com/search/docs/appearance/page-experience", "Google Search Central. Goede Core Web Vitals garanderen geen topplaats; inhoud blijft leidend."),
-     ("Mobile site and mobile-first indexing best practices", "https://developers.google.com/search/docs/crawling-indexing/mobile/mobile-sites-mobile-first-indexing", "Google Search Central. Google gebruikt de mobiele versie voor indexering en beoordeling en raadt responsive design aan."),
-     ("Learn about sitemaps", "https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview", "Google Search Central. Een sitemap helpt bij een nieuwe site met weinig externe verwijzingen."),
-     ("Introduction to structured data markup in Google Search", "https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data", "Google Search Central. Wat structuurdata is en dat het alleen beschrijft wat zichtbaar is op de pagina."),
-     ("Google Search’s guidance on using generative AI content on your website", "https://developers.google.com/search/docs/fundamentals/using-gen-ai-content", "Google Search Central. Generatieve AI is toegestaan; waarde voor bezoekers, juistheid en kwaliteit tellen."),
-     ("Creating helpful, reliable, people-first content", "https://developers.google.com/search/docs/fundamentals/creating-helpful-content", "Google Search Central. Inhoud met eigen ervaring en diepgang, en zonder feitelijke fouten."),
-     ("Efficiently load third-party JavaScript", "https://web.dev/articles/efficiently-load-third-party-javascript", "Google, web.dev. Verwijder een script van een derde dat de pagina vertraagt zonder duidelijke waarde."),
-     ("Tips to improve your local ranking on Google", "https://support.google.com/business/answer/7091", "Google Business Profile Help. Bedrijven met volledige en juiste gegevens komen eerder in lokale zoekresultaten."),
-     ("Cookies", "https://www.autoriteitpersoonsgegevens.nl/themas/internet-slimme-apparaten/cookies", "Autoriteit Persoonsgegevens. Functionele cookies vragen geen toestemming, tracking-cookies wel."),
-   ]),
  ]),
 },
 
@@ -360,7 +301,7 @@ PAGINAS = [
  "beschrijving": "Bedrijfsprocessen automatiseren voor het mkb: facturen, orders, afspraken en herinneringen zonder overtypen. Live binnen enkele werkdagen, met uw akkoord.",
  "omschrijving": "Automatisering van bedrijfsprocessen voor mkb-bedrijven: orderintake, facturatie, betaalherinneringen, afspraken, reviews en een dashboard met uw cijfers, gekoppeld aan boekhouding, agenda en telefonie.",
  "ogen": "Automatisering",
- "gewijzigd": "2026-09-24",
+ "gewijzigd": "2026-10-01",
  "h1": 'Bedrijfsprocessen automatiseren: <span class="glans">terugkerend werk dat zichzelf afhandelt</span>.',
  "lead": """Bedrijfsprocessen automatiseren betekent dat software de terugkerende stappen van een proces uitvoert: een factuur opstellen, een afspraak bevestigen, een betaling opvolgen. U blijft met dezelfde systemen werken; het overtypen en het onthouden vallen weg. Complete AI richt dit in voor mkb-bedrijven in Nederland en België, koppelt het aan uw boekhouding, agenda en telefonie en heeft het binnen enkele werkdagen draaien.""",
  "levertijd": "Live binnen enkele werkdagen",
@@ -400,21 +341,6 @@ PAGINAS = [
     """Dat hangt af van hoeveel processen u automatiseert, welke onderdelen daarvoor nodig zijn en aan welke systemen ze gekoppeld worden. Binnen één werkdag na de intake ligt er één vaste prijs op papier: eenmalig voor de bouw en een vast maandbedrag voor onderhoud en bijsturing. Er is geen nacalculatie."""),
  ],
  "inhoud": "\n\n  <hr class=\"streep\">\n\n".join([
-   inhoudsopgave([
-       ("korte-antwoord", "Wat bedrijfsprocessen automatiseren inhoudt"),
-       ("ai-of-regels", "Wanneer AI, wanneer een vaste regel"),
-       ("herkenbaar", "Herkent u dit?"),
-       ("voorbeeld-order", "Eén order van telefoon tot beoordeling"),
-       ("wat-er-kan", "Wat vandaag al draait"),
-       ("werkwijze", "Hoe een traject verloopt"),
-       ("intake", "Wat we in de intake bespreken"),
-       ("koppelingen", "Waarmee het koppelt"),
-       ("controle", "Wat vanzelf verloopt en wat bij u blijft"),
-       ("gegevens", "Veiligheid en gegevens"),
-       ("voor-wie", "Voor wie het past"),
-       ("eigen-praktijk", "Uit eigen praktijk"),
-   ]),
-
    proza("Het korte antwoord", "Wat houdt bedrijfsprocessen automatiseren in?",
          """        <p>Een bedrijfsproces is een ordening van activiteiten waarmee een bedrijf een product of dienst levert die voor de klant waarde heeft (zie <a href="https://nl.wikipedia.org/wiki/Bedrijfsproces" rel="noopener" target="_blank">Wikipedia</a>). Een order verwerken, een offerte opvolgen en een factuur versturen zijn drie voorbeelden. Elk heeft een begin, een vaste volgorde en een uitkomst.</p>
         <p>Bedrijfsprocessen automatiseren is het laten uitvoeren van die stappen door software, zodat niemand ze nog met de hand doet. Niet elk proces en niet elke stap komt daarvoor in aanmerking. Drie kenmerken wijzen het aan: het proces komt terug, de volgorde staat vast en u kunt de uitkomst controleren. Welke processen dat in een mkb-bedrijf zijn, staat per afdeling in de gids <a href="bedrijfsprocessen-automatiseren-voorbeelden.html">Processen automatiseren: voorbeelden</a>.</p>
@@ -565,17 +491,6 @@ PAGINAS = [
             ("Waarom dit voor u telt", "Dat automatiseringen bij u binnen enkele werkdagen kunnen staan, komt doordat ze hier al gebouwd, getest en in productie genomen zijn."),
           ]), "eigen-praktijk"),
 
-   bronnen([
-       ("Autoriteit Persoonsgegevens: verantwoordelijke en verwerker",
-        "https://autoriteitpersoonsgegevens.nl/nl/onderwerpen/algemene-informatie-avg/verantwoordelijke-en-verwerker",
-        "Wie verwerkingsverantwoordelijke is, wie verwerker, en dat een verwerkersovereenkomst verplicht is."),
-       ("Autoriteit Persoonsgegevens: processing agreement (Engelstalig)",
-        "https://www.autoriteitpersoonsgegevens.nl/en/themes/basic-gdpr/gdpr-basics/processing-agreement",
-        "Wat er volgens artikel 28 AVG in een verwerkersovereenkomst staat."),
-       ("Wikipedia: Bedrijfsproces",
-        "https://nl.wikipedia.org/wiki/Bedrijfsproces",
-        "Definitie van een bedrijfsproces en het verschil met een project."),
-   ]),
  ]),
 },
 
@@ -590,7 +505,7 @@ PAGINAS = [
  "h1": 'De <span class="glans">AI-telefonist</span> die opneemt wanneer u dat niet kunt.',
  "lead": "Een AI-telefonist is software die uw telefoon aanneemt, in gewoon Nederlands met de beller praat en vastlegt wat die nodig heeft. Andere namen zijn AI-receptionist en telefoonassistent. Complete AI richt hem in op uw eigen nummer: hij neemt op buiten openingstijden en tijdens drukte, noteert bestellingen en vragen, filtert verkopers eruit en schakelt urgente gesprekken door.",
  "levertijd": "Operationeel binnen 2 weken",
- "gewijzigd": "2026-09-24",
+ "gewijzigd": "2026-10-01",
  "uitkomsten": [
      ("24/7", "bereikbaar, ook in het weekend en op feestdagen"),
      ("2 wk", "van akkoord tot een werkende telefonist op uw nummer"),
@@ -623,22 +538,6 @@ PAGINAS = [
     """Een antwoordservice laat medewerkers van een externe dienst namens u opnemen, een AI-telefonist doet dat met software. Een medewerker voelt aan wat er speelt. De AI-telefonist neemt op elk uur op, legt elk gesprek gestructureerd vast en werkt met wat u vooraf hebt ingesteld. <a href="#vergelijking">De tabel</a> zet het per onderdeel naast elkaar."""),
  ],
  "inhoud": "\n\n  <hr class=\"streep\">\n\n".join([
-   inhoudsopgave([
-     ("wat-is-het", "Wat is een AI-telefonist?"),
-     ("herkenbaar", "Waarom bedrijven de telefoon laten opnemen"),
-     ("zo-klinkt-het", "Een gesprek, stap voor stap"),
-     ("vergelijking", "Telefoon beantwoorden uitbesteden: de drie routes"),
-     ("agenda-doorschakelen", "Agenda en doorschakelen"),
-     ("branches", "Voor welke bedrijven"),
-     ("eigen-praktijk", "Na het gesprek: uit eigen praktijk"),
-     ("veiligheid-avg", "Veiligheid en AVG"),
-     ("de-wet", "De AI-verordening en artikel 50"),
-     ("werkwijze", "Werkwijze"),
-     ("controle", "Controleren of het klopt"),
-     ("kosten", "Wat het kost"),
-     ("bronnen", "Bronnen"),
-   ]),
-
    proza("Uitleg", "Wat is een AI-telefonist of AI-telefoonassistent?",
          """        <h3>Een gesprek in plaats van een keuzemenu</h3>
         <p>Een AI-telefonist verstaat wat een beller zegt, bepaalt wat er gevraagd wordt en antwoordt in gesproken Nederlands. Aan het eind van het gesprek staat vast wat er is afgesproken: een bestelling in de orderlijst, een terugbelnotitie met de vraag erin, of een gesprek dat naar u is doorgeschakeld. Bij voicemail blijft de beller met zijn vraag zitten. Bij de AI-telefonist krijgt hij een antwoord of een bevestiging.</p>
@@ -818,26 +717,6 @@ PAGINAS = [
          "kosten",
          "Er staat geen bedrag op deze pagina, omdat een getal niet zou kloppen."),
 
-   bronnen([
-     ("Rijks ICT Gilde: artikel 50 van de AI-verordening",
-      "https://rijksictgilde.github.io/ai-verordening/hoofdstukken/hoofdstuk-4/a50/",
-      "De tekst van artikel 50 in het Nederlands: de informatieplicht bij directe interactie met mensen en het moment waarop de informatie moet worden gegeven."),
-     ("NOS: AI-telefonist moet zich voortaan direct prijsgeven",
-      "https://nos.nl/artikel/2625224-geen-twijfel-ai-telefonist-moet-zich-voortaan-direct-prijsgeven",
-      "Nieuwsbericht van 2 augustus 2026 over de transparantieplicht en het gebruik van AI-receptionisten."),
-     ("IT &amp; Recht: definitieve richtsnoeren artikel 50 AI-verordening",
-      "https://www.itenrecht.nl/artikelen/definitieve-richtsnoeren-artikel-50-ai-verordening-transparantie-dit-zijn-de-9-belangrijkste-wijzigingen",
-      "Samenvatting van de richtsnoeren van de Europese Commissie van 20 juli 2026, onder meer over menselijke tussenkomst en AI-agenten."),
-     ("Autoriteit Persoonsgegevens: transparantie-eisen voor AI sinds 2 augustus 2026",
-      "https://www.autoriteitpersoonsgegevens.nl/actueel/transparantie-eisen-ai-gelden-vanaf-2-augustus-ap-adviseert-praktijkcode-te-ondertekenen",
-      "Bericht van 9 juli 2026 over de vier transparantieverplichtingen, waaronder duidelijk maken dat iemand met AI communiceert."),
-     ("Autoriteit Persoonsgegevens: verwerkersovereenkomst",
-      "https://www.autoriteitpersoonsgegevens.nl/themas/basis-avg/avg-algemeen/verwerkersovereenkomst",
-      "Wanneer een verwerkersovereenkomst verplicht is en welke onderwerpen daarin worden vastgelegd."),
-     ("Autoriteit Persoonsgegevens: algoritmes, AI en de AVG",
-      "https://www.autoriteitpersoonsgegevens.nl/themas/algoritmes-ai/algoritmes-ai-en-de-avg",
-      "Wat de AVG vraagt van bedrijven die AI inzetten met persoonsgegevens, waaronder informatie aan betrokkenen."),
-   ]),
 ]),
 },
 
@@ -940,7 +819,7 @@ PAGINAS = [
  "h1": 'Wat kan AI voor uw bedrijf? <span class="glans">Een gids voor het mkb.</span>',
  "lead": "AI voor het mkb betekent in de praktijk dat software terugkerend werk overneemt: gegevens verwerken, de telefoon en berichten beantwoorden, herinneringen versturen en cijfers bijhouden. Wat AI voor uw bedrijf kan doen, hangt af van het werk dat elke week terugkomt. Bij Aronza, het e-commercebedrijf van de oprichter, ging de administratie zo van vier tot zes uur per week naar nul.",
  "levertijd": "Leestijd ongeveer 12 minuten",
- "gewijzigd": "2026-09-24",
+ "gewijzigd": "2026-10-01",
  "uitkomsten": [
      ("4–6 uur", "administratie per week bij Aronza, sinds mei 2026 teruggebracht tot nul"),
      ("14%", "van de bedrijven met 2 tot 10 werkzame personen gebruikte in 2025 AI (CBS, voorlopig)"),
@@ -971,18 +850,6 @@ PAGINAS = [
     """Drie. Sinds 2 februari 2025 moeten organisaties die AI gebruiken zorgen dat hun medewerkers er genoeg van weten. De AVG geldt zodra er persoonsgegevens in het spel zijn. En sinds 2 augustus 2026 moet AI die met mensen communiceert dat bekendmaken. <a href="#regels">De sectie over regels</a> geeft de bronnen."""),
  ],
  "inhoud": "\n\n  <hr class=\"streep\">\n\n".join([
-   inhoudsopgave([
-     ("kort-antwoord", "Het korte antwoord: drie soorten werk"),
-     ("wat-is-ai", "Wat is AI, en wat zijn drie voorbeelden?"),
-     ("cijfers", "AI voor het mkb in cijfers"),
-     ("eigen-praktijk", "Wat Aronza liet zien"),
-     ("kiezen", "Welke AI past bij welke taak?"),
-     ("beginnen", "Zo begint u"),
-     ("grens", "Waar u zelf blijft beslissen"),
-     ("regels", "Welke regels gelden er?"),
-     ("bronnen", "Bronnen"),
-   ]),
-
    sectie("Het korte antwoord", "Wat kan AI voor uw bedrijf? Drie soorten werk.",
           "AI neemt in een mkb-bedrijf werk over dat elke week terugkomt, een vaste volgorde heeft en geen omzet oplevert. Dat werk valt in drie soorten.",
           krijgtblok([
@@ -1139,26 +1006,6 @@ PAGINAS = [
          "regels",
          "Drie regels raken elk mkb-bedrijf dat AI inzet. De bronnen staan onderaan deze pagina."),
 
-   bronnen([
-     ("CBS: Bedrijven gebruiken AI vaakst voor marketing of verkoop",
-      "https://www.cbs.nl/nl-nl/nieuws/2025/50/bedrijven-gebruiken-ai-vaakst-voor-marketing-of-verkoop",
-      "Voorlopige cijfers over AI-gebruik in 2025, naar bedrijfsgrootte, bedrijfstak en doel, en de redenen om AI niet te gebruiken. Gebaseerd op de enquête ICT-gebruik bij bedrijven."),
-     ("CBS: Kenmerken van bedrijven die AI-technologie gebruiken",
-      "https://www.cbs.nl/nl-nl/longread/rapportages/2025/kenmerken-van-bedrijven-die-ai-technologie-gebruiken?onepage=true",
-      "Rapport uit 2025. De inleiding bevat de omschrijving van AI die op deze pagina wordt gebruikt."),
-     ("Autoriteit Persoonsgegevens: AI-geletterdheid",
-      "https://www.autoriteitpersoonsgegevens.nl/themas/algoritmes-ai/ai-verordening/ai-geletterdheid",
-      "Wat de verplichting inhoudt en sinds wanneer ze geldt. De wet schrijft geen specifieke maatregelen voor."),
-     ("Autoriteit Persoonsgegevens: regels bij gebruik van AI en algoritmes",
-      "https://www.autoriteitpersoonsgegevens.nl/themas/algoritmes-ai/algoritmes-ai-en-de-avg/regels-bij-gebruik-van-ai-algoritmes",
-      "De AVG-regels die gelden bij AI met persoonsgegevens: rechtmatigheid, transparantie, doelbinding, dataminimalisatie, juistheid en beveiliging."),
-     ("Autoriteit Persoonsgegevens: verwerkersovereenkomst",
-      "https://www.autoriteitpersoonsgegevens.nl/themas/basis-avg/avg-algemeen/verwerkersovereenkomst",
-      "Wanneer een verwerkersovereenkomst verplicht is en welke onderwerpen daarin worden vastgelegd."),
-     ("Autoriteit Persoonsgegevens: transparantie-eisen voor AI sinds 2 augustus 2026",
-      "https://www.autoriteitpersoonsgegevens.nl/actueel/transparantie-eisen-ai-gelden-vanaf-2-augustus-ap-adviseert-praktijkcode-te-ondertekenen",
-      "Bericht van 9 juli 2026 over de transparantieverplichtingen, waaronder duidelijk maken dat iemand met AI communiceert."),
-   ]),
 ]),
 },
 
@@ -1456,7 +1303,7 @@ PAGINAS = [
  "h1": 'Social media uitbesteden: <span class="glans">elke week zichtbaar, zonder dat het u tijd kost</span>.',
  "lead": "Social media uitbesteden betekent dat iemand anders uw berichten bedenkt, opmaakt, plaatst en bijhoudt, terwijl de accounts van u blijven. Complete AI doet dat wekelijks voor uw Google-bedrijfsprofiel en uw social media, in uw huisstijl. U keurt de maand vooraf goed en stuurt af en toe een foto.",
  "levertijd": "Eerste bericht binnen een week",
- "gewijzigd": "2026-09-24",
+ "gewijzigd": "2026-10-01",
  "uitkomsten": [
      ("1 uur", "eenmalig — dat is alles wat wij van uw kant nodig hebben om te beginnen"),
      ("5 min", "per maand om de kalender goed te keuren, en dat mag later vervallen"),
@@ -1495,24 +1342,6 @@ PAGINAS = [
     "Ja. De dienst is maandelijks opzegbaar en er is geen jaarcontract. De profielen, de merkkit en alles wat er geplaatst is, blijven van u."),
  ],
  "inhoud": "\n\n  <hr class=\"streep\">\n\n".join([
-   inhoudsopgave([
-     ("herkenbaar", "Waarom accounts stilvallen"),
-     ("uitbesteden", "Wat betekent social media uitbesteden?"),
-     ("wat-u-krijgt", "Wat u krijgt"),
-     ("goedkeuring", "Hoe werkt goedkeuring, en wat is uw aandeel?"),
-     ("de-keuze", "Likes zijn geen doel"),
-     ("google-bedrijfsprofiel", "Social media en het Google-bedrijfsprofiel"),
-     ("voerlijn", "Van foto naar bericht"),
-     ("rubrieken", "Vaste rubrieken"),
-     ("kanalen", "Welke kanalen?"),
-     ("resultaat", "Hoe wordt het resultaat gemeten?"),
-     ("vertrekpunten", "Drie vertrekpunten"),
-     ("kosten", "Wat kost social media uitbesteden?"),
-     ("werkwijze", "Werkwijze"),
-     ("social-media-manager", "Wat doet een social media manager?"),
-     ("bronnen", "Bronnen"),
-   ]),
-
    sectie("De situatie", "Het is geen gebrek aan wil. Het is een gebrek aan ritme.",
           "Social media beheer uitbesteden is zinvol wanneer het ritme ontbreekt en niet de wil. Social media vraagt geen groot talent, maar wekelijkse aandacht — en dat is precies wat een ondernemer met een volle agenda niet structureel kan opbrengen.",
           pijnblok([
@@ -1650,7 +1479,7 @@ PAGINAS = [
         <h3>Wat u elke maand ontvangt</h3>
         <p>Vooraf de kalender, achteraf een rapport in gewone taal. Het rapport gaat over de cijfers hierboven en over wat er die maand is geplaatst, niet over likes.</p>
         <h3>Wat u van het resultaat mag verwachten</h3>
-        <p>Google schrijft zelf dat een betere plek in de lokale resultaten niet aan te vragen of te betalen is. Wat wel te sturen is, staat ook bij Google: volledige en juiste gegevens, foto’s en video’s en reacties op reviews. Daarnaast houden wij de berichten bij, waarmee u nieuws en aanbiedingen direct in Google toont. Het rapport laat elke maand zien of de cijfers de goede kant op gaan.</p>""", "resultaat"),
+        <p>Google <a href="https://support.google.com/business/answer/7091" rel="noopener" target="_blank">schrijft zelf</a> dat een betere plek in de lokale resultaten niet aan te vragen of te betalen is. Wat wel te sturen is, staat ook bij Google: volledige en juiste gegevens, foto’s en video’s en reacties op reviews. Daarnaast houden wij de berichten bij, waarmee u nieuws en aanbiedingen direct in Google toont. Het rapport laat elke maand zien of de cijfers de goede kant op gaan.</p>""", "resultaat"),
 
    sectie("Vertrekpunten", "Drie niveaus waar dit begint.",
           "Net als bij de pakketten op de homepage: dit zijn vertrekpunten, geen menukaart. Het aantal kanalen, de frequentie en de hoeveelheid werk verschillen per bedrijf, en de samenstelling volgt uit de intake.",
@@ -1710,14 +1539,6 @@ PAGINAS = [
         <h3>Loon en tarief</h3>
         <p>In loondienst hangt wat een social media manager verdient af van ervaring en opleiding. Salarisoverzichten staan op vacaturesites; wij noemen hier geen bedragen. Bij uitbesteden speelt geen salaris en geen uurtarief mee. U betaalt voor een afgesproken pakket, met één vaste prijs zonder nacalculatie.</p>""", "social-media-manager"),
 
-   bronnen([
-     ("Tips to improve your local ranking on Google", "https://support.google.com/business/answer/7091", "Google Business Profile Help. Relevantie, afstand en bekendheid; volledige en juiste gegevens, reacties op reviews, foto’s en video’s; een betere plek is niet aan te vragen of te betalen."),
-     ("Create & manage posts on your Business Profile", "https://support.google.com/business/answer/7342169", "Google Business Profile Help. Berichten tonen nieuws, aanbiedingen en evenementen in Search en Maps; berichten ouder dan zes maanden worden gearchiveerd tenzij een periode is ingesteld."),
-     ("Manage customer reviews", "https://support.google.com/business/answer/3474050", "Google Business Profile Help. Reageren op reviews laat zien dat u feedback waardeert."),
-     ("Understand your Business Profile performance & insights", "https://support.google.com/business/answer/9918094", "Google Business Profile Help. De prestatiecijfers: weergaven, zoekopdrachten, telefoontjes, routeverzoeken, websiteklikken; alleen voor geverifieerde profielen."),
-     ("Functieomschrijving voor Social Media Manager", "https://nl.indeed.com/personeel/functiebeschrijving/social-media-manager", "Indeed. Naam, alternatieve benaming contentspecialist en de taken van een social media manager."),
-     ("Social media manager: salaris en functieomschrijving", "https://career.jobbird.com/nl/beroepengids/online-marketing/social-media-manager", "Jobbird. Community management, de verwante functie social media specialist en de factoren die het salaris bepalen (ervaring, opleiding)."),
-   ]),
  ]),
 },
 
@@ -1733,7 +1554,7 @@ PAGINAS = [
  "lead": "SEO voor mkb is het werk waardoor Google uw pagina’s kan vinden, begrijpen en tonen bij de zoekopdrachten van uw klanten. U komt hoger in Google met een technisch gezonde site, inhoud die de vraag van de klant beantwoordt en tekenen dat uw bedrijf te vertrouwen is. Complete AI voert dit werk uit en meldt elke maand wat het opleverde.",
  "levertijd": "Doorlopend werk, met een vast maandrapport",
  "gepubliceerd": "2026-09-24",
- "gewijzigd": "2026-09-24",
+ "gewijzigd": "2026-10-01",
  "uitkomsten": [
      ("Elke maand", "een vast rapport: wat er is gedaan en wat het opleverde"),
      ("Doorlopend", "SEO bouwt voort op eerder werk, het is geen eenmalige klus"),
@@ -1770,22 +1591,6 @@ PAGINAS = [
     "Google zegt zelf dat het AI-overzicht geen aparte techniek vraagt: een pagina moet zijn opgenomen in Google en met een tekstfragment getoond mogen worden. Het werk aan SEO is dus ook het werk voor AI-antwoorden. Een garantie op een vermelding bestaat niet. Wat helpt is een pagina die de vraag direct beantwoordt, met een bron die te vertrouwen is."),
  ],
  "inhoud": "\n\n  <hr class=\"streep\">\n\n".join([
-   inhoudsopgave([
-       ("hoe-google-kiest", "Hoe Google een pagina kiest"),
-       ("vier-lagen", "De vier lagen van SEO"),
-       ("herkenbaar", "Waar het bij bestaande sites misloopt"),
-       ("nieuwe-website", "Een nieuwe website in Google"),
-       ("lokaal-landelijk", "Lokaal of landelijk gevonden worden"),
-       ("zelf-of-specialist", "Zelf doen of een specialist"),
-       ("ai-overzicht", "SEO en het AI-overzicht"),
-       ("eigen-praktijk", "Uit eigen praktijk"),
-       ("fouten", "Veelgemaakte fouten"),
-       ("rapportage", "Meten en rapporteren"),
-       ("wat-u-krijgt", "Wat u krijgt"),
-       ("werkwijze", "Werkwijze"),
-       ("bronnen", "Bronnen"),
-   ]),
-
    proza("Hoe Google kiest", "Hoe kiest Google welke pagina bovenaan komt?", """
         <h3>Drie stappen: vinden, opnemen, tonen</h3>
         <p>Google beschrijft zelf dat Zoeken in drie stappen werkt. Niet elke pagina komt door alle drie.</p>
@@ -2083,24 +1888,6 @@ PAGINAS = [
             ("Rapporteren en bijsturen", "Elke maand een rapport met cijfers die u zelf in Google kunt nazien. Wat werkt krijgt meer aandacht, wat niet werkt wordt aangepast."),
           ]), "werkwijze"),
 
-   bronnen([
-       ("Google Search Central: SEO-starterhandleiding", "https://developers.google.com/search/docs/fundamentals/seo-starter-guide", "Hoe Google vindt en opneemt, titels en beschrijvingen, wat niet telt, hoe lang wijzigingen duren."),
-       ("Google Search Central: behulpzame, betrouwbare inhoud voor mensen", "https://developers.google.com/search/docs/fundamentals/creating-helpful-content", "De toetsvragen voor inhoud, E-E-A-T en ‘Wie, hoe en waarom’."),
-       ("Google Search Central: hoe Google Zoeken werkt", "https://developers.google.com/search/docs/fundamentals/how-search-works", "De drie stappen crawlen, indexeren en tonen, en geen betaling voor een hogere positie."),
-       ("Google Search Central: heeft u een SEO nodig?", "https://developers.google.com/search/docs/fundamentals/do-i-need-seo", "Zelf doen of uitbesteden, en waar u op let bij het kiezen van een specialist."),
-       ("Search Console-hulp: het rapport Pagina-indexering", "https://support.google.com/webmasters/answer/7440203", "Nieuwe sites, de statussen ‘Gevonden’ en ‘Gecrawld, momenteel niet geïndexeerd’ en wat geïndexeerd wel en niet betekent."),
-       ("Google Search Central: hercrawlen aanvragen", "https://developers.google.com/search/docs/crawling-indexing/ask-google-to-recrawl", "Hoe lang crawlen kan duren en waarom herhaald aanvragen niet sneller gaat."),
-       ("Search Console-hulp: het prestatierapport", "https://support.google.com/webmasters/answer/7576553", "Vertoningen, klikken, CTR en gemiddelde positie, en waarom de positie per zoeker verschilt."),
-       ("Google Search Central: AI-functies en uw website", "https://developers.google.com/search/docs/appearance/ai-features", "Geen aanvullende eisen voor het AI-overzicht en geen speciale markeringen."),
-       ("Google-bedrijfsprofiel Help: uw positie in lokale zoekresultaten verbeteren", "https://support.google.com/business/answer/7091", "Relevantie, afstand en prominentie, en wat er in het profiel hoort."),
-       ("Google Search Central: Core Web Vitals", "https://developers.google.com/search/docs/appearance/core-web-vitals", "De drempels voor laden, reactie en visuele stabiliteit."),
-       ("Google Search Central: pagina-ervaring", "https://developers.google.com/search/docs/appearance/page-experience", "Beveiligde verbinding, weergave op mobiel, geen opdringerige tussenschermen en Lighthouse."),
-       ("Google Search Central: mobile-first indexing", "https://developers.google.com/search/docs/crawling-indexing/mobile/mobile-sites-mobile-first-indexing", "Google gebruikt de mobiele versie van een pagina om te indexeren en te rangschikken."),
-       ("Google Search Central: spamregels voor Google Zoeken", "https://developers.google.com/search/docs/essentials/spam-policies", "Linkspam en keyword stuffing."),
-       ("Google Search Central: titels in zoekresultaten", "https://developers.google.com/search/docs/appearance/title-link", "Waarom elke pagina een unieke, beschrijvende titel nodig heeft."),
-       ("Google Search Central: generatieve AI en uw inhoud", "https://developers.google.com/search/docs/fundamentals/using-gen-ai-content", "Wanneer AI-inhoud onder de spamregels valt en waar het nuttig is."),
-       ("Search Console-hulp: over Search Console", "https://support.google.com/webmasters/answer/9128668", "Wat de gratis dienst laat zien."),
-   ]),
  ]),
 },
 
@@ -2116,7 +1903,7 @@ PAGINAS = [
  "lead": "Google Ads laten beheren of uitbesteden betekent dat een specialist uw zoekcampagne opzet, meet en bijstuurt, terwijl u het advertentiebudget rechtstreeks aan Google betaalt. Bij zoekadvertenties betaalt u per klik, en Google bepaalt bij elke zoekopdracht welke advertentie verschijnt. Complete AI voert dat beheer uit en koppelt de meting, zodat elke aanvraag te herleiden is tot een advertentie.",
  "levertijd": "Op aanvraag",
  "gepubliceerd": "2026-09-24",
- "gewijzigd": "2026-09-24",
+ "gewijzigd": "2026-10-01",
  "uitkomsten": [
      ("Tot op de euro", "meetbaar: welke advertentie welke aanvraag opleverde"),
      ("Maandelijks", "bijgestuurd op wat de cijfers laten zien, geen ongerichte campagnes"),
@@ -2151,22 +1938,6 @@ PAGINAS = [
     "Omdat een getal u eerder zou misleiden dan helpen. Wat een advertentie kost en wat zij oplevert hangt af van uw branche, uw regio, wie er verder op dezelfde zoekwoorden biedt en wat u wilt bereiken. Na de intake hoort u wat er nodig is, onderbouwd met de cijfers van uw eigen markt."),
  ],
  "inhoud": "\n\n  <hr class=\"streep\">\n\n".join([
-   inhoudsopgave([
-       ("hoe-het-werkt", "Hoe Google Ads werkt"),
-       ("zoek-of-meta", "Zoekcampagne of Meta"),
-       ("vooraf", "Wat u vooraf moet regelen"),
-       ("herkenbaar", "Waar het bij bestaande campagnes misloopt"),
-       ("wat-u-krijgt", "Wat u krijgt"),
-       ("waarom-op-aanvraag", "Waarom er geen bedrag staat"),
-       ("voorstel", "Van intake tot voorstel"),
-       ("werkwijze", "Werkwijze"),
-       ("samenhang", "Samenhang met SEO en de site"),
-       ("eigen-praktijk", "Uit eigen praktijk"),
-       ("rapportage", "Hoe wij rapporteren"),
-       ("fouten", "Veelgemaakte fouten"),
-       ("bronnen", "Bronnen"),
-   ]),
-
    proza("Hoe het werkt", "Hoe werkt Google Ads: veiling, biedingen en kwaliteitsscore.", """
         <h3>De veiling in drie stappen</h3>
         <p>Zoekt iemand op Google, dan zoekt het systeem alle advertenties waarvan de zoekwoorden bij die zoekopdracht passen. Advertenties die niet geschikt zijn, bijvoorbeeld omdat ze een ander land targeten of zijn afgekeurd, vallen af. Van de rest kunnen alleen de advertenties verschijnen waarvan de advertentierangschikking hoog genoeg is. Dat beschrijft de <a href="https://support.google.com/google-ads/answer/142918?hl=nl" rel="noopener" target="_blank">hulp van Google Ads over de veiling</a>.</p>
@@ -2369,21 +2140,6 @@ PAGINAS = [
             ("Meten zonder toestemming", "Tracking cookies vragen volgens de Autoriteit Persoonsgegevens om toestemming van de bezoeker. Regel dat vóór de eerste klik, niet erna."),
           ]), "fouten"),
 
-   bronnen([
-       ("Google Ads-hulp: veiling", "https://support.google.com/google-ads/answer/142918?hl=nl", "Hoe de veiling bij elke zoekopdracht werkt en waarom posities schommelen."),
-       ("Google Ads-hulp: hoe de Google Ads-veiling werkt", "https://support.google.com/google-ads/answer/6366577?hl=nl", "De zes factoren die bepalen welke advertenties verschijnen, en dat concurrenten met een hoger bod niet altijd winnen."),
-       ("Google Ads-hulp: advertentierangschikking", "https://support.google.com/google-ads/answer/1752122?hl=nl", "Wat de advertentierangschikking is en waaruit zij wordt berekend."),
-       ("Google Ads-hulp: kwaliteitsscore voor zoekcampagnes", "https://support.google.com/google-ads/answer/6167118?hl=nl", "De schaal van 1 tot 10, de drie onderdelen en waarom de score een diagnostisch hulpmiddel is."),
-       ("Google Ads-hulp: conversiemeting", "https://support.google.com/google-ads/answer/1722022?hl=nl", "Wat een conversie is, welke acties u kunt meten en de leerfase van Slim bieden."),
-       ("Google Ads-hulp: biedstrategie op basis van doelen", "https://support.google.com/google-ads/answer/2472725?hl=nl", "Biedstrategieën per doel en het belang van juiste conversiemeting."),
-       ("Google Ads-hulp: opties voor zoekwoordovereenkomsten", "https://support.google.com/google-ads/answer/7478529?hl=nl", "Breed, woordgroep en exact zoeken."),
-       ("Google Ads-hulp: uitgesloten zoekwoorden", "https://support.google.com/google-ads/answer/2453972?hl=nl", "Hoe uitsluitingen werken, het voorbeeld van de opticien en lijsten op accountniveau."),
-       ("Google Ads-hulp: verschillende typen promoties", "https://support.google.com/google-ads/answer/2393021?hl=nl", "Promotietegoed voor nieuwe adverteerders en wat Google Support wel en niet kan verstrekken."),
-       ("Google Ads-hulp: over promoties", "https://support.google.com/google-ads/answer/6388096?hl=nl", "Promotietegoed is geen cashback of terugbetaling."),
-       ("Google Search Central: heeft u een SEO nodig?", "https://developers.google.com/search/docs/fundamentals/do-i-need-seo", "Adverteren met Google heeft geen effect op de gewone zoekresultaten."),
-       ("Autoriteit Persoonsgegevens: tracking cookies", "https://www.autoriteitpersoonsgegevens.nl/themas/internet-slimme-apparaten/cookies/tracking-cookies", "Toestemming voor tracking cookies en een duidelijke keuze om te weigeren."),
-       ("Meta voor ontwikkelaars: aangepaste doelgroepen en de Meta Pixel", "https://developers.facebook.com/docs/meta-pixel/implementation/custom-audiences", "Bezoekers indelen in groepen op basis van gedrag op de site."),
-   ]),
  ]),
 },
 
@@ -2400,7 +2156,7 @@ PAGINAS = [
  "lead": """Processen automatiseren kan bij elk proces dat terugkomt, een vaste volgorde heeft en een uitkomst geeft die u kunt controleren, zoals een offerte opvolgen of een factuur versturen. In een mkb-bedrijf zijn dat de processen rond klanten, planning, geld, personeel, voorraad en cijfers, hieronder per afdeling uitgewerkt. Welke onderdelen Complete AI voor uw situatie inricht, volgt uit de intake: <a href="automatisering.html">zo werkt bedrijfsprocessen automatiseren bij ons</a>.""",
  "levertijd": "Leestijd ongeveer 17 minuten",
  "gepubliceerd": "2026-09-24",
- "gewijzigd": "2026-09-24",
+ "gewijzigd": "2026-10-01",
  "uitkomsten": [
      ("8", "afdelingen, met per proces wat er nu met de hand gebeurt en wat de automatisering overneemt"),
      ("3", "kenmerken van een proces dat zich leent: herhaling, vaste volgorde, meetbare uitkomst"),
@@ -2429,24 +2185,6 @@ PAGINAS = [
     """Nee. Automatisering sluit aan op wat u al gebruikt: de boekhouding, de agenda, de telefonie. Hoe dat in een traject verloopt, staat bij <a href="automatisering.html">bedrijfsprocessen automatiseren</a>."""),
  ],
  "inhoud": "\n\n  <hr class=\"streep\">\n\n".join([
-   inhoudsopgave([
-       ("wat-is-een-bedrijfsproces", "Wat is een bedrijfsproces?"),
-       ("klanten-verkoop", "Klanten en verkoop"),
-       ("planning-agenda", "Planning en agenda"),
-       ("bereikbaarheid", "Bereikbaarheid"),
-       ("financien", "Financiën"),
-       ("personeel", "Personeel"),
-       ("voorraad-inkoop", "Voorraad en inkoop"),
-       ("marketing-groei", "Marketing en groei"),
-       ("rapportage-inzicht", "Rapportage en inzicht"),
-       ("herkennen", "Welk proces leent zich?"),
-       ("tijd-opnemen", "Vooraf de tijd opnemen"),
-       ("waar-begint-u", "Waar begint u"),
-       ("regels-rpa-ai", "Regels, RPA of AI"),
-       ("fouten", "Veelgemaakte fouten"),
-       ("eigen-praktijk", "Uit eigen praktijk"),
-   ]),
-
    proza("Begrippen", "Wat is een bedrijfsproces?",
          """        <p>Een bedrijfsproces is een ordening van activiteiten waarmee een bedrijf een product of dienst levert die voor de klant waarde heeft. <a href="https://nl.wikipedia.org/wiki/Bedrijfsproces" rel="noopener" target="_blank">Wikipedia</a> omschrijft het ook als een keten van activiteiten die aan elkaar gekoppeld zijn en door beslissingen worden gestuurd. Een proces komt steeds terug, een project heeft een begin en een einde. Dat maakt een proces geschikt voor automatisering: wat steeds op dezelfde manier terugkomt, richt u één keer in.</p>
         <h3>Wat zijn de drie soorten bedrijfsprocessen?</h3>
@@ -2665,23 +2403,6 @@ PAGINAS = [
             ("Begonnen bij facturatie en kosten", "De onderdelen zijn gefaseerd in gebruik genomen, te beginnen bij facturatie en kosten. Zo is bij elke stap te zien of het klopt."),
           ]), "eigen-praktijk"),
 
-   bronnen([
-       ("Wikipedia: Bedrijfsproces",
-        "https://nl.wikipedia.org/wiki/Bedrijfsproces",
-        "Definitie van een bedrijfsproces, het verschil met een project en de indeling in primaire, sturende en ondersteunende processen."),
-       ("Wikipedia: Robotgestuurde procesautomatisering",
-        "https://nl.wikipedia.org/wiki/Robotic_process_automation",
-        "Omschrijving van RPA als automatiseren via de gebruikersinterface, door het handmatige proces na te bootsen."),
-       ("IBM: What is business process automation? (Engelstalig)",
-        "https://www.ibm.com/think/topics/business-process-automation",
-        "Definitie en niveaus van procesautomatisering, kenmerken van goede kandidaten, meetbare doelen en het advies klein te beginnen."),
-       ("IBM: What is robotic process automation? (Engelstalig)",
-        "https://www.ibm.com/think/topics/rpa",
-        "Het verschil tussen RPA (procesgestuurd) en AI (datagestuurd), en hoe ze elkaar aanvullen."),
-       ("CBS: Bedrijven gebruiken AI vaakst voor marketing of verkoop",
-        "https://www.cbs.nl/nl-nl/nieuws/2025/50/bedrijven-gebruiken-ai-vaakst-voor-marketing-of-verkoop",
-        "Voorlopige cijfers over het gebruik van AI door Nederlandse bedrijven in 2025, naar bedrijfsgrootte en doel."),
-   ]),
  ]),
 },
 
@@ -2730,21 +2451,6 @@ PAGINAS = [
     """Een order die binnenkomt en zonder overtypen de voorraad, de factuur en het klantdossier bijwerkt. Zo draait het bij Aronza, het e-commercebedrijf van de oprichter, sinds begin mei 2026. Tien voorbeelden per afdeling staan bij <a href="#voorbeelden">workflows in een klein bedrijf</a>."""),
  ],
  "inhoud": "\n\n  <hr class=\"streep\">\n\n".join([
-   inhoudsopgave([
-       ("korte-antwoord", "Wat is workflow automatisering?"),
-       ("taak-workflow-proces", "Losse taak, workflow of proces?"),
-       ("rpa-ai", "Workflow, RPA of AI?"),
-       ("bouwstenen", "Uit welke onderdelen bestaat een workflow?"),
-       ("voorbeelden", "Tien voorbeelden per afdeling"),
-       ("opbrengst", "Wat levert het op, en wat niet?"),
-       ("op-papier", "Zo zet u een workflow op papier"),
-       ("beginnen-meten", "Hoe begint u en hoe meet u?"),
-       ("fouten", "Veelgemaakte fouten"),
-       ("mislukt", "Wat als een stap mislukt?"),
-       ("eigen-praktijk", "Uit eigen praktijk"),
-       ("bronnen", "Bronnen"),
-   ]),
-
    proza("Het korte antwoord", "Wat is een workflow, en wat is workflow automatisering?",
          """        <h3>Wat wordt bedoeld met workflow?</h3>
         <p>Een workflow is de vaste route die werk aflegt: van een aanleiding, via een aantal stappen, naar een uitkomst. Een order die binnenkomt en daarna de voorraad, de factuur en het klantdossier bijwerkt, is een workflow. Ook een verlofaanvraag is een workflow: de aanvraag komt bij u, waarna uw beslissing terugkeert naar de medewerker.</p>
@@ -2986,38 +2692,6 @@ PAGINAS = [
         <p>Dat 17 automatiseringen vandaag al draaien en getest zijn, verklaart waarom een workflow bij een klant binnen enkele werkdagen kan staan. Wij beginnen niet bij nul: we kiezen de onderdelen, richten ze in met uw gegevens en koppelen ze aan de boekhouding, agenda of telefonie die u al gebruikt. Welke workflow bij u als eerste aan de beurt is, bepalen we in de <a href="index.html#contact">intake</a>. Wat u van de kosten kunt verwachten, staat in <a href="wat-kost-automatisering.html">wat kost automatisering</a>.</p>
       </div>""", "eigen-praktijk"),
 
-   bronnen([
-     ("Workflow Management Coalition: The Workflow Reference Model (Engelstalig, 1995)",
-      "http://www.workflowpatterns.com/documentation/documents/tc003v11.pdf",
-      "De omschrijving van workflow als het geheel of gedeeltelijk automatiseren van een bedrijfsproces, en van workflow als combinatie van menselijke en machinale activiteiten."),
-     ("Wikipedia: Workflow management",
-      "https://nl.wikipedia.org/wiki/Workflow_management",
-      "Workflow management als het beheersen van de beweging van informatie, het verloop van een order of klacht in deeltaken, en de gangbare diagramtechnieken."),
-     ("IBM: What is workflow automation? (Engelstalig)",
-      "https://www.ibm.com/think/topics/workflow-automation",
-      "Workflow automatisering als het vervangen van handmatige taken door software die een proces geheel of gedeeltelijk uitvoert, en dat AI daarvoor niet vereist is."),
-     ("IBM: What is business process automation? (Engelstalig)",
-      "https://www.ibm.com/think/topics/business-process-automation",
-      "De niveaus taak-, workflow-, proces- en intelligente automatisering, het belang van procesdocumentatie en het advies klein te beginnen met meetbare doelen."),
-     ("IBM: What is robotic process automation? (Engelstalig)",
-      "https://www.ibm.com/think/topics/rpa",
-      "Het verschil tussen RPA, dat procesgestuurd is, en AI, dat datagestuurd is."),
-     ("Wikipedia: Robotgestuurde procesautomatisering",
-      "https://nl.wikipedia.org/wiki/Robotic_process_automation",
-      "RPA als automatiseren via de gebruikersinterface, door het handmatige proces na te bootsen."),
-     ("Microsoft Learn: Aan de slag met triggers",
-      "https://learn.microsoft.com/nl-nl/power-automate/triggers-introduction",
-      "Wat een trigger is en de drie manieren waarop een stroom start: handmatig, volgens een planning of automatisch bij een gebeurtenis."),
-     ("Microsoft Learn: Een goedkeuringswerkstroom maken en testen",
-      "https://learn.microsoft.com/nl-nl/power-automate/modern-approvals",
-      "Goedkeuringsstromen voor facturen, werkorders, offertes en vakantieaanvragen, en de manieren waarop een fiatteur kan reageren."),
-     ("Microsoft Learn: Robuuste foutverwerking",
-      "https://learn.microsoft.com/nl-nl/power-automate/guidance/coding-guidelines/error-handling",
-      "Alternatieve routes bij een fout, opnieuw proberen bij tijdelijke storingen en meldingen aan de beheerder."),
-     ("Object Management Group: BPMN 2.0.2 (Engelstalig)",
-      "https://www.omg.org/spec/BPMN/2.0.2/About-BPMN",
-      "BPMN als de feitelijke standaard voor procesdiagrammen, met een notatie die op een stroomschema lijkt."),
-   ]),
  ]),
 },
 
@@ -3066,19 +2740,6 @@ PAGINAS = [
     """Dat hangt af van wat de agent te zien krijgt en van de afspraken met uw leverancier. Geef hem alleen toegang tot wat de taak vraagt en leg vóór de start een verwerkersovereenkomst vast, zoals de AVG voorschrijft. De Autoriteit Persoonsgegevens waarschuwde in februari 2026 voor autonome agents met volledige toegang tot computer en programma's. Zie <a href="#gegevens">veiligheid en gegevens</a>."""),
  ],
  "inhoud": "\n\n  <hr class=\"streep\">\n\n".join([
-   inhoudsopgave([
-     ("wat-is-het", "Wat is een AI-agent voor het mkb?"),
-     ("verschil", "Het verschil met een chatbot, een vaste automatisering en een AI-assistent"),
-     ("taken", "Wat neemt een AI-agent in een klein bedrijf over?"),
-     ("beslissen", "Waar u zelf blijft beslissen"),
-     ("misgaan", "Wat er misgaat en hoe u het opvangt"),
-     ("gegevens", "Veiligheid en gegevens"),
-     ("de-wet", "De AI-verordening en artikel 50"),
-     ("eigen-praktijk", "Uit eigen praktijk: de Aronza-keten en de AI-telefonist"),
-     ("beginnen", "Zelf bouwen of laten inrichten, en hoe begint u"),
-     ("bronnen", "Bronnen"),
-   ]),
-
    proza("Uitleg", "Wat is een AI-agent voor het mkb?",
          """        <h3>De definitie, met de bronnen erbij</h3>
         <p>Een AI-agent voor het mkb is software die een afgebakende taak van begin tot eind uitvoert. Hij leest of hoort wat er gevraagd wordt, kiest zelf de stappen, gebruikt daarvoor koppelingen met uw systemen en levert een uitkomst op, zoals een order in de lijst of een afspraak in de agenda.</p>
@@ -3288,32 +2949,6 @@ PAGINAS = [
          "beginnen",
          "Een agent bouwen is het kleinste deel van het werk. Het werk zit eromheen."),
 
-   bronnen([
-     ("Artikel 50 van de AI-verordening (artificialintelligenceact.eu)", "https://artificialintelligenceact.eu/article/50/",
-      "De tekst van artikel 50: de informatieplicht bij AI-systemen die rechtstreeks met mensen communiceren (eerste lid), en het moment en de wijze van informeren (vijfde lid)."),
-     ("Rijks ICT Gilde: artikel 50 van de AI-verordening in het Nederlands", "https://rijksictgilde.github.io/ai-verordening/hoofdstukken/hoofdstuk-4/a50/",
-      "De Nederlandse tekst van artikel 50, met de begrippen aanbieder en gebruiksverantwoordelijke."),
-     ("Europese Commissie: veelgestelde vragen over artikel 50", "https://digital-strategy.ec.europa.eu/en/faqs/transparency-obligations-under-article-50-ai-act",
-      "De vier voorwaarden voor directe interactie met mensen, de uitzondering voor wat duidelijk is, chatbots en AI-agents als voorbeeld, en de begrippen aanbieder en gebruiker. Laatst bijgewerkt op 24 juli 2026."),
-     ("Anthropic: Building effective agents (Engelstalig)", "https://www.anthropic.com/engineering/building-effective-agents",
-      "Het onderscheid tussen workflows en agents, het advies de eenvoudigste oplossing te kiezen, en de kanttekening dat de zelfstandigheid van agents hogere kosten en opstapelende fouten kan geven. Gepubliceerd op 19 december 2024."),
-     ("IBM: What are AI agents? (Engelstalig)", "https://www.ibm.com/think/topics/ai-agents",
-      "Definitie, de vijf soorten agents, en de waarborgen: logboek, onderbreekbaarheid en menselijke goedkeuring bij handelingen met grote gevolgen."),
-     ("Google Cloud: What are AI agents? (Engelstalig)", "https://cloud.google.com/discover/what-are-ai-agents",
-      "Definitie van een AI-agent en het onderscheid tussen agents, assistenten en bots naar zelfstandigheid en complexiteit."),
-     ("Autoriteit Persoonsgegevens: AP waarschuwt voor grote beveiligingsrisico's bij AI-agents", "https://www.autoriteitpersoonsgegevens.nl/actueel/ap-waarschuwt-voor-grote-beveiligingsrisicos-bij-ai-agents-zoals-openclaw",
-      "Bericht van 12 februari 2026 over autonome AI-agents met volledige toegang, verborgen opdrachten in e-mails en websites, en het advies om strikte toegangscontroles toe te passen."),
-     ("Autoriteit Persoonsgegevens: regels bij gebruik van AI en algoritmes", "https://www.autoriteitpersoonsgegevens.nl/themas/algoritmes-ai/algoritmes-ai-en-de-avg/regels-bij-gebruik-van-ai-algoritmes",
-      "De AVG-regels bij AI met persoonsgegevens: grondslag, transparantie, doelbinding, dataminimalisatie, juistheid, beveiliging en de DPIA."),
-     ("Autoriteit Persoonsgegevens: automatisch besluit", "https://www.autoriteitpersoonsgegevens.nl/themas/algoritmes-ai/algoritmes-uitgelegd/automatisch-besluit",
-      "Wanneer een bedrijf een automatisch besluit met rechtsgevolgen of andere serieuze gevolgen mag nemen, en welke maatregelen daarbij horen."),
-     ("Autoriteit Persoonsgegevens: verwerkersovereenkomst", "https://www.autoriteitpersoonsgegevens.nl/themas/basis-avg/avg-algemeen/verwerkersovereenkomst",
-      "Wanneer een verwerkersovereenkomst verplicht is en welke onderwerpen daarin worden vastgelegd."),
-     ("OWASP Gen AI Security Project: LLM01 Prompt Injection (Engelstalig)", "https://genai.owasp.org/llmrisk/llm01-prompt-injection/",
-      "Wat indirecte promptinjectie is en welke maatregelen de impact beperken: minimale toegang en menselijke goedkeuring voor risicovolle handelingen."),
-     ("BBC: Airline held liable for its chatbot giving passenger bad advice (Engelstalig)", "https://www.bbc.com/travel/article/20240222-air-canada-chatbot-misinformation-what-travellers-should-know",
-      "Verslag van 23 februari 2024 over de uitspraak van het Civil Resolution Tribunal van British Columbia over de chatbot van een luchtvaartmaatschappij."),
-   ]),
  ]),
 },
 
@@ -3362,22 +2997,6 @@ PAGINAS = [
     """Ja. Wij beginnen met het proces dat de meeste uren kost en breiden uit wanneer u dat wilt. Elke fase levert op zichzelf resultaat op, en u bepaalt wanneer de volgende volgt. Het abonnement is maandelijks opzegbaar. Hoe u kiest waar u begint, staat bij <a href="wat-is-workflow-automatisering.html#beginnen-meten">hoe begint u en hoe meet u</a>."""),
  ],
  "inhoud": "\n\n  <hr class=\"streep\">\n\n".join([
-   inhoudsopgave([
-       ("korte-antwoord", "Wat kost automatisering?"),
-       ("kostenposten", "Waaruit bestaan de kosten?"),
-       ("factoren", "De vijf factoren die de prijs bepalen"),
-       ("voorbeeld", "Twee bedrijven, hetzelfde proces, twee voorstellen"),
-       ("bedrag-zonder-gesprek", "Waarom een bedrag zonder gesprek weinig zegt"),
-       ("routes", "Zelf doen, standaardsoftware of laten inrichten"),
-       ("voorstel", "Hoe komt een voorstel tot stand?"),
-       ("onderhoud", "Onderhoud en het maandbedrag"),
-       ("terugverdienen", "Hoe rekent u na wat het oplevert?"),
-       ("ai-agent", "Wat kost een AI-agent?"),
-       ("laag-houden", "Kosten beheersbaar houden"),
-       ("eigen-praktijk", "Uit eigen praktijk"),
-       ("bronnen", "Bronnen"),
-   ]),
-
    proza("Het korte antwoord", "Wat kost automatisering voor een mkb-bedrijf?",
          """        <p>Automatisering kost het werk dat nodig is om haar voor uw bedrijf in te richten, te koppelen, te testen en bij te houden. Dat werk verschilt per bedrijf, ook wanneer het proces dezelfde naam heeft. Daarom staat op deze pagina geen bedrag. Wel staat er waaruit de kosten bestaan, wat ze bepaalt en hoe u voorstellen vergelijkt.</p>
         <h3>Wat zijn de kosten van automatisering?</h3>
@@ -3573,26 +3192,6 @@ PAGINAS = [
         <p>Omdat de onderdelen bestaan, hoeft niet elke functie opnieuw te worden ontworpen. Het werk bij uw bedrijf zit in het kiezen van de onderdelen, het inrichten met uw gegevens en het koppelen aan de boekhouding, agenda of telefonie die u al gebruikt. Daarom staat een onderdeel binnen enkele werkdagen. Wat dat in uw situatie is, bepaalt de <a href="index.html#contact">intake</a>. Wat een workflow is en hoe u hem op papier zet, leest u in <a href="wat-is-workflow-automatisering.html">wat is workflow automatisering</a>.</p>
       </div>""", "eigen-praktijk"),
 
-   bronnen([
-     ("Microsoft Learn: Types of Power Automate licenses (Engelstalig)",
-      "https://learn.microsoft.com/en-us/power-platform/admin/power-automate-licensing/types",
-      "Gebruikerslicenties, die aan een persoon worden toegewezen, en capaciteitslicenties, die aan een automatisering worden toegewezen, en de raming van het gebruik als acties per uitvoering maal uitvoeringen per dag."),
-     ("Anthropic: Pricing (Engelstalig)",
-      "https://platform.claude.com/docs/en/about-claude/pricing",
-      "Een voorbeeld van hoe een aanbieder van AI-modellen rekent: per miljoen tokens, met een apart tarief voor invoer en uitvoer en een verschillend tarief per model."),
-     ("Microsoft Learn: Deprecation of Basic authentication in Exchange Online (Engelstalig)",
-      "https://learn.microsoft.com/nl-nl/exchange/clients-and-mobile-in-exchange-online/deprecation-of-basic-authentication-exchange-online",
-      "Een voorbeeld van een leverancier die een verbindingsmethode uitschakelde, waardoor toepassingen moesten overstappen op moderne authenticatie."),
-     ("Wikipedia: Total cost of ownership (Engelstalig)",
-      "https://en.wikipedia.org/wiki/Total_cost_of_ownership",
-      "Welke kosten naast de aanschaf horen bij een IT-investering, zoals migratie, testen, opleiding en beveiliging, en dat de kosten van handwerk dat vervalt meetellen in de vergelijking."),
-     ("IBM: What is business process automation? (Engelstalig)",
-      "https://www.ibm.com/think/topics/business-process-automation",
-      "Het advies klein te beginnen, waar het kan bestaande oplossingen te gebruiken en per proces meetbare doelen te stellen."),
-     ("Belastingdienst: Kleinschaligheidsinvesteringsaftrek (KIA)",
-      "https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/zakelijk/winst/inkomstenbelasting/inkomstenbelasting_voor_ondernemers/investeringsaftrek_en_desinvesteringsbijtelling/kleinschaligheidsinvesteringsaftrek_kia",
-      "Wat de aftrek is: een aftrekpost op de winst bij investeringen in bedrijfsmiddelen die in aanmerking komen voor investeringsaftrek."),
-   ]),
  ]),
 },
 

@@ -224,7 +224,7 @@ def vragen_html(vragen):
 
   <section id="vragen">
     <div class="wrap">
-      <div class="sectiekop reveal">
+      <div class="sectiekop midden reveal">
         <p class="label"><i></i>Veelgestelde vragen</p>
         <h2>Antwoord op de vragen die het vaakst gesteld worden.</h2>
       </div>
