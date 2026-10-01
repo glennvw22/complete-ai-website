@@ -157,8 +157,6 @@ def schema(p):
                          {"@type": "Organization", "@id": f"{DOMEIN}/#organisatie", "name": "Complete AI"}),
               "publisher": {"@type": "Organization", "@id": f"{DOMEIN}/#organisatie", "name": "Complete AI"},
               "inLanguage": "nl-NL",
-              "datePublished": p.get("gepubliceerd", "2026-08-27"),
-              "dateModified": p.get("gewijzigd", p.get("gepubliceerd", "2026-08-27")),
               "image": f"{DOMEIN}/og-complete-ai.jpg",
               "url": f"{DOMEIN}/{p['bestand']}"}
              if p.get("soort") in ("case", "gids") else
@@ -172,11 +170,9 @@ def schema(p):
               "areaServed": [{"@type": "Country", "name": "Nederland"},
                              {"@type": "Country", "name": "België"}],
               "url": f"{DOMEIN}/{p['bestand']}"})
-    gep = p.get("gepubliceerd", "2026-08-27")
     pagina = {"@type": "WebPage", "@id": f"{DOMEIN}/{p['bestand']}#pagina",
               "url": f"{DOMEIN}/{p['bestand']}", "name": p["titel"],
               "description": p["beschrijving"], "inLanguage": "nl-NL",
-              "datePublished": gep, "dateModified": p.get("gewijzigd", gep),
               "isPartOf": {"@id": f"{DOMEIN}/#website"}}
     graaf = [
         pagina,

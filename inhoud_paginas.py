@@ -84,7 +84,6 @@ PAGINAS = [
  "h1": 'Website laten maken voor het mkb: <span class="glans">all-in en live in 1 tot 2 weken</span>.',
  "lead": "Een website laten maken voor het mkb kan all-in: ontwerp, teksten en bouw eenmalig, en hosting, back-ups, updates en kleine wijzigingen in een vast maandbedrag. Complete AI zet uw site binnen één tot twee weken live, snel op mobiel en vindbaar vanaf de eerste dag. U spreekt tot het einde de persoon die hem bouwt.",
  "levertijd": "Live in 1 tot 2 weken",
- "gewijzigd": "2026-10-01",
  "uitkomsten": [
      ("0,7 s", "laadtijd van deze pagina; dezelfde norm geldt voor uw site"),
      ("0", "cookiebanners: er staat geen tracking op die er een vereist"),
@@ -301,7 +300,6 @@ PAGINAS = [
  "beschrijving": "Bedrijfsprocessen automatiseren voor het mkb: facturen, orders, afspraken en herinneringen zonder overtypen. Live binnen enkele werkdagen, met uw akkoord.",
  "omschrijving": "Automatisering van bedrijfsprocessen voor mkb-bedrijven: orderintake, facturatie, betaalherinneringen, afspraken, reviews en een dashboard met uw cijfers, gekoppeld aan boekhouding, agenda en telefonie.",
  "ogen": "Automatisering",
- "gewijzigd": "2026-10-01",
  "h1": 'Bedrijfsprocessen automatiseren: <span class="glans">terugkerend werk dat zichzelf afhandelt</span>.',
  "lead": """Bedrijfsprocessen automatiseren betekent dat software de terugkerende stappen van een proces uitvoert: een factuur opstellen, een afspraak bevestigen, een betaling opvolgen. U blijft met dezelfde systemen werken; het overtypen en het onthouden vallen weg. Complete AI richt dit in voor mkb-bedrijven in Nederland en België, koppelt het aan uw boekhouding, agenda en telefonie en heeft het binnen enkele werkdagen draaien.""",
  "levertijd": "Live binnen enkele werkdagen",
@@ -505,7 +503,6 @@ PAGINAS = [
  "h1": 'De <span class="glans">AI-telefonist</span> die opneemt wanneer u dat niet kunt.',
  "lead": "Een AI-telefonist is software die uw telefoon aanneemt, in gewoon Nederlands met de beller praat en vastlegt wat die nodig heeft. Andere namen zijn AI-receptionist en telefoonassistent. Complete AI richt hem in op uw eigen nummer: hij neemt op buiten openingstijden en tijdens drukte, noteert bestellingen en vragen, filtert verkopers eruit en schakelt urgente gesprekken door.",
  "levertijd": "Operationeel binnen 2 weken",
- "gewijzigd": "2026-10-01",
  "uitkomsten": [
      ("24/7", "bereikbaar, ook in het weekend en op feestdagen"),
      ("2 wk", "van akkoord tot een werkende telefonist op uw nummer"),
@@ -819,7 +816,6 @@ PAGINAS = [
  "h1": 'Wat kan AI voor uw bedrijf? <span class="glans">Een gids voor het mkb.</span>',
  "lead": "AI voor het mkb betekent in de praktijk dat software terugkerend werk overneemt: gegevens verwerken, de telefoon en berichten beantwoorden, herinneringen versturen en cijfers bijhouden. Wat AI voor uw bedrijf kan doen, hangt af van het werk dat elke week terugkomt. Bij Aronza, het e-commercebedrijf van de oprichter, ging de administratie zo van vier tot zes uur per week naar nul.",
  "levertijd": "Leestijd ongeveer 12 minuten",
- "gewijzigd": "2026-10-01",
  "uitkomsten": [
      ("4–6 uur", "administratie per week bij Aronza, sinds mei 2026 teruggebracht tot nul"),
      ("14%", "van de bedrijven met 2 tot 10 werkzame personen gebruikte in 2025 AI (CBS, voorlopig)"),
@@ -1303,7 +1299,6 @@ PAGINAS = [
  "h1": 'Social media uitbesteden: <span class="glans">elke week zichtbaar, zonder dat het u tijd kost</span>.',
  "lead": "Social media uitbesteden betekent dat iemand anders uw berichten bedenkt, opmaakt, plaatst en bijhoudt, terwijl de accounts van u blijven. Complete AI doet dat wekelijks voor uw Google-bedrijfsprofiel en uw social media, in uw huisstijl. U keurt de maand vooraf goed en stuurt af en toe een foto.",
  "levertijd": "Eerste bericht binnen een week",
- "gewijzigd": "2026-10-01",
  "uitkomsten": [
      ("1 uur", "eenmalig — dat is alles wat wij van uw kant nodig hebben om te beginnen"),
      ("5 min", "per maand om de kalender goed te keuren, en dat mag later vervallen"),
@@ -1553,8 +1548,6 @@ PAGINAS = [
  "h1": 'SEO voor mkb: <span class="glans">beter gevonden worden in Google</span>, stap voor stap.',
  "lead": "SEO voor mkb is het werk waardoor Google uw pagina’s kan vinden, begrijpen en tonen bij de zoekopdrachten van uw klanten. U komt hoger in Google met een technisch gezonde site, inhoud die de vraag van de klant beantwoordt en tekenen dat uw bedrijf te vertrouwen is. Complete AI voert dit werk uit en meldt elke maand wat het opleverde.",
  "levertijd": "Doorlopend werk, met een vast maandrapport",
- "gepubliceerd": "2026-09-24",
- "gewijzigd": "2026-10-01",
  "uitkomsten": [
      ("Elke maand", "een vast rapport: wat er is gedaan en wat het opleverde"),
      ("Doorlopend", "SEO bouwt voort op eerder werk, het is geen eenmalige klus"),
@@ -1902,8 +1895,6 @@ PAGINAS = [
  "h1": 'Google Ads laten beheren: <span class="glans">zichtbaar</span> op het moment dat iemand zoekt.',
  "lead": "Google Ads laten beheren of uitbesteden betekent dat een specialist uw zoekcampagne opzet, meet en bijstuurt, terwijl u het advertentiebudget rechtstreeks aan Google betaalt. Bij zoekadvertenties betaalt u per klik, en Google bepaalt bij elke zoekopdracht welke advertentie verschijnt. Complete AI voert dat beheer uit en koppelt de meting, zodat elke aanvraag te herleiden is tot een advertentie.",
  "levertijd": "Op aanvraag",
- "gepubliceerd": "2026-09-24",
- "gewijzigd": "2026-10-01",
  "uitkomsten": [
      ("Tot op de euro", "meetbaar: welke advertentie welke aanvraag opleverde"),
      ("Maandelijks", "bijgestuurd op wat de cijfers laten zien, geen ongerichte campagnes"),
@@ -2155,8 +2146,6 @@ PAGINAS = [
  "h1": 'Processen automatiseren: <span class="glans">welke processen lenen zich ervoor</span>?',
  "lead": """Processen automatiseren kan bij elk proces dat terugkomt, een vaste volgorde heeft en een uitkomst geeft die u kunt controleren, zoals een offerte opvolgen of een factuur versturen. In een mkb-bedrijf zijn dat de processen rond klanten, planning, geld, personeel, voorraad en cijfers, hieronder per afdeling uitgewerkt. Welke onderdelen Complete AI voor uw situatie inricht, volgt uit de intake: <a href="automatisering.html">zo werkt bedrijfsprocessen automatiseren bij ons</a>.""",
  "levertijd": "Leestijd ongeveer 17 minuten",
- "gepubliceerd": "2026-09-24",
- "gewijzigd": "2026-10-01",
  "uitkomsten": [
      ("8", "afdelingen, met per proces wat er nu met de hand gebeurt en wat de automatisering overneemt"),
      ("3", "kenmerken van een proces dat zich leent: herhaling, vaste volgorde, meetbare uitkomst"),
@@ -2418,7 +2407,6 @@ PAGINAS = [
  "h1": 'Wat is <span class="glans">workflow automatisering</span>? Uitleg met voorbeelden voor het mkb',
  "lead": "Workflow automatisering is het laten uitvoeren van een vaste reeks stappen door software, zodat werk vanzelf van de ene stap naar de volgende gaat. Een workflow is die reeks zelf: een aanleiding, stappen, voorwaarden en een uitkomst, zoals een order die voorraad, factuur en klantdossier bijwerkt. Complete AI richt dit in voor mkb-bedrijven in Nederland en België.",
  "levertijd": "Leestijd ongeveer 15 minuten",
- "gepubliceerd": "2026-09-25",
  "uitkomsten": [
      ("5", "onderdelen: aanleiding, stappen, voorwaarden, goedkeuring en uitkomst"),
      ("10", "voorbeelden uit een klein bedrijf, met aanleiding, route en wat bij u blijft"),
@@ -2707,7 +2695,6 @@ PAGINAS = [
  "h1": 'Wat is een <span class="glans">AI-agent voor uw bedrijf</span>?',
  "lead": "Een AI-agent is software waarin een taalmodel zelf bepaalt welke stappen een taak vraagt en welke koppelingen het daarvoor gebruikt, zoals uw agenda of boekhouding. Voor een mkb-bedrijf betekent dat software die één afgebakende taak van u overneemt, zoals de telefoon opnemen en een afspraak inplannen, terwijl u bepaalt wat zonder uw akkoord de deur uitgaat. Complete AI richt dat in voor bedrijven in Nederland en België.",
  "levertijd": "Leestijd ongeveer 20 minuten",
- "gepubliceerd": "2026-09-25",
  "uitkomsten": [
      ("4", "soorten software naast elkaar gezet: vaste automatisering, AI-assistent, chatbot en AI-agent"),
      ("3", "standen voor uw akkoord: voorbereiden, uitvoeren na akkoord, zelfstandig binnen grenzen"),
@@ -2898,7 +2885,7 @@ PAGINAS = [
         <p>Volgens het vijfde lid moet de informatie uiterlijk bij de eerste interactie worden gegeven, op een duidelijke en te onderscheiden manier. Zij moet voldoen aan de toepasselijke toegankelijkheidseisen.</p>
 
         <h3>Wanneer valt een AI-agent onder de plicht?</h3>
-        <p>De Europese Commissie noemt in haar <a href="https://digital-strategy.ec.europa.eu/en/faqs/transparency-obligations-under-article-50-ai-act" rel="noopener" target="_blank">veelgestelde vragen over artikel 50</a> (laatst bijgewerkt op 24 juli 2026) uitdrukkelijk chatbots, AI-agents en avatars. Vier voorwaarden gelden tegelijk:</p>
+        <p>De Europese Commissie noemt in haar <a href="https://digital-strategy.ec.europa.eu/en/faqs/transparency-obligations-under-article-50-ai-act" rel="noopener" target="_blank">veelgestelde vragen over artikel 50</a> uitdrukkelijk chatbots, AI-agents en avatars. Vier voorwaarden gelden tegelijk:</p>
         <ul>
           <li>het systeem is een AI-systeem;</li>
           <li>het is bedoeld voor een echte tweerichtingsuitwisseling met mensen, en niet alleen om gegevens te verzamelen of geautomatiseerde antwoorden te geven;</li>
@@ -2964,7 +2951,6 @@ PAGINAS = [
  "h1": 'Wat kost <span class="glans">automatisering</span> voor het mkb? Waar de prijs van afhangt',
  "lead": "De kosten van automatisering hangen af van vijf dingen: het aantal processen, de koppelingen, het aantal uitzonderingen, de goedkeuringsstappen en het onderhoud daarna. Wat automatisering kost, staat daarom pas vast na een gesprek over uw bedrijf. Bij Complete AI bestaat de prijs uit een eenmalig deel en een vast maandbedrag, samen één vaste prijs zonder nacalculatie.",
  "levertijd": "Leestijd ongeveer 15 minuten",
- "gepubliceerd": "2026-09-25",
  "uitkomsten": [
      ("5", "factoren bepalen het voorstel: processen, koppelingen, uitzonderingen, goedkeuringen en onderhoud"),
      ("2", "delen in de prijs: eenmalig voor het inrichten, vast per maand voor onderhoud en bijsturing"),
@@ -3207,7 +3193,6 @@ PAGINAS = [
  "h1": 'Wat kost een <span class="glans">gemiste oproep</span> u? Bereken het met uw eigen cijfers.',
  "lead": "Een gemiste oproep is een klant die een ander belt. Met vijf getallen uit uw eigen bedrijf berekent u hieronder wat gemiste telefoontjes u per jaar aan omzet kosten. De rekentool gebruikt geen standaardwaarden, vraagt geen e-mailadres en verstuurt niets.",
  "levertijd": "Rekent in uw browser, niets wordt verstuurd",
- "gepubliceerd": "2026-09-25",
  "uitkomsten": [
      ("5", "getallen, allemaal uit uw eigen bedrijf"),
      ("Zichtbaar", "de formule en elke tussenstap van de berekening"),
@@ -3320,7 +3305,6 @@ PAGINAS = [
  "h1": 'Gidsen over <span class="glans">AI en automatisering</span> voor het mkb.',
  "lead": "Hier staan de gidsen en de rekentool van Complete AI: uitleg over AI, automatisering en vindbaarheid voor mkb-ondernemers in Nederland en België. Elke gids noemt zijn bronnen en geeft geen bedragen.",
  "levertijd": "Gratis te lezen, zonder aanmelding",
- "gepubliceerd": "2026-09-25",
  "uitkomsten": [
      ("6", "gidsen over AI, automatisering en vindbaarheid"),
      ("1", "rekentool voor gemiste oproepen"),
