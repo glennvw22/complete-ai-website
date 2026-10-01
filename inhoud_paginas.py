@@ -1816,7 +1816,7 @@ PAGINAS = [
             <tr><td><strong>Eén pagina per dienst</strong></td><td>Websites, vindbaarheid, adverteren, automatisering, AI-telefonist en social media hebben elk een eigen pagina, naast een klantcase, twee gidsen en pagina’s per branche. <em>(Inhoud)</em></td></tr>
             <tr><td><strong>Titel en beschrijving</strong></td><td>Elke pagina heeft een eigen titel en een eigen beschrijving, zodat de zoeker het verschil ziet. <em>(Inhoud)</em></td></tr>
             <tr><td><strong>Antwoord vooraan</strong></td><td>De eerste zinnen van elke dienstpagina beantwoorden de vraag. Onderaan staan de vragen die klanten stellen. <em>(Inhoud)</em></td></tr>
-            <tr><td><strong>Auteur en datum</strong></td><td>Bovenaan elke dienstpagina, klantcase en gids staat wie de tekst heeft geschreven en wanneer hij is gepubliceerd. <em>(Autoriteit)</em></td></tr>
+            <tr><td><strong>Auteur</strong></td><td>Bovenaan elke dienstpagina, klantcase en gids staat wie de tekst heeft geschreven. <em>(Autoriteit)</em></td></tr>
             <tr><td><strong>Structuurdata</strong></td><td>De vragen in de structuurdata zijn dezelfde als de vragen op de pagina, omdat beide uit hetzelfde bestand komen. <em>(Technisch)</em></td></tr>
             <tr><td><strong>Canonical en sitemap</strong></td><td>Elke pagina meldt zijn eigen adres als voorkeursadres, en het bestand sitemap.xml noemt alle pagina’s. <em>(Technisch)</em></td></tr>
             <tr><td><strong>Snel op een telefoon</strong></td><td>Statische pagina’s, mobiel eerst ontworpen. Deze site laadt in ongeveer 0,7 seconde. <em>(Gebruikservaring)</em></td></tr>

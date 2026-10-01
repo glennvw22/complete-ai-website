@@ -196,22 +196,8 @@ def schema(p):
                          ensure_ascii=False, indent=2) + '\n</script>')
 
 
-MAANDEN = ["januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus",
-           "september", "oktober", "november", "december"]
-
-
-def datum_nl(iso):
-    j, m, d = iso.split("-")
-    return f"{int(d)} {MAANDEN[int(m) - 1]} {j}"
-
-
 def byline_html(p):
-    """Auteur en datums zichtbaar op de pagina, zoals de structuurdata ze ook noemt."""
-    gep = p.get("gepubliceerd", "2026-08-27")
-    gew = p.get("gewijzigd", gep)
-    bijgewerkt = f" · Bijgewerkt op <b>{datum_nl(gew)}</b>" if gew != gep else ""
-    return (f'<p class="byline">Door <b>Glenn van Wijngaarden</b>, oprichter van Complete AI · '
-            f'Gepubliceerd op <b>{datum_nl(gep)}</b>{bijgewerkt}</p>')
+    return '<p class="byline">Door <b>Glenn van Wijngaarden</b>, oprichter van Complete AI</p>'
 
 
 def vragen_html(vragen):
