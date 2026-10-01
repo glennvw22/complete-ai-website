@@ -664,10 +664,26 @@ def test_scoring():
         https=False, laadtijd_ms=6200, mobiel_geschikt=False, heeft_titel=True,
         copyright_jaar=2014, verouderde_techniek=("Wix",))
     c = score_mod.beoordeel(slechte_site, rapport_slecht, None, kapsalon)
-    bevestig(c.beste_dienst == "website", "verouderde site -> website")
-    bevestig(c.score > b.score, f"verouderde site scoort hoger dan goede ({c.score} > {b.score})")
+    bevestig(c.beste_dienst == "website", "site zonder slotje en niet voor mobiel -> website")
+    bevestig(c.score > b.score, f"zo'n site scoort hoger dan een goede ({c.score} > {b.score})")
     bevestig("SSL" in c.redenen or "https" in c.redenen.lower(),
              "de reden noemt het ontbrekende slotje")
+    # Sinds 1-10-2026 (websitekeuring): copyrightjaar, bouwer en laadtijd zijn geen reden meer.
+    for woord in ("copyright", "traag", "bouwer", "Wix", "aangeraakt"):
+        bevestig(woord not in c.alle_redenen and woord not in " ".join(c.warmte.redenen),
+                 f"de redenen noemen '{woord}' niet meer")
+
+    oud_maar_werkt = _bedrijf(telefoon="038-1234567", website="https://oud-maar-werkt.nl")
+    rapport_oud_spoor = website_check.SiteRapport(
+        url="https://oud-maar-werkt.nl", bereikbaar=True, status=200, eindurl="https://oud-maar-werkt.nl",
+        https=True, laadtijd_ms=9000, mobiel_geschikt=True, heeft_titel=True,
+        heeft_meta_omschrijving=True, heeft_structuurdata=True, copyright_jaar=2009,
+        verouderde_techniek=("Wix", "jQuery 1.x"), online_afspraak=True)
+    g_oud = score_mod.beoordeel(oud_maar_werkt, rapport_oud_spoor, None, kapsalon)
+    bevestig(not g_oud.heeft_dienst("website"),
+             "een site met copyright 2009, Wix, jQuery 1.x en 9 seconden laadtijd is geen website-lead")
+    bevestig(all(w not in g_oud.alle_redenen for w in ("copyright", "traag", "bouwer", "2009")),
+             "waarom_lead noemt het copyrightjaar, de bouwer en de laadtijd niet")
 
     # De kern van de verbreding: goede site, toch een lead.
     loodgieter = _bedrijf(branche="installatie", telefoon="038-9999999",

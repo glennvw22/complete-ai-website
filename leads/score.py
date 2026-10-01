@@ -83,7 +83,7 @@ class Beoordeling:
 
     @property
     def website_gat(self) -> bool:
-        """Geen, slechte of verouderde website - de klassieke ingang."""
+        """Geen website, een website die niet werkt of een gebrek heeft - de klassieke ingang."""
         return any(s.dienst == "website" for s in self.signalen)
 
 
@@ -100,9 +100,9 @@ def _bepaal_warmte(bedrijf, site, kvk_resultaat, branche: Branche) -> Warmte:
                          "er zelf al mee bezig maar komen er niet uit")
         if not site.bereikbaar and not site.geblokkeerd and bedrijf.website:
             voeg_toe(40, "De website die ze opgeven doet het niet - dat kost ze nu klanten")
-        if site.copyright_jaar and HUIDIG_JAAR - site.copyright_jaar >= 5:
-            voeg_toe(20, f"Site is al {HUIDIG_JAAR - site.copyright_jaar} jaar niet "
-                         f"aangeraakt (copyright {site.copyright_jaar})")
+        # Een copyrightjaar zegt niets over de site: dat staat hier sinds 1-10-2026
+        # (websitekeuring in het dashboard) niet meer als reden. Wat telt is wat een
+        # bezoeker ziet, en dat meet de keuring, in een echte Chrome.
 
     if bedrijf.social and not bedrijf.website:
         voeg_toe(30, "Wel actief op social, geen eigen site - ze investeren al in "
@@ -180,15 +180,10 @@ def beoordeel(bedrijf, site, kvk_resultaat, branche: Branche) -> Beoordeling:
             if not site.mobiel_geschikt:
                 gebreken.append("niet gebouwd voor mobiel")
                 punten += 28
-            if site.laadtijd_ms > 4000:
-                gebreken.append(f"traag ({site.laadtijd_ms} ms)")
-                punten += 16
-            if site.copyright_jaar and HUIDIG_JAAR - site.copyright_jaar >= 3:
-                gebreken.append(f"copyright staat nog op {site.copyright_jaar}")
-                punten += 18
-            if site.verouderde_techniek:
-                gebreken.append("verouderde bouwer: " + ", ".join(site.verouderde_techniek))
-                punten += 14
+            # Laadtijd, copyrightjaar en bouwer (Wix, Jimdo, jQuery 1.x ...) zijn GEEN
+            # reden meer (Glenn, 1-10-2026): niemand ziet ze, en een site die op een
+            # telefoon werkt en genoeg vertelt kan ze allemaal hebben. Het oordeel over
+            # de site komt uit de websitekeuring in het dashboard.
             if gebreken:
                 signalen.append(Signaal("website", min(punten, 74),
                     "Site heeft " + ", ".join(gebreken)))
