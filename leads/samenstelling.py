@@ -12,6 +12,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
+import catalogus
+
 
 @dataclass
 class Quota:
@@ -42,6 +44,8 @@ class Samenstelling:
     tekorten: dict = field(default_factory=dict)
     afgevallen_niet_belbaar: int = 0
     afgevallen_zonder_reden: int = 0
+    # Branches die Glenn niet wil (tandzorg, 1-10-2026): nooit in de lijst.
+    afgevallen_branche: int = 0
     redenen_afgevallen: dict = field(default_factory=dict)
 
 
@@ -55,6 +59,13 @@ def stel_samen(kandidaten: list, aantal: int, quota: Quota) -> Samenstelling:
 
     belbaar_lijst = []
     for rij in kandidaten:
+        # Geen tandartsen (Glenn, 1-10-2026): op naam, OSM-tags, SBI en
+        # websitedomein, ook als het bedrijf uit een andere OSM-categorie komt
+        # (amenity=doctors, een gedeeld zorgpand). Gaat vóór alles, dus ook
+        # niet naar de mailbaan.
+        if catalogus.is_tandzorg(rij[0], rij[2]):
+            uitslag.afgevallen_branche += 1
+            continue
         belbaarheid, beoordeling = rij[4], rij[3]
         if not belbaarheid.mag_bellen:
             # Niet belbaar is niet hetzelfde als waardeloos: mag er wél

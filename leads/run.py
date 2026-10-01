@@ -454,6 +454,7 @@ def schrijf(uitslag: dict, map_pad: Path) -> dict:
         },
         "afgevallen_niet_belbaar": samen.afgevallen_niet_belbaar,
         "afgevallen_zonder_koopsignaal": samen.afgevallen_zonder_reden,
+        "afgevallen_branche_tandzorg": samen.afgevallen_branche,
         "afgevallen_filiaal_of_dubbel_kvk": uitslag["afgevallen_filiaal"],
         "afgevallen_bekende_keten": uitslag.get("afgevallen_keten", 0),
         "afgevallen_keten_spreiding": uitslag.get("afgevallen_keten_spreiding", 0),

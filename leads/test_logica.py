@@ -865,6 +865,60 @@ def test_samenstelling():
              "en het wordt geteld als afgevallen zonder koopsignaal")
 
 
+def test_tandzorg_uitgesloten():
+    print("\nGeen tandartsen (Glenn, 1-10-2026)")
+    zorg = catalogus.BRANCHE_OP_SLEUTEL["zorg"]
+    bevestig(("amenity", "dentist") not in zorg.osm,
+             "amenity=dentist staat niet meer in de OSM-selectors van zorg")
+    bevestig("8623" not in zorg.sbi, "SBI 8623 staat niet meer bij zorg")
+    bevestig("Tandarts" not in zorg.naam, "de naam van de zorgbak noemt geen tandartsen meer")
+
+    tandzorg = [
+        dict(naam="Tandartspraktijk De Wit"), dict(naam="Tandartsenpraktijk Overwhere"),
+        dict(naam="Tandzorg Katwijk"), dict(naam="Mondzorg Hoorn"),
+        dict(naam="Mondhygi\u00ebnist Jansen"), dict(naam="Orthodontie Breda"),
+        dict(naam="Implantologie Hoorn"), dict(naam="Kaakchirurg Maas"),
+        dict(naam="Tandprothetica Peters"), dict(naam="Siemonsma Tandtechniek"),
+        dict(naam="Tandheelkundig Centrum Leiden"),
+        dict(naam="De Witte Tulp", osm_tags={"amenity": "doctors", "healthcare": "dentist"}),
+        dict(naam="De Water", website="https://tandartsdewater.nl"),
+        dict(naam="Katwijk", website="https://katwijkdental.nl"),
+        dict(naam="MOND", website="https://www.uwmond.be/waregem"),
+    ]
+    for kw in tandzorg:
+        b = _bedrijf(osm_id="t", branche="zorg", **kw)
+        bevestig(catalogus.is_tandzorg(b), f"tandzorg herkend: {kw}")
+    sbi = kvk_mod.KvkResultaat(gevonden=True, sbi="86230", sbi_omschrijving="Tandheelkundige zorg")
+    bevestig(catalogus.is_tandzorg(_bedrijf(naam="De Witte Tulp", branche="zorg"), sbi),
+             "SBI 86230 met een neutrale naam is tandzorg")
+
+    geen = [
+        dict(naam="Fysiotherapie Donders", website="https://fysiodonders.nl"),
+        dict(naam="Huisartsenpraktijk Zwelef"), dict(naam="Van Gestel Optiek"),
+        dict(naam="Caf\u00e9 de Opstand", website="https://de-opstand.nl"),
+        dict(naam="Hondentrimsalon Animo"), dict(naam="Orthopedie Van Haesendonck"),
+        dict(naam="Accidental Studio", website="https://accidental.nl"),
+    ]
+    for kw in geen:
+        bevestig(not catalogus.is_tandzorg(_bedrijf(osm_id="g", branche="zorg", **kw)),
+                 f"geen tandzorg: {kw}")
+
+    # In de samenstelling: een tandarts komt er niet in, ook niet op de mailbaan,
+    # en een gewone zorgzaak wel.
+    bv = kvk_mod.KvkResultaat(gevonden=True, rechtsvorm="Besloten Vennootschap",
+                              is_rechtspersoon=True)
+    kandidaten = []
+    for osm_id, naam in (("t1", "Tandartspraktijk De Wit"), ("f1", "Fysiotherapie Donders")):
+        b = _bedrijf(osm_id=osm_id, naam=naam, branche="zorg", telefoon="038-1")
+        kandidaten.append((b, None, bv, score_mod.beoordeel(b, None, bv, zorg),
+                           belbaar_mod.beoordeel_belbaarheid(b, bv)))
+    uitslag = samen_mod.stel_samen(kandidaten, 10, samen_mod.Quota(website=5, telefonist=5, automatisering=5))
+    namen = [r[0].naam for r in uitslag.gekozen] + [r[0].naam for r in uitslag.mailbaan]
+    bevestig("Tandartspraktijk De Wit" not in namen, "de tandarts komt niet in de samenstelling")
+    bevestig("Fysiotherapie Donders" in namen, "de fysiotherapeut wel")
+    bevestig(uitslag.afgevallen_branche == 1, f"de tandarts is geteld als afgevallen op branche (nu {uitslag.afgevallen_branche})")
+
+
 def test_schrijven():
     print("\nWegschrijven van de uitvoer")
     kapsalon = catalogus.BRANCHE_OP_SLEUTEL["kapsalon"]
@@ -930,6 +984,7 @@ if __name__ == "__main__":
     test_belbaarheid()
     test_belbaarheid_belgie()
     test_samenstelling()
+    test_tandzorg_uitgesloten()
     test_schrijven()
     test_normaliseren()
     print("\n" + ("ALLE TESTS GESLAAGD" if not MISLUKT

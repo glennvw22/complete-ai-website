@@ -5,6 +5,8 @@ Alles hier is pure data + pure functies, zodat het zonder netwerk testbaar is.
 from __future__ import annotations
 
 import datetime as _dt
+import re
+import unicodedata
 from dataclasses import dataclass, field
 
 # --------------------------------------------------------------------------
@@ -74,13 +76,16 @@ BRANCHES: tuple[Branche, ...] = (
             beldruk=0.95, online_afspraak=True,
             dienst_focus=("telefonist", "website", "automatisering", "seo"),
             sbi=("4520", "4532")),
-    Branche("zorg", "Tandartsen, fysio, huisartsen en praktijken",
-            (("amenity", "dentist"), ("amenity", "doctors"),
+    # Geen tandartsen (Glenn, 1-10-2026): amenity=dentist en SBI 8623 staan hier
+    # bewust niet meer in, en tandzorg wordt in de samenstelling ook op naam,
+    # tags, SBI en websitedomein overgeslagen (zie is_tandzorg hieronder).
+    Branche("zorg", "Fysio, huisartsen, opticiens en praktijken",
+            (("amenity", "doctors"),
              ("healthcare", "physiotherapist"), ("healthcare", "psychotherapist"),
              ("shop", "optician"), ("healthcare", "podiatrist")),
             beldruk=1.0, online_afspraak=True,
             dienst_focus=("telefonist", "automatisering", "website", "seo"),
-            sbi=("8623", "8621", "8691")),
+            sbi=("8621", "8691")),
     Branche("detailhandel", "Speciaalzaken en lokale winkels",
             (("shop", "bakery"), ("shop", "butcher"), ("shop", "florist"),
              ("shop", "furniture"), ("shop", "bicycle"), ("shop", "jewelry"),
@@ -117,6 +122,96 @@ BRANCHES: tuple[Branche, ...] = (
 )
 
 BRANCHE_OP_SLEUTEL = {b.sleutel: b for b in BRANCHES}
+
+
+# --------------------------------------------------------------------------
+# Branches die Glenn niet wil: tandzorg (1-10-2026, "geen enkele tandzorg- of
+# tandartspraktijk in mijn leadslijst"). Onder tandarts valt: tandarts,
+# tandartsenpraktijk, tandzorg, mondzorg, mondhygienist, orthodontist/
+# orthodontie, implantologie, kaakchirurg, tandprothetica/tandtechniek,
+# tandheelkundig centrum. Dezelfde regel staat in het dashboard
+# (lib/betrouwbaar.ts, herkenUitgeslotenBranche), dat een lead uit tandzorg
+# ook zelf nog uitsluit.
+# --------------------------------------------------------------------------
+TANDZORG_STAMMEN = (
+    "tandarts", "tandzorg", "mondzorg", "mondhygien", "orthodont", "implantolog",
+    "kaakchirurg", "mondkaak", "stomatolog", "tandprothet", "tandtechn", "tandlab",
+    "tandheelkund", "parodont", "endodont", "gebitsprothe", "kunstgebit",
+)
+# Engels en Frans (Vlaanderen); "dental" niet binnen accidental/incidental/occidental.
+_TANDZORG_VREEMD = re.compile(r"(?<!acci)(?<!inci)(?<!occi)dental|dentist|dentaire")
+# Websites waarvan naam en domein het niet verraden maar die bevestigd tandzorg
+# zijn (1-10-2026, paginatitel); gelijk aan de lijst in het dashboard.
+BEKENDE_TANDZORG_DOMEINEN = (
+    "lovadent.be", "uwmond.be", "orthogroep.be", "greetmulier.be",
+    "tppkamstra.nl", "tand41.be", "mozo-wieze.be",
+)
+_OSM_TANDZORG = re.compile(
+    r"(amenity|healthcare)\s*=\s*dentist\b"
+    r"|healthcare:speciality\s*=[^;]*(dentist|orthodontics|oral_surgery|prosthodontics|endodontics|periodontics)",
+    re.I)
+
+
+def _woorden(tekst: str) -> list[str]:
+    zonder = unicodedata.normalize("NFKD", tekst or "")
+    zonder = "".join(c for c in zonder if not unicodedata.combining(c))
+    return re.findall(r"[a-z0-9]+", zonder.lower())
+
+
+def _heeft_tandzorgwoord(tekst: str) -> bool:
+    return any(
+        any(stam in woord for stam in TANDZORG_STAMMEN) or _TANDZORG_VREEMD.search(woord)
+        for woord in _woorden(tekst)
+    )
+
+
+def _host(url: str) -> str:
+    kaal = re.sub(r"^[a-z][a-z0-9+.-]*://", "", (url or "").strip().lower())
+    return re.sub(r"^www\.", "", kaal.split("/")[0].split("?")[0])
+
+
+def tandzorg_signalen(naam: str = "", branche: str = "", sbi: str = "", website: str = "",
+                      email: str = "", osm_tags: dict | str | None = None) -> list[str]:
+    """Waarop dit bedrijf als tandzorg is herkend (leeg = geen tandzorg)."""
+    signalen: list[str] = []
+    if _heeft_tandzorgwoord(naam):
+        signalen.append("naam")
+    if _heeft_tandzorgwoord(branche):
+        signalen.append("branche")
+    kaal = re.sub(r"\.", "", sbi or "")
+    if re.search(r"(?<!\d)8623\d{0,2}(?!\d)", kaal) or _heeft_tandzorgwoord(sbi):
+        signalen.append("sbi")
+    host = _host(website)
+    if host and any(_heeft_tandzorgwoord(label) for label in host.split(".")):
+        signalen.append("websitedomein")
+    if host and any(host == d or host.endswith("." + d) for d in BEKENDE_TANDZORG_DOMEINEN):
+        signalen.append("bekende praktijk")
+    mail_domein = (email or "").strip().lower().rpartition("@")[2]
+    if mail_domein and any(_heeft_tandzorgwoord(label) for label in mail_domein.split(".")):
+        signalen.append("e-maildomein")
+    if isinstance(osm_tags, dict):
+        osm_tags = ";".join(f"{k}={v}" for k, v in osm_tags.items())
+    if osm_tags and _OSM_TANDZORG.search(osm_tags):
+        signalen.append("osm-tag")
+    return signalen
+
+
+def is_tandzorg(bedrijf, kvk_resultaat=None) -> bool:
+    """Is dit een tandzorg- of tandartspraktijk? Voor een Bedrijf uit bron_osm
+    (naam, branche, website, email, osm_tags) en een optioneel KvkResultaat
+    (sbi, sbi_omschrijving, handelsnaam)."""
+    sbi = ""
+    handelsnaam = ""
+    if kvk_resultaat is not None:
+        sbi = f"{getattr(kvk_resultaat, 'sbi', '')} {getattr(kvk_resultaat, 'sbi_omschrijving', '')}"
+        handelsnaam = getattr(kvk_resultaat, "handelsnaam", "") or ""
+    return bool(tandzorg_signalen(
+        naam=f"{getattr(bedrijf, 'naam', '')} {handelsnaam}",
+        sbi=sbi,
+        website=getattr(bedrijf, "website", ""),
+        email=getattr(bedrijf, "email", ""),
+        osm_tags=getattr(bedrijf, "osm_tags", None),
+    ))
 
 
 # --------------------------------------------------------------------------
