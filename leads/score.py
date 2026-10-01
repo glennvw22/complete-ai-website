@@ -172,41 +172,16 @@ def beoordeel(bedrijf, site, kvk_resultaat, branche: Branche) -> Beoordeling:
         elif not site.bereikbaar:
             signalen.append(Signaal("website", 90,
                 f"Website is onbereikbaar ({site.fout or 'geen antwoord'})"))
-        else:
-            gebreken, punten = [], 0
-            if not site.https or site.ssl_fout:
-                gebreken.append("geen werkend SSL-slotje")
-                punten += 30
-            if not site.mobiel_geschikt:
-                gebreken.append("niet gebouwd voor mobiel")
-                punten += 28
-            # Laadtijd, copyrightjaar en bouwer (Wix, Jimdo, jQuery 1.x ...) zijn GEEN
-            # reden meer (Glenn, 1-10-2026): niemand ziet ze, en een site die op een
-            # telefoon werkt en genoeg vertelt kan ze allemaal hebben. Het oordeel over
-            # de site komt uit de websitekeuring in het dashboard.
-            if gebreken:
-                signalen.append(Signaal("website", min(punten, 74),
-                    "Site heeft " + ", ".join(gebreken)))
+        # Een site die bereikbaar is, geeft hier GEEN website-reden meer. Het SSL-slotje, de
+        # viewport (mobiel), laadtijd, copyrightjaar en bouwer zijn geen reden (Glenn, 1-10-2026):
+        # niemand ziet ze, en een site die op een telefoon werkt en genoeg vertelt kan ze allemaal
+        # missen. Het oordeel over een bestaande site komt uit de websitekeuring in het dashboard
+        # (geen_site, stuk, onbruikbaar_mobiel of mager, door een mens bevestigd).
 
     # ---------------- 2. VINDBAARHEID (SEO) ----------------
-    if site is not None and site.bereikbaar and not site.alleen_social:
-        seo_gebreken, punten = [], 0
-        if not site.heeft_meta_omschrijving:
-            seo_gebreken.append("geen omschrijving voor Google")
-            punten += 22
-        if not site.heeft_structuurdata:
-            seo_gebreken.append("geen structuurdata")
-            punten += 18
-        if not site.heeft_titel:
-            seo_gebreken.append("geen paginatitel")
-            punten += 25
-        if seo_gebreken:
-            signalen.append(Signaal("seo", min(punten, 62),
-                "Vindbaarheid: " + ", ".join(seo_gebreken)))
-    elif heeft_site_tag is False:
-        signalen.append(Signaal("seo", 55,
-            "Zonder eigen site is het bedrijf in Google vrijwel onvindbaar",
-            hard=False))
+    # Geen signaal meer (1-10-2026): een ontbrekende meta-omschrijving, structuurdata of
+    # paginatitel is geen aantoonbare reden dat dit bedrijf iets van ons nodig heeft, en
+    # "zonder site onvindbaar" volgt uit het websiteoordeel, niet uit een eigen SEO-regel.
 
     # ---------------- 3. AI-TELEFONIST ----------------
     # Alleen een signaal als er een echt bereikbaarheidsgat is. Een bedrijf dat
@@ -249,7 +224,7 @@ def beoordeel(bedrijf, site, kvk_resultaat, branche: Branche) -> Beoordeling:
     # ---------------- 6. ADVERTENTIES ----------------
     if branche.sleutel in ("installatie", "bouw", "garage", "hovenier", "transport") \
             and not (site is not None and site.geblokkeerd):
-        if site is None or not site.bereikbaar or not site.heeft_meta_omschrijving:
+        if site is None or not site.bereikbaar:
             signalen.append(Signaal("sea", 40,
                 "Spoed- en offerteaanvragen gaan nu naar concurrenten die wel adverteren",
                 hard=False))

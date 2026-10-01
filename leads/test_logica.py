@@ -664,10 +664,15 @@ def test_scoring():
         https=False, laadtijd_ms=6200, mobiel_geschikt=False, heeft_titel=True,
         copyright_jaar=2014, verouderde_techniek=("Wix",))
     c = score_mod.beoordeel(slechte_site, rapport_slecht, None, kapsalon)
-    bevestig(c.beste_dienst == "website", "site zonder slotje en niet voor mobiel -> website")
-    bevestig(c.score > b.score, f"zo'n site scoort hoger dan een goede ({c.score} > {b.score})")
-    bevestig("SSL" in c.redenen or "https" in c.redenen.lower(),
-             "de reden noemt het ontbrekende slotje")
+    # Sinds 1-10-2026 (stap 3): het SSL-slotje, de viewport en het SEO-signaal zijn geen reden meer.
+    # Het oordeel over een bestaande site komt uit de websitekeuring in het dashboard.
+    bevestig(not c.heeft_dienst("website"),
+             "een site zonder slotje en niet voor mobiel is geen website-lead meer")
+    bevestig(not c.heeft_dienst("seo"),
+             "ontbrekende meta-omschrijving en structuurdata geven geen SEO-signaal meer")
+    for woord in ("SSL", "slotje", "mobiel", "Vindbaarheid", "omschrijving voor Google", "structuurdata", "paginatitel"):
+        bevestig(woord not in c.alle_redenen,
+                 f"waarom_lead noemt '{woord}' niet meer")
     # Sinds 1-10-2026 (websitekeuring): copyrightjaar, bouwer en laadtijd zijn geen reden meer.
     for woord in ("copyright", "traag", "bouwer", "Wix", "aangeraakt"):
         bevestig(woord not in c.alle_redenen and woord not in " ".join(c.warmte.redenen),
