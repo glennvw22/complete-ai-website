@@ -70,6 +70,47 @@ BV_NV_NAAM = re.compile(r"(^|[\s,.(])(b\.?\s?v|n\.?\s?v|besloten vennootschap|na
 GEEN_BV_NAAM = re.compile(r"\b(v\.?\s?o\.?\s?f\.?|c\.?\s?v\.?|maatschap|eenmanszaak|stichting|vereniging)\b", re.I)
 
 
+# ------------------------------------------------------------------ voorfilter op de eigen site (gratis, HTTP)
+# De websitekeuring in een echte Chrome kost een halve minuut per site. Wat de voorpagina al verraadt, hoeft niet gekeurd en niet geimporteerd: een formule of netwerk van garages,
+# een landelijke keten of meerdere vestigingen, een autohandel zonder werkplaats, en een site met een afspraakknop of boekplatform (dan geldt "afspraak zonder online boeken" niet).
+# Een bedrijf zonder website valt hier nooit af. Elke afvaller krijgt zijn reden in het ronde-overzicht; er wordt niets definitiefs mee gemarkeerd (de gebieden en kandidaten zijn gratis).
+FORMULE_RE = re.compile(r"(car[\s-]?team|bosch\s+car\s+service|auto[\s-]?first|autocrew|autotaalglas|vakgarage|asn\s+autoschade|autoschade\s+service\s+nederland|schadeherstel\s?friesland|profile\s+tyrecenter|euromaster|verg[oö]lst|kwik[\s-]?fit|maxxglas|carglass|master\s+garage|garage\s+select)", re.I)
+VESTIGINGEN_RE = re.compile(r"((?:\d+|twee|drie|vier|vijf|zes|zeven|acht|negen|tien|meerdere|diverse)\s+(?:vestigingen|filialen|locaties|winkels|showrooms)|onze\s+(?:vestigingen|filialen)|meer\s+dan\s+\d+\s+(?:winkels|vestigingen)|vestigingen\s+in\s+[A-Z])", re.I)
+BOEKKNOP_RE = re.compile(r"<(a|button)\b([^>]*)>([\s\S]{0,300}?)</\1>", re.I)
+BOEKWOORD_RE = re.compile(r"(afspraak|boek(?:en|ing)?\b|reserv|plan\s+(?:een|je|uw)|maak\s+(?:een|je|uw))", re.I)
+BOEKPLATFORM_RE = re.compile(r"(calendly|planity|treatwell|fresha|booksy|setmore|salonized|salonkee|onlineafspraken|simplybook|bookingkit|afspraakplanner|reservio|resengo|timify|appointlet|garageplanner|werkplaatsplanner|mijngarage)", re.I)
+
+
+def voorfilter_site(url: str) -> str | None:
+    """Geeft een reden om dit bedrijf niet te keuren en niet te importeren, of None."""
+    status, _eind, body, _ssl = website_check._lees(url, timeout=12)
+    if status != 200 or not body:
+        return None
+    html = body.decode("utf-8", "replace")
+    tekst = re.sub(r"<[^>]+>", " ", re.sub(r"<script[\s\S]*?</script>|<style[\s\S]*?</style>", " ", html))
+    tekst = re.sub(r"\s+", " ", tekst)
+    m = FORMULE_RE.search(tekst)
+    if m:
+        return f"formule of netwerk op de site: {m.group(1)}"
+    m = VESTIGINGEN_RE.search(tekst)
+    if m:
+        return f"meerdere vestigingen op de site: {m.group(1)}"
+    if BOEKPLATFORM_RE.search(html):
+        return "boekplatform op de site"
+    for k in BOEKKNOP_RE.finditer(html):
+        knoptekst = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", k.group(3))).strip()
+        if not knoptekst or len(knoptekst) > 60 or not BOEKWOORD_RE.search(knoptekst):
+            continue
+        href = (re.search(r"href=[\"']([^\"']*)", k.group(2), re.I) or [None, ""])[1]
+        if href.lower().startswith(("tel:", "mailto:", "whatsapp:")):
+            continue
+        return f"knop of link '{knoptekst[:40]}' naar een afspraak of boeking"
+    laag = tekst.lower()
+    if "occasion" in laag and not re.search(r"werkplaats|onderhoud|reparatie|apk|schade|banden|monteur", laag):
+        return "autohandel zonder werkplaats"
+    return None
+
+
 def log(*args) -> None:
     print(*args, file=sys.stderr, flush=True)
 
@@ -331,6 +372,24 @@ def draai_ronde(gebieden, geen_post: bool, tijd_minuten: float | None) -> dict:
         if i % 50 == 0:
             log(f"[kvk] {i}/{len(kandidaten)} gezocht, {len(bevestigd)} bevestigd")
     log(f"[kvk] {tel['kvk_gezocht']} gratis zoekopdrachten, {len(bevestigd)} bevestigde BV/NV met één vestiging")
+
+    # 2b. voorfilter op de eigen site: formule, meerdere vestigingen, boekknop, autohandel
+    tel["voorfilter_afgevallen"] = {}
+    behouden = []
+    websites = [b.website for b, _ in bevestigd if b.website]
+    from concurrent.futures import ThreadPoolExecutor
+    with ThreadPoolExecutor(max_workers=8) as pool:
+        uitslag = dict(zip(websites, pool.map(lambda u: (lambda: voorfilter_site(u))() if u else None, websites)))
+    for b, res in bevestigd:
+        reden = uitslag.get(b.website) if b.website else None
+        if reden:
+            kort = reden.split(":")[0]
+            tel["voorfilter_afgevallen"][kort] = tel["voorfilter_afgevallen"].get(kort, 0) + 1
+            uitkomsten.append({"osm_id": b.osm_id, "naam": b.naam, "plaats": b.gemeente, "voorfilter": reden})
+            continue
+        behouden.append((b, res))
+    log(f"[voorfilter] {len(bevestigd) - len(behouden)} van {len(bevestigd)} afgevallen op de eigen site: {tel['voorfilter_afgevallen']}")
+    bevestigd = behouden
 
     # 3. websitecheck (gratis) en rijen
     urls = [b.website for b, _ in bevestigd if b.website]
