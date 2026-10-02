@@ -242,6 +242,32 @@ def kvk_op_adres(client: kvk_mod.KvkClient, bedrijf) -> kvk_mod.KvkResultaat | N
     return None
 
 
+# Een beheer-, holding- of vastgoedmaatschappij drijft de zaak meestal niet zelf (Sampermans Beheer B.V. naast Autobandencentrale Sampermans B.V., 2-10-2026).
+# Zelfde regel als kvkNaamIsHolding in jarvis-dashboard/lib/belbaar-bewijs.ts.
+HOLDING_RE = re.compile(r"\b(beheer|holding|participaties?|vastgoed|investeringen|management)\b", re.I)
+
+
+def exploitant_zoeken(client: kvk_mod.KvkClient, bedrijf, holding_nr: str) -> kvk_mod.KvkResultaat | None:
+    """De naam gaf een holding: zoek op naam en plaats een hoofdvestiging van een andere, niet-holding BV met minstens één betekenisvol woord gelijk
+    aan de kandidaat en (als de straat bekend is) in dezelfde straat."""
+    data, fout = client._get(kvk_mod.ZOEKEN, {"naam": bedrijf.naam, "plaats": bedrijf.gemeente, "resultatenPerPagina": 20})
+    if fout or not data:
+        return None
+    eigen = _significante_tokens(bedrijf.naam)
+    for r in data.get("resultaten") or []:
+        if r.get("type") != "hoofdvestiging" or not r.get("kvkNummer") or str(r["kvkNummer"]) == holding_nr:
+            continue
+        naam = r.get("naam", "")
+        if HOLDING_RE.search(naam) or not kvk_naam_is_bv_of_nv(naam):
+            continue
+        adres = (r.get("adres") or {}).get("binnenlandsAdres") or {}
+        if bedrijf.straat and adres.get("straatnaam") and _norm(adres["straatnaam"]) != _norm(bedrijf.straat):
+            continue
+        if eigen & _significante_tokens(naam):
+            return kvk_mod.KvkResultaat(gevonden=True, kvk_nummer=str(r["kvkNummer"]), handelsnaam=naam, zoek_type="hoofdvestiging", bron="zoeken")
+    return None
+
+
 def rechtspersoon_gratis(client: kvk_mod.KvkClient, bedrijf, bekend_kvk: set[str], gezien_kvk: set[str]) -> tuple[kvk_mod.KvkResultaat | None, str]:
     """De gratis route. Geeft (resultaat, "") bij een bevestigde BV/NV met één vestiging, anders (None, reden).
 
@@ -271,6 +297,21 @@ def rechtspersoon_gratis(client: kvk_mod.KvkClient, bedrijf, bekend_kvk: set[str
     rp = next((r for r in regels if r.get("type") == "rechtspersoon"), None)
     if not rp:
         return None, "geen rechtspersoon-regel (eenmanszaak of niet bevestigd)"
+    if HOLDING_RE.search(rp.get("naam", "")):
+        alt = exploitant_zoeken(client, bedrijf, nr)
+        if alt is None:
+            return None, f"alleen een beheer- of holdingmaatschappij gevonden ({rp.get('naam', '')})"
+        res = alt
+        nr = res.kvk_nummer
+        if nr in bekend_kvk or nr in gezien_kvk:
+            return None, "KVK-nummer al bekend (dubbel)"
+        data, fout = client._get(kvk_mod.ZOEKEN, {"kvkNummer": nr, "resultatenPerPagina": 50})
+        if fout or not data:
+            return None, f"KVK-nummer niet op te zoeken ({fout or 'leeg'})"
+        regels = [r for r in (data.get("resultaten") or []) if str(r.get("kvkNummer")) == nr]
+        rp = next((r for r in regels if r.get("type") == "rechtspersoon"), None)
+        if not rp or HOLDING_RE.search(rp.get("naam", "")):
+            return None, "geen rechtspersoon-regel bij de exploitant"
     vorm = kvk_naam_is_bv_of_nv(rp.get("naam", ""))
     if not vorm:
         return None, f"geregistreerde naam draagt geen B.V./N.V. ({rp.get('naam', '')})"
