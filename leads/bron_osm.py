@@ -10,6 +10,7 @@ Alleen stdlib, zodat dit in elke container draait.
 from __future__ import annotations
 
 import json
+import os
 import time
 import urllib.error
 import urllib.parse
@@ -23,10 +24,10 @@ from catalogus import Branche
 # antwoordt op een Nederlandse query met HTTP 200 en nul elementen, en dat is
 # erger dan een foutmelding: het ziet eruit alsof de bron werkt.
 SPIEGELS = (
+    "https://overpass-api.de/api/interpreter",
     "https://maps.mail.ru/osm/tools/overpass/api/interpreter",
     "https://overpass.kumi.systems/api/interpreter",
     "https://overpass.private.coffee/api/interpreter",
-    "https://overpass-api.de/api/interpreter",
 )
 
 USER_AGENT = "Complete-AI-leadmachine/1.0 (+https://complete-ai.nl)"
@@ -251,9 +252,14 @@ def haal_bedrijven(
     fouten: list[str] = []
     gezien: set = set()
 
-    elementen = _vraag_spiegels(
-        bouw_query(gemeenten, branche), fouten, pogingen_per_spiegel, logger
-    )
+    # OSM_PER_GEMEENTE=1 (3-10-2026): sla de blokquery over. Voor een dichte branche (kappers) liep hij op elke spiegel tegen de timeout aan en kostte
+    # zo een kwartier voor niets, waarna toch per gemeente werd gezocht.
+    if os.environ.get("OSM_PER_GEMEENTE") == "1" and len(gemeenten) > 1:
+        elementen = None
+    else:
+        elementen = _vraag_spiegels(
+            bouw_query(gemeenten, branche), fouten, pogingen_per_spiegel, logger
+        )
     if elementen:
         bedrijven = _elementen_naar_bedrijven(
             elementen, gemeenten[0], land, branche, gezien

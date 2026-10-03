@@ -65,6 +65,33 @@ BRANCHE_VOLGORDE = (
     "hovenier", "detailhandel", "zakelijk", "transport", "gastvrij",
 )
 
+# Verfijnde branches voor de uitbreiding van 3-10-2026 (installateurs, kappers en schoonheidssalons, fysiotherapie, rijscholen): alleen de OSM-tags die
+# bij de afspraakbranche horen, onder de bestaande branchesleutel (de rest van het dashboard kent alleen die sleutels). De gedaan-sleutel in
+# gebieden.json is de run-sleutel (installateur, kapper, fysio, rijschool), zodat de volledige branches (installatie, kapsalon, zorg, sport) hun eigen
+# voortgang houden. Geen tandzorg, geen opticiens of huisartsen, geen tatoeage- of massagestudio's, geen groothandel (shop=trade).
+EXTRA_BRANCHES: dict[str, "catalogus.Branche"] = {
+    "installateur": catalogus.Branche(
+        sleutel="installatie", naam="Installateurs (cv, loodgieter, elektra, airco)",
+        osm=(("craft", "plumber"), ("craft", "electrician"), ("craft", "hvac"), ("craft", "gasfitter")),
+        beldruk=1.0, online_afspraak=False, dienst_focus=("telefonist", "website", "sea", "seo"), sbi=("4322", "4321")),
+    "kapper": catalogus.Branche(
+        sleutel="kapsalon", naam="Kappers en schoonheidssalons",
+        osm=(("shop", "hairdresser"), ("shop", "beauty"), ("shop", "nails")),
+        beldruk=0.85, online_afspraak=True, dienst_focus=("website", "automatisering", "social", "seo"), sbi=("9602",)),
+    "fysio": catalogus.Branche(
+        sleutel="zorg", naam="Fysiotherapie", osm=(("healthcare", "physiotherapist"),),
+        beldruk=1.0, online_afspraak=True, dienst_focus=("telefonist", "automatisering", "website", "seo"), sbi=("8690",)),
+    "rijschool": catalogus.Branche(
+        sleutel="sport", naam="Rijscholen", osm=(("amenity", "driving_school"),),
+        beldruk=0.75, online_afspraak=True, dienst_focus=("automatisering", "website", "social", "seo"), sbi=("8553",)),
+}
+RUN_SLEUTEL = {id(b): k for k, b in EXTRA_BRANCHES.items()}
+
+
+def branche_op_sleutel(sl: str):
+    return EXTRA_BRANCHES.get(sl) or catalogus.BRANCHE_OP_SLEUTEL[sl]
+
+
 # De wettelijke aanduiding in de geregistreerde naam van een BV of NV. Zelfde regels als kvkNaamIsBvOfNv in jarvis-dashboard/lib/belbaar-bewijs.ts
 BV_NV_NAAM = re.compile(r"(^|[\s,.(])(b\.?\s?v|n\.?\s?v|besloten vennootschap|naamloze vennootschap)\.?(?=$|[\s,)])", re.I)
 GEEN_BV_NAAM = re.compile(r"\b(v\.?\s?o\.?\s?f\.?|c\.?\s?v\.?|maatschap|eenmanszaak|stichting|vereniging)\b", re.I)
@@ -74,10 +101,12 @@ GEEN_BV_NAAM = re.compile(r"\b(v\.?\s?o\.?\s?f\.?|c\.?\s?v\.?|maatschap|eenmansz
 # De websitekeuring in een echte Chrome kost een halve minuut per site. Wat de voorpagina al verraadt, hoeft niet gekeurd en niet geimporteerd: een formule of netwerk van garages,
 # een landelijke keten of meerdere vestigingen, een autohandel zonder werkplaats, en een site met een afspraakknop of boekplatform (dan geldt "afspraak zonder online boeken" niet).
 # Een bedrijf zonder website valt hier nooit af. Elke afvaller krijgt zijn reden in het ronde-overzicht; er wordt niets definitiefs mee gemarkeerd (de gebieden en kandidaten zijn gratis).
-FORMULE_RE = re.compile(r"(car[\s-]?team|bosch\s+car\s+service|auto[\s-]?first|autocrew|autotaalglas|vakgarage|asn\s+autoschade|autoschade\s+service\s+nederland|schadeherstel\s?friesland|profile\s+tyrecenter|euromaster|verg[oö]lst|kwik[\s-]?fit|maxxglas|carglass|master\s+garage|garage\s+select)", re.I)
+FORMULE_RE = re.compile(r"(car[\s-]?team|bosch\s+car\s+service|auto[\s-]?first|autocrew|autotaalglas|vakgarage|asn\s+autoschade|autoschade\s+service\s+nederland|schadeherstel\s?friesland|profile\s+tyrecenter|euromaster|verg[oö]lst|kwik[\s-]?fit|maxxglas|carglass|master\s+garage|garage\s+select|rob\s+peetoom|jean\s+louis\s+david|anwb\s+rijopleiding|technische\s+unie)", re.I)
 VESTIGINGEN_RE = re.compile(r"((?:\d+|twee|drie|vier|vijf|zes|zeven|acht|negen|tien|meerdere|diverse)\s+(?:vestigingen|filialen|locaties|winkels|showrooms)|onze\s+(?:vestigingen|filialen)|meer\s+dan\s+\d+\s+(?:winkels|vestigingen)|vestigingen\s+in\s+[A-Z])", re.I)
 BOEKKNOP_RE = re.compile(r"<(a|button)\b([^>]*)>([\s\S]{0,300}?)</\1>", re.I)
-BOEKWOORD_RE = re.compile(r"(afspraak|boek(?:en|ing)?\b|reserv|plan\s+(?:een|je|uw)|maak\s+(?:een|je|uw))", re.I)
+BOEKWOORD_RE = re.compile(r"(afspraak|boek(?:en|ing)?\b|reserv|plan\s+(?:een|je|uw)|maak\s+(?:een|je|uw)|inschrijv|aanmeld|proefles"
+                          r"|storing\w*\s+(?:melden|doorgeven|aanmelden|opgeven)|meld\w*\s+(?:een\s+|uw\s+|je\s+)?(?:storing|schade|defect|lekkage)"
+                          r"|(?:onderhoud|service|reparatie|inspectie|keuring|schade|monteur|opname|advies)\w*\s+(?:aanvragen|aanvraag|inplannen|plannen|boeken))", re.I)
 BOEKPLATFORM_RE = re.compile(r"(calendly|planity|treatwell|fresha|booksy|setmore|salonized|salonkee|onlineafspraken|simplybook|bookingkit|afspraakplanner|reservio|resengo|timify|appointlet|garageplanner|werkplaatsplanner|mijngarage)", re.I)
 
 
@@ -157,7 +186,7 @@ def alle_blokken() -> list[tuple[str, ...]]:
 
 
 def sleutel_van(branche, blok) -> str:
-    return f"{branche.sleutel}|{','.join(blok)}"
+    return f"{RUN_SLEUTEL.get(id(branche), branche.sleutel)}|{','.join(blok)}"
 
 
 def seed_historie(stand: dict) -> None:
@@ -189,12 +218,12 @@ def volgende_gebieden(aantal: int, stand: dict, branches: list[str]):
     # per branche een eigen pointer over de blokken: de eerste nog niet gedane
     per_branche = {}
     for sl in branches:
-        branche = catalogus.BRANCHE_OP_SLEUTEL[sl]
+        branche = branche_op_sleutel(sl)
         per_branche[sl] = [b for b in blokken if sleutel_van(branche, b) not in gedaan]
     while len(gekozen) < aantal and any(per_branche.values()):
         for sl in branches:
             if per_branche[sl] and len(gekozen) < aantal:
-                gekozen.append((catalogus.BRANCHE_OP_SLEUTEL[sl], per_branche[sl].pop(0)))
+                gekozen.append((branche_op_sleutel(sl), per_branche[sl].pop(0)))
     return gekozen
 
 
@@ -218,7 +247,10 @@ def bekende_in_dashboard() -> tuple[set[str], set[str]]:
 
 # ------------------------------------------------------------------ KVK, gratis
 def _significante_tokens(naam: str) -> set[str]:
-    generiek = set(getattr(ketens_mod, "_GENERIEKE_WOORDEN", ())) | {"garage", "autobedrijf", "autoschade", "kapsalon", "kapper", "kappers", "salon", "bv", "nv", "b", "v", "van", "de", "het", "den", "der", "en"}
+    generiek = set(getattr(ketens_mod, "_GENERIEKE_WOORDEN", ())) | {"garage", "autobedrijf", "autoschade", "kapsalon", "kapper", "kappers", "salon", "bv", "nv", "b", "v", "van", "de", "het", "den", "der", "en",
+                                                                      "rijschool", "autorijschool", "rijopleiding", "rijopleidingen", "fysiotherapie", "fysio", "fysiotherapeut", "praktijk", "installatie", "installatiebedrijf",
+                                                                      "installatietechniek", "installateur", "techniek", "elektro", "elektrotechniek", "loodgieter", "loodgietersbedrijf", "schoonheidssalon",
+                                                                      "schoonheidsinstituut", "nagelstudio", "beautysalon", "beauty", "hairstyling", "haarstudio", "bandencentrale", "carrosserie"}
     return {w for w in _norm(naam).split() if len(w) >= 4 and w not in generiek}
 
 
@@ -491,8 +523,8 @@ def main() -> int:
         return 0
     branches = [b.strip() for b in a.branches.split(",") if b.strip()]
     for b in branches:
-        if b not in catalogus.BRANCHE_OP_SLEUTEL:
-            print(f"onbekende branche {b!r}; kies uit {', '.join(catalogus.BRANCHE_OP_SLEUTEL)}", file=sys.stderr)
+        if b not in catalogus.BRANCHE_OP_SLEUTEL and b not in EXTRA_BRANCHES:
+            print(f"onbekende branche {b!r}; kies uit {', '.join(list(catalogus.BRANCHE_OP_SLEUTEL) + list(EXTRA_BRANCHES))}", file=sys.stderr)
             return 2
     gebieden = volgende_gebieden(a.gebieden, stand, branches)
     if not gebieden:
