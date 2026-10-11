@@ -92,42 +92,42 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Wat wordt bedoeld met workflow?",
+          "name": "Wat is het verschil met RPA?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Een workflow is de vaste route die werk aflegt, van een aanleiding via een reeks stappen naar een uitkomst. Een order die binnenkomt en daarna de voorraad, de factuur en het klantdossier bijwerkt, is een workflow. De Workflow Management Coalition omschrijft het als het geheel of gedeeltelijk automatiseren van een bedrijfsproces. Zie <a href=\"#korte-antwoord\">het korte antwoord</a>."
+            "text": "RPA volgt vaste regels op het scherm na. AI herkent daarnaast patronen in gegevens. Ze werken ook samen."
           }
         },
         {
           "@type": "Question",
-          "name": "Hoe maak ik een workflow?",
+          "name": "Heb ik er een IT-afdeling voor nodig?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Beschrijf eerst op papier hoe het werk nu verloopt: de aanleiding, de stappen, de uitzonderingen en de uitkomst. Bepaal daarna welke stappen software overneemt en waar u zelf goedkeurt. Richt pas dan de software in. Het voorbeeld van een order staat bij zo zet u een workflow op papier."
+            "text": "Nee. Wij richten het in en koppelen aan uw systemen."
           }
         },
         {
           "@type": "Question",
-          "name": "Wat is workflow automatisering?",
+          "name": "Hoe snel draait het?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Workflow automatisering is het laten uitvoeren van een vaste reeks stappen door software. Een gebeurtenis start de workflow, de software voert de stappen in de afgesproken volgorde uit en er ligt een uitkomst die u kunt controleren. Wat u zelf wilt beslissen, zoals een akkoord op een factuur, blijft bij u."
+            "text": "De eerste workflow binnen enkele werkdagen."
           }
         },
         {
           "@type": "Question",
-          "name": "Wat is het verschil tussen een workflow en een bedrijfsproces?",
+          "name": "Wat kost het?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Een workflow is een reeks stappen in een vaste volgorde, een bedrijfsproces is groter en kan uit meerdere workflows bestaan. Een order verwerken is een workflow, van aanvraag tot betaalde factuur is een proces. IBM onderscheidt taak-, workflow- en procesautomatisering. Zie <a href=\"#taak-workflow-proces\">losse taak, workflow of proces</a>."
+            "text": "Dat hangt af van het werk. Zie <a href=\"wat-kost-automatisering.html\">wat automatisering kost</a>."
           }
         },
         {
           "@type": "Question",
-          "name": "Wat is het verschil tussen workflow automatisering en RPA?",
+          "name": "Wat als er iets misgaat?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Workflow automatisering regelt de route die het werk aflegt. RPA is een manier om een stap uit te voeren, door handelingen op een scherm na te bootsen. Een workflow kan dus een RPA-stap bevatten. Volgens IBM volgt RPA vastgelegde stappen en herkent AI patronen in gegevens. Zie workflow, RPA of AI."
+            "text": "U bepaalt vooraf wat zonder uw akkoord de deur uitgaat."
           }
         }
       ]
@@ -206,142 +206,58 @@
 
   <hr class="streep">
 
-  <section id="korte-antwoord">
+<section id="korte-antwoord">
     <div class="wrap">
       <div class="sectiekop reveal">
         <p class="label"><i></i>Het korte antwoord</p>
-        <h2>Wat is een workflow, en wat is workflow automatisering?</h2>
-        <p>Een definitie in gewone woorden, met wat de bronnen erover zeggen.</p>
+        <h2>Wat is workflow automatisering?</h2>
       </div>
       <div class="proza reveal">
-        <h3>Wat wordt bedoeld met workflow?</h3>
-        <p>Een workflow is de vaste route die werk aflegt: van een aanleiding, via een aantal stappen, naar een uitkomst. Een order die binnenkomt en daarna de voorraad, de factuur en het klantdossier bijwerkt, is een workflow. Ook een verlofaanvraag is een workflow: de aanvraag komt bij u, waarna uw beslissing terugkeert naar de medewerker.</p>
-        <p>De Workflow Management Coalition, een samenwerkingsverband van softwarebedrijven dat werkte aan standaarden voor dit vakgebied, omschrijft workflow in haar <a href="http://www.workflowpatterns.com/documentation/documents/tc003v11.pdf" rel="noopener" target="_blank">referentiemodel</a> als het geheel of gedeeltelijk automatiseren van een bedrijfsproces. Volgens <a href="https://nl.wikipedia.org/wiki/Workflow_management" rel="noopener" target="_blank">Wikipedia</a> beoogt workflow management te regelen dat de juiste informatie volgens de regels van het bedrijf van de ene afdeling naar de andere komt, en zijn bij een workflowsysteem de status en het traject van een taak op te vragen. Dat laatste is voor een klein bedrijf het merkbaarste verschil: u ziet waar een order staat zonder ernaar te hoeven vragen.</p>
-        <h3>Wat is workflow automatisering?</h3>
-        <p>Workflow automatisering is het laten uitvoeren van een workflow door software. Een gebeurtenis start de workflow, de software voert de stappen in de afgesproken volgorde uit en aan het eind ligt een uitkomst die u kunt controleren. <a href="https://www.ibm.com/think/topics/workflow-automation" rel="noopener" target="_blank">IBM</a> omschrijft het als het vervangen van handmatige taken door software die een proces geheel of gedeeltelijk uitvoert.</p>
-        <p>Geheel of gedeeltelijk is geen detail. Niet elke stap hoeft automatisch te verlopen. Het referentiemodel van de Workflow Management Coalition noemt als kern van workflow de automatisering van processen waarin mensen en machines samen activiteiten uitvoeren. In een klein bedrijf is dat de praktische vorm: de software doet het herhaalbare werk en u beslist waar dat nodig is.</p>
-        <h3>Handmatig, half automatisch of geheel automatisch</h3>
-        <div class="tabelwrap"><table>
-          <thead><tr><th>Vorm</th><th>Wie voert de stappen uit</th><th>Voorbeeld: een order verwerken</th></tr></thead>
-          <tbody>
-            <tr><td><strong>Handmatig</strong></td><td>Een persoon doet elke stap en houdt zelf bij waar het werk staat.</td><td>De order noteren, de voorraadlijst aanpassen, een factuur typen en het klantdossier bijwerken.</td></tr>
-            <tr><td><strong>Half automatisch</strong></td><td>Software voert de vaste stappen uit. Een persoon beoordeelt de uitzonderingen en geeft akkoord op wat naar buiten gaat.</td><td>Voorraad, factuur en klantdossier worden bijgewerkt. De factuur gaat pas uit nadat u akkoord heeft gegeven.</td></tr>
-            <tr><td><strong>Geheel automatisch</strong></td><td>Software voert alle stappen uit, ook de laatste.</td><td>De klant krijgt na elke order een bevestiging, zonder dat iemand ernaar kijkt.</td></tr>
-          </tbody>
-        </table></div>
-        <div class="noot"><p>Bij Complete AI begint elke workflow die naar een klant gaat als half automatisch: de software zet de factuur of het bericht klaar en u geeft akkoord. Die stap kan later vervallen, dat kiest u per handeling. Hoe dat werkt, staat bij <a href="automatisering.html">wat vanzelf verloopt en waar u de controle houdt</a>.</p></div>
+        <p>Een workflow is een vaste reeks stappen: een aanleiding, stappen, voorwaarden en een uitkomst. Een order die voorraad, factuur en klantdossier bijwerkt is een voorbeeld. Workflow automatisering laat software die stappen uitvoeren, zodat het werk vanzelf van de ene naar de volgende gaat. Voorbeelden per afdeling staan bij <a href="bedrijfsprocessen-automatiseren-voorbeelden.html">bedrijfsprocessen automatiseren</a>.</p>
       </div>
     </div>
   </section>
-
-  <hr class="streep">
-
   <section id="taak-workflow-proces">
     <div class="wrap">
       <div class="sectiekop reveal">
         <p class="label"><i></i>Begrippen</p>
-        <h2>Wat is het verschil tussen een losse taak, een workflow en een proces?</h2>
-        <p>Het verschil bepaalt hoeveel voorbereiding u nodig heeft.</p>
+        <h2>Taak, workflow en proces.</h2>
       </div>
-      <div class="proza reveal">
-        <p>Drie woorden die door elkaar worden gebruikt. <a href="https://www.ibm.com/think/topics/business-process-automation" rel="noopener" target="_blank">IBM</a> onderscheidt in zijn uitleg over procesautomatisering vier niveaus. Taakautomatisering neemt één handeling over, zoals een automatische e-mail, een document of het bijwerken van een status. Workflowautomatisering past automatisering toe op een vastgelegde reeks taken, zodat ze in de juiste volgorde worden voltooid en het werk van de ene fase naar de volgende gaat. Procesautomatisering neemt een proces van begin tot eind over. Intelligente automatisering voegt AI toe.</p>
-        <div class="tabelwrap"><table>
-          <thead><tr><th>Niveau</th><th>Wat het automatiseert</th><th>Voorbeeld</th><th>Wat bij u blijft</th></tr></thead>
-          <tbody>
-            <tr><td><strong>Losse taak</strong></td><td>Eén handeling.</td><td>Een bevestigingsmail na een order.</td><td>De tekst en het moment.</td></tr>
-            <tr><td><strong>Workflow</strong></td><td>Een reeks handelingen in vaste volgorde, met een aanleiding en een uitkomst.</td><td>Order binnen, voorraad bij, factuur op, klantdossier bij, bevestiging uit.</td><td>De uitzonderingen en het akkoord op wat naar buiten gaat.</td></tr>
-            <tr><td><strong>Proces</strong></td><td>Alle workflows van aanvraag tot betaling, over afdelingen heen.</td><td>Van aanvraag en offerte via levering en factuur tot betaling.</td><td>Welke workflows u koppelt en in welke volgorde.</td></tr>
-          </tbody>
-        </table></div>
-        <h3>Waarom dit verschil ertoe doet</h3>
-        <p>Een losse taak vraagt weinig voorbereiding: u bepaalt de tekst en het moment. Een workflow vraagt dat u de volgorde, de gegevens en de uitzonderingen kent, want de software voert precies uit wat u vastlegt. Een proces vraagt bovendien dat de workflows op elkaar aansluiten.</p>
-        <p>Daarom loopt de route voor een klein bedrijf in deze volgorde: eerst een taak, dan de keten eromheen, dan het hele proces. Welke processen zich lenen, staat per afdeling in de gids <a href="bedrijfsprocessen-automatiseren-voorbeelden.html">Processen automatiseren: voorbeelden</a>. Hoe Complete AI dat inricht, leest u bij <a href="automatisering.html">bedrijfsprocessen automatiseren</a>.</p>
+      <div class="krijgt reveal">
+        <article><h3>Taak</h3><p>Eén handeling, zoals een factuur versturen.</p></article>
+        <article><h3>Workflow</h3><p>Een reeks stappen die samen een uitkomst geven.</p></article>
+        <article><h3>Proces</h3><p>Het geheel van workflows rond één doel, zoals orderverwerking.</p></article>
       </div>
     </div>
   </section>
-
-  <hr class="streep">
-
-  <hr class="streep">
-
-  <hr class="streep">
-
-  <hr class="streep">
-
   <section id="opbrengst">
     <div class="wrap">
       <div class="sectiekop reveal">
         <p class="label"><i></i>Opbrengst</p>
-        <h2>Wat levert workflow automatisering op, en wat niet?</h2>
-        <p>Vijf opbrengsten die u kunt meten, en drie dingen die een workflow niet doet.</p>
+        <h2>Wat het oplevert.</h2>
       </div>
-      <div class="proza reveal">
-        <p>IBM noemt in zijn uitleg over <a href="https://www.ibm.com/think/topics/workflow-automation" rel="noopener" target="_blank">workflow automatisering</a> als opbrengst dat automatisering menselijke fouten en tijdrovend, herhalend werk zoals handmatige gegevensinvoer terugbrengt, de tijd in een proces verkort en goedkeurings- en documentstromen automatiseert. Organisaties met verouderde, handmatige processen kunnen volgens IBM niet betrouwbaar opschalen. Voor een klein bedrijf is de vraag concreter: waar ziet u het?</p>
-        <div class="tabelwrap"><table>
-          <thead><tr><th>Opbrengst</th><th>Waar u het ziet</th><th>Uit eigen praktijk bij Aronza</th></tr></thead>
-          <tbody>
-            <tr><td><strong>Minder handwerk</strong></td><td>Uren per week.</td><td>De administratie ging van vier tot zes uur per week naar nul.</td></tr>
-            <tr><td><strong>Minder fouten</strong></td><td>Correcties per week.</td><td>Overtypen tussen order, factuur en voorraad was de plek waar fouten ontstonden. Eén keten haalt die overdracht weg.</td></tr>
-            <tr><td><strong>Kortere doorlooptijd</strong></td><td>Dagen tussen aanleiding en uitkomst.</td><td>Openstaande facturen worden consequent opgevolgd, ook wanneer dat ongemakkelijk voelt. Het geld komt eerder binnen.</td></tr>
-            <tr><td><strong>Overzicht</strong></td><td>De status per order of aanvraag.</td><td>Kosten en omzet worden bij binnenkomst vastgelegd, zodat het beeld actueel is en niet pas na de kwartaalafsluiting.</td></tr>
-            <tr><td><strong>Groei zonder extra uren</strong></td><td>Uren per order bij meer orders.</td><td>Meer orders betekenden voorheen meer administratie. Die koppeling is doorbroken.</td></tr>
-          </tbody>
-        </table></div>
-        <h3>Wat een workflow niet doet</h3>
-        <ul>
-          <li><strong>Hij verbetert een slecht proces niet.</strong> De software voert uit wat u vastlegt, zonder vermoeidheid. Een omweg blijft een omweg. Beschrijf daarom eerst, en schrap wat niemand nodig heeft.</li>
-          <li><strong>Hij neemt geen beslissingen die u niet heeft vastgelegd.</strong> Een prijs, een uitzondering of een klacht blijft een afweging van u.</li>
-          <li><strong>Hij vervangt geen persoonlijk contact.</strong> Wat een klant van u persoonlijk wil horen, blijft bij u. Automatiseer de stappen eromheen.</li>
-        </ul>
+      <div class="krijgt reveal">
+        <article><h3>Tijd</h3><p>Het overtypen en onthouden vallen weg.</p></article>
+        <article><h3>Minder fouten</h3><p>Elke stap verloopt op dezelfde manier.</p></article>
+        <article><h3>Snelheid</h3><p>Een klant krijgt direct een bevestiging.</p></article>
+        <article><h3>Overzicht</h3><p>Wat is gedaan, staat vast.</p></article>
       </div>
     </div>
   </section>
-
-  <hr class="streep">
-
-  <hr class="streep">
-
   <section id="beginnen-meten">
     <div class="wrap">
       <div class="sectiekop reveal">
-        <p class="label"><i></i>Beginnen en meten</p>
-        <h2>Hoe begint u, en hoe meet u of een workflow werkt?</h2>
-        <p>Zonder meting is achteraf niet te zeggen wat de workflow heeft opgeleverd.</p>
+        <p class="label"><i></i>Beginnen</p>
+        <h2>Zo pakt u het aan.</h2>
       </div>
-      <div class="proza reveal">
-        <h3>Begin met één workflow</h3>
-        <p><a href="https://www.ibm.com/think/topics/business-process-automation" rel="noopener" target="_blank">IBM</a> adviseert organisaties met weinig automatisering klein te beginnen, bij processen die vaart geven, en per proces meetbare doelen te stellen: een kortere doorlooptijd, minder fouten en tevredener klanten. Voor een klein bedrijf komt dat neer op vier stappen.</p>
-        <ol>
-          <li>Kies de ene workflow uit uw meting van een normale week.</li>
-          <li>Beschrijf hem zoals in de vorige sectie.</li>
-          <li>Laat hem de eerste weken draaien met een goedkeuringsstap en kijk mee. Wat naar een klant gaat, ziet u eerst.</li>
-          <li>Meet na enkele weken hetzelfde, op dezelfde manier. Kies pas dan de volgende.</li>
-        </ol>
-        <h3>Wat u meet</h3>
-        <div class="tabelwrap"><table>
-          <thead><tr><th>Maat</th><th>Wat u vastlegt</th><th>Waarom</th></tr></thead>
-          <tbody>
-            <tr><td><strong>Uren per week</strong></td><td>Aantal keer per week maal minuten per keer, gedeeld door zestig, vóór en na.</td><td>Het laat zien wat het werk kostte en wat ervan over is.</td></tr>
-            <tr><td><strong>Doorlooptijd</strong></td><td>De tijd tussen de aanleiding en de uitkomst, bijvoorbeeld van order tot verstuurde factuur.</td><td>Een factuur die later uitgaat, wordt later betaald.</td></tr>
-            <tr><td><strong>Fouten</strong></td><td>Het aantal correcties per week: een verkeerd bedrag, een vergeten opvolging, dubbele invoer.</td><td>Overtypen is waar fouten ontstaan.</td></tr>
-            <tr><td><strong>Wachttijd</strong></td><td>Hoe lang werk blijft liggen tot één persoon eraan toekomt.</td><td>Wachttijd kost geen uren, maar kan wel een opdracht kosten.</td></tr>
-            <tr><td><strong>Uitzonderingen</strong></td><td>Het aandeel gevallen dat niet door de standaardroute gaat.</td><td>Zijn het er veel, dan past de standaardroute niet bij het werk.</td></tr>
-          </tbody>
-        </table></div>
-        <p>Bij Aronza was het vertrekpunt de administratie: vier tot zes uur per week, grotendeels buiten werktijd. Doordat dat getal bekend was, is het verschil aan te tonen: sinds begin mei 2026 is het nul. Hoe u zelf zo&#8217;n vertrekpunt vaststelt, staat in de <a href="case-aronza.html">klantcase</a> en bij <a href="bedrijfsprocessen-automatiseren-voorbeelden.html">vooraf de tijd opnemen</a>.</p>
-        <h3>Zelf doen, standaardsoftware of laten inrichten?</h3>
-        <p>Er zijn drie routes. U bouwt zelf met losse hulpmiddelen, wat past bij één afgebakende workflow maar u tot de schakel tussen de systemen maakt. U gebruikt de automatisering die in uw boekhoud- of agendapakket zit, wat werkt voor wat dat pakket zelf doet. Of u laat onderdelen inrichten die al draaien en aan uw pakketten worden gekoppeld. Het laatste is wat Complete AI doet.</p>
-        <p>Wat het inrichten kost, hangt af van het aantal workflows, de koppelingen, het aantal uitzonderingen, de goedkeuringsstappen en het onderhoud. Dat staat uitgewerkt in <a href="wat-kost-automatisering.html">wat kost automatisering</a>.</p>
+      <div class="route reveal">
+        <div class="fase"><i>Stap 1</i><b>Kies één proces</b><p>Het proces dat de meeste uren kost.</p></div>
+        <div class="fase"><i>Stap 2</i><b>Zet het op papier</b><p>Aanleiding, stappen, voorwaarden en uitkomst.</p></div>
+        <div class="fase"><i>Stap 3</i><b>Automatiseer</b><p>Eerst het stuk dat vaststaat. Behoud zelf de keuzes die oordeel vragen.</p></div>
+        <div class="fase"><i>Stap 4</i><b>Meet</b><p>Vergelijk de tijd voor en na.</p></div>
       </div>
     </div>
   </section>
-
-  <hr class="streep">
-
-  <hr class="streep">
-
-  <hr class="streep">
-
   
 
   <hr class="streep">
@@ -353,11 +269,11 @@
         <h2>Antwoord op de vragen die het vaakst gesteld worden.</h2>
       </div>
       <div class="vragen reveal">
-        <details><summary>Wat wordt bedoeld met workflow?</summary><p>Een workflow is de vaste route die werk aflegt, van een aanleiding via een reeks stappen naar een uitkomst. Een order die binnenkomt en daarna de voorraad, de factuur en het klantdossier bijwerkt, is een workflow. De Workflow Management Coalition omschrijft het als het geheel of gedeeltelijk automatiseren van een bedrijfsproces. Zie <a href="#korte-antwoord">het korte antwoord</a>.</p></details>
-        <details><summary>Hoe maak ik een workflow?</summary><p>Beschrijf eerst op papier hoe het werk nu verloopt: de aanleiding, de stappen, de uitzonderingen en de uitkomst. Bepaal daarna welke stappen software overneemt en waar u zelf goedkeurt. Richt pas dan de software in. Het voorbeeld van een order staat bij zo zet u een workflow op papier.</p></details>
-        <details><summary>Wat is workflow automatisering?</summary><p>Workflow automatisering is het laten uitvoeren van een vaste reeks stappen door software. Een gebeurtenis start de workflow, de software voert de stappen in de afgesproken volgorde uit en er ligt een uitkomst die u kunt controleren. Wat u zelf wilt beslissen, zoals een akkoord op een factuur, blijft bij u.</p></details>
-        <details><summary>Wat is het verschil tussen een workflow en een bedrijfsproces?</summary><p>Een workflow is een reeks stappen in een vaste volgorde, een bedrijfsproces is groter en kan uit meerdere workflows bestaan. Een order verwerken is een workflow, van aanvraag tot betaalde factuur is een proces. IBM onderscheidt taak-, workflow- en procesautomatisering. Zie <a href="#taak-workflow-proces">losse taak, workflow of proces</a>.</p></details>
-        <details><summary>Wat is het verschil tussen workflow automatisering en RPA?</summary><p>Workflow automatisering regelt de route die het werk aflegt. RPA is een manier om een stap uit te voeren, door handelingen op een scherm na te bootsen. Een workflow kan dus een RPA-stap bevatten. Volgens IBM volgt RPA vastgelegde stappen en herkent AI patronen in gegevens. Zie workflow, RPA of AI.</p></details>
+        <details><summary>Wat is het verschil met RPA?</summary><p>RPA volgt vaste regels op het scherm na. AI herkent daarnaast patronen in gegevens. Ze werken ook samen.</p></details>
+        <details><summary>Heb ik er een IT-afdeling voor nodig?</summary><p>Nee. Wij richten het in en koppelen aan uw systemen.</p></details>
+        <details><summary>Hoe snel draait het?</summary><p>De eerste workflow binnen enkele werkdagen.</p></details>
+        <details><summary>Wat kost het?</summary><p>Dat hangt af van het werk. Zie <a href="wat-kost-automatisering.html">wat automatisering kost</a>.</p></details>
+        <details><summary>Wat als er iets misgaat?</summary><p>U bepaalt vooraf wat zonder uw akkoord de deur uitgaat.</p></details>
       </div>
     </div>
   </section>
@@ -367,8 +283,8 @@
   <section id="afsluiting">
     <div class="wrap">
       <div class="slotblok reveal">
-        <h2>Welke workflow kost u de meeste tijd?</h2>
-        <p>In een half uur brengen wij in kaart welke workflows bij u het meest terugkomen en welke daarvan zich lenen voor automatisering. Binnen één werkdag volgt een voorstel met één vaste prijs. U ontvangt een onderbouwd advies, ook wanneer de conclusie is dat er weinig te winnen valt.</p>
+        <h2>Welke workflow past bij u?</h2>
+        <p>In een half uur kijken we naar het werk dat terugkomt. Binnen één werkdag volgt een voorstel.</p>
         <a class="knop knop-vol" href="index.html#contact">Plan een gratis intake <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a>
       </div>
     </div>

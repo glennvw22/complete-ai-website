@@ -1,6 +1,7 @@
 """Korte versie van de dienst- en gidspagina's (Glenn, 11-10-2026: korter en pakkender). De volledige tekst blijft in inhoud_paginas.py staan; hier staat
 welke onderdelen op de site komen en hoeveel vragen. Terugzetten = deze lijst leeg laten of een onderdeel toevoegen."""
 import re
+from inhoud_kort import KORT
 HOUD = {
  "websites.html": ["herkenbaar", "wat-u-krijgt", "twee-weken", "maatwerk"],
  "automatisering.html": ["korte-antwoord", "herkenbaar", "wat-er-kan", "werkwijze", "koppelingen"],
@@ -17,6 +18,12 @@ HOUD = {
 AANTAL_VRAGEN = 5
 
 def inkorten(paginas):
+    # eerst de herschreven korte tekst over de lange heen zetten (inhoud_kort.py)
+    for p in paginas:
+        k = KORT.get(p["bestand"])
+        if k:
+            for veld, waarde in k.items(): p[veld] = waarde
+            HOUD.pop(p["bestand"], None)
     weg = {}                                                    # pagina -> ids van onderdelen die er niet meer zijn
     for p in paginas:
         houd = HOUD.get(p["bestand"])

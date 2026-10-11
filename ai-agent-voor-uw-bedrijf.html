@@ -92,42 +92,42 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Wat is een AI-agent voor het mkb?",
+          "name": "Wat is het verschil met een chatbot?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Een AI-agent voor het mkb is software die een afgebakende taak zelfstandig uitvoert, zoals de telefoon opnemen en een afspraak inplannen. Een taalmodel bepaalt daarbij zelf de stappen en gebruikt koppelingen met uw agenda, orderlijst of boekhouding. Wat naar buiten gaat, kan langs uw akkoord. <a href=\"#wat-is-het\">De definitie met bronnen</a> staat hierboven."
+            "text": "Een agent voert taken uit met uw systemen. Een chatbot beantwoordt vooral vragen."
           }
         },
         {
           "@type": "Question",
-          "name": "Hoe kan ik AI-agents gebruiken?",
+          "name": "Wat als de agent iets verkeerd doet?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Begin met één terugkerende taak waarvan het gevolg te overzien is als het misgaat, en laat de agent die eerst voorbereiden of uitvoeren na uw akkoord. Geschikt zijn de telefoon buiten openingstijden, het opvolgen van orders en facturen en het aanvragen van reviews. Meet vooraf een week wat de taak kost. Zie <a href=\"#beginnen\">zo begint u</a>."
+            "text": "U bepaalt vooraf wat zelfstandig gebeurt. Alles is terug te lezen."
           }
         },
         {
           "@type": "Question",
-          "name": "Wat is het verschil tussen een AI-agent en een chatbot?",
+          "name": "Wat heb ik nodig om te beginnen?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Een chatbot beantwoordt vragen in een gesprek, een AI-agent voert daarnaast handelingen uit in uw systemen. Een chatbot vertelt dat u tot vijf uur open bent. Een agent zet na hetzelfde gesprek de afspraak in uw agenda. De grens is dus wat de software zelf mag doen. De vergelijking zet vier soorten software naast elkaar."
+            "text": "Een gesprek van een half uur en één taak waarmee u wilt beginnen."
           }
         },
         {
           "@type": "Question",
-          "name": "Hoe maak ik zelf AI-agents?",
+          "name": "Is het veilig?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Zelf een AI-agent maken begint met één afgebakende taak, een taalmodel en koppelingen naar precies de systemen die de taak nodig heeft. Volgens <a href=\"https://www.anthropic.com/engineering/building-effective-agents\" rel=\"noopener\" target=\"_blank\">Anthropic</a> is een agent in de kern een taalmodel dat gereedschap gebruikt in een lus. Het werk zit in testen, toegang beperken en de AVG. Zie <a href=\"#beginnen\">zelf bouwen of laten inrichten</a>."
+            "text": "Uw gegevens blijven van u. Wij leggen de afspraken vast in een verwerkersovereenkomst."
           }
         },
         {
           "@type": "Question",
-          "name": "Wat zijn de beste AI-agents?",
+          "name": "Wat kost het?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Er is geen beste AI-agent: welke past, hangt af van de taak, de systemen waaraan hij moet koppelen en wat u zelf wilt blijven beslissen. Vergelijk aanbieders op vier vragen: welke gegevens ziet de agent, welke handelingen mag hij uitvoeren, waar zit uw akkoord en wat gebeurt er met de gegevens als u stopt."
+            "text": "Dat hangt af van de taak. Zie <a href=\"wat-kost-automatisering.html\">wat automatisering kost</a>."
           }
         }
       ]
@@ -206,128 +206,57 @@
 
   <hr class="streep">
 
-  <section id="wat-is-het">
+<section id="wat-is-het">
     <div class="wrap">
       <div class="sectiekop reveal">
         <p class="label"><i></i>Uitleg</p>
-        <h2>Wat is een AI-agent voor het mkb?</h2>
-        <p>Software die zelf bepaalt welke stappen een taak vraagt en daarvoor uw systemen aanstuurt.</p>
+        <h2>Wat is een AI-agent?</h2>
       </div>
       <div class="proza reveal">
-        <h3>De definitie, met de bronnen erbij</h3>
-        <p>Een AI-agent voor het mkb is software die een afgebakende taak van begin tot eind uitvoert. Hij leest of hoort wat er gevraagd wordt, kiest zelf de stappen, gebruikt daarvoor koppelingen met uw systemen en levert een uitkomst op, zoals een order in de lijst of een afspraak in de agenda.</p>
-        <p>De bronnen die wij lazen, beschrijven die kern in verschillende woorden. <a href="https://www.anthropic.com/engineering/building-effective-agents" rel="noopener" target="_blank">Anthropic</a>, een ontwikkelaar van taalmodellen, onderscheidt in zijn richtlijn voor bouwers twee soorten systemen. Bij een workflow lopen taalmodel en gereedschap langs paden die vooraf zijn vastgelegd. Bij een agent stuurt het taalmodel zelf zijn proces en zijn gebruik van gereedschap aan. <a href="https://www.ibm.com/think/topics/ai-agents" rel="noopener" target="_blank">IBM</a> omschrijft een AI-agent als een systeem dat zelfstandig taken uitvoert door met de beschikbare gereedschappen een werkwijze op te zetten. <a href="https://cloud.google.com/discover/what-are-ai-agents" rel="noopener" target="_blank">Google Cloud</a> noemt redeneren, plannen en geheugen, en een zekere mate van zelfstandigheid bij het nemen van beslissingen.</p>
-
-        <h3>Wat u in elke AI-agent terugvindt</h3>
-        <ul>
-          <li><strong>Een taak met een einde.</strong> Een telefoongesprek afhandelen, een openstaande factuur opvolgen, een verzoek om een beoordeling versturen. Zonder afgebakende taak is niet te controleren of de agent het goed doet.</li>
-          <li><strong>Keuzevrijheid.</strong> Het taalmodel bepaalt welke stap volgt. Dat onderscheidt een agent van een vaste regel, waarin elke stap vooraf ligt vastgelegd.</li>
-          <li><strong>Gereedschap.</strong> Koppelingen met de agenda, de orderlijst of de boekhouding. Zonder gereedschap kan een taalmodel alleen praten. Met gereedschap kan het iets doen, en daar zit ook het risico.</li>
-          <li><strong>Grenzen.</strong> Wat de agent mag doen en wanneer hij een mens erbij haalt. Anthropic noemt goedkeuringsmomenten en stopcondities, zoals een maximum aantal pogingen, als middel om de controle te houden.</li>
-        </ul>
-
-        <h3>Waarom het woord agent op verschillende manieren wordt gebruikt</h3>
-        <p>Het woord is ouder dan de huidige golf van taalmodellen. In de indeling van IBM geldt een thermostaat die elke avond op een vast tijdstip de verwarming aanzet als voorbeeld van de eenvoudigste soort agent. Leveranciers gebruiken het woord ruimer of smaller, al naar gelang wat zij verkopen. Voor uw beslissing telt daarom één vraag, ongeacht wat er op de verpakking staat: wat beslist deze software zelf, en wat ligt vooraf vast? Het antwoord bepaalt hoeveel toezicht nodig is.</p>
-        <p>In de rest van deze pagina betekent AI-agent een systeem met een taalmodel dat tussen uw systemen handelt.</p>
+        <p>Een AI-agent is software waarin een taalmodel zelf bepaalt welke stappen een taak vraagt en welke koppelingen het gebruikt, zoals uw agenda of boekhouding. Voor een mkb-bedrijf is dat software die één afgebakende taak van u overneemt, zoals de telefoon opnemen en een afspraak inplannen. Een voorbeeld is de <a href="ai-telefonist.html">AI-telefonist</a>.</p>
       </div>
     </div>
   </section>
-
-  <hr class="streep">
-
-  <hr class="streep">
-
   <section id="taken">
     <div class="wrap">
       <div class="sectiekop reveal">
-        <p class="label"><i></i>In de praktijk</p>
-        <h2>Wat neemt een AI-agent in een klein bedrijf over?</h2>
-        <p>Drie taken die bij Complete AI al draaien, met per taak wat de software doet en wat bij u blijft.</p>
+        <p class="label"><i></i>Taken</p>
+        <h2>Wat een agent kan overnemen.</h2>
       </div>
-      <div class="proza reveal">
-        <h3>1. De telefoon opnemen en een afspraak inplannen</h3>
-        <p>Een gesprek is elke keer anders, en daarom is dit de taak waar een agent het duidelijkst iets toevoegt. De <a href="ai-telefonist.html">AI-telefonist</a> neemt op buiten openingstijden en tijdens drukte, verstaat wat de beller vraagt, noteert bestellingen en vragen, filtert verkopers eruit en schakelt urgente gesprekken door. Vraagt een beller om een afspraak, dan plant hij die in via de agenda-koppeling. Van elk gesprek is een transcript beschikbaar.</p>
-        <p><strong>Wat bij u blijft:</strong> wat als dringend geldt, welke onderwerpen hij zelfstandig afhandelt en het terugbellen na een vraag die hij niet kon beantwoorden. Bij een installatiebedrijf is een lekkage of een storing zonder warmte een voorbeeld van spoed. Weet hij iets niet, dan verzint hij niets: hij zet een terugbelnotitie klaar met de vraag erin.</p>
-
-        <h3>2. Orders en facturen opvolgen</h3>
-        <p>Dit is werk dat elke week terugkomt en geen omzet oplevert. Orders uit alle kanalen komen in één lijst. Uit een afgeronde order volgt een factuur, en een trage betaler krijgt een herinnering die oploopt. Een offerte wordt opgesteld, verstuurd en gevolgd, zodat u ziet wie nog niet heeft gereageerd. Het grootste deel daarvan volgt vaste regels. AI komt in beeld waar de invoer een gesprek of bericht is, zoals een bestelling per telefoon of WhatsApp.</p>
-        <p><strong>Wat bij u blijft:</strong> de prijs van een offerte en het akkoord op een factuur die afwijkt van het gebruikelijke, zoals een korting of een deelbetaling. Een factuur of herinnering die naar een klant gaat, loopt in de beginperiode langs een goedkeuringsstap.</p>
-
-        <h3>3. Reviews aanvragen</h3>
-        <p>Na een geslaagde levering vraagt de software automatisch om een beoordeling en toont die op de site. In een drukke week blijft dit liggen, terwijl beoordelingen nieuwe klanten helpen kiezen. Voor het verzoek zelf is geen agent nodig: een vast moment na de levering volstaat. Het beantwoorden van reviews, ook de kritische, is werk waar formuleren en toon bij horen. Dat valt onder <a href="social-media.html">social media</a>, met een reactie binnen één werkdag. Hoe beoordelingen meetellen voor lokale zoekresultaten, staat bij <a href="vindbaarheid-seo.html">vindbaarheid</a>.</p>
-        <p><strong>Wat bij u blijft:</strong> welke klanten een verzoek krijgen. Bij een lopende klacht past dat niet, dus leg zulke uitzonderingen vooraf vast. Het verzoek gaat naar echte klanten na een echte levering; verzonnen reviews zijn uitgesloten.</p>
+      <div class="krijgt reveal">
+        <article><h3>Telefoon</h3><p>Opnemen, vragen beantwoorden en afspraken inplannen.</p></article>
+        <article><h3>Berichten</h3><p>Aanvragen ontvangen, ordenen en beantwoorden.</p></article>
+        <article><h3>Administratie</h3><p>Gegevens lezen, vastleggen en klaarzetten.</p></article>
+        <article><h3>Opvolgen</h3><p>Herinneringen versturen en vervolgstappen bewaken.</p></article>
       </div>
     </div>
   </section>
-
-  <hr class="streep">
-
-  <hr class="streep">
-
-  <hr class="streep">
-
-  <hr class="streep">
-
   <section id="de-wet">
     <div class="wrap">
       <div class="sectiekop reveal">
-        <p class="label"><i></i>De wet</p>
-        <h2>De AI-verordening: wat artikel 50 vraagt van een AI-systeem dat met mensen praat</h2>
-        <p>Sinds 2 augustus 2026 geldt artikel 50. Deze sectie geeft de verplichting weer zoals de tekst en de Europese Commissie haar beschrijven.</p>
+        <p class="label"><i></i>Regels</p>
+        <h2>De regels die gelden.</h2>
       </div>
       <div class="proza reveal">
-        <h3>Wat bepaalt artikel 50, eerste lid?</h3>
-        <p>Aanbieders van AI-systemen die bedoeld zijn om rechtstreeks met mensen te communiceren, moeten die systemen zo ontwerpen en ontwikkelen dat de betrokken personen worden geïnformeerd dat zij met een AI-systeem communiceren. Dat hoeft niet als het voor een redelijk geïnformeerd, oplettend en omzichtig persoon al duidelijk is uit de omstandigheden en de context van het gebruik. De volledige tekst staat op <a href="https://artificialintelligenceact.eu/article/50/" rel="noopener" target="_blank">artificialintelligenceact.eu</a>, de Nederlandse tekst bij <a href="https://rijksictgilde.github.io/ai-verordening/hoofdstukken/hoofdstuk-4/a50/" rel="noopener" target="_blank">Rijks ICT Gilde</a>.</p>
-
-        <h3>Op welk moment en hoe moet de melding komen?</h3>
-        <p>Volgens het vijfde lid moet de informatie uiterlijk bij de eerste interactie worden gegeven, op een duidelijke en te onderscheiden manier. Zij moet voldoen aan de toepasselijke toegankelijkheidseisen.</p>
-
-        <h3>Wanneer valt een AI-agent onder de plicht?</h3>
-        <p>De Europese Commissie noemt in haar <a href="https://digital-strategy.ec.europa.eu/en/faqs/transparency-obligations-under-article-50-ai-act" rel="noopener" target="_blank">veelgestelde vragen over artikel 50</a> uitdrukkelijk chatbots, AI-agents en avatars. Vier voorwaarden gelden tegelijk:</p>
-        <ul>
-          <li>het systeem is een AI-systeem;</li>
-          <li>het is bedoeld voor een echte tweerichtingsuitwisseling met mensen, en niet alleen om gegevens te verzamelen of geautomatiseerde antwoorden te geven;</li>
-          <li>de interactie is direct: het systeem zelf communiceert met de persoon, niet via een menselijke tussenpersoon;</li>
-          <li>de interactie is met natuurlijke personen, consumenten of professionals.</li>
-        </ul>
-        <p>Systemen die alleen op de achtergrond werken, via communicatie van machine naar machine of zonder direct contact met mensen, vallen buiten de plicht. Een agent die 's nachts facturen verwerkt zonder met iemand te praten, valt daar dus niet onder. Een agent die de telefoon opneemt en met de beller praat, wel. De Commissie vraagt om een beperkte uitleg van de uitzondering voor wat duidelijk is, omdat die mensen transparantie ontneemt.</p>
-
-        <h3>Wie moet het regelen: de aanbieder of de gebruiker?</h3>
-        <p>Het eerste lid richt zich tot de aanbieder van het systeem: wie het ontwikkelt of laat ontwikkelen en onder eigen naam op de markt brengt of in gebruik stelt. De onderneming die het systeem onder haar verantwoordelijkheid inzet, is volgens de Commissie de gebruiksverantwoordelijke (in het Engels deployer). Vraag uw leverancier hoe de melding is ingericht, op welk moment in het gesprek zij klinkt en wie volgens de overeenkomst de aanbieder is.</p>
-        <div class="noot"><p>Dit is een weergave van openbare bronnen en geen juridisch advies. Of een bepaalde formulering in uw situatie voldoet, beoordeelt u bij voorkeur samen met een jurist. Voor telefoongesprekken staat dezelfde regel uitgewerkt bij <a href="ai-telefonist.html#de-wet">de AI-verordening en artikel 50 op de pagina over de AI-telefonist</a>. Een overzicht van alle regels voor AI in uw bedrijf staat in <a href="ai-voor-uw-bedrijf.html">AI voor uw bedrijf</a>.</p></div>
+        <p>Een agent die met mensen praat, moet zich bekendmaken als AI (artikel 50 van de AI-verordening, van toepassing sinds 2 augustus 2026). Verwerkt hij persoonsgegevens, dan eist de AVG een schriftelijke verwerkersovereenkomst. Complete AI legt dat vóór de start vast.</p>
       </div>
     </div>
   </section>
-
-  <hr class="streep">
-
-  <hr class="streep">
-
   <section id="beginnen">
     <div class="wrap">
       <div class="sectiekop reveal">
-        <p class="label"><i></i>Aan de slag</p>
-        <h2>Zelf bouwen of laten inrichten, en hoe begint u?</h2>
-        <p>Een agent bouwen is het kleinste deel van het werk. Het werk zit eromheen.</p>
+        <p class="label"><i></i>Beginnen</p>
+        <h2>Klein beginnen.</h2>
       </div>
-      <div class="proza reveal">
-        <h3>Hoe maakt u zelf een AI-agent?</h3>
-        <p>Een agent bestaat uit een taalmodel, gereedschap in de vorm van koppelingen en instructies over doel en grenzen. Anthropic omschrijft agents als taalmodellen die in een lus gereedschap gebruiken op grond van wat de omgeving terugmeldt, en merkt op dat de implementatie eenvoudig kan zijn. Het bouwen is dus te doen. De tijd zit in wat eromheen hoort: testen op uitzonderingen, de toegang beperken, de AVG regelen, een logboek bijhouden en onderhoud wanneer een koppeling of het model verandert. Wie dat zelf wil dragen, begint met één taak zonder gevolgen voor klanten. Wie dat niet wil, laat het inrichten.</p>
-
-        <h3>Zo begint u: vier stappen</h3>
-        <ol>
-          <li><strong>Meet een week.</strong> Noteer welk terugkerend werk u doet, hoe lang het duurt en hoeveel uitzonderingen erin zitten. <a href="bedrijfsprocessen-automatiseren-voorbeelden.html">Zo neemt u de tijd op</a>.</li>
-          <li><strong>Kies één taak met een gevolg dat te overzien is.</strong> Een terugbelnotitie, een afspraakherinnering of een verzoek om een beoordeling. Geen offerteprijs.</li>
-          <li><strong>Begin in stand 1 of 2.</strong> Laat de agent voorbereiden of uitvoeren na uw akkoord, en kijk de eerste weken mee.</li>
-          <li><strong>Laat het akkoord vervallen waar het kan.</strong> Geeft u telkens ongewijzigd akkoord, dan kan die stap weg. Pas dan volgt de volgende taak.</li>
-        </ol>
-        <p>Na vier weken controleert u drie dingen: klopt wat er is verwerkt met wat u zelf had gedaan, hoeveel tijd kost de taak nu nog en welke uitzonderingen zijn er langsgekomen. De vragen voor die controle staan bij <a href="ai-voor-uw-bedrijf.html#beginnen">AI voor uw bedrijf</a>.</p>
-
-        <h3>Wat kost een AI-agent?</h3>
-        <p>Een bedrag zonder gesprek zegt weinig, omdat de kosten afhangen van vijf dingen: het aantal taken dat de agent overneemt, het aantal koppelingen met uw systemen, het aantal uitzonderingen dat hij moet kennen, het aantal goedkeuringsstappen en het onderhoud daarna. Bij Complete AI ligt na de intake van een half uur binnen één werkdag een voorstel met één vaste prijs: eenmalig voor de bouw en een vast maandbedrag voor onderhoud, zonder nacalculatie. Hoe een voorstel tot stand komt, staat op <a href="wat-kost-automatisering.html">Wat kost automatisering?</a>. Wilt u eerst weten wat een taak nu kost, dan is <a href="index.html#contact">een intake van een half uur</a> kosteloos en vrijblijvend.</p>
+      <div class="route reveal">
+        <div class="fase"><i>Stap 1</i><b>Kies één taak</b><p>Een afgebakende taak die elke week terugkomt.</p></div>
+        <div class="fase"><i>Stap 2</i><b>Stel grenzen</b><p>Wat gaat zonder uw akkoord de deur uit?</p></div>
+        <div class="fase"><i>Stap 3</i><b>Laat meekijken</b><p>De eerste weken kijken wij mee.</p></div>
+        <div class="fase"><i>Stap 4</i><b>Breid uit</b><p>Pas als het werkt, volgt een volgende taak.</p></div>
       </div>
     </div>
   </section>
+  
 
   <hr class="streep">
 
@@ -338,11 +267,11 @@
         <h2>Antwoord op de vragen die het vaakst gesteld worden.</h2>
       </div>
       <div class="vragen reveal">
-        <details><summary>Wat is een AI-agent voor het mkb?</summary><p>Een AI-agent voor het mkb is software die een afgebakende taak zelfstandig uitvoert, zoals de telefoon opnemen en een afspraak inplannen. Een taalmodel bepaalt daarbij zelf de stappen en gebruikt koppelingen met uw agenda, orderlijst of boekhouding. Wat naar buiten gaat, kan langs uw akkoord. <a href="#wat-is-het">De definitie met bronnen</a> staat hierboven.</p></details>
-        <details><summary>Hoe kan ik AI-agents gebruiken?</summary><p>Begin met één terugkerende taak waarvan het gevolg te overzien is als het misgaat, en laat de agent die eerst voorbereiden of uitvoeren na uw akkoord. Geschikt zijn de telefoon buiten openingstijden, het opvolgen van orders en facturen en het aanvragen van reviews. Meet vooraf een week wat de taak kost. Zie <a href="#beginnen">zo begint u</a>.</p></details>
-        <details><summary>Wat is het verschil tussen een AI-agent en een chatbot?</summary><p>Een chatbot beantwoordt vragen in een gesprek, een AI-agent voert daarnaast handelingen uit in uw systemen. Een chatbot vertelt dat u tot vijf uur open bent. Een agent zet na hetzelfde gesprek de afspraak in uw agenda. De grens is dus wat de software zelf mag doen. De vergelijking zet vier soorten software naast elkaar.</p></details>
-        <details><summary>Hoe maak ik zelf AI-agents?</summary><p>Zelf een AI-agent maken begint met één afgebakende taak, een taalmodel en koppelingen naar precies de systemen die de taak nodig heeft. Volgens <a href="https://www.anthropic.com/engineering/building-effective-agents" rel="noopener" target="_blank">Anthropic</a> is een agent in de kern een taalmodel dat gereedschap gebruikt in een lus. Het werk zit in testen, toegang beperken en de AVG. Zie <a href="#beginnen">zelf bouwen of laten inrichten</a>.</p></details>
-        <details><summary>Wat zijn de beste AI-agents?</summary><p>Er is geen beste AI-agent: welke past, hangt af van de taak, de systemen waaraan hij moet koppelen en wat u zelf wilt blijven beslissen. Vergelijk aanbieders op vier vragen: welke gegevens ziet de agent, welke handelingen mag hij uitvoeren, waar zit uw akkoord en wat gebeurt er met de gegevens als u stopt.</p></details>
+        <details><summary>Wat is het verschil met een chatbot?</summary><p>Een agent voert taken uit met uw systemen. Een chatbot beantwoordt vooral vragen.</p></details>
+        <details><summary>Wat als de agent iets verkeerd doet?</summary><p>U bepaalt vooraf wat zelfstandig gebeurt. Alles is terug te lezen.</p></details>
+        <details><summary>Wat heb ik nodig om te beginnen?</summary><p>Een gesprek van een half uur en één taak waarmee u wilt beginnen.</p></details>
+        <details><summary>Is het veilig?</summary><p>Uw gegevens blijven van u. Wij leggen de afspraken vast in een verwerkersovereenkomst.</p></details>
+        <details><summary>Wat kost het?</summary><p>Dat hangt af van de taak. Zie <a href="wat-kost-automatisering.html">wat automatisering kost</a>.</p></details>
       </div>
     </div>
   </section>
@@ -352,8 +281,8 @@
   <section id="afsluiting">
     <div class="wrap">
       <div class="slotblok reveal">
-        <h2>Welke taak zou een AI-agent bij u kunnen overnemen?</h2>
-        <p>In een half uur brengen wij in kaart welke taken bij u elke week terugkomen, bij welke een vaste regel volstaat en waar een AI-agent iets toevoegt. Blijkt dat u er geen nodig hebt, dan hoort u dat ook.</p>
+        <h2>Welke taak kan een agent van u overnemen?</h2>
+        <p>In een half uur nemen we dat door. Binnen één werkdag volgt een voorstel. Zie ook <a href="ai-voor-uw-bedrijf.html">wat AI voor uw bedrijf kan</a>.</p>
         <a class="knop knop-vol" href="index.html#contact">Plan een gratis intake <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a>
       </div>
     </div>
