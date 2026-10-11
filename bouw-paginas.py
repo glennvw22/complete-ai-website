@@ -455,6 +455,8 @@ def bouw_404():
 
 if __name__ == "__main__":
     from inhoud_paginas import PAGINAS
+    from inkorten import inkorten
+    PAGINAS = inkorten(PAGINAS)
     hier = os.path.dirname(os.path.abspath(__file__))
     for p in PAGINAS:
         pad = os.path.join(hier, p["bestand"])
