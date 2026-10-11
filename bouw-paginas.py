@@ -34,7 +34,7 @@ NAV = [("websites.html", "Websites"),
        ("automatisering.html", "Automatisering"),
        ("ai-telefonist.html", "AI-telefonist"),
        ("social-media.html", "Social media"),
-       ("index.html#pakketten", "Pakketten"),
+       ("pakketten.html", "Pakketten"),
        ("index.html#over", "Over Glenn")]
 
 KLOK = ('<svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" '
@@ -78,7 +78,7 @@ def kop_html(actief):
     </ul>
     <p class="mm-kop">Meer</p>
     <ul class="mm-lijst">
-      <li><a href="index.html#pakketten">Pakketten<span>Stel zelf een pakket samen</span></a></li>
+      <li><a href="pakketten.html">Pakketten<span>Stel zelf een pakket samen</span></a></li>
       <li><a href="index.html#over">Over Glenn<span>Wie u aan de lijn krijgt</span></a></li>
     </ul>
     <p class="mm-voet">glenn@complete-ai.nl · Nederland &amp; België</p>
@@ -468,7 +468,7 @@ if __name__ == "__main__":
 
     # index.html en privacy.html worden met de hand onderhouden; hun
     # verwijzingen naar stijl en script krijgen hier hetzelfde stempel.
-    for hand in ("index.html", "privacy.html"):
+    for hand in ("index.html", "pakketten.html", "privacy.html"):
         pad = os.path.join(hier, hand)
         if not os.path.exists(pad):
             continue

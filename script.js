@@ -127,6 +127,12 @@
      browser een gewone POST naar hetzelfde adres. ── */
   var f = document.getElementById('contactformulier');
   if (f) {
+    try {
+      var bewaard = sessionStorage.getItem('pakketBericht'), bv = f.querySelector('[name="bericht"]');
+      if (bewaard && bv && !bv.value.trim()) { bv.value = bewaard; sessionStorage.removeItem('pakketBericht'); }
+    } catch (e) {}
+  }
+  if (f) {
     var knop = document.getElementById('verstuurknop');
     var stand = document.getElementById('formstand');
     var knoptekst = knop ? knop.textContent : '';
@@ -476,13 +482,16 @@
        niet bij nul begint. Wat de bezoeker zelf typte blijft staan. */
     knop.addEventListener('click', function(){
       var vak = document.querySelector('#contactformulier [name="bericht"]');
-      if (!vak || vak.value.trim()) return;
+      if (vak && vak.value.trim()) return;
       var namen = VOLGORDE.filter(function(t){ return gekozenThemas.indexOf(t) > -1; })
                           .map(function(t){ return THEMAS[t].naam; });
       if (!namen.length) return;
       var b = gekozenBranche && BRANCHES[gekozenBranche];
-      vak.value = 'Graag een voorstel voor: ' + namen.join(', ') + '.' +
+      var tekst = 'Graag een voorstel voor: ' + namen.join(', ') + '.' +
                   (b ? ' Mijn bedrijf is een ' + b.naam + '.' : '');
+      if (vak) { vak.value = tekst; return; }
+      /* de pakkettenpagina heeft het formulier niet: de samenstelling gaat mee naar de homepage */
+      try { sessionStorage.setItem('pakketBericht', tekst); } catch (e) {}
     });
 
     document.querySelectorAll('[data-thema]').forEach(function(k){

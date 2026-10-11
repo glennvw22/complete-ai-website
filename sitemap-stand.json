@@ -1,7 +1,7 @@
 {
  "index.html": {
-  "afdruk": "acfd99011cf2",
-  "lastmod": "2026-10-01"
+  "afdruk": "04de19cfe085",
+  "lastmod": "2026-10-11"
  },
  "websites.html": {
   "afdruk": "57c24aa6050e",
@@ -86,5 +86,9 @@
  "gidsen.html": {
   "afdruk": "96dc9747d05b",
   "lastmod": "2026-10-01"
+ },
+ "pakketten.html": {
+  "afdruk": "0e88f3f6e6bc",
+  "lastmod": "2026-10-11"
  }
 }
