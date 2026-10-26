@@ -27,7 +27,7 @@ PAGINAS = [
     "gemiste-oproepen-berekenen.html", "gidsen.html",
     "ai-voor-kapsalons.html", "ai-voor-garagebedrijven.html", "ai-voor-de-horeca.html",
     "ai-voor-bouw-en-installatie.html", "case-aronza.html", "ai-voor-uw-bedrijf.html",
-    "privacy.html", "voorwaarden.html", "gegevens-verwijderen.html",
+    "klantenapp.html", "privacy.html", "voorwaarden.html", "gegevens-verwijderen.html",
 ]
 
 
