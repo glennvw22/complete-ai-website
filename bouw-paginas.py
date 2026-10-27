@@ -124,6 +124,7 @@ VOET = f"""<footer>
         <p class="voetkop">Contact</p>
         <ul>
           <li><a href="mailto:glenn@complete-ai.nl">glenn@complete-ai.nl</a></li>
+          <li><a href="tel:+31624569686">+31 6 24 56 96 86</a></li>
           <li><a href="index.html#contact">Plan een intake</a></li>
           <li><a href="klantenapp.html">Inloggen klantenapp</a></li>
           <li><a href="index.html#vragen">Veelgestelde vragen</a></li>
