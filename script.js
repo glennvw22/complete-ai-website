@@ -288,7 +288,6 @@
         'Website die klanten oplevert, live in 1 tot 2 weken',
         'Google-bedrijfsprofiel volledig ingericht',
         'Lokale SEO voor uw regio',
-        'Social media wekelijks bijgehouden in uw huisstijl',
         'Reviews die vanzelf binnenkomen']},
       bereikbaar:{naam:'Bereikbaarheid', punten:[
         'AI-telefonist die opneemt wanneer u niet kunt',

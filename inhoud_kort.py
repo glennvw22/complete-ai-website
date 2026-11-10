@@ -52,7 +52,7 @@ KORT["websites.html"] = dict(
    ("Teksten", "Eén gesprek. Daaruit schrijven wij alles."),
    ("Bouwen", "U kijkt mee via een link en stuurt gaandeweg bij."),
    ("Live", "Wij koppelen domein en e-mail en nemen alles met u door.")]) +
-  proza("maatwerk", "Maatwerk of sjabloon", "Sjabloon of maatwerk?", '<p>Een sjabloon is een kant-en-klaar ontwerp met uw inhoud erin. Maatwerk volgt uit uw bedrijf en kan precies wat u nodig heeft, zoals online boeken. Wij bouwen maatwerk en houden het licht, zodat het snel blijft. Wilt u meer dan een website, dan sluiten <a href="automatisering.html">automatisering</a>, <a href="social-media.html">social media</a> en de <a href="ai-telefonist.html">AI-telefonist</a> daarop aan.</p>')),
+  proza("maatwerk", "Maatwerk of sjabloon", "Sjabloon of maatwerk?", '<p>Een sjabloon is een kant-en-klaar ontwerp met uw inhoud erin. Maatwerk volgt uit uw bedrijf en kan precies wat u nodig heeft, zoals online boeken. Wij bouwen maatwerk en houden het licht, zodat het snel blijft. Wilt u meer dan een website, dan sluiten <a href="automatisering.html">automatisering</a> van uw klantcontact en de <a href="ai-telefonist.html">AI-telefonist</a> daarop aan.</p>')),
  vragen=[
   ("Wat kost het om een website te laten maken?", "Dat hangt af van het aantal pagina’s, de functies, wie de teksten en het beeld levert en het onderhoud. Daarom noemen wij vooraf geen bedrag. Na de intake ligt er binnen één werkdag een voorstel met één vaste prijs."),
   ("Hoe lang duurt het?", "Van akkoord tot live één tot twee weken, inclusief teksten."),
@@ -78,13 +78,13 @@ KORT["automatisering.html"] = dict(
    ("Afspraken", "Klanten plannen zelf in via een link, rechtstreeks in uw agenda, met herinnering vooraf."),
    ("Klantenbestand", "Gegevens, historie en notities per klant op één plek."),
    ("Bonnen en kosten", "Uitgaven worden vastgelegd en geordend, de btw staat klaar voor de aangifte."),
-   ("Aanvragen op één plek", "Orders en vragen uit alle kanalen komen in één lijst.")]) +
+   ("Klantcontact en WhatsApp", "Berichten via WhatsApp, mail en telefoon worden direct beantwoord of doorgezet, en komen daarna in één lijst.")]) +
   route("werkwijze", "Werkwijze", "Beginnen waar de winst het grootst is.", "", [
    ("Intake", "Een half uur: welke taken komen elke week terug, en wat mag nooit zonder uw akkoord de deur uit?"),
    ("Voorstel", "Binnen één werkdag op papier, met één vaste prijs."),
    ("Inrichten", "De eerste automatisering draait binnen enkele werkdagen."),
    ("Uitbreiden", "Pas als het werkt, voegen we een volgend onderdeel toe.")]) +
-  proza("koppelingen", "Koppelingen", "Wij vervangen uw systemen niet.", '<p>Wij sluiten aan op wat u gebruikt: uw boekhouding, uw agenda en uw telefonie. Voor de telefoon is er de <a href="ai-telefonist.html">AI-telefonist</a>. Welke koppeling past, bepalen we in de intake.</p>')),
+  proza("koppelingen", "Koppelingen", "Wij vervangen uw systemen niet.", '<p>Wij sluiten aan op wat u gebruikt: uw boekhouding, uw agenda, WhatsApp en uw telefonie. Voor de telefoon is er de <a href="ai-telefonist.html">AI-telefonist</a>. Welke koppeling past, bepalen we in de intake.</p>')),
  vragen=[
   ("Wat kost automatisering?", 'Dat hangt af van het aantal processen, de koppelingen en het onderhoud. Daarom staat hier geen bedrag. Lees <a href="wat-kost-automatisering.html">waar de kosten van afhangen</a>.'),
   ("Moet ik mijn systemen vervangen?", "Nee. Wij koppelen aan wat u al gebruikt."),
@@ -126,37 +126,6 @@ KORT["ai-telefonist.html"] = dict(
  slot_tekst="In een half uur nemen we uw situatie door. U hoort daarna hoe uw telefonist klinkt.",
 )
 
-# ───────────────────────── social-media ─────────────────────────
-KORT["social-media.html"] = dict(
- inhoud=(
-  pijn("herkenbaar", "De situatie", "Tijd voor social media ontbreekt.", "", [
-   ("Het blijft liggen", "Berichten komen er niet van tussen het werk."),
-   ("Onregelmatig", "Af en toe iets plaatsen werkt niet."),
-   ("Geen overzicht", "Wat het oplevert, is niet te zien."),
-   ("Oud bedrijfsprofiel", "Uw Google-bedrijfsprofiel loopt achter.")]) +
-  proza("uitbesteden", "Uitbesteden", "Wij nemen het volledig over.", '<p>Wij bedenken, maken en plaatsen uw berichten en houden uw Google-bedrijfsprofiel en sociale kanalen wekelijks bij, in uw huisstijl. De accounts blijven van u. Het eerste bericht staat binnen een week.</p>') +
-  krijgt("wat-u-krijgt", "Wat u krijgt", "Wekelijks zichtbaar.", "", [
-   ("Weekplanning", "Elke week verschijnt er iets, op de kanalen die bij u passen."),
-   ("Uw huisstijl", "Beeld en toon sluiten aan op uw bedrijf."),
-   ("Google-bedrijfsprofiel", "Berichten, foto’s en reacties blijven actueel."),
-   ("Reviews", "Klanten worden gevraagd om een beoordeling."),
-   ("Rapportage", "Elke maand ziet u wat het heeft opgeleverd."),
-   ("Eigen accounts", "U houdt de toegang. Er is geen contract voor vast.")]) +
-  route("goedkeuring", "Werkwijze", "Zo houdt u de regie.", "", [
-   ("Intake", "Wat doet u, voor wie, en wat past bij u?"),
-   ("Maandplanning", "U keurt de maand vooraf goed."),
-   ("Plaatsen", "Wij plaatsen en reageren. U stuurt af en toe een foto."),
-   ("Bijsturen", "Maandelijks kijken we wat werkt.")]) ),
- vragen=[
-  ("Moet ik zelf iets aanleveren?", "Af en toe een foto. De rest regelen wij."),
-  ("Kan ik berichten vooraf goedkeuren?", "Ja. U keurt de planning van de maand vooraf goed."),
-  ("Van wie blijven de accounts?", "Van u. Wij werken met uw toegang."),
-  ("Hoe snel staat het eerste bericht online?", "Binnen een week."),
-  ("Wat kost het?", "Dat hangt af van de kanalen en de frequentie. Na de intake volgt binnen één werkdag een voorstel. Meer over <a href=\"vindbaarheid-seo.html\">vindbaarheid</a> en <a href=\"adverteren.html\">adverteren</a> vindt u op de andere pagina’s.")],
- slot_kop="Wekelijks zichtbaar, zonder dat het u tijd kost.",
- slot_tekst="In een half uur bepalen we wat bij uw bedrijf past. Binnen één werkdag volgt een voorstel.",
-)
-
 # ───────────────────────── vindbaarheid-seo ─────────────────────────
 KORT["vindbaarheid-seo.html"] = dict(
  inhoud=(
@@ -177,7 +146,7 @@ KORT["vindbaarheid-seo.html"] = dict(
    ("Voorstel", "Binnen één werkdag op papier."),
    ("Op orde brengen", "Eerst de techniek, dan de inhoud, dan het vertrouwen."),
    ("Meten", "Maandelijks de cijfers en het volgende voorstel.")]) +
-  proza("fouten", "Valkuilen", "Wat wij niet doen.", '<p>Wij beloven geen plek één en kopen geen verwijzingen. Zo’n belofte kan niemand waarmaken, en gekochte verwijzingen kunnen schade geven. Wel meten wij elke maand wat er verandert. Wilt u ook zichtbaar zijn zonder te wachten, dan kan dat met <a href="adverteren.html">adverteren</a>.</p>')),
+  proza("fouten", "Valkuilen", "Wat wij niet doen.", '<p>Wij beloven geen plek één en kopen geen verwijzingen. Zo’n belofte kan niemand waarmaken, en gekochte verwijzingen kunnen schade geven. Wel meten wij elke maand wat er verandert. Resultaat in Google komt geleidelijk, en blijft staan.</p>')),
  vragen=[
   ("Hoe komt u hoger in de Google-ranking?", "Door vier dingen op orde te brengen: Google moet uw pagina’s kunnen vinden en opnemen, de inhoud moet aansluiten op wat mensen intypen, en beoordelingen en verwijzingen moeten laten zien dat u te vertrouwen bent."),
   ("Hoe lang duurt het voordat ik resultaat zie?", "SEO is doorlopend werk. Wij melden elke maand wat er verandert."),
@@ -186,37 +155,6 @@ KORT["vindbaarheid-seo.html"] = dict(
   ("Zit ik vast aan een contract?", "Nee. Het is maandelijks opzegbaar.")],
  slot_kop="Waar staat u nu in Google?",
  slot_tekst="In een half uur kijken we naar wat er staat en wat het meeste oplevert. Binnen één werkdag volgt een voorstel.",
-)
-
-# ───────────────────────── adverteren ─────────────────────────
-KORT["adverteren.html"] = dict(
- inhoud=(
-  pijn("herkenbaar", "De situatie", "Advertentiebudget zonder duidelijk resultaat.", "", [
-   ("Betalen per klik", "Zonder meting weet u niet wat een klik oplevert."),
-   ("Geen koppeling", "Een aanvraag is niet te herleiden tot een advertentie."),
-   ("Zelf bijsturen", "Het kost tijd en kennis."),
-   ("Onzekerheid", "Is het budget goed besteed?")]) +
-  krijgt("wat-u-krijgt", "Wat u krijgt", "Een specialist, met meetbaar resultaat.", "", [
-   ("Opzet", "Een zoekcampagne op de zoekopdrachten van uw klanten."),
-   ("Meting", "Elke aanvraag is te herleiden tot een advertentie."),
-   ("Bijsturen", "Wij verbeteren de campagne op basis van de cijfers."),
-   ("Uw budget", "U betaalt het advertentiebudget rechtstreeks aan Google."),
-   ("Meta", "Ook Meta-advertenties op aanvraag."),
-   ("Rapportage", "Elke maand ziet u wat het heeft opgeleverd.")]) +
-  proza("waarom-op-aanvraag", "Op aanvraag", "Waarom adverteren op aanvraag gaat.", '<p>Elke campagne is maatwerk: het hangt af van uw aanbod, uw regio en wat een klant waard is. Daarom stellen wij na de intake een voorstel op, en noemen wij geen bedrag vooraf. Wilt u eerst op de lange termijn gevonden worden, begin dan met <a href="vindbaarheid-seo.html">SEO</a>.</p>') +
-  route("werkwijze", "Werkwijze", "Van intake tot meetbaar resultaat.", "", [
-   ("Intake", "Wat levert een klant op en waar zoekt hij?"),
-   ("Voorstel", "Binnen één werkdag op papier."),
-   ("Live", "De campagne en de meting gaan samen live."),
-   ("Bijsturen", "Maandelijks beoordelen we de cijfers.")]) ),
- vragen=[
-  ("Wat kost Google Ads beheren?", "Het advertentiebudget betaalt u rechtstreeks aan Google. Het beheer volgt uit de intake, met een voorstel binnen één werkdag."),
-  ("Wie bepaalt welke advertentie verschijnt?", "Google, per zoekopdracht. Wij sturen bij op de resultaten."),
-  ("Kan ik de resultaten zien?", "Ja, elke maand in een rapportage."),
-  ("Doen jullie ook Meta-advertenties?", "Ja, op aanvraag."),
-  ("Zit ik vast aan een contract?", "Nee. Het is maandelijks opzegbaar.")],
- slot_kop="Zichtbaar op het moment dat iemand zoekt.",
- slot_tekst="In een half uur kijken we of adverteren bij u past. Binnen één werkdag volgt een voorstel. Meer over <a href=\"websites.html\">websites</a>.",
 )
 
 # ───────────────────────── gidsen ─────────────────────────

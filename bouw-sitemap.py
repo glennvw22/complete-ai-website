@@ -21,7 +21,7 @@ STAND = MAP / "sitemap-stand.json"
 
 PAGINAS = [
     "index.html", "pakketten.html", "websites.html", "automatisering.html", "ai-telefonist.html",
-    "social-media.html", "vindbaarheid-seo.html", "adverteren.html",
+    "vindbaarheid-seo.html",
     "bedrijfsprocessen-automatiseren-voorbeelden.html",
     "wat-is-workflow-automatisering.html", "ai-agent-voor-uw-bedrijf.html", "wat-kost-automatisering.html",
     "gemiste-oproepen-berekenen.html", "gidsen.html",

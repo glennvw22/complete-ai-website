@@ -33,7 +33,6 @@ MERK_SVG = """<svg viewBox="0 0 32 32" aria-hidden="true">
 NAV = [("websites.html", "Websites"),
        ("automatisering.html", "Automatisering"),
        ("ai-telefonist.html", "AI-telefonist"),
-       ("social-media.html", "Social media"),
        ("pakketten.html", "Pakketten"),
        ("index.html#over", "Over Glenn")]
 
@@ -71,10 +70,8 @@ def kop_html(actief):
     <ul class="mm-lijst">
       <li><a href="websites.html">Websites<span>Live in 1 tot 2 weken</span></a></li>
       <li><a href="vindbaarheid-seo.html">Vindbaarheid — SEO<span>Lokale SEO en het Google-bedrijfsprofiel</span></a></li>
-      <li><a href="adverteren.html">Adverteren — SEA<span>Google Ads en Meta, op aanvraag</span></a></li>
       <li><a href="automatisering.html">Automatisering<span>Live binnen enkele werkdagen</span></a></li>
       <li><a href="ai-telefonist.html">AI-telefonist<span>Operationeel binnen 2 weken</span></a></li>
-      <li><a href="social-media.html">Social media<span>Eerste bericht binnen een week</span></a></li>
     </ul>
     <p class="mm-kop">Meer</p>
     <ul class="mm-lijst">
@@ -94,17 +91,15 @@ VOET = f"""<footer>
           {MERK_SVG}
           <b>Complete<span> AI</span></b>
         </a>
-        <p style="max-width:38ch">Websites, vindbaarheid, advertenties, automatisering en AI-telefonie voor ondernemers in Nederland en België.</p>
+        <p style="max-width:38ch">Websites, vindbaarheid, automatisering van het klantcontact (telefoon en WhatsApp) en AI-telefonie voor ondernemers in Nederland en België.</p>
       </div>
       <div>
         <p class="voetkop">Diensten</p>
         <ul>
           <li><a href="websites.html">Websites</a></li>
           <li><a href="vindbaarheid-seo.html">Vindbaarheid — SEO</a></li>
-          <li><a href="adverteren.html">Adverteren — SEA</a></li>
           <li><a href="automatisering.html">Automatisering</a></li>
           <li><a href="ai-telefonist.html">AI-telefonist</a></li>
-          <li><a href="social-media.html">Social media</a></li>
           <li><a href="case-aronza.html">Klantcase: Aronza</a></li>
         </ul>
       </div>
@@ -248,12 +243,8 @@ VERDER = [
      "Facturen, orders en herinneringen zonder tussenkomst."),
     ("ai-telefonist.html", "Dienst", "AI-telefonist",
      "Neemt op wanneer u dat niet kunt: 's avonds, weekend, drukte."),
-    ("social-media.html", "Dienst", "Social media",
-     "Elke week zichtbaar, zonder dat het u tijd kost."),
     ("vindbaarheid-seo.html", "Dienst", "Vindbaarheid — SEO",
      "Gevonden worden door klanten die al zoeken naar wat u levert."),
-    ("adverteren.html", "Dienst", "Adverteren — SEA",
-     "Google Ads en Meta, gemeten tot op de euro. Op aanvraag."),
     ("case-aronza.html", "Klantcase", "Aronza",
      "Vier tot zes uur administratie per week teruggebracht tot nul."),
     ("gidsen.html", "Gidsen", "Gidsen en tools",
@@ -275,8 +266,6 @@ BRANCHE_VERDER = [
      "Aanvragen vastleggen tijdens het werk, offertes en facturen zonder avondwerk."),
     ("ai-telefonist.html", "Dienst", "AI-telefonist",
      "Het onderdeel dat in elke branche als eerste terugkomt."),
-    ("social-media.html", "Dienst", "Social media",
-     "Wekelijks zichtbaar in uw branche, zonder eigen tijd."),
 ]
 
 
@@ -284,7 +273,7 @@ BRANCHE_VERDER = [
 # overzicht; wie meer wil weten klapt een onderdeel open. De tekst blijft in
 # de pagina staan (Google leest ook ingeklapte tekst), alleen de lap verdwijnt.
 KLAP = {"websites.html", "automatisering.html", "ai-telefonist.html",
-        "social-media.html", "vindbaarheid-seo.html", "adverteren.html"}
+        "vindbaarheid-seo.html"}
 SECTIE_RE = re.compile(
     r'(<section[^>]*?)>\s*<div class="wrap">\s*<div class="sectiekop reveal">(.*?)</div>(.*?)</div>\s*</section>', re.S)
 
@@ -455,6 +444,32 @@ def bouw_404():
 """
 
 
+# Complete AI biedt adverteren en social media niet meer aan (Glenn, 10-11-2026). Wie een oud adres uit Google of een link opent, gaat direct door naar de
+# startpagina: een directe meta-refresh telt voor Google als doorverwijzing. De pagina's staan niet meer in de sitemap en nergens meer in de site.
+OMLEIDINGEN = ["adverteren.html", "social-media.html"]
+
+
+def bouw_omleiding():
+    return f"""<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Complete AI — automatisering en AI-telefonist</title>
+<meta name="description" content="Deze pagina is verplaatst. Ga naar de startpagina van Complete AI.">
+<link rel="canonical" href="{DOMEIN}/">
+<meta http-equiv="refresh" content="0; url=/">
+<meta name="robots" content="noindex, follow">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+</head>
+<body>
+<p>Deze pagina is verplaatst. <a href="/">Ga naar de startpagina van Complete AI</a>.</p>
+</body>
+</html>
+"""
+
+
 if __name__ == "__main__":
     from inhoud_paginas import PAGINAS
     from inkorten import inkorten
@@ -468,6 +483,10 @@ if __name__ == "__main__":
 
     with open(os.path.join(hier, "404.html"), "w", encoding="utf-8") as f:
         f.write(bouw_404())
+    for oud in OMLEIDINGEN:
+        with open(os.path.join(hier, oud), "w", encoding="utf-8") as f:
+            f.write(bouw_omleiding())
+        print(f"  {oud:24} omleiding naar de startpagina")
     print("  404.html                 geschreven")
 
     # index.html en privacy.html worden met de hand onderhouden; hun
