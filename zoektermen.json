@@ -1,13 +1,13 @@
 {
  "index.html": {
-  "zoekterm": "automatisering",
+  "zoekterm": "automatisering voor bedrijven",
   "varianten": [
+   "automatisering voor bedrijven",
    "ai-telefonist",
-   "automatisering",
-   "website laten maken",
-   "vindbaarheid"
+   "whatsapp-automatisering",
+   "automatisering"
   ],
-  "min_woorden": 700,
+  "min_woorden": 500,
   "min_vragen": 5,
   "min_intern": 8,
   "min_extern": 0
@@ -25,10 +25,11 @@
   "min_extern": 0
  },
  "automatisering.html": {
-  "zoekterm": "bedrijfsprocessen automatiseren",
+  "zoekterm": "automatisering voor bedrijven",
   "varianten": [
-   "bedrijfsprocessen automatiseren",
-   "processen automatiseren"
+   "automatisering voor bedrijven",
+   "bedrijfsautomatisering",
+   "bedrijfsprocessen automatiseren"
   ],
   "min_woorden": 500,
   "min_vragen": 5,
@@ -42,18 +43,6 @@
    "ai telefonist",
    "ai-receptionist",
    "telefoonassistent"
-  ],
-  "min_woorden": 500,
-  "min_vragen": 5,
-  "min_intern": 6,
-  "min_extern": 0
- },
- "vindbaarheid-seo.html": {
-  "zoekterm": "seo voor het mkb",
-  "varianten": [
-   "seo voor het mkb",
-   "seo voor mkb",
-   "zoekmachine-optimalisatie"
   ],
   "min_woorden": 500,
   "min_vragen": 5,
@@ -90,7 +79,7 @@
    "workflowautomatisering",
    "workflows automatiseren"
   ],
-  "min_woorden": 500,
+  "min_woorden": 450,
   "min_vragen": 5,
   "min_intern": 6,
   "min_extern": 0
@@ -142,6 +131,18 @@
   "min_woorden": 600,
   "min_vragen": 5,
   "min_intern": 10,
+  "min_extern": 0
+ },
+ "whatsapp-automatisering.html": {
+  "zoekterm": "whatsapp-automatisering",
+  "varianten": [
+   "whatsapp-automatisering",
+   "whatsapp automatisering",
+   "whatsapp voor bedrijven"
+  ],
+  "min_woorden": 300,
+  "min_vragen": 5,
+  "min_intern": 5,
   "min_extern": 0
  }
 }

@@ -20,12 +20,11 @@ MAP = Path(__file__).resolve().parent
 STAND = MAP / "sitemap-stand.json"
 
 PAGINAS = [
-    "index.html", "pakketten.html", "websites.html", "automatisering.html", "ai-telefonist.html",
-    "vindbaarheid-seo.html",
+    "index.html", "pakketten.html", "websites.html", "automatisering.html", "ai-telefonist.html", "whatsapp-automatisering.html",
     "bedrijfsprocessen-automatiseren-voorbeelden.html",
     "wat-is-workflow-automatisering.html", "ai-agent-voor-uw-bedrijf.html", "wat-kost-automatisering.html",
     "gemiste-oproepen-berekenen.html", "gidsen.html",
-    "ai-voor-kapsalons.html", "ai-voor-garagebedrijven.html", "ai-voor-de-horeca.html",
+    "ai-voor-garagebedrijven.html",
     "ai-voor-bouw-en-installatie.html", "case-aronza.html", "ai-voor-uw-bedrijf.html",
     "klantenapp.html", "privacy.html", "voorwaarden.html", "gegevens-verwijderen.html",
 ]

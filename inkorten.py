@@ -6,7 +6,6 @@ HOUD = {
  "websites.html": ["herkenbaar", "wat-u-krijgt", "twee-weken", "maatwerk"],
  "automatisering.html": ["korte-antwoord", "herkenbaar", "wat-er-kan", "werkwijze", "koppelingen"],
  "ai-telefonist.html": ["wat-is-het", "herkenbaar", "zo-klinkt-het", "agenda-doorschakelen", "veiligheid-avg", "de-wet"],
- "vindbaarheid-seo.html": ["herkenbaar", "wat-u-krijgt", "werkwijze", "fouten", "rapportage"],
  "ai-voor-uw-bedrijf.html": ["kort-antwoord", "wat-is-ai", "kiezen", "beginnen", "grens"],
  "bedrijfsprocessen-automatiseren-voorbeelden.html": ["wat-is-een-bedrijfsproces", "klanten-verkoop", "financien", "herkennen", "waar-begint-u"],
  "wat-is-workflow-automatisering.html": ["korte-antwoord", "taak-workflow-proces", "opbrengst", "beginnen-meten"],

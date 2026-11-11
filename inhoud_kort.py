@@ -35,7 +35,7 @@ KORT = {}
 KORT["websites.html"] = dict(
  inhoud=(
   pijn("herkenbaar", "De situatie", "Een mooie site brengt nog geen klanten.", "Dit zien wij terug bij een bestaande website.", [
-   ("Niet vindbaar", "Wie de bedrijfsnaam niet intypt, komt de site niet tegen."),
+   ("Niet bijgehouden", "Teksten, openingstijden en diensten zijn verouderd."),
    ("Traag op mobiel", "Wie wacht op een pagina, haakt af. Google noemt 2,5 seconden als grens."),
    ("Geen vervolgstap", "De bezoeker kijkt rond en vertrekt zonder contact op te nemen."),
    ("Wijzigingen duren te lang", "Daardoor blijven ze uit en veroudert de site.")]) +
@@ -44,7 +44,7 @@ KORT["websites.html"] = dict(
    ("Mobiel eerst", "Ontworpen op telefoonformaat. Google beoordeelt de mobiele versie."),
    ("Snel", "Geen zware paginabouwers. Deze pagina laadt in ongeveer 0,7 seconde; dat is de norm."),
    ("Teksten die kloppen", "Geschreven na één gesprek, in uw taal en voor uw klant."),
-   ("Vindbaar vanaf dag één", 'Goede structuur en een ingericht Google-bedrijfsprofiel. Daarna groeit het met <a href="vindbaarheid-seo.html">SEO</a>.'),
+   ("Gekoppeld aan uw werk", 'Contactformulier, agenda en berichten komen rechtstreeks bij u binnen, ook via <a href="whatsapp-automatisering.html">WhatsApp</a>.'),
    ("Hosting en onderhoud", "Hosting, back-ups, updates en kleine wijzigingen zitten in het maandbedrag. Maandelijks opzegbaar.")]) +
   route("twee-weken", "Werkwijze", "Van eerste gesprek tot live in twee weken.", "", [
    ("Intake", "Een half uur. Kosteloos en vrijblijvend."),
@@ -66,30 +66,30 @@ KORT["websites.html"] = dict(
 # ───────────────────────── automatisering ─────────────────────────
 KORT["automatisering.html"] = dict(
  inhoud=(
-  proza("korte-antwoord", "Het korte antwoord", "Wat is bedrijfsprocessen automatiseren?", '<p>Een bedrijfsproces is een vaste reeks stappen met een uitkomst, zoals een order verwerken, een offerte opvolgen of een factuur versturen. Automatiseren betekent dat software die stappen uitvoert en niemand ze nog met de hand doet. Dat past bij werk dat terugkomt, een vaste volgorde heeft en een uitkomst geeft die u kunt controleren. Een overzicht per afdeling staat bij de <a href="bedrijfsprocessen-automatiseren-voorbeelden.html">voorbeelden</a>.</p>') +
+  proza("korte-antwoord", "Het korte antwoord", "Wat is automatisering voor bedrijven?", '<p>Automatisering voor bedrijven is software die terugkerende stappen uitvoert: een telefoontje opnemen, een WhatsApp-bericht beantwoorden, een offerte opvolgen, een factuur versturen. Dat past bij werk dat elke week terugkomt, een vaste volgorde heeft en een uitkomst geeft die u kunt controleren. Een overzicht per afdeling staat bij de <a href="bedrijfsprocessen-automatiseren-voorbeelden.html">voorbeelden</a>.</p>') +
   pijn("herkenbaar", "De situatie", "Werk dat tijd kost en niets oplevert.", "", [
    ("Overtypen", "Dezelfde gegevens gaan van de mail naar het systeem naar de factuur."),
    ("Opvolgen vergeten", "Een offerte blijft liggen, een betaling blijft uit."),
-   ("Administratie in de avond", "Facturen en bevestigingen schuiven door naar na sluitingstijd."),
+   ("Berichten blijven liggen", "Telefoon, WhatsApp en mail komen op drie plekken binnen."),
    ("Alles hangt aan u", "Zodra u uitvalt, staat het werk stil.")]) +
-  krijgt("wat-er-kan", "Wat er kan", "Dit lossen wij op.", "Samen bepalen we welke onderdelen bij uw bedrijf passen.", [
-   ("Facturen en betaalherinneringen", "Facturen maken en versturen. Trage betalers krijgen automatisch een vriendelijke herinnering."),
-   ("Offertes opvolgen", "Offertes opstellen, versturen en zien wie nog niet gereageerd heeft."),
-   ("Afspraken", "Klanten plannen zelf in via een link, rechtstreeks in uw agenda, met herinnering vooraf."),
-   ("Klantenbestand", "Gegevens, historie en notities per klant op één plek."),
-   ("Bonnen en kosten", "Uitgaven worden vastgelegd en geordend, de btw staat klaar voor de aangifte."),
-   ("Klantcontact en WhatsApp", "Berichten via WhatsApp, mail en telefoon worden direct beantwoord of doorgezet, en komen daarna in één lijst.")]) +
+  krijgt("wat-er-kan", "Wat wij automatiseren", "Zes onderdelen van uw bedrijf, afzonderlijk of samen.", "Wij beginnen bij het onderdeel dat de meeste uren kost.", [
+   ("Klantcontact", 'De <a href="ai-telefonist.html">AI-telefonist</a> neemt op, <a href="whatsapp-automatisering.html">WhatsApp-berichten</a> worden beantwoord, gemiste oproepen worden terugbelverzoeken en een vragen-assistent op uw website antwoordt direct.'),
+   ("Verkoop en offertes", "Aanvragen komen in één lijst. Offertes worden opgesteld, verstuurd, digitaal ondertekend en opgevolgd. Materiaal, uren en marge rekent u door in één calculatie."),
+   ("Planning", "Klanten boeken zelf online, met herinnering vooraf. Vrijgekomen plekken gaan naar de wachtlijst. Klussen, routes en werkbonnen staan op de telefoon."),
+   ("Facturen en geld", "Facturen worden gemaakt en verstuurd, trage betalers krijgen een herinnering. Klanten betalen via een link, bonnetjes gaan met een foto de boekhouding in en de btw staat klaar."),
+   ("Klanten en reviews", "Klantenbestand met historie, een logboek van elk bericht en gesprek per klant, een klantportaal en een verzoek om een beoordeling na afloop."),
+   ("Overzicht", "Omzet en kerncijfers op één scherm, elke week vanzelf een overzicht en met één klik een export naar Excel, PDF of uw boekhouder.")]) +
   route("werkwijze", "Werkwijze", "Beginnen waar de winst het grootst is.", "", [
    ("Intake", "Een half uur: welke taken komen elke week terug, en wat mag nooit zonder uw akkoord de deur uit?"),
    ("Voorstel", "Binnen één werkdag op papier, met één vaste prijs."),
    ("Inrichten", "De eerste automatisering draait binnen enkele werkdagen."),
    ("Uitbreiden", "Pas als het werkt, voegen we een volgend onderdeel toe.")]) +
-  proza("koppelingen", "Koppelingen", "Wij vervangen uw systemen niet.", '<p>Wij sluiten aan op wat u gebruikt: uw boekhouding, uw agenda, WhatsApp en uw telefonie. Voor de telefoon is er de <a href="ai-telefonist.html">AI-telefonist</a>. Welke koppeling past, bepalen we in de intake.</p>')),
+  proza("koppelingen", "Koppelingen", "Wij vervangen uw systemen niet.", '<p>Wij sluiten aan op wat u gebruikt: uw boekhouding, uw agenda, WhatsApp en uw telefonie. Welke koppeling past, bepalen we in de intake.</p>')),
  vragen=[
   ("Wat kost automatisering?", 'Dat hangt af van het aantal processen, de koppelingen en het onderhoud. Daarom staat hier geen bedrag. Lees <a href="wat-kost-automatisering.html">waar de kosten van afhangen</a>.'),
   ("Moet ik mijn systemen vervangen?", "Nee. Wij koppelen aan wat u al gebruikt."),
+  ("Welke bedrijven kunnen hun werk automatiseren?", "Elk bedrijf met werk dat elke week terugkomt: aanvragen, offertes, afspraken, facturen en berichten. De intake laat zien waar het meeste te winnen is."),
   ("Wat als er iets misgaat?", "U bepaalt vooraf wat zonder uw akkoord de deur uitgaat. Het overige loopt automatisch en is terug te lezen."),
-  ("Hoe snel draait het?", "De eerste automatisering binnen enkele werkdagen."),
   ("Zit ik vast aan een contract?", "Nee. Het onderhoud is maandelijks opzegbaar.")],
  slot_kop="Waar gaat bij u tijd verloren?",
  slot_tekst="In een half uur brengen we dat in kaart. Binnen één werkdag volgt een voorstel met één vaste prijs.",
@@ -126,35 +126,35 @@ KORT["ai-telefonist.html"] = dict(
  slot_tekst="In een half uur nemen we uw situatie door. U hoort daarna hoe uw telefonist klinkt.",
 )
 
-# ───────────────────────── vindbaarheid-seo ─────────────────────────
-KORT["vindbaarheid-seo.html"] = dict(
+# ───────────────────────── whatsapp-automatisering ─────────────────────────
+KORT["whatsapp-automatisering.html"] = dict(
  inhoud=(
-  pijn("herkenbaar", "De situatie", "Goed aanbod, maar niet te vinden.", "", [
-   ("Alleen op bedrijfsnaam", "Wie zoekt wat u levert, vindt een concurrent."),
-   ("Onzichtbaar op mobiel", "Google beoordeelt de mobiele versie van uw site."),
-   ("Geen vertrouwen", "Er zijn weinig beoordelingen en verwijzingen."),
-   ("Geen overzicht", "Het is onduidelijk wat er verandert.")]) +
-  krijgt("wat-u-krijgt", "Wat u krijgt", "Doorlopend werk, maandelijks inzichtelijk.", "", [
-   ("Technisch gezonde site", "Google kan uw pagina’s vinden, opnemen en begrijpen."),
-   ("Inhoud die antwoord geeft", "Pagina’s die aansluiten op wat uw klanten intypen."),
-   ("Google-bedrijfsprofiel", "Compleet ingericht en bijgehouden."),
-   ("Vertrouwen", "Beoordelingen en verwijzingen die laten zien dat u betrouwbaar bent."),
-   ("Nieuwe website", 'Staat uw <a href="websites.html">website</a> in de weg, dan bouwen wij er een die vindbaar is.'),
-   ("Maandrapport", "U leest elke maand wat het heeft opgeleverd.")]) +
-  route("werkwijze", "Werkwijze", "Stap voor stap hoger.", "", [
-   ("Intake", "Waar staat u nu, en welke zoekopdrachten tellen?"),
-   ("Voorstel", "Binnen één werkdag op papier."),
-   ("Op orde brengen", "Eerst de techniek, dan de inhoud, dan het vertrouwen."),
-   ("Meten", "Maandelijks de cijfers en het volgende voorstel.")]) +
-  proza("fouten", "Valkuilen", "Wat wij niet doen.", '<p>Wij beloven geen plek één en kopen geen verwijzingen. Zo’n belofte kan niemand waarmaken, en gekochte verwijzingen kunnen schade geven. Wel meten wij elke maand wat er verandert. Resultaat in Google komt geleidelijk, en blijft staan.</p>')),
+  proza("wat-is-het", "Uitleg", "Wat is WhatsApp-automatisering?", '<p>WhatsApp-automatisering handelt berichten van klanten af zonder dat u erbij hoeft te zijn. Een assistent beantwoordt veelgestelde vragen, legt afspraken vast, stuurt herinneringen en volgt offertes op. Heeft een bericht een mens nodig, dan zet hij het met de vraag erbij door naar u. Elk bericht komt in het logboek van de klant, naast telefoon en mail.</p>') +
+  pijn("herkenbaar", "De situatie", "Berichten blijven liggen terwijl u aan het werk bent.", "", [
+   ("Buiten kantooruren", "Een vraag om 21.00 uur krijgt pas de volgende dag antwoord."),
+   ("Dezelfde vragen", "Openingstijden, werkwijze en beschikbaarheid, elke week opnieuw."),
+   ("Op meerdere plekken", "Berichten staan op een telefoon, in de mail en in een notitie."),
+   ("Herinneringen vergeten", "Een afspraak of offerte wordt niet opgevolgd.")]) +
+  krijgt("wat-hij-doet", "Wat hij doet", "Wat de WhatsApp-assistent voor u afhandelt.", "", [
+   ("Antwoorden", "Veelgestelde vragen krijgen direct antwoord, ook buiten openingstijden."),
+   ("Afspraken", "Bevestiging en herinnering gaan uit, en de afspraak staat in uw agenda."),
+   ("Offertes opvolgen", "Blijft een reactie uit, dan volgt een vriendelijk bericht."),
+   ("Doorzetten naar u", "Wat een mens nodig heeft, komt met de vraag erbij bij u terecht."),
+   ("Eén overzicht", "Alle berichten staan per klant bij elkaar, met telefoon en mail erbij."),
+   ("Terugbelverzoeken", 'Gemiste oproepen worden een lijstje, samen met de <a href="ai-telefonist.html">AI-telefonist</a>.')]) +
+  route("werkwijze", "Werkwijze", "Van intake tot meekijken.", "", [
+   ("Intake", "Welke vragen komen steeds terug, en wat mag nooit zonder uw akkoord de deur uit?"),
+   ("Koppelen", "Uw eigen WhatsApp-nummer wordt gekoppeld. Het account blijft van u."),
+   ("Meekijken", "De eerste weken lezen wij mee en sturen wij bij.")]) +
+  proza("regels", "Toestemming en privacy", "Berichten sturen met toestemming.", '<p>Een bericht dat u zelf aan een klant start, vraagt om toestemming van die klant. Wij leggen die toestemming vast. Omdat berichten persoonsgegevens bevatten, regelen wij vóór de start een verwerkersovereenkomst, zoals de AVG voorschrijft. Meer over het geheel van klantcontact staat bij <a href="automatisering.html">automatisering</a>.</p>')),
  vragen=[
-  ("Hoe komt u hoger in de Google-ranking?", "Door vier dingen op orde te brengen: Google moet uw pagina’s kunnen vinden en opnemen, de inhoud moet aansluiten op wat mensen intypen, en beoordelingen en verwijzingen moeten laten zien dat u te vertrouwen bent."),
-  ("Hoe lang duurt het voordat ik resultaat zie?", "SEO is doorlopend werk. Wij melden elke maand wat er verandert."),
-  ("Kan ik SEO zelf doen?", "Voor een deel wel. Wij nemen het schrijven, meten en bijsturen over."),
-  ("Wat kost het?", "Dat hangt af van uw situatie. Na de intake volgt binnen één werkdag een voorstel."),
-  ("Zit ik vast aan een contract?", "Nee. Het is maandelijks opzegbaar.")],
- slot_kop="Waar staat u nu in Google?",
- slot_tekst="In een half uur kijken we naar wat er staat en wat het meeste oplevert. Binnen één werkdag volgt een voorstel.",
+  ("Wat is WhatsApp-automatisering voor bedrijven?", "Software die WhatsApp-berichten van klanten afhandelt: vragen beantwoorden, afspraken vastleggen, herinneringen sturen en offertes opvolgen. Wat een mens nodig heeft, gaat naar u door."),
+  ("Kan ik mijn eigen WhatsApp-nummer houden?", "Ja. Het account blijft van u. Welke koppeling bij uw situatie past, bepalen we in de intake."),
+  ("Wat als de assistent iets niet weet?", "Dan verzint hij niets. Hij zet de vraag voor u klaar, zodat niemand hoeft te raden wat de klant bedoelde."),
+  ("Wat kost het?", "Dat hangt af van uw situatie. Na de intake volgt binnen één werkdag een voorstel met één vaste prijs."),
+  ("Zit ik vast aan een contract?", "Nee. Het abonnement is maandelijks opzegbaar.")],
+ slot_kop="Welke vragen krijgt u elke week?",
+ slot_tekst="In een half uur nemen we uw berichten door. Binnen één werkdag volgt een voorstel met één vaste prijs.",
 )
 
 # ───────────────────────── gidsen ─────────────────────────

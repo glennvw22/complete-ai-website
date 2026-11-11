@@ -284,10 +284,10 @@
         'Factuur automatisch na afronding',
         'Betaalherinneringen zonder ongemakkelijk telefoontje',
         'Bonnen en kosten rechtstreeks de boekhouding in']},
-      marketing: {naam:'Marketing & zichtbaarheid', punten:[
+      marketing: {naam:'Website & reviews', punten:[
         'Website die klanten oplevert, live in 1 tot 2 weken',
-        'Google-bedrijfsprofiel volledig ingericht',
-        'Lokale SEO voor uw regio',
+        'Contactformulier en agenda gekoppeld',
+        'Berichten en herinneringen automatisch, ook via WhatsApp',
         'Reviews die vanzelf binnenkomen']},
       bereikbaar:{naam:'Bereikbaarheid', punten:[
         'AI-telefonist die opneemt wanneer u niet kunt',
@@ -311,7 +311,7 @@
     /* Per branche wijken enkele bundels af. Dat is waar het concreet wordt:
        "planning" betekent bij een garage iets anders dan bij een restaurant. */
     var BRANCHES = {
-      kapsalon: {naam:'kapsalon', lid:'kapsalons', pagina:'ai-voor-kapsalons.html', anders:{
+      kapsalon: {naam:'kapsalon', lid:'kapsalons', anders:{
         planning:['Online afspraken, ook op de dagen dat de salon dicht is',
                   'Herinnering de dag ervoor tegen no-shows',
                   'Terugkeerbericht na zes tot acht weken'],
@@ -325,7 +325,7 @@
         bereikbaar:['AI-telefonist voor in de werkplaats',
                     'Schakelt door zodra het technisch wordt',
                     'Terugbelnotities met volledig transcript']}},
-      horeca: {naam:'horecazaak', lid:'de horeca', pagina:'ai-voor-de-horeca.html', anders:{
+      horeca: {naam:'horecazaak', lid:'de horeca', anders:{
         planning:['Online reserveren binnen uw capaciteit',
                   'Bevestiging en herinnering met annuleerknop',
                   'Vrijgekomen tafels opnieuw te vergeven'],

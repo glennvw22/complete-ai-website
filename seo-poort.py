@@ -20,7 +20,8 @@ import re, sys, glob, os
 from html.parser import HTMLParser
 
 HIER = os.path.dirname(os.path.abspath(__file__))
-OVERSLAAN = ("google", "meta-app", "404", "adverteren.html", "social-media.html")  # de laatste twee zijn omleidingen
+OVERSLAAN = ("google", "meta-app", "404", "adverteren.html", "social-media.html",
+            "vindbaarheid-seo.html", "ai-voor-kapsalons.html", "ai-voor-de-horeca.html")  # omleidingen
 JURIDISCH = ("privacy.html", "voorwaarden.html", "gegevens-verwijderen.html")  # vestigingsadres is hier wettelijk
 
 # Wat Glenn heeft verboden (zie Klantcontact — Toon, Grenzen en complete-ai.md).

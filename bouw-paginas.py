@@ -30,9 +30,10 @@ MERK_SVG = """<svg viewBox="0 0 32 32" aria-hidden="true">
         <circle cx="21.43" cy="21.94" r="2.58" fill="#6FA2FF"/>
       </svg>"""
 
-NAV = [("websites.html", "Websites"),
+NAV = [("ai-telefonist.html", "AI-telefonist"),
+       ("whatsapp-automatisering.html", "WhatsApp"),
        ("automatisering.html", "Automatisering"),
-       ("ai-telefonist.html", "AI-telefonist"),
+       ("websites.html", "Websites"),
        ("pakketten.html", "Pakketten"),
        ("index.html#over", "Over Glenn")]
 
@@ -68,10 +69,10 @@ def kop_html(actief):
     <a class="knop knop-vol mm-actie" href="index.html#contact">Plan een gratis intake</a>
     <p class="mm-kop">Diensten</p>
     <ul class="mm-lijst">
-      <li><a href="websites.html">Websites<span>Live in 1 tot 2 weken</span></a></li>
-      <li><a href="vindbaarheid-seo.html">Vindbaarheid — SEO<span>Lokale SEO en het Google-bedrijfsprofiel</span></a></li>
-      <li><a href="automatisering.html">Automatisering<span>Live binnen enkele werkdagen</span></a></li>
       <li><a href="ai-telefonist.html">AI-telefonist<span>Operationeel binnen 2 weken</span></a></li>
+      <li><li><a href="whatsapp-automatisering.html">WhatsApp<span>Berichten die zichzelf afhandelen</span></a></li></li>
+      <li><a href="automatisering.html">Automatisering<span>Live binnen enkele werkdagen</span></a></li>
+      <li><a href="websites.html">Websites<span>Live in 1 tot 2 weken</span></a></li>
     </ul>
     <p class="mm-kop">Meer</p>
     <ul class="mm-lijst">
@@ -91,15 +92,15 @@ VOET = f"""<footer>
           {MERK_SVG}
           <b>Complete<span> AI</span></b>
         </a>
-        <p style="max-width:38ch">Websites, vindbaarheid, automatisering van het klantcontact (telefoon en WhatsApp) en AI-telefonie voor ondernemers in Nederland en België.</p>
+        <p style="max-width:38ch">AI-telefonist, WhatsApp-automatisering, automatisering van administratie en klantcontact, en websites voor bedrijven in Nederland en België.</p>
       </div>
       <div>
         <p class="voetkop">Diensten</p>
         <ul>
-          <li><a href="websites.html">Websites</a></li>
-          <li><a href="vindbaarheid-seo.html">Vindbaarheid — SEO</a></li>
-          <li><a href="automatisering.html">Automatisering</a></li>
           <li><a href="ai-telefonist.html">AI-telefonist</a></li>
+          <li><a href="whatsapp-automatisering.html">WhatsApp-automatisering</a></li>
+          <li><a href="automatisering.html">Automatisering</a></li>
+          <li><a href="websites.html">Websites</a></li>
           <li><a href="case-aronza.html">Klantcase: Aronza</a></li>
         </ul>
       </div>
@@ -237,18 +238,18 @@ def verder_html(pagina):
 
 
 VERDER = [
-    ("websites.html", "Dienst", "Websites",
-     "Een site die klanten oplevert, live binnen één tot twee weken."),
-    ("automatisering.html", "Dienst", "Automatisering",
-     "Facturen, orders en herinneringen zonder tussenkomst."),
     ("ai-telefonist.html", "Dienst", "AI-telefonist",
      "Neemt op wanneer u dat niet kunt: 's avonds, weekend, drukte."),
-    ("vindbaarheid-seo.html", "Dienst", "Vindbaarheid — SEO",
-     "Gevonden worden door klanten die al zoeken naar wat u levert."),
+    ("whatsapp-automatisering.html", "Dienst", "WhatsApp-automatisering",
+     "Vragen, afspraken en herinneringen via WhatsApp, ook buiten kantooruren."),
+    ("automatisering.html", "Dienst", "Automatisering",
+     "Offertes, facturen en planning zonder overtypen."),
+    ("websites.html", "Dienst", "Websites",
+     "Een snelle site die klanten naar uw telefoon en agenda leidt."),
     ("case-aronza.html", "Klantcase", "Aronza",
      "Vier tot zes uur administratie per week teruggebracht tot nul."),
     ("gidsen.html", "Gidsen", "Gidsen en tools",
-     "Uitleg over AI, automatisering en vindbaarheid, met bronnen."),
+     "Uitleg over AI en automatisering, met bronnen."),
     ("gemiste-oproepen-berekenen.html", "Rekentool", "Gemiste oproepen berekenen",
      "Wat kost een gemiste oproep u? Bereken het met uw eigen cijfers."),
 ]
@@ -256,12 +257,8 @@ VERDER = [
 # Branchepagina's wijzen naar elkaar en naar de twee diensten die daar
 # het meest spelen; de volledige dienstenlijst staat in de voet.
 BRANCHE_VERDER = [
-    ("ai-voor-kapsalons.html", "Branche", "Kapsalons",
-     "Afspraken, herinneringen en een telefoon die opneemt tijdens de behandeling."),
     ("ai-voor-garagebedrijven.html", "Branche", "Garagebedrijven",
      "APK-herinneringen, planning en statusberichten zonder handwerk."),
-    ("ai-voor-de-horeca.html", "Branche", "Horeca",
-     "Reserveringen en afhaalbestellingen, ook midden in de service."),
     ("ai-voor-bouw-en-installatie.html", "Branche", "Bouw &amp; installatie",
      "Aanvragen vastleggen tijdens het werk, offertes en facturen zonder avondwerk."),
     ("ai-telefonist.html", "Dienst", "AI-telefonist",
@@ -273,7 +270,7 @@ BRANCHE_VERDER = [
 # overzicht; wie meer wil weten klapt een onderdeel open. De tekst blijft in
 # de pagina staan (Google leest ook ingeklapte tekst), alleen de lap verdwijnt.
 KLAP = {"websites.html", "automatisering.html", "ai-telefonist.html",
-        "vindbaarheid-seo.html"}
+        "whatsapp-automatisering.html"}
 SECTIE_RE = re.compile(
     r'(<section[^>]*?)>\s*<div class="wrap">\s*<div class="sectiekop reveal">(.*?)</div>(.*?)</div>\s*</section>', re.S)
 
@@ -446,10 +443,13 @@ def bouw_404():
 
 # Complete AI biedt adverteren en social media niet meer aan (Glenn, 10-11-2026). Wie een oud adres uit Google of een link opent, gaat direct door naar de
 # startpagina: een directe meta-refresh telt voor Google als doorverwijzing. De pagina's staan niet meer in de sitemap en nergens meer in de site.
-OMLEIDINGEN = ["adverteren.html", "social-media.html"]
+OMLEIDINGEN = {"adverteren.html": "/", "social-media.html": "/",
+               # Glenn, 11-11-2026: wij verbeteren geen SEO; de site is compacter (kapsalons en horeca vallen buiten de doelgroep)
+               "vindbaarheid-seo.html": "/", "ai-voor-kapsalons.html": "/automatisering.html",
+               "ai-voor-de-horeca.html": "/automatisering.html"}
 
 
-def bouw_omleiding():
+def bouw_omleiding(doel="/"):
     return f"""<!doctype html>
 <html lang="nl">
 <head>
@@ -457,14 +457,14 @@ def bouw_omleiding():
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Complete AI — automatisering en AI-telefonist</title>
 <meta name="description" content="Deze pagina is verplaatst. Ga naar de startpagina van Complete AI.">
-<link rel="canonical" href="{DOMEIN}/">
-<meta http-equiv="refresh" content="0; url=/">
+<link rel="canonical" href="{DOMEIN}{doel}">
+<meta http-equiv="refresh" content="0; url={doel}">
 <meta name="robots" content="noindex, follow">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 </head>
 <body>
-<p>Deze pagina is verplaatst. <a href="/">Ga naar de startpagina van Complete AI</a>.</p>
+<p>Deze pagina is verplaatst. <a href="{doel}">Ga verder op complete-ai.nl</a>.</p>
 </body>
 </html>
 """
@@ -473,7 +473,7 @@ def bouw_omleiding():
 if __name__ == "__main__":
     from inhoud_paginas import PAGINAS
     from inkorten import inkorten
-    PAGINAS = inkorten(PAGINAS)
+    PAGINAS = [p for p in inkorten(PAGINAS) if p["bestand"] not in OMLEIDINGEN]
     hier = os.path.dirname(os.path.abspath(__file__))
     for p in PAGINAS:
         pad = os.path.join(hier, p["bestand"])
@@ -483,10 +483,10 @@ if __name__ == "__main__":
 
     with open(os.path.join(hier, "404.html"), "w", encoding="utf-8") as f:
         f.write(bouw_404())
-    for oud in OMLEIDINGEN:
+    for oud, doel in OMLEIDINGEN.items():
         with open(os.path.join(hier, oud), "w", encoding="utf-8") as f:
-            f.write(bouw_omleiding())
-        print(f"  {oud:24} omleiding naar de startpagina")
+            f.write(bouw_omleiding(doel))
+        print(f"  {oud:24} omleiding naar {doel}")
     print("  404.html                 geschreven")
 
     # index.html en privacy.html worden met de hand onderhouden; hun
