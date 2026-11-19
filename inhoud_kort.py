@@ -98,7 +98,7 @@ KORT["automatisering.html"] = dict(
 # ───────────────────────── ai-telefonist ─────────────────────────
 KORT["ai-telefonist.html"] = dict(
  inhoud=(
-  proza("wat-is-het", "Uitleg", "Een gesprek in plaats van een voicemail.", '<p>Een AI-telefonist voert het telefoongesprek zelf. Hij verstaat wat de beller vraagt en antwoordt in gesproken Nederlands. Aan het eind staat vast wat is afgesproken: een bestelling in de orderlijst, een terugbelnotitie met de vraag erin, of een gesprek dat naar u is doorgeschakeld. Bij een voicemail blijft de beller met zijn vraag zitten.</p>') +
+  proza("wat-is-het", "Uitleg", "Een gesprek in plaats van een voicemail.", '<p>Een AI-telefonist voert het telefoongesprek zelf. Hij verstaat wat de beller vraagt en antwoordt in gesproken Nederlands. Aan het eind staat vast wat is afgesproken: een bestelling in de orderlijst, een terugbelnotitie met de vraag erin, of een gesprek dat naar u is doorgeschakeld. Bij een voicemail blijft de beller met zijn vraag zitten. Andere namen voor hetzelfde zijn AI-receptionist, virtuele receptionist en AI-telefoniste.</p>') +
   pijn("herkenbaar", "De situatie", "Elk gemist gesprek is een klant die de volgende belt.", "", [
    ("Buiten openingstijden", "De telefoon gaat op het moment dat u niet kunt opnemen."),
    ("Tijdens drukte", "Wie aan het werk is, kan niet bellen."),
