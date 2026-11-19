@@ -24,6 +24,7 @@ PAGINAS = [
     "bedrijfsprocessen-automatiseren-voorbeelden.html",
     "wat-is-workflow-automatisering.html", "ai-agent-voor-uw-bedrijf.html", "wat-kost-automatisering.html",
     "gemiste-oproepen-berekenen.html", "gidsen.html",
+    "offertes-automatiseren.html", "facturen-automatisch-versturen.html", "whatsapp-business-automatisch-antwoorden.html",
     "ai-voor-garagebedrijven.html",
     "ai-voor-bouw-en-installatie.html", "case-aronza.html", "ai-voor-uw-bedrijf.html",
     "klantenapp.html", "privacy.html", "voorwaarden.html", "gegevens-verwijderen.html",

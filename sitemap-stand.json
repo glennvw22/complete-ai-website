@@ -1,7 +1,7 @@
 {
  "index.html": {
-  "afdruk": "e6e3d5945c4e",
-  "lastmod": "2026-11-11"
+  "afdruk": "f4eff005b70f",
+  "lastmod": "2026-11-19"
  },
  "websites.html": {
   "afdruk": "29cea80ef28c",
@@ -32,12 +32,12 @@
   "lastmod": "2026-11-11"
  },
  "privacy.html": {
-  "afdruk": "f64f8299259e",
-  "lastmod": "2026-11-10"
+  "afdruk": "84577f4ecdf8",
+  "lastmod": "2026-11-19"
  },
  "voorwaarden.html": {
-  "afdruk": "2aef2e288fd1",
-  "lastmod": "2026-11-10"
+  "afdruk": "33ba75d6f416",
+  "lastmod": "2026-11-19"
  },
  "gegevens-verwijderen.html": {
   "afdruk": "6aa3fb61f620",
@@ -68,8 +68,8 @@
   "lastmod": "2026-11-11"
  },
  "pakketten.html": {
-  "afdruk": "9e33ad7b338a",
-  "lastmod": "2026-11-11"
+  "afdruk": "fcbc57fbf0f1",
+  "lastmod": "2026-11-19"
  },
  "klantenapp.html": {
   "afdruk": "fd5ebda08772",
@@ -78,5 +78,17 @@
  "whatsapp-automatisering.html": {
   "afdruk": "168427031bf7",
   "lastmod": "2026-11-11"
+ },
+ "offertes-automatiseren.html": {
+  "afdruk": "b7fdf9776fe3",
+  "lastmod": "2026-11-19"
+ },
+ "facturen-automatisch-versturen.html": {
+  "afdruk": "2d5d189cf2b8",
+  "lastmod": "2026-11-19"
+ },
+ "whatsapp-business-automatisch-antwoorden.html": {
+  "afdruk": "0184183daa29",
+  "lastmod": "2026-11-19"
  }
 }
