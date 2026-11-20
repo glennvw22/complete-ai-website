@@ -2,11 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://complete-ai.nl/</loc>
-    <lastmod>2026-11-11</lastmod>
+    <lastmod>2026-11-12</lastmod>
+  </url>
+  <url>
+    <loc>https://complete-ai.nl/oplossingen.html</loc>
+    <lastmod>2026-11-12</lastmod>
+  </url>
+  <url>
+    <loc>https://complete-ai.nl/werkwijze.html</loc>
+    <lastmod>2026-11-12</lastmod>
+  </url>
+  <url>
+    <loc>https://complete-ai.nl/resultaten.html</loc>
+    <lastmod>2026-11-20</lastmod>
+  </url>
+  <url>
+    <loc>https://complete-ai.nl/scan.html</loc>
+    <lastmod>2026-11-20</lastmod>
+  </url>
+  <url>
+    <loc>https://complete-ai.nl/over-ons.html</loc>
+    <lastmod>2026-11-12</lastmod>
   </url>
   <url>
     <loc>https://complete-ai.nl/pakketten.html</loc>
-    <lastmod>2026-11-11</lastmod>
+    <lastmod>2026-11-20</lastmod>
   </url>
   <url>
     <loc>https://complete-ai.nl/websites.html</loc>
@@ -42,7 +62,7 @@
   </url>
   <url>
     <loc>https://complete-ai.nl/gemiste-oproepen-berekenen.html</loc>
-    <lastmod>2026-11-11</lastmod>
+    <lastmod>2026-11-20</lastmod>
   </url>
   <url>
     <loc>https://complete-ai.nl/gidsen.html</loc>
@@ -70,14 +90,14 @@
   </url>
   <url>
     <loc>https://complete-ai.nl/privacy.html</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-20</lastmod>
   </url>
   <url>
     <loc>https://complete-ai.nl/voorwaarden.html</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-12</lastmod>
   </url>
   <url>
     <loc>https://complete-ai.nl/gegevens-verwijderen.html</loc>
-    <lastmod>2026-10-01</lastmod>
+    <lastmod>2026-11-20</lastmod>
   </url>
 </urlset>

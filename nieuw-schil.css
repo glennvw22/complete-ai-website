@@ -1,0 +1,94 @@
+/* Gegenereerd door bouw_nieuw.py uit nieuw.css. Niet met de hand aanpassen. */
+@font-face{font-family:"Archivo";font-style:normal;font-weight:400 700;font-display:swap;src:url("archivo.woff2") format("woff2")}
+.n-balk,.n-mobiel,.n-waas,.n-voet,.n-skip{
+  --void:#06070C;
+  --vlak:#0E1119;
+  --vlak-2:#131826;
+  --lijn:#1A2030;
+  --lijn-op:#28304A;
+  --inkt:#EEF1F8;
+  --inkt-zacht:#A3ABC0;
+  --inkt-dim:#7D869B;
+  --blauw:#3D6DFF;
+  --blauw-hel:#6B92FF;
+  --aqua:#25D8C4;
+  --goed:#2BD9A0;
+  --fout:#FF6B6B;
+  --verloop:linear-gradient(115deg,#3D6DFF 0%,#5B8CFF 42%,#25D8C4 100%);
+  --f:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+  --r:24px;--r-m:18px;--r-s:14px;
+  --breed:1180px;
+  --rand:clamp(16px,4vw,32px);
+  --sec:clamp(64px,9vw,120px);
+  --gat:20px;
+}
+.n-balk,.n-balk *,.n-voet,.n-voet *,.n-mobiel,.n-mobiel *,.n-skip{box-sizing:border-box}
+.n-balk,.n-voet{font-family:var(--f);font-size:17px;line-height:1.62;color:var(--inkt);text-align:left}
+.n-voet{background:none}
+.n-balk a,.n-voet a,.n-mobiel a{color:inherit}
+.n-balk ul,.n-voet ul,.n-mobiel ul{list-style:none;margin:0;padding:0}
+.n-balk p,.n-voet p,.n-mobiel p{margin:0}
+.n-balk svg,.n-voet svg{display:block;max-width:100%}
+.n-balk button{font:inherit;color:inherit}
+.n-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.n-skip{position:absolute;left:12px;top:-60px;background:var(--blauw);color:#fff;padding:.6rem 1rem;border-radius:999px;z-index:200;text-decoration:none}
+.n-skip:focus{top:12px}
+
+.n-wrap{width:100%;max-width:calc(var(--breed) + 2*var(--rand));margin-inline:auto;padding-inline:var(--rand)}
+/* ── kopbalk ── */
+.n-balk{position:sticky;top:0;z-index:100;background:var(--void);border-bottom:1px solid transparent}
+.n-balk.vast{border-bottom-color:var(--lijn)}
+.n-balk .n-wrap{display:flex;align-items:center;gap:28px;height:72px}
+.n-merk{display:inline-flex;align-items:center;gap:11px;text-decoration:none;font-weight:700;font-size:1.12rem;letter-spacing:-.03em;flex:0 0 auto}
+.n-merk svg{width:32px;height:32px}
+.n-merk b{font-weight:700}
+.n-merk b span{color:var(--aqua)}
+.n-menu{display:flex;align-items:center;gap:4px;margin-left:auto}
+.n-menu a{text-decoration:none;color:var(--inkt-zacht);font-size:.95rem;font-weight:500;padding:.55rem .95rem;border-radius:999px;transition:color .15s,background .15s}
+.n-menu a:hover,.n-menu a[aria-current="page"]{color:var(--inkt);background:var(--vlak)}
+.n-balk .n-knop{flex:0 0 auto}
+.n-menuknop{display:none;margin-left:auto;width:44px;height:44px;border:1px solid var(--lijn-op);background:var(--vlak);border-radius:var(--r-s);cursor:pointer;
+  align-items:center;justify-content:center;flex-direction:column;gap:5px;padding:0}
+.n-menuknop span{display:block;width:18px;height:2px;background:var(--inkt);border-radius:2px}
+.n-waas{display:none}
+.n-mobiel{display:none}
+
+/* ── knoppen ── */
+.n-knop{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;text-decoration:none;font-weight:600;font-size:1rem;line-height:1.2;
+  padding:.95rem 1.6rem;border-radius:999px;border:1px solid transparent;cursor:pointer;transition:background .15s,border-color .15s,color .15s;text-align:center}
+.n-knop svg{width:16px;height:16px;flex:0 0 auto}
+.n-knop-vol{background:var(--blauw);color:#fff}
+.n-knop-vol:hover{background:var(--blauw-hel)}
+.n-knop-lijn{border-color:var(--lijn-op);color:var(--inkt);background:transparent}
+.n-knop-lijn:hover{border-color:var(--blauw-hel);background:var(--vlak)}
+.n-knop-klein{padding:.7rem 1.25rem;font-size:.95rem}
+.n-knop[disabled]{opacity:.55;cursor:default}
+
+/* ── voet ── */
+.n-voet{border-top:1px solid var(--lijn);padding-block:56px 36px;margin-top:0}
+.n-voetraster{display:flex;flex-wrap:wrap;gap:36px 48px;justify-content:space-between}
+.n-voetraster>div{flex:1 1 180px;min-width:0}
+.n-voetraster>div:first-child{flex:1.6 1 280px}
+.n-voetkop{font-family:var(--mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--inkt-dim);margin-bottom:1rem}
+.n-voetraster li{margin-bottom:.55rem}
+.n-voetraster li a{text-decoration:none;color:var(--inkt-zacht);font-size:.97rem}
+.n-voetraster li a:hover{color:var(--inkt)}
+.n-voet .n-merk{margin-bottom:1rem}
+.n-voet p.n-over-ons{color:var(--inkt-zacht);font-size:.97rem;max-width:40ch}
+.n-slot{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:44px;padding-top:24px;border-top:1px solid var(--lijn);color:var(--inkt-dim);font-size:.86rem}
+.n-slot a{color:var(--inkt-dim);text-decoration:none}
+.n-slot a:hover{color:var(--inkt)}
+
+@media (max-width:1100px){
+  .n-menu,.n-balk>.n-wrap>.n-knop{display:none}
+  .n-menuknop{display:flex}
+  .n-waas{position:fixed;inset:0;background:rgba(6,7,12,.8);z-index:90}
+  .n-waas.open{display:block}
+  .n-mobiel{position:fixed;left:0;right:0;top:72px;bottom:0;z-index:95;background:var(--void);border-top:1px solid var(--lijn);padding:24px var(--rand) 40px;overflow-y:auto}
+  .n-mobiel.open{display:block}
+  .n-mobiel a.n-knop{width:100%;margin-bottom:22px}
+  .n-mobiel ul li a{display:flex;justify-content:space-between;align-items:center;gap:12px;text-decoration:none;padding:16px 4px;font-size:1.15rem;font-weight:600;border-bottom:1px solid var(--lijn)}
+  .n-mobiel ul li a span{font-size:.85rem;font-weight:400;color:var(--inkt-dim)}
+  .n-mobiel p.n-klein{margin-top:22px}
+}

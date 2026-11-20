@@ -2679,7 +2679,7 @@ PAGINAS = [
    ("Wat doet een AI-telefonist met een oproep die anders gemist zou worden?",
     "Hij neemt op buiten openingstijden en tijdens drukte, noteert de vraag of de bestelling, plant een afspraak en schakelt urgente gesprekken door naar u. Van elk gesprek is een transcript beschikbaar. Hoe dat werkt leest u bij <a href=\"ai-telefonist.html\">de AI-telefonist</a>."),
    ("Waarom vraagt de tool geen e-mailadres?",
-    "Omdat u de uitkomst voor uzelf nodig heeft. Er wordt niets verstuurd of opgeslagen; de berekening gebeurt in uw browser. Wilt u de uitkomst met ons bespreken, dan kan dat via de gratis AI-scan of een intake."),
+    "Omdat u de uitkomst voor uzelf nodig heeft. Er wordt niets verstuurd of opgeslagen; de berekening gebeurt in uw browser. Wilt u de uitkomst met ons bespreken, dan kan dat via de tijdverlies-scan of een intake."),
    ("Kan ik ook andere gemiste contactmomenten meerekenen?",
     "Ja, met dezelfde formule. Neem in plaats van telefoontjes het aantal WhatsApp-berichten of e-mails dat te laat wordt beantwoord en vul het aandeel en de waarde in zoals hierboven. Voor berichten buiten kantooruren is een <a href=\"automatisering.html\">automatisering</a> een aparte mogelijkheid."),
  ],
@@ -2708,7 +2708,7 @@ PAGINAS = [
       +'<li><b>Daarvan een nieuwe klant of opdracht</b><br><span id="rk-2"></span></li>'
       +'<li><b>Omzet die is blijven liggen</b><br><span id="rk-3"></span></li></ul>'
       +'<p>Dit is een rekensom met uw eigen inschatting, geen meting en geen belofte. Klopt een getal niet, pas het dan aan en bereken opnieuw.</p>'
-      +'<div class="rekenacties"><a class="knop knop-vol" href="index.html#scan">Vraag de gratis AI-scan aan</a><a class="knop knop-lijn" href="index.html#contact">Plan een intake</a></div>';
+      +'<div class="rekenacties"><a class="knop knop-vol" href="scan.html">Doe de gratis tijdverlies-scan</a><a class="knop knop-lijn" href="index.html#contact">Plan een intake</a></div>';
     document.getElementById('rk-omzet').textContent=eur.format(omzet);
     document.getElementById('rk-1').textContent=nl.format(a)+' per dag \\u00d7 '+nl.format(d)+' werkdagen \\u00d7 '+nl.format(b)+'% = '+nl.format(gemist);
     document.getElementById('rk-2').textContent=nl.format(gemist)+' \\u00d7 '+nl.format(c)+'% = '+nl.format(nieuw);

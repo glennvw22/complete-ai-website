@@ -20,7 +20,7 @@ MAP = Path(__file__).resolve().parent
 STAND = MAP / "sitemap-stand.json"
 
 PAGINAS = [
-    "index.html", "pakketten.html", "websites.html", "automatisering.html", "ai-telefonist.html", "whatsapp-automatisering.html",
+    "index.html", "oplossingen.html", "werkwijze.html", "resultaten.html", "scan.html", "over-ons.html", "pakketten.html", "websites.html", "automatisering.html", "ai-telefonist.html", "whatsapp-automatisering.html",
     "bedrijfsprocessen-automatiseren-voorbeelden.html",
     "wat-is-workflow-automatisering.html", "ai-agent-voor-uw-bedrijf.html", "wat-kost-automatisering.html",
     "gemiste-oproepen-berekenen.html", "gidsen.html",
@@ -31,7 +31,7 @@ PAGINAS = [
 
 
 def afdruk(html):
-    m = re.search(r"<main>(.*?)</main>", html, re.S)
+    m = re.search(r"<main[^>]*>(.*?)</main>", html, re.S)
     inhoud = re.sub(r"\s+", " ", m.group(1) if m else html)
     return hashlib.sha1(inhoud.encode("utf-8")).hexdigest()[:12]
 

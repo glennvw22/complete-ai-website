@@ -915,3 +915,7 @@ summary{padding:1.3rem 3.2rem 1.3rem 1.5rem}
 #automatiseren .krijgt{grid-template-columns:repeat(3,1fr)}
 @media(max-width:940px){#automatiseren .krijgt{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:620px){#automatiseren .krijgt{grid-template-columns:1fr}}
+
+/* 12-11-2026: nergens tekst kleiner dan 12 px (controle site-controle.mjs) */
+.kruimels,.kruimels a,.kruimels span,.nr,.verdiep-label,.verder a em,.pakrol,.vlag,.niveau em,.staplabel b,.bladtijd,.bladtijd span{font-size:max(12px,.78rem)}
+main .nr,main .verdiep-label{font-size:12px!important}

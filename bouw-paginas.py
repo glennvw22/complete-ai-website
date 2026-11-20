@@ -21,6 +21,8 @@ JS_V = stempel("script.js")
 
 DOMEIN = "https://complete-ai.nl"
 
+import bouw_nieuw as nieuw   # nieuwe kop, voet en schil-css (12-11-2026)
+
 
 MERK_SVG = """<svg viewBox="0 0 32 32" aria-hidden="true">
         <rect x="2.34" y="2.34" width="27.32" height="27.32" rx="8.8" fill="none" stroke="#2E7BFF" stroke-width="1.68"/>
@@ -141,6 +143,14 @@ VOET = f"""<footer>
     </div>
   </div>
 </footer>"""
+
+
+def kop_html(actief):
+    """Kop uit de nieuwe site (bouw_nieuw.py). De oude pagina's hebben geen eigen actieve stand."""
+    return nieuw.kop("")
+
+
+VOET = nieuw.VOET
 
 
 def schema(p):
@@ -334,6 +344,7 @@ def bouw(p):
 
 <link rel="preload" href="archivo.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="stijl.css?v={CSS_V}">
+<link rel="stylesheet" href="nieuw-schil.css?v={nieuw.SCHIL_V}">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
@@ -412,6 +423,7 @@ def bouw_404():
 <meta name="theme-color" content="#06070C">
 <link rel="preload" href="/archivo.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/stijl.css?v={CSS_V}">
+<link rel="stylesheet" href="/nieuw-schil.css?v={nieuw.SCHIL_V}">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 </head>

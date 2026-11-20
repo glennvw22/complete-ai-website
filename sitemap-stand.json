@@ -1,7 +1,7 @@
 {
  "index.html": {
-  "afdruk": "e6e3d5945c4e",
-  "lastmod": "2026-11-11"
+  "afdruk": "2df79df3d6b1",
+  "lastmod": "2026-11-12"
  },
  "websites.html": {
   "afdruk": "29cea80ef28c",
@@ -32,16 +32,16 @@
   "lastmod": "2026-11-11"
  },
  "privacy.html": {
-  "afdruk": "f64f8299259e",
-  "lastmod": "2026-11-10"
+  "afdruk": "1ededfb5fbf1",
+  "lastmod": "2026-11-20"
  },
  "voorwaarden.html": {
-  "afdruk": "2aef2e288fd1",
-  "lastmod": "2026-11-10"
+  "afdruk": "7bcb322da045",
+  "lastmod": "2026-11-12"
  },
  "gegevens-verwijderen.html": {
-  "afdruk": "6aa3fb61f620",
-  "lastmod": "2026-10-01"
+  "afdruk": "bde33a593875",
+  "lastmod": "2026-11-20"
  },
  "bedrijfsprocessen-automatiseren-voorbeelden.html": {
   "afdruk": "144a0e935827",
@@ -60,16 +60,16 @@
   "lastmod": "2026-11-11"
  },
  "gemiste-oproepen-berekenen.html": {
-  "afdruk": "0ea070825d92",
-  "lastmod": "2026-11-11"
+  "afdruk": "1b3d6fc5377f",
+  "lastmod": "2026-11-20"
  },
  "gidsen.html": {
   "afdruk": "9a25619fcfb3",
   "lastmod": "2026-11-11"
  },
  "pakketten.html": {
-  "afdruk": "9e33ad7b338a",
-  "lastmod": "2026-11-11"
+  "afdruk": "45802edbf320",
+  "lastmod": "2026-11-20"
  },
  "klantenapp.html": {
   "afdruk": "fd5ebda08772",
@@ -78,5 +78,25 @@
  "whatsapp-automatisering.html": {
   "afdruk": "168427031bf7",
   "lastmod": "2026-11-11"
+ },
+ "oplossingen.html": {
+  "afdruk": "5341974371c4",
+  "lastmod": "2026-11-12"
+ },
+ "werkwijze.html": {
+  "afdruk": "1f2fcfb69203",
+  "lastmod": "2026-11-12"
+ },
+ "resultaten.html": {
+  "afdruk": "fea4ec513a32",
+  "lastmod": "2026-11-20"
+ },
+ "scan.html": {
+  "afdruk": "dc721ea97635",
+  "lastmod": "2026-11-20"
+ },
+ "over-ons.html": {
+  "afdruk": "d0b337a7f6fb",
+  "lastmod": "2026-11-12"
  }
 }
