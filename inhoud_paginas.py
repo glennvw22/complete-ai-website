@@ -2839,3 +2839,7 @@ PAGINAS = [
  "inhoud": "",
 }
 ]
+
+# Pagina's op zoekopdrachten van kopers (19-11-2026), zie inhoud_koper.py
+from inhoud_koper import KOPER
+PAGINAS += KOPER

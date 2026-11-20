@@ -13,6 +13,8 @@ FOUT:    geen bedragen op de site; geen verboden woorden en namen; precies één
          langer dan 70 tekens; beschrijving niet langer dan 200 tekens.
 Uit zoektermen.json per pagina: zoekterm in titel, h1 en eerste 140 woorden,
          minimum aantal woorden, vragen, interne links en externe bronlinks.
+         elke interne link (ook in 404.html en de doorverwijzingen) wijst naar een
+         bestaand bestand en een bestaand anker (controleer_links).
 WAARSCHUWING: titel langer dan 60 of beschrijving buiten 110-160 tekens;
          minder dan 3 contextuele links in de hoofdtekst; h1 zonder onderwerp.
 """
@@ -21,7 +23,7 @@ from html.parser import HTMLParser
 
 HIER = os.path.dirname(os.path.abspath(__file__))
 OVERSLAAN = ("google", "meta-app", "404", "adverteren.html", "social-media.html",
-            "vindbaarheid-seo.html", "ai-voor-kapsalons.html", "ai-voor-de-horeca.html")  # omleidingen
+            "vindbaarheid-seo.html", "ai-voor-kapsalons.html", "ai-voor-de-horeca.html", "over.html")  # omleidingen
 JURIDISCH = ("privacy.html", "voorwaarden.html", "gegevens-verwijderen.html")  # vestigingsadres is hier wettelijk
 
 # Wat Glenn heeft verboden (zie Klantcontact — Toon, Grenzen en complete-ai.md).
@@ -153,6 +155,42 @@ def controleer(pad, in_sitemap):
     return naam, fouten, waarsch, len(re.findall(r"\w+", tekst))
 
 
+def controleer_links():
+    """Elke interne link op elke pagina moet bestaan. Anders klikt een bezoeker (of Glenn tijdens
+    een belgesprek) op een kapotte link en ziet 'Fout 404'. Gebeurde op 19-11-2026: het menu
+    verwees naar 'over', een bestand dat niet bestond. Strikt: 'over' zonder .html telt niet."""
+    fouten = []
+    ids = {}
+    def anker_ids(bestand):
+        if bestand not in ids:
+            ids[bestand] = set(re.findall(r'\bid="([^"]+)"', open(bestand, encoding="utf-8").read()))
+        return ids[bestand]
+    for pad in sorted(glob.glob(os.path.join(HIER, "**", "*.html"), recursive=True)):
+        rel = os.path.relpath(pad, HIER)
+        html = open(pad, encoding="utf-8").read()
+        for h in sorted(set(re.findall(r'<a\b[^>]*?\shref="([^"]*)"', html))):
+            if re.match(r"(https?:|//|mailto:|tel:|data:|javascript:)", h) or not h:
+                continue
+            doel, _, anker = h.partition("#")
+            doel = doel.split("?")[0]
+            if doel == "":
+                bestand = pad
+            else:
+                basis = HIER if doel.startswith("/") else os.path.dirname(pad)
+                # 404.html wordt op elk diepte-niveau getoond; zijn links gaan via <base href="/">
+                if os.path.basename(pad) == "404.html" and not doel.startswith("/"):
+                    basis = HIER
+                bestand = os.path.normpath(os.path.join(basis, doel.lstrip("/")))
+                if os.path.isdir(bestand):
+                    bestand = os.path.join(bestand, "index.html")
+                if not os.path.isfile(bestand):
+                    fouten.append(f"{rel}: link naar '{h}' bestaat niet")
+                    continue
+            if anker and bestand.endswith(".html") and anker not in anker_ids(bestand):
+                fouten.append(f"{rel}: link naar '{h}': het anker '{anker}' staat niet op die pagina")
+    return fouten
+
+
 def main():
     sm = open(os.path.join(HIER, "sitemap.xml"), encoding="utf-8").read()
     in_sitemap = {"index.html" if u.rstrip("/").endswith("complete-ai.nl") else u.split("/")[-1]
@@ -167,6 +205,9 @@ def main():
         for f in fouten: print(f"         FOUT: {f}")
         for w in waarsch: print(f"         let op: {w}")
         fout_totaal += len(fouten)
+    link_fouten = controleer_links()
+    for f in link_fouten: print(f"FOUT: {f}")
+    fout_totaal += len(link_fouten)
     print(f"\n{len(paginas)} pagina's gecontroleerd, {fout_totaal} fout(en).")
     sys.exit(1 if fout_totaal else 0)
 

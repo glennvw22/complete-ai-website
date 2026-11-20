@@ -1,148 +1,187 @@
 {
- "index.html": {
-  "zoekterm": "automatisering voor bedrijven",
-  "varianten": [
-   "automatisering voor bedrijven",
-   "ai-telefonist",
-   "whatsapp-automatisering",
-   "automatisering"
-  ],
-  "min_woorden": 500,
-  "min_vragen": 5,
-  "min_intern": 8,
-  "min_extern": 0
- },
- "websites.html": {
-  "zoekterm": "website laten maken",
-  "varianten": [
-   "website laten maken",
-   "website voor uw bedrijf",
-   "mkb-website"
-  ],
-  "min_woorden": 500,
-  "min_vragen": 5,
-  "min_intern": 6,
-  "min_extern": 0
- },
- "automatisering.html": {
-  "zoekterm": "automatisering voor bedrijven",
-  "varianten": [
-   "automatisering voor bedrijven",
-   "bedrijfsautomatisering",
-   "bedrijfsprocessen automatiseren"
-  ],
-  "min_woorden": 500,
-  "min_vragen": 5,
-  "min_intern": 6,
-  "min_extern": 0
- },
- "ai-telefonist.html": {
-  "zoekterm": "ai-telefonist",
-  "varianten": [
-   "ai-telefonist",
-   "ai telefonist",
-   "ai-receptionist",
-   "telefoonassistent"
-  ],
-  "min_woorden": 500,
-  "min_vragen": 5,
-  "min_intern": 6,
-  "min_extern": 0
- },
- "ai-voor-uw-bedrijf.html": {
-  "zoekterm": "ai in uw bedrijf",
-  "varianten": [
-   "ai in uw bedrijf",
-   "ai voor uw bedrijf",
-   "wat kan ai"
-  ],
-  "min_woorden": 500,
-  "min_vragen": 5,
-  "min_intern": 6,
-  "min_extern": 0
- },
- "bedrijfsprocessen-automatiseren-voorbeelden.html": {
-  "zoekterm": "processen automatiseren",
-  "varianten": [
-   "processen automatiseren",
-   "bedrijfsprocessen automatiseren"
-  ],
-  "min_woorden": 500,
-  "min_vragen": 5,
-  "min_intern": 6,
-  "min_extern": 0
- },
- "wat-is-workflow-automatisering.html": {
-  "zoekterm": "workflow automatisering",
-  "varianten": [
-   "workflow automatisering",
-   "workflowautomatisering",
-   "workflows automatiseren"
-  ],
-  "min_woorden": 450,
-  "min_vragen": 5,
-  "min_intern": 6,
-  "min_extern": 0
- },
- "ai-agent-voor-uw-bedrijf.html": {
-  "zoekterm": "ai-agent",
-  "varianten": [
-   "ai-agent",
-   "ai agent",
-   "ai-agents"
-  ],
-  "min_woorden": 500,
-  "min_vragen": 5,
-  "min_intern": 6,
-  "min_extern": 0
- },
- "wat-kost-automatisering.html": {
-  "zoekterm": "wat kost automatisering",
-  "varianten": [
-   "wat kost automatisering",
-   "kosten van automatisering",
-   "kosten automatisering",
-   "automatisering kost"
-  ],
-  "min_woorden": 500,
-  "min_vragen": 5,
-  "min_intern": 6,
-  "min_extern": 0
- },
- "gemiste-oproepen-berekenen.html": {
-  "zoekterm": "gemiste oproepen",
-  "varianten": [
-   "gemiste oproepen",
-   "gemiste oproep",
-   "gemiste telefoontjes"
-  ],
-  "min_woorden": 800,
-  "min_vragen": 6,
-  "min_intern": 5,
-  "min_extern": 0
- },
- "gidsen.html": {
-  "zoekterm": "gidsen ai automatisering",
-  "varianten": [
-   "gidsen over ai",
-   "gidsen",
-   "ai en automatisering"
-  ],
-  "min_woorden": 600,
-  "min_vragen": 5,
-  "min_intern": 10,
-  "min_extern": 0
- },
- "whatsapp-automatisering.html": {
-  "zoekterm": "whatsapp-automatisering",
-  "varianten": [
-   "whatsapp-automatisering",
-   "whatsapp automatisering",
-   "whatsapp voor bedrijven"
-  ],
-  "min_woorden": 300,
-  "min_vragen": 5,
-  "min_intern": 5,
-  "min_extern": 0
- }
+  "index.html": {
+    "zoekterm": "automatisering voor bedrijven",
+    "varianten": [
+      "automatisering voor bedrijven",
+      "ai-telefonist",
+      "whatsapp-automatisering",
+      "automatisering"
+    ],
+    "min_woorden": 500,
+    "min_vragen": 5,
+    "min_intern": 8,
+    "min_extern": 0
+  },
+  "websites.html": {
+    "zoekterm": "website laten maken",
+    "varianten": [
+      "website laten maken",
+      "website voor uw bedrijf",
+      "mkb-website"
+    ],
+    "min_woorden": 500,
+    "min_vragen": 5,
+    "min_intern": 6,
+    "min_extern": 0
+  },
+  "automatisering.html": {
+    "zoekterm": "automatisering voor bedrijven",
+    "varianten": [
+      "automatisering voor bedrijven",
+      "bedrijfsautomatisering",
+      "bedrijfsprocessen automatiseren"
+    ],
+    "min_woorden": 500,
+    "min_vragen": 5,
+    "min_intern": 6,
+    "min_extern": 0
+  },
+  "ai-telefonist.html": {
+    "zoekterm": "ai-telefonist",
+    "varianten": [
+      "ai-telefonist",
+      "ai telefonist",
+      "ai-receptionist",
+      "telefoonassistent"
+    ],
+    "min_woorden": 500,
+    "min_vragen": 5,
+    "min_intern": 6,
+    "min_extern": 0
+  },
+  "ai-voor-uw-bedrijf.html": {
+    "zoekterm": "ai in uw bedrijf",
+    "varianten": [
+      "ai in uw bedrijf",
+      "ai voor uw bedrijf",
+      "wat kan ai"
+    ],
+    "min_woorden": 500,
+    "min_vragen": 5,
+    "min_intern": 6,
+    "min_extern": 0
+  },
+  "bedrijfsprocessen-automatiseren-voorbeelden.html": {
+    "zoekterm": "processen automatiseren",
+    "varianten": [
+      "processen automatiseren",
+      "bedrijfsprocessen automatiseren"
+    ],
+    "min_woorden": 500,
+    "min_vragen": 5,
+    "min_intern": 6,
+    "min_extern": 0
+  },
+  "wat-is-workflow-automatisering.html": {
+    "zoekterm": "workflow automatisering",
+    "varianten": [
+      "workflow automatisering",
+      "workflowautomatisering",
+      "workflows automatiseren"
+    ],
+    "min_woorden": 450,
+    "min_vragen": 5,
+    "min_intern": 6,
+    "min_extern": 0
+  },
+  "ai-agent-voor-uw-bedrijf.html": {
+    "zoekterm": "ai-agent",
+    "varianten": [
+      "ai-agent",
+      "ai agent",
+      "ai-agents"
+    ],
+    "min_woorden": 500,
+    "min_vragen": 5,
+    "min_intern": 6,
+    "min_extern": 0
+  },
+  "wat-kost-automatisering.html": {
+    "zoekterm": "wat kost automatisering",
+    "varianten": [
+      "wat kost automatisering",
+      "kosten van automatisering",
+      "kosten automatisering",
+      "automatisering kost"
+    ],
+    "min_woorden": 500,
+    "min_vragen": 5,
+    "min_intern": 6,
+    "min_extern": 0
+  },
+  "gemiste-oproepen-berekenen.html": {
+    "zoekterm": "gemiste oproepen",
+    "varianten": [
+      "gemiste oproepen",
+      "gemiste oproep",
+      "gemiste telefoontjes"
+    ],
+    "min_woorden": 800,
+    "min_vragen": 6,
+    "min_intern": 5,
+    "min_extern": 0
+  },
+  "gidsen.html": {
+    "zoekterm": "gidsen ai automatisering",
+    "varianten": [
+      "gidsen over ai",
+      "gidsen",
+      "ai en automatisering"
+    ],
+    "min_woorden": 600,
+    "min_vragen": 5,
+    "min_intern": 10,
+    "min_extern": 0
+  },
+  "whatsapp-automatisering.html": {
+    "zoekterm": "whatsapp-automatisering",
+    "varianten": [
+      "whatsapp-automatisering",
+      "whatsapp automatisering",
+      "whatsapp voor bedrijven"
+    ],
+    "min_woorden": 300,
+    "min_vragen": 5,
+    "min_intern": 5,
+    "min_extern": 0
+  },
+  "offertes-automatiseren.html": {
+    "zoekterm": "offertes automatiseren",
+    "varianten": [
+      "offertes automatiseren",
+      "offerte automatiseren",
+      "offertes automatisch maken",
+      "offerte automatisch"
+    ],
+    "min_woorden": 450,
+    "min_vragen": 5,
+    "min_intern": 5,
+    "min_extern": 0
+  },
+  "facturen-automatisch-versturen.html": {
+    "zoekterm": "facturen automatisch versturen",
+    "varianten": [
+      "facturen automatisch versturen",
+      "factuur automatisch versturen",
+      "automatisch facturen versturen",
+      "facturatie automatiseren"
+    ],
+    "min_woorden": 450,
+    "min_vragen": 5,
+    "min_intern": 5,
+    "min_extern": 0
+  },
+  "whatsapp-business-automatisch-antwoorden.html": {
+    "zoekterm": "whatsapp business automatisch antwoorden",
+    "varianten": [
+      "whatsapp business automatisch antwoorden",
+      "automatisch antwoorden whatsapp",
+      "whatsapp automatisch antwoorden",
+      "automatisch antwoorden"
+    ],
+    "min_woorden": 450,
+    "min_vragen": 5,
+    "min_intern": 5,
+    "min_extern": 0
+  }
 }

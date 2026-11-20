@@ -800,6 +800,29 @@ def schil_wisselen(bestand):
     print("  kop en voet vernieuwd:", bestand)
 
 
+def anker_inhoud():
+    """De 'Naar de inhoud'-link heeft op elke pagina een doel nodig (de SEO-poort controleert elk anker).
+    Handmatig onderhouden en door bouw-paginas.py gemaakte pagina's hebben een <main> zonder id, of met
+    een eigen id (pakketten: top). Zonder id krijgt <main> id="inhoud"; met een eigen id wijst de link daarheen."""
+    for naam in sorted(os.listdir(HIER)):
+        if not naam.endswith(".html"):
+            continue
+        pad = os.path.join(HIER, naam)
+        t = open(pad, encoding="utf-8").read()
+        if 'class="n-skip" href="#inhoud"' not in t or 'id="inhoud"' in t:
+            continue
+        m = re.search(r'<main(?![^>]*\bid=)([^>]*)>', t)
+        if m:
+            t = t.replace(m.group(0), '<main id="inhoud"' + m.group(1) + '>', 1)
+        else:
+            m2 = re.search(r'<main[^>]*\bid="([^"]+)"', t)
+            if not m2:
+                continue
+            t = t.replace('class="n-skip" href="#inhoud"', 'class="n-skip" href="#' + m2.group(1) + '"', 1)
+        open(pad, "w", encoding="utf-8").write(t)
+        print("  doel voor 'Naar de inhoud':", naam)
+
+
 if __name__ == "__main__":
     print("Bouw de nieuwe pagina's:")
     startpagina(); oplossingenpagina(); werkwijzepagina(); resultatenpagina(); overonspagina(); scanpagina()
@@ -807,4 +830,5 @@ if __name__ == "__main__":
         juridisch(j)
     for h in ("klantenapp.html", "pakketten.html"):
         schil_wisselen(h)
+    anker_inhoud()
     print("klaar. stempels:", CSS_V, JS_V, SCAN_V, SCHIL_V)

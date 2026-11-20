@@ -72,7 +72,7 @@ def kop_html(actief):
     <p class="mm-kop">Diensten</p>
     <ul class="mm-lijst">
       <li><a href="ai-telefonist.html">AI-telefonist<span>Operationeel binnen 2 weken</span></a></li>
-      <li><li><a href="whatsapp-automatisering.html">WhatsApp<span>Berichten die zichzelf afhandelen</span></a></li></li>
+      <li><a href="whatsapp-automatisering.html">WhatsApp<span>Berichten die zichzelf afhandelen</span></a></li>
       <li><a href="automatisering.html">Automatisering<span>Live binnen enkele werkdagen</span></a></li>
       <li><a href="websites.html">Websites<span>Live in 1 tot 2 weken</span></a></li>
     </ul>
@@ -115,6 +115,9 @@ VOET = f"""<footer>
           <li><a href="wat-is-workflow-automatisering.html">Workflow automatisering</a></li>
           <li><a href="ai-agent-voor-uw-bedrijf.html">AI-agent</a></li>
           <li><a href="wat-kost-automatisering.html">Wat kost automatisering</a></li>
+          <li><a href="offertes-automatiseren.html">Offertes automatiseren</a></li>
+          <li><a href="facturen-automatisch-versturen.html">Facturen automatisch versturen</a></li>
+          <li><a href="whatsapp-business-automatisch-antwoorden.html">WhatsApp Business automatisch antwoorden</a></li>
           <li><a href="gemiste-oproepen-berekenen.html">Rekentool: gemiste oproepen</a></li>
         </ul>
       </div>
@@ -417,6 +420,7 @@ def bouw_404():
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<base href="/">
 <title>Pagina niet gevonden | Complete AI</title>
 <meta name="description" content="Deze pagina bestaat niet (meer). Kies hieronder een dienst of ga terug naar de homepage van Complete AI.">
 <meta name="robots" content="noindex, follow">
