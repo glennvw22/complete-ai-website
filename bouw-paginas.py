@@ -135,10 +135,11 @@ VOET = f"""<footer>
         </ul>
       </div>
     </div>
-    <!-- VERVANG: btw-nummer toevoegen zodra dat bekend is. KvK staat er sinds 31-8-2026. -->
     <div class="slot">
       <span>© <span id="jaar">2026</span> Complete AI</span>
+      <span>Spits 12, 4617 GP Bergen op Zoom</span>
       <span>KvK 98445235</span>
+      <span>btw-id NL005331991B91</span>
       <span>Nederland &amp; België</span>
       <span><a href="privacy.html">Privacyverklaring</a></span>
       <span><a href="voorwaarden.html">Algemene voorwaarden</a></span>
